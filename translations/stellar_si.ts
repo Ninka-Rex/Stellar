@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>වේගය</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>බාගත කරන්න</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ගොනු</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>සැකසුම්</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4272,7 +4280,58 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>සේවාදායකයකට උපරිම සම්බන්ධතා ගණන</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>සේවාදායකය</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>තරු ලකුණ wildcard රටාවක් ලෙස භාවිතා කළ හැක</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>උපරිම සම්බන්ධතා ගණන:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>අවලංගු</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>හරි</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>විරාමිත</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>විසන්ධි විය</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>සම්පූර්ණයි</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>දත්ත ලැබෙමින්...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>රැඳෙමින්...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>බලාපොරොත්තු වූ ගොනුව වෙනුවට සේවාදායකය HTML පිටුවක් ලබා දුනි. සබැඳිය බ්‍රවුසරයක විවෘත කිරීමට අවශ්‍ය විය හැකිය හෝ කල් ඉකුත් වී තිබිය හැකිය. කිසිවක් සුරැකුනේ නැත.</translation>
@@ -4360,6 +4419,38 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>බාගැනීමකට පෙරනිමි උපරිම සම්බන්ධතා:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>උපරිම සම්බන්ධතා ගණන</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>විශේෂිත සේවාදායක සඳහා පෙරනිමි සම්බන්ධතා ගණන අභිබවන්න. වයිල්ඩ්කාඩ් ලෙස තරු ලකුණ (*) භාවිතා කරන්න.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>සේවාදායකය</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>ගණන</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>නව</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>සංස්කරණය</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>මකන්න</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>වීඩියෝ සහ ශ්‍රව්‍ය ධාරා ඒකාබද්ධ කිරීමට භාවිතා කරයි.</translation>
@@ -5261,6 +5352,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT සහ නොබැඳි බාගතකරු ස්වයං-තහනම්</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>නිර්නාමික ප්‍රකාරය</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>නිර්නාමික ප්‍රකාරය ඔබගේ IP ලිපිනය සඟවන්නේ නැත. එය ඔබගේ සේවාලාභියා විකාශනය කරන තොරතුරු (user-agent සහ සේවාලාභී ඇඟිලි සලකුණ) පමණක් සීමා කරයි. සැබෑ පෞද්ගලිකත්වය සඳහා, VPN භාවිත කරන්න.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>නිර්නාමික ප්‍රකාරයෙන් අබල කර ඇත.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6380,6 +6483,14 @@ Click to open Statistics</source>
             <translation>ගොනු</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>සැකසුම්</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>පාරදත්ත ලබා ගනිමින්…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n අයිතම(ය)</translation>
         </message>
@@ -6657,19 +6768,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>ටොරන්ට් සැකසුම්</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>ටොරන්ට් අනුව වේගය, බෙදාගැනීමේ සීමා, සම වයස් සොයාගැනීම, සහ බාගැනීම් ආකාරය</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>යොදන්න</translation>
@@ -6680,7 +6779,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Download:</source>
-            <translation>බාගැනීම:</translation>
+            <translation>බාගත කිරීම:</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6712,7 +6811,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>min</source>
-            <translation>අවම</translation>
+            <translation>විනා</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6728,7 +6827,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>බෙදාහැරුණු හැෂ් වගුව</translation>
+            <translation>විමධ්‍යගත හැෂ් වගුව</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6736,7 +6835,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>සම වයස් හුවමාරුව</translation>
+            <translation>සමකාලීන හුවමාරුව</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6747,8 +6846,8 @@ Click to open Statistics</source>
             <translation>දේශීය සේවා සොයාගැනීම</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 පුද්ගලික ටොරන්ට්</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ පුද්ගලික ටොරන්ට්</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6764,15 +6863,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>කොටස් පිළිවෙලට බාගත කෙරේ (0 → අවසාන)</translation>
+            <translation>කොටස් පිළිවෙලට බාගත කෙරිණි (කොටස 0 → අවසාන)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>මුල් සහ අවසන් කොටස් ප්‍රමුඛ කරන්න</translation>
+            <translation>පළමු සහ අවසාන කොටස් ප්‍රමුඛ කරන්න</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>මුල් ධාවනය සඳහා ශීර්ෂ/පාදක පෙර පූරණය</translation>
+            <translation>මුල් ධාවනය සඳහා ශීර්ෂ/පාදකය පෙර පූරණය කරයි</translation>
         </message>
     </context>
     <context>

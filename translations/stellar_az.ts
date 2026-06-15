@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Sürət</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Yükləmə</translation>
         </message>
@@ -1758,6 +1762,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Fayllar</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Parametrlər</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4266,7 +4274,58 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Server üçün maks. bağlantı sayı</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Ulduz işarəsini şablon kimi istifadə edə bilərsiniz</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. bağlantı sayı:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ləğv et</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Dayandırıldı</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Əlaqə kəsildi</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Tamamlandı</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Məlumat qəbul edilir...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Gözlənilir...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server gözlənilən fayl əvəzinə HTML səhifə qaytardı. Link brauzerdə açılma tələb edə bilər və ya müddəti bitmiş ola bilər. Heç nə saxlanmadı.</translation>
@@ -4354,6 +4413,38 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Defolt maks. bağlantı sayı:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. bağlantı sayı</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Xüsusi serverlər üçün defolt bağlantı sayını ləğv et. Ulduz (*) universal simvol kimi istifadə olunur.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Say</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Yeni</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Redaktə et</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Sil</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Video və audio axınlarını birləşdirmək üçün istifadə olunur.</translation>
@@ -5253,6 +5344,18 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT və Offline downloader avtomatik bloklanması</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonim rejim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonim rejim IP ünvanınızı gizlətmir. O, yalnız müştərinizin yaydığı məlumatı məhdudlaşdırır (user-agent və müştəri izi). Həqiqi məxfilik üçün VPN istifadə edin.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Anonim rejim tərəfindən deaktiv edilib.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6371,6 +6474,14 @@ Click to open Statistics</source>
             <translation>Fayllar</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Parametrlər</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Metadata gətirilir…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n fayl</translation>
         </message>
@@ -6648,30 +6759,18 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrent tənzimləmələri</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Torrent başına sürət, paylaşım həddləri, peer kəşfi və yükləmə rejimi</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Bağla</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Tətbiq et</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BANDWİDH HƏDDLƏRİ</translation>
+            <translation>BANT GENİŞLİYİ MƏHDUDİYYƏTLƏRİ</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Yükləmə:</translation>
+            <translation>Yüklə:</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6679,7 +6778,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>PAYLAŞIM HƏDDLƏRİ</translation>
+            <translation>PAYLAŞMA LİMİTLƏRİ</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6699,7 +6798,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Seeding vaxtı:</translation>
+            <translation>Səpmə müddəti:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6707,11 +6806,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Qeyri-aktiv vaxt:</translation>
+            <translation>Qeyri-aktiv müddəti:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER AXTARISI</translation>
+            <translation>HƏMYAŞID AŞKARI</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6735,11 +6834,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Yerli Xidmət Axtarışı</translation>
+            <translation>Yerli Xidmət Kəşfi</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Xüsusi torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Şəxsi torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6751,19 +6850,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Sıralı yükləmə</translation>
+            <translation>Ardıcıl yükləmə</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Parçalar ardıcıllıqla yüklənir (parça 0 → son)</translation>
+            <translation>Parçalar sıra ilə endirilsin (0 → son)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>İlk və son parçaları prioritetləşdir</translation>
+            <translation>İlk və son parçalara öncəlik ver</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Erkən oxuma üçün başlıq/ayaq yüklənir</translation>
+            <translation>Erkən oxutma üçün başlıq/sonluq öncədən yüklənir</translation>
         </message>
     </context>
     <context>

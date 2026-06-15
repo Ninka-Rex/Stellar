@@ -1071,6 +1071,10 @@ Endesha wewe mwenyewe: flatpak override --user --talk-name=org.freedesktop.Flatp
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Kasi</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Pasho</translation>
         </message>
@@ -1760,6 +1764,10 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
         <message>
             <source>Files</source>
             <translation>Faili</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Mipangilio</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4258,7 +4266,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Idadi ya juu ya miunganisho kwa seva</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Seva</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>yoyote://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Unaweza kutumia nyota kama kiolezo cha herufi</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Idadi ya juu ya miunganisho:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Imesitishwa</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Imekatwa</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Imekamilika</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Inapokea data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Inasubiri...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Seva ilirudisha ukurasa wa HTML badala ya faili iliyotarajiwa. Kiungo kinaweza kuhitaji kufunguliwa kwenye kivinjari au kinaweza kuwa kimeisha. Hakuna kilichohifadhiwa.</translation>
@@ -4346,6 +4405,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Idadi ya juu ya miunganisho kwa kila upakuaji:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Idadi ya juu ya miunganisho</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Badilisha idadi chaguomsingi ya miunganisho kwa seva mahususi. Tumia nyota (*) kama kibadala.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Seva</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Nambari</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Mpya</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Hariri</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Futa</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Inatumika kwa kuunganisha mitiririko ya video na sauti.</translation>
@@ -5245,6 +5336,18 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Kuzuia Xunlei, QQ, Baidu, Xfplay, DLBT na kuingiza</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Hali ya kutokujulikana</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Hali ya kutokujulikana haifichi anwani yako ya IP. Inapunguza tu taarifa ambazo kifaa chako kinatangaza (kivinjari na alama ya kifaa). Kwa faragha halisi, tumia VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Imezimwa na hali ya kutokujulikana.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6363,6 +6466,14 @@ Click to open Statistics</source>
             <translation>Mafaili</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Mipangilio</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Inatafuta metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n vitu</translation>
         </message>
@@ -6640,42 +6751,30 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Mipangilio ya Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Kasi kwa Torrent, mipaka ya kushiriki, kutafuta walea, na hali ya kupakua</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Funga</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Tekeleza</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>MIPAKA YA KASI</translation>
+            <translation>VIWANGO VYA KIPIMO DATA</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Kupakua:</translation>
+            <translation>Pakua:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Kushirika:</translation>
+            <translation>Pakia:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>Mipaka ya Kushiriki</translation>
+            <translation>VIKOMO VYA KUSHIRIKI</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio:</translation>
+            <translation>Uwiano:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6691,19 +6790,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Muda wa kuleta</translation>
+            <translation>Muda wa kusambaza:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>chini</translation>
+            <translation>dk</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Muda wa kushindwa</translation>
+            <translation>Muda wa kutotumika:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>Kupata Wale</translation>
+            <translation>UGUNDUZI WA WENZA</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6711,15 +6810,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Tabeli ya Hash</translation>
+            <translation>Jedwali la Hashi Lililosambazwa</translation>
         </message>
         <message>
             <source>PeX</source>
-            <translation>PEX</translation>
+            <translation>PeX</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Mabadiliko ya Wale</translation>
+            <translation>Ubadilishanaji wa Rika</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6727,35 +6826,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Upyaaji wa Huduma</translation>
+            <translation>Ugunduzi wa Huduma ya Ndani</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent binafsi</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrenti ya faragha</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT na PeX zimeziba kwa libtorrent.</translation>
+            <translation>DHT na PeX zimezimwa na libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODO WA KUKA</translation>
+            <translation>HALI YA UPAKUAJI</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Kukaa kwa mpangilio</translation>
+            <translation>Upakuaji mfuatano</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Vipande vilikaa kwa mpangilio (0 → mwisho)</translation>
+            <translation>Vipande vilivyopakuliwa kwa mpangilio (kipande 0 → mwisho)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Pangilia vipande vya kwanza na mwisho</translation>
+            <translation>Weka kipaumbele vipande vya kwanza na vya mwisho</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Kuanzisha kichwa na mguu ili kuonyesha mapema</translation>
+            <translation>Pakia mapema kichwa/mguu kwa uchezaji wa mapema</translation>
         </message>
     </context>
     <context>

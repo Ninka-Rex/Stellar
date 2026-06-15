@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>السرعة</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>تحميل</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ملفات</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>الإعدادات</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4267,7 +4275,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>الحد الأقصى لاتصالات الخادم</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>الخادم</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>يمكنك استخدام * كحرف بدل</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>الحد الأقصى للاتصالات:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>متوقف</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>غير متصل</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>مكتمل</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>استلام البيانات...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>انتظار...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>أعاد الخادم صفحة HTML بدلاً من الملف المتوقع. قد يتطلب الرابط فتحه في متصفح أو قد يكون منتهي الصلاحية. لم يُحفظ شيء.</translation>
@@ -4355,6 +4414,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>الحد الأقصى الافتراضي للاتصالات لكل تنزيل:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>عدد الاتصالات الأقصى</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>تجاوز عدد الاتصالات الافتراضي لخوادم محددة. استخدم علامة النجمة (*) كحرف بدل.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>الخادم</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>العدد</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>جديد</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>تحرير</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>حذف</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>يُستخدم لدمج مسارات الفيديو والصوت.</translation>
@@ -5256,6 +5347,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>حظر تلقائي لـ Xunlei، QQ، Baidu، Xfplay، DLBT ومُحمّلات غير متصلة</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>الوضع المجهول</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>الوضع المجهول لا يخفي عنوان IP. يحد فقط من المعلومات التي يبثها العميل (وكيل المستخدم وبصمة العميل). للخصوصية الحقيقية، استخدم VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>معطل بالوضع المجهول.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6374,6 +6477,14 @@ Click to open Statistics</source>
             <translation>الملفات</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>الإعدادات</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>جلب البيانات الوصفية…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n عنصر</translation>
         </message>
@@ -6651,34 +6762,22 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>إعدادات التورنت</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>السرعة، حدود المشاركة، اكتشاف الأقران، ووضع التحميل لكل تورنت</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>إغلاق</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>تطبيق</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>حدود النطاق الترددي</translation>
+            <translation>حدود النطاق</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>التحميل:</translation>
+            <translation>تنزيل:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>الرفع:</translation>
+            <translation>رفع:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6686,11 +6785,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>النسبة:</translation>
+            <translation>نسبة:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>الافتراضي</translation>
+            <translation>افتراضي</translation>
         </message>
         <message>
             <source>Unlimited</source>
@@ -6702,15 +6801,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>وقت البث:</translation>
+            <translation>وقت البذر:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>الحد الأدنى</translation>
+            <translation>د</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>وقت عدم النشاط:</translation>
+            <translation>وقت الخمول:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
@@ -6741,32 +6840,32 @@ Click to open Statistics</source>
             <translation>اكتشاف الخدمة المحلية</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 تورنت خاص</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ تورنت خاص</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>تم تعطيل DHT وPeX بواسطة libtorrent.</translation>
+            <translation>DHT و PeX معطلان من libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>وضع التنزيل</translation>
+            <translation>وضع التحميل</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>تنزيل تسلسلي</translation>
+            <translation>تحميل متسلسل</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>تنزيل القطع بالترتيب (القطعة 0 → الأخيرة)</translation>
+            <translation>تنزيل القطع بالترتيب (0 ← الأخيرة)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>إعطاء الأولوية للقطع الأولى والأخيرة</translation>
+            <translation>أولوية القطع الأولى والأخيرة</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>تحميل الرأس/الذيل للتشغيل المبكر</translation>
+            <translation>تحميل مسبق للرأس/التذييل للتشغيل المبكر</translation>
         </message>
     </context>
     <context>

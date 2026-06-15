@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Ātrums</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Lejupielāde</translation>
         </message>
@@ -1759,6 +1763,10 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
         <message>
             <source>Files</source>
             <translation>Faili</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Iestatījumi</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4266,7 +4274,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Maks. savienojumu skaits serverim</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Serveris</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Varat izmantot zvaigznīti kā aizstājējzīmi</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. savienojumu skaits:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atcelt</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Labi</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Apturēts</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Atvienots</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Pabeigts</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Saņem datus...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Gaida...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serveris atgrieza HTML lapu, nevis gaidīto failu. Saitei var būt nepieciešama atvēršana pārlūkā, vai arī tā var būt beigusies. Nekas netika saglabāts.</translation>
@@ -4354,6 +4413,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Noklusējuma maks. savienojumi lejupielādei:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. savienojumu skaits</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Ignorēt noklusējuma savienojumu skaitu konkrētiem serveriem. Izmanto zvaigznīti (*) kā aizstājējzīmi.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Serveris</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Skaits</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Jauns</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Rediģēt</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Dzēst</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Izmanto video un audio straumju sapludināšanai.</translation>
@@ -5255,6 +5346,18 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Automātiski aizliegt Xunlei, QQ, Baidu, Xfplay, DLBT un Offline lejuplādētāju</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonīmais režīms</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonīmais režīms neslēpj jūsu IP adresi. Tas tikai ierobežo informāciju, ko pārraida jūsu klients (lietotāja aģents un klienta pirkstu nospiedums). Patiesai privātumam izmantojiet VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Atspējots anonīmajā režīmā.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6374,6 +6477,14 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <translation>Datnes</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Iestatījumi</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Iegūst metadatus…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n vienums(i)</translation>
         </message>
@@ -6651,26 +6762,14 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrentu iestatījumi</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Ātrums, dalīšanās limiti, peer atklāšana un lejupielādes režīms</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Lietot</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>PLATAS LĪMJI</translation>
+            <translation>JOSLAS PLATUMA IEROBEŽOJUMI</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6682,7 +6781,7 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>DALĪŠANAS IEROBEŽOJUMI</translation>
+            <translation>KOPĪGOŠANAS IEROBEŽOJUMI</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6702,7 +6801,7 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Sēdēšanas laiks:</translation>
+            <translation>Sēšanas laiks:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6710,11 +6809,11 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Neaktīvā laiks:</translation>
+            <translation>Neaktivitātes laiks:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>TĀLĀKATRODU MEKLĒŠANA</translation>
+            <translation>VIENRANGA ATKLĀŠANA</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6722,7 +6821,7 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Izplatītā Hash tabula</translation>
+            <translation>Izplatītā jauktabula</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6730,7 +6829,7 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Tāllietotāju apmaiņa</translation>
+            <translation>Vienranga apmaiņa</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6738,15 +6837,15 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Lokālais pakalpojumu atklāšana</translation>
+            <translation>Lokālā pakalpojumu atklāšana</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Privāts torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privāts torrents</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT un PeX atspējoti ar libtorrent.</translation>
+            <translation>DHT un PeX atspējojis libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6754,19 +6853,19 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Sekvenca lejupielāde</translation>
+            <translation>Secīga lejupielāde</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Lejupielādē secībā (0 → pēdējā)</translation>
+            <translation>Lejupielādēt gabalus secīgi (0. → pēdējais)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritāte pirmajai un pēdējai daļai</translation>
+            <translation>Prioritizēt pirmos un pēdējos gabalus</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Priekšā ielādē header/footer agrākai atskaņošanai</translation>
+            <translation>Agrīna atskaņošana, priekšplānā ielādējot galveni/kājeni</translation>
         </message>
     </context>
     <context>

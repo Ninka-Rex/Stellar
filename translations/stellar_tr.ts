@@ -1072,6 +1072,10 @@ Manuel çalıştır: flatpak override --user --talk-name=org.freedesktop.Flatpak
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Hız</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>İndirme</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Dosyalar</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Ayarlar</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4258,7 +4266,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Sunucu başına maks. bağlantı</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Sunucu</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>herhangi://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Joker karakter olarak yıldız kullanabilirsiniz</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. bağlantı:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>İptal</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Tamam</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Duraklatıldı</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Bağlantı kesildi</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Tamamlandı</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Veri alınıyor...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Bekleniyor...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Sunucu beklenen dosya yerine HTML sayfası döndü. Bağlantı tarayıcıda açılmayı gerektirebilir veya süresi dolmuş olabilir. Hiçbir şey kaydedilmedi.</translation>
@@ -4346,6 +4405,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>İndirme başına varsayılan maks. bağlantı:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. bağlantı sayısı</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Belirli sunucular için varsayılan bağlantı sayısını geçersiz kıl. Joker olarak yıldız (*) kullan.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Sunucu</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Sayı</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Yeni</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Düzenle</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Sil</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Video ve ses akışlarını birleştirmek için kullanılır.</translation>
@@ -5241,6 +5332,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Otomatik yasaklama</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonim mod</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonim mod IP adresinizi gizlemez. Yalnızca istemcinizin yaydığı bilgileri (kullanıcı aracısı ve istemci parmak izi) sınırlar. Gerçek gizlilik için VPN kullanın.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Anonim mod tarafından devre dışı bırakıldı.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6359,6 +6462,14 @@ Click to open Statistics</source>
             <translation>Dosyalar</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Ayarlar</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Meta veri alınıyor…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n öğe</translation>
         </message>
@@ -6636,38 +6747,26 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrent Ayarları</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Torrent başına hız, paylaşım sınırları, eş keşfi ve indirme modu</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Uygula</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BANT AYARLARI</translation>
+            <translation>BANT GENİŞLİĞİ SINIRLARI</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>İndir:</translation>
+            <translation>İndirme:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Yükle:</translation>
+            <translation>Yükleme:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>PAYLAŞIM SİNLARI</translation>
+            <translation>PAYLAŞIM SINIRLARI</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6683,11 +6782,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Ata</translation>
+            <translation>Şuna ayarla</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Ekipman süresi:</translation>
+            <translation>Seed süresi:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6695,11 +6794,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Pasif süresi:</translation>
+            <translation>Etkin değil süresi:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER KEŞFİ</translation>
+            <translation>EŞ KEŞFİ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6707,7 +6806,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Dağıtılmış Hash Tablosu</translation>
+            <translation>Dağıtık Hash Tablosu</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6715,7 +6814,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peer Değişimi</translation>
+            <translation>Eş Değişimi</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6723,15 +6822,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Yerel Hizmet Keşfi</translation>
+            <translation>Yerel Servis Keşfi</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Özel torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Özel torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent ile DHT ve PeX devre dışı.</translation>
+            <translation>DHT ve PeX libtorrent tarafından devre dışı bırakıldı.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6743,15 +6842,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Parçalar sırayla indiriliyor (parça 0 → son)</translation>
+            <translation>Parçalar sırayla indirilsin (0 → son)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>İlk ve son parçalar önceliklendirilir</translation>
+            <translation>İlk ve son parçalara öncelik ver</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Başlık/sonuç ön yükleme ile erken oynatma</translation>
+            <translation>Erken oynatma için baş/son öncelikli</translation>
         </message>
     </context>
     <context>

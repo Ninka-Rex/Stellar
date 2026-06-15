@@ -1071,6 +1071,10 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Viteză</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Descărcare</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Fișiere</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Setări</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4260,7 +4268,58 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Nr. max. conexiuni per server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>oricare://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Puteți folosi asterisc ca model înlocuitor</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Nr. max. conexiuni:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Pauză</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Deconectat</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Complet</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Se recepționează date...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Se așteaptă...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serverul a returnat o pagină HTML în locul fișierului așteptat. Linkul poate necesita deschiderea într-un browser sau poate fi expirat. Nu s-a salvat nimic.</translation>
@@ -4348,6 +4407,38 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Conexiuni max. implicite per descărcare:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Nr. max. conexiuni</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Suprascrie nr. implicit de conexiuni pentru servere specifice. Folosește asterisc (*) ca wildcard.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Număr</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Nou</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Editare</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Ștergere</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Folosit pentru îmbinarea fluxurilor video și audio.</translation>
@@ -5245,6 +5336,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT și Offline downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Mod anonim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Modul anonim nu ascunde adresa IP. Limitează doar informațiile transmise de client (user-agent și amprenta clientului). Pentru confidențialitate reală, folosiți un VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Dezactivat de modul anonim.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6363,6 +6466,14 @@ Click to open Statistics</source>
             <translation>Fișiere</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Setări</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Se preiau metadatele…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n element(e)</translation>
         </message>
@@ -6640,26 +6751,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Setări Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Viteză torrent, limite partajare, descoperire peer, mod descărcare</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Închide</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
-            <translation>Aplică</translation>
+            <translation>Aplicare</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMITE BANDWIDTH</translation>
+            <translation>LIMITE LĂȚIME DE BANDĂ</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6671,11 +6770,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>LIMITE PARTAJARE</translation>
+            <translation>LIMITE PART.</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Raport:</translation>
+            <translation>Rație:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6687,11 +6786,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Setează la</translation>
+            <translation>Setat la</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Timp seeding:</translation>
+            <translation>Timp seed:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6703,7 +6802,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>Descoperire P2P</translation>
+            <translation>DESC. PEERI</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6711,7 +6810,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Tabel hash distribuit</translation>
+            <translation>Tabelă hash distribuită</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6719,7 +6818,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Schimb P2P</translation>
+            <translation>Schimb de parteneri</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6730,16 +6829,16 @@ Click to open Statistics</source>
             <translation>Descoperire locală</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privat</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent privat</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT și PeX dezactivate de libtorrent</translation>
+            <translation>DHT și PeX dezactivate de libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MOD DE DESCĂRCARE</translation>
+            <translation>MOD DESCĂRCARE</translation>
         </message>
         <message>
             <source>Sequential download</source>
@@ -6747,15 +6846,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Bucăți descărcate în ordine (0 → ultimă)</translation>
+            <translation>Piese descărcate în ordine (piesa 0 → ultima)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritizează primele și ultimele bucăți</translation>
+            <translation>Prioritizează prima și ultima piesă</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Încarcă header/footer pentru redare rapidă</translation>
+            <translation>Încarcă mai întâi antetul/subsolul pentru redare rapidă</translation>
         </message>
     </context>
     <context>

@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Hastighed</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Download</translation>
         </message>
@@ -1759,6 +1763,10 @@ Du kan ændre det i Indstillinger → Downloads senere.</translation>
         <message>
             <source>Files</source>
             <translation>Filer</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Indstillinger</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4266,7 +4274,58 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Maks. forbindelser pr. server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Du kan bruge stjerne som jokertegn</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. forbindelser:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annuller</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Sat på pause</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Afbrudt</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Fuldført</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Modtager data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Venter...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serveren returnerede en HTML-side i stedet for den forventede fil. Linket skal muligvis åbnes i en browser eller kan være udløbet. Intet blev gemt.</translation>
@@ -4354,6 +4413,38 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Standard maks. forbindelser pr. download:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. forbindelser</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Tilsidesæt standardforbindelser for specifikke servere. Brug stjerne (*) som jokertegn.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Antal</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Ny</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Rediger</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Slet</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Bruges til at flette video- og lydstrømme.</translation>
@@ -5255,6 +5346,18 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto-blokér Xunlei, QQ, Baidu, Xfplay, DLBT og offline-downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonym tilstand</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonym tilstand skjuler ikke din IP-adresse. Den begrænser kun de oplysninger, din klient udsender (user-agent og klient-fingeraftryk). Brug en VPN for reel privatliv.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Deaktiveret af anonym tilstand.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6374,6 +6477,14 @@ Klik for at åbne Statistik</translation>
             <translation>Filer</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Indstillinger</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Henter metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n element(er)</translation>
         </message>
@@ -6651,26 +6762,14 @@ Klik for at åbne Statistik</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrent-indstillinger</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Hastighed, delegrænser, peer-opdagelse og downloadtilstand pr. torrent</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Luk</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Anvend</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BÅNDWIDTH-GRÆNSER</translation>
+            <translation>BÅNDBREDDEGRÆNSER</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6682,7 +6781,7 @@ Klik for at åbne Statistik</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>DELEGRÆNSER</translation>
+            <translation>DELINGSGRÆNSER</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6702,7 +6801,7 @@ Klik for at åbne Statistik</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Seedningstid:</translation>
+            <translation>Seedetid:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6722,7 +6821,7 @@ Klik for at åbne Statistik</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Distribueret Hash-tabel</translation>
+            <translation>Distribueret hash-tabel</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6738,11 +6837,11 @@ Klik for at åbne Statistik</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Lokal tjenesteopdagelse</translation>
+            <translation>Lokal serviceopdagelse</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Privat torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privat torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6750,7 +6849,7 @@ Klik for at åbne Statistik</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>DOWNLOADTILSTAND</translation>
+            <translation>DOWNLOAD-TILSTAND</translation>
         </message>
         <message>
             <source>Sequential download</source>
@@ -6758,15 +6857,15 @@ Klik for at åbne Statistik</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Stykker downloadet i rækkefølge (stykke 0 → sidste)</translation>
+            <translation>Stykker downloades i rækkefølge (stykke 0 → sidste)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritér første &amp; sidste stykker</translation>
+            <translation>Prioritér første og sidste stykker</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Indlæser header/fod til tidlig afspilning</translation>
+            <translation>Forudindlæser header/footer til tidlig afspilning</translation>
         </message>
     </context>
     <context>

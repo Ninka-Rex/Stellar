@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>ຄວາມໄວ</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ດາວໂຫຼດ</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>ຕັ້ງຄ່າ</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4274,7 +4282,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>ຈຳນວນການເຊື່ອມຕໍ່ສູງສຸດສຳລັບເຊີບເວີ</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>ເຊີບເວີ</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>ທ່ານສາມາດໃຊ້ດາວເປັນຮູບແບບຕົວແທນ</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>ຈຳນວນການເຊື່ອມຕໍ່ສູງສຸດ:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ຍົກເລີກ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ຕົກລົງ</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>ຢຸດຊົ່ວຄາວ</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>ຕັດການເຊື່ອມຕໍ່</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>ສຳເລັດ</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>ກຳລັງຮັບຂໍ້ມູນ...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>ກຳລັງລໍຖ້າ...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>ເຊີບເວີສົ່ງໜ້າ HTML ແທນໄຟລ໌. ລິ້ງອາດຕ້ອງເປີດໃນບຣາວເຊີ ຫຼືໝົດອາຍຸ. ບໍ່ໄດ້ບັນທຶກຫຍັງ.</translation>
@@ -4362,6 +4421,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ການເຊື່ອມຕໍ່ສູງສຸດຕໍ່ດາວໂຫຼດ:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>ຈຳນວນການເຊື່ອມຕໍ່ສູງສຸດ</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>ຂຽນທັບຈຳນວນການເຊື່ອມຕໍ່ເລີ່ມຕົ້ນສຳລັບເຊີບເວີສະເພາະ. ໃຊ້ດອກຈັນ (*) ເປັນຕົວແທນ.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>ເຊີບເວີ</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>ຈຳນວນ</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>ໃໝ່</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>ແກ້ໄຂ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ລຶບ</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>ໃຊ້ສຳລັບການຮວມສາຍວິດີໂອ ແລະ ສຽງ.</translation>
@@ -5263,6 +5354,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT ແລະ Offline downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>ໂໝດນິລະນາມ</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>ໂໝດນິລະນາມບໍ່ໄດ້ປິດບັງ IP. ມັນພຽງຈຳກັດຂໍ້ມູນທີ່ລູກຂ່າຍສົ່ງອອກ (user-agent ແລະລາຍນິ້ວມືລູກຂ່າຍ). ເພື່ອຄວາມເປັນສ່ວນຕົວແທ້, ໃຊ້ VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>ຖືກປິດໃຊ້ງານໂດຍໂໝດນິລະນາມ.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6382,6 +6485,14 @@ Click to open Statistics</source>
             <translation>ໄຟລ໌</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>ການຕັ້ງຄ່າ</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>ກຳລັງດຶງຂໍ້ມູນເມຕາ…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ລາຍການ</translation>
         </message>
@@ -6659,26 +6770,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>ຕັ້ງຄ່າທໍເຣັນ</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>ຈຳກັດຄວາມໄວ, ອັດຕາສ່ວນ, ຄົ້ນຫາເພຍ, ໂໝດດາວໂຫຼດ</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ປິດ</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>ນຳໃຊ້</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ຈຳກັດແບນວິດ</translation>
+            <translation>ຂີດຈຳກັດແບນວິດ</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6690,7 +6789,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ຈຳກັດການແບ່ງປັນ</translation>
+            <translation>ຂີດຈຳກັດການແບ່ງປັນ</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6714,7 +6813,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>min</source>
-            <translation>ຕ່ຳສຸດ</translation>
+            <translation>ນາທີ</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6722,7 +6821,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>ຄົ້ນຫາເພຍ</translation>
+            <translation>ການຄົ້ນຫາເພຍ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6730,7 +6829,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>ຕາຕະລາງແຮສແຈກຢາຍ</translation>
+            <translation>ຕາຕະລາງແຮຊແຈກຢາຍ</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6749,12 +6848,12 @@ Click to open Statistics</source>
             <translation>ຄົ້ນຫາບໍລິການທ້ອງຖິ່ນ</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 ທໍເຣັນສ່ວນຕົວ</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ ທໍເຣນສ່ວນຕົວ</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT ແລະ PeX ຖືກປິດໂດຍ libtorrent.</translation>
+            <translation>DHT ແລະ PeX ຖືກປິດໃຊ້ງານໂດຍ libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6766,7 +6865,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>ດາວໂຫຼດຊິ້ນສ່ວນຕາມລຳດັບ (ຊິ້ນ 0 → ສຸດທ້າຍ)</translation>
+            <translation>ດາວໂຫຼດຊິ້ນສ່ວນຕາມລຳດັບ (0 → ສຸດທ້າຍ)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>

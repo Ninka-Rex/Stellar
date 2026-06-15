@@ -1071,6 +1071,10 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Velocidade</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Descargar</translation>
         </message>
@@ -1760,6 +1764,10 @@ Podes cambialo en Opcións → Descargas máis tarde.</translation>
         <message>
             <source>Files</source>
             <translation>Ficheiros</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Axustes</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4268,7 +4276,58 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Nº máx. de conexións por servidor</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Servidor</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Podes usar asterisco como comodín</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Nº máx. de conexións:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cancelar</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Aceptar</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>En pausa</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Desconectado</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Completo</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Recibindo datos...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Agardando...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>O servidor devolveu unha páxina HTML no canto do ficheiro agardado. A ligazón pode requirir abrirse nun navegador ou caducou. Non se gardou nada.</translation>
@@ -4356,6 +4415,38 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Conexións máx. por defecto por descarga:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Nº máx. de conexións</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Substituír o número de conexións por defecto para servidores específicos. Usa un asterisco (*) como comodín.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Servidor</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Número</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Novo</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Editar</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Eliminar</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Utilízase para fusionar fluxos de vídeo e audio.</translation>
@@ -5257,6 +5348,18 @@ Recoméndase encarecidamente vincular Stellar a unha interface de rede VPN e ver
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Prohibición automática de Xunlei, QQ, Baidu, Xfplay, DLBT e descargador offline</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Modo anónimo</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>O modo anónimo non oculta o teu enderezo IP. Só limita a información que o teu cliente transmite (axente de usuario e pegada do cliente). Para unha privacidade real, usa unha VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Desactivado polo modo anónimo.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6376,6 +6479,14 @@ Preme para abrir Estatísticas</translation>
             <translation>Ficheiros</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Axustes</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Obtendo metadatos…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n elemento(s)</translation>
         </message>
@@ -6653,19 +6764,7 @@ Preme para abrir Estatísticas</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Axustes de torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Velocidade por torrent, límites de compartición, descubrimento de pares e modo de descarga</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Pechar</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Aplicar</translation>
@@ -6680,7 +6779,7 @@ Preme para abrir Estatísticas</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Subida:</translation>
+            <translation>Subir:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6700,7 +6799,7 @@ Preme para abrir Estatísticas</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Establecer en</translation>
+            <translation>Establecer a</translation>
         </message>
         <message>
             <source>Seeding time:</source>
@@ -6716,7 +6815,7 @@ Preme para abrir Estatísticas</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>DESCOBERTA DE PARES</translation>
+            <translation>DESCUBRIMENTO DE PARES</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6740,11 +6839,11 @@ Preme para abrir Estatísticas</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Descubrimento local de servizos</translation>
+            <translation>Descubrimento de servizo local</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privado</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent privado</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6760,15 +6859,15 @@ Preme para abrir Estatísticas</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Fragmentos descargados en orde (fragmento 0 → último)</translation>
+            <translation>Peças descargadas en orde (peza 0 → última)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Priorizar primeiras e últimas pezas</translation>
+            <translation>Priorizar primeira e última peza</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Carga cabeceira/pé para reprodución temperá</translation>
+            <translation>Adianta cabeceira/pé para reprodución temperá</translation>
         </message>
     </context>
     <context>

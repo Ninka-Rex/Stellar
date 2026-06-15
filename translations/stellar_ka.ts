@@ -1076,6 +1076,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>სიჩქარე</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ჩამოტვირთვა</translation>
         </message>
@@ -1764,6 +1768,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ფაილები</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>პარამეტრები</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4275,7 +4283,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>მაქს. კავშირები სერვერზე</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>სერვერი</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>ვარსკვლავი (*) ჩაანაცვლებს ნებისმიერ სიმბოლოს</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>მაქს. კავშირები:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>შეჩერებულია</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>გათიშული</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>დასრულებული</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>მონაცემების მიღება...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>მოლოდინი...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>სერვერმა HTML გვერდი დააბრუნა მოსალოდნელი ფაილის ნაცვლად. ბმული შეიძლება მოითხოვდეს ბრაუზერში გახსნას ან ვადაგასული იყოს. არაფერი შენახულა.</translation>
@@ -4363,6 +4422,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ნაგულისხმევი მაქს. კავშირები ჩამოტვირთვაზე:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>მაქს. კავშირების რაოდენობა</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>გადაფაროს ნაგულისხმევი კავშირების რაოდენობა კონკრეტული სერვერებისთვის. გამოიყენეთ ვარსკვლავი (*) ჯოკერად.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>სერვერი</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>რაოდენობა</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>ახალი</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>რედაქტირება</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>წაშლა</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>გამოიყენება ვიდეოსა და აუდიოს ნაკადების შეერთებისთვის.</translation>
@@ -5264,6 +5355,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>ავტომატური ბლოკი Xunlei, QQ, Baidu, Xfplay, DLBT და ოფლაინ დამტვირთველისთვის</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>ანონიმური რეჟიმი</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>ანონიმური რეჟიმი არ მალავს თქვენს IP მისამართს. ის მხოლოდ ზღუდავს ინფორმაციას, რომელსაც თქვენი კლიენტი ავრცელებს (user-agent და კლიენტის ანაბეჭდი). რეალური კონფიდენციალურობისთვის გამოიყენეთ VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>გამორთულია ანონიმური რეჟიმით.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6383,6 +6486,14 @@ Click to open Statistics</source>
             <translation>ფაილები</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>მეტამონაცემების მიღება…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ელემენტი(ები)</translation>
         </message>
@@ -6660,19 +6771,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>ტორენტის პარამეტრები</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>სიჩქარე, გაზიარება, პირების ძიება და ჩამოტვირთვის რეჟიმი</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>დახურვა</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>გამოყენება</translation>
@@ -6687,7 +6786,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>აპლოუდი:</translation>
+            <translation>ატვირთვა:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6695,7 +6794,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>რატიო:</translation>
+            <translation>რაციო:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6711,19 +6810,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>გაზიარების დრო:</translation>
+            <translation>სიდინგის დრო:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>მინ</translation>
+            <translation>წთ</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>არააქტიული დრო:</translation>
+            <translation>უმოქმედობის დრო:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>პირების ძიება</translation>
+            <translation>პირების აღმოჩენა</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6731,7 +6830,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>განაწილებული ჰეშ-ცხრილი</translation>
+            <translation>DHT</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6739,7 +6838,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>პირების გაცვლა</translation>
+            <translation>PeX</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6747,15 +6846,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>ადგილობრივი მომსახურების ძიება</translation>
+            <translation>LSD</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 პირადი ტორენტი</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ პირადი ტორენტი</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT და PeX გამორთულია libtorrent-ით.</translation>
+            <translation>DHT და PeX libtorrent-ით გამორთულია.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6763,19 +6862,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>მიმდევრული ჩამოტვირთვა</translation>
+            <translation>თანმიმდევრული ჩამოტვირთვა</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>ნაწილები ჩამოიტვირთება თანმიმდევრულად (ნაწილი 0 → ბოლო)</translation>
+            <translation>ნაწილები გადმოწერილია თანმიმდევრობით</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>პრიორიტეტი პირველ და ბოლო ნაწილებს</translation>
+            <translation>პირველი და ბოლო ნაწილების პრიორიტეტი</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>სათაურის/ფუტერის წინასწარი ჩატვირთვა ადრეული დაკვრისთვის</translation>
+            <translation>სათაურის/ბოლოს წინასწარ ჩატვირთვა</translation>
         </message>
     </context>
     <context>

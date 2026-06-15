@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Velocitat</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Descarrega</translation>
         </message>
@@ -1759,6 +1763,10 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
         <message>
             <source>Files</source>
             <translation>Fitxers</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Configuració</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4267,7 +4275,58 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Nombre màx. de connexions per servidor</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Servidor</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Podeu usar l'asterisc com a patró comodí</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Nombre màx. de connexions:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cancel·la</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>D'acord</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>En pausa</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Desconnectat</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Completat</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Rebent dades...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Esperant...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>El servidor ha retornat HTML en lloc del fitxer esperat. L'enllaç pot requerir obrir-se al navegador o haver caducat. No s'ha desat res.</translation>
@@ -4355,6 +4414,38 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Màx. connexions per defecte:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Núm. màx. connexions</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Substitueix el nombre de connexions per defecte per a servidors específics. Fes servir un asterisc (*) com a comodí.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Servidor</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Nombre</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Nou</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Edita</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Suprimeix</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Utilitzat per fusionar fluxos de vídeo i àudio.</translation>
@@ -5256,6 +5347,18 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Bloqueig automàtic de Xunlei, QQ, Baidu, Xfplay, DLBT i descàrregues fora de línia</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Mode anònim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>El mode anònim no amaga la teva IP. Només limita la informació que el teu client emet (user-agent i empremta del client). Per a privacitat real, usa una VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Desactivat pel mode anònim.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6375,6 +6478,14 @@ Fes clic per obrir les estadístiques</translation>
             <translation>Fitxers</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Configuració</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Obtenint metadades…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n element(s)</translation>
         </message>
@@ -6652,30 +6763,18 @@ Fes clic per obrir les estadístiques</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Configuració del torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Velocitat per torrent, límits de compartició, descobriment de peers i mode de descàrrega</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Aplica</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LÍMITS DE BANDA</translation>
+            <translation>LÍMITS D'AMPLADA DE BANDA</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Descàrrega:</translation>
+            <translation>Baixada:</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6687,7 +6786,7 @@ Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio:</translation>
+            <translation>Ràtio:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6703,11 +6802,11 @@ Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Temps de semàfor:</translation>
+            <translation>Temps de sembra:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>mín</translation>
+            <translation>min</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6715,7 +6814,7 @@ Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>DESCOBERTA DE PEERS</translation>
+            <translation>DESCOBERTA DE PARELLS</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6723,7 +6822,7 @@ Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Taula de hash distribuïda</translation>
+            <translation>Taula hash distribuïda</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6731,7 +6830,7 @@ Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Intercanvi de peers</translation>
+            <translation>Intercanvi de parells</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6739,11 +6838,11 @@ Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Descobriment de servei local</translation>
+            <translation>Descobriment local</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privat</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent privat</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6751,19 +6850,19 @@ Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODO DE DESCÀRREGA</translation>
+            <translation>MODE BAIXADA</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Descàrrega seqüencial</translation>
+            <translation>Baixada seqüencial</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Peus descarregats en ordre (peça 0 → última)</translation>
+            <translation>Peces descarregades en ordre (peça 0 → última)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritza les primeres i últimes peces</translation>
+            <translation>Prioritza primera i última peça</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>

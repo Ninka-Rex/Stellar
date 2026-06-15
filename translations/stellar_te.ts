@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>వేగం</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>డౌన్‌లోడ్</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ఫైల్స్</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>సెట్టింగ్లు</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4272,7 +4280,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>సర్వర్‌కు గరిష్ట కనెక్షన్ల సంఖ్య</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>సర్వర్</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>వైల్డ్‌కార్డ్ నమూనాగా నక్షత్రం ఉపయోగించవచ్చు</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>గరిష్ట కనెక్షన్ల సంఖ్య:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>రద్దు</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>సరే</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>పాజ్ చేయబడింది</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>డిస్కనెక్ట్ చేయబడింది</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>పూర్తయింది</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>డేటా స్వీకరిస్తోంది...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>వేచి ఉంది...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>సర్వర్ ఊహించిన ఫైల్ బదులు HTML పేజీని పంపింది. లింక్‌ని బ్రౌజర్‌లో తెరవాల్సి ఉండవచ్చు లేదా గడువు ముగిసి ఉండవచ్చు. ఏమీ సేవ్ కాలేదు.</translation>
@@ -4360,6 +4419,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>డిఫాల్ట్ గరిష్ట డౌన్‌లోడ్ కనెక్షన్లు:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>గరిష్ట కనెక్షన్ల సంఖ్య</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>నిర్దిష్ట సర్వర్‌ల కోసం డిఫాల్ట్ కనెక్షన్ సంఖ్యను భర్తీ చేయండి. వైల్డ్‌కార్డ్‌గా నక్షత్రం (*) ఉపయోగించండి.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>సర్వర్</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>సంఖ్య</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>కొత్త</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>సవరించు</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>తొలగించు</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>వీడియో మరియు ఆడియో స్ట్రీమ్‌లను విలీనం చేయడానికి ఉపయోగిస్తారు.</translation>
@@ -5261,6 +5352,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>ఆటో బ్యాన్: జున్లీ, QQ, బైడు, ఎక్స్ఎఫ్ప్లే, డీఎల్బీటీ, ఆఫ్లైన్ డౌన్లోడర్</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>అజ్ఞాత రీతి</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>అనామక మోడ్ మీ IP చిరునామాను దాచదు. ఇది మీ క్లయింట్ ప్రసారం చేసే సమాచారాన్ని (యూజర్-ఏజెంట్ మరియు క్లయింట్ ఫింగర్ప్రింట్) మాత్రమే పరిమితం చేస్తుంది. నిజమైన గోప్యత కోసం, VPN ఉపయోగించండి.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>అనామక మోడ్ ద్వారా నిలిపివేయబడింది.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6380,6 +6483,14 @@ Click to open Statistics</source>
             <translation>ఫైళ్లు</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>సెట్టింగ్లు</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>మెటాడేటా తీసుకువస్తోంది…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n అంశం(లు)</translation>
         </message>
@@ -6657,19 +6768,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>టొరెంట్ సెట్టింగ్లు</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>ప్రతి-టొరెంట్ వేగం, షేర్ పరిమితులు, పీర్ డిస్కవరీ, డౌన్లోడ్ మోడ్</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>వర్తించు</translation>
@@ -6680,11 +6779,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Download:</source>
-            <translation>దింపుకోలు:</translation>
+            <translation>డౌన్లోడ్:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>ఎక్కింపు:</translation>
+            <translation>అప్లోడ్:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6712,7 +6811,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>min</source>
-            <translation>కనిష్టం</translation>
+            <translation>నిమి</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6728,7 +6827,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>డిస్ట్రిబ్యూటెడ్ హాష్ టేబుల్</translation>
+            <translation>విభాజిత హాష్ పట్టిక</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6736,7 +6835,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>పీర్ ఎక్స్ఛేంజ్</translation>
+            <translation>పీర్ మార్పిడి</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6744,11 +6843,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>లోకల్ సర్వీస్ డిస్కవరీ</translation>
+            <translation>స్థానిక సేవా ఆవిష్కరణ</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 ప్రైవేట్ టొరెంట్</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ ప్రైవేట్ టొరెంట్</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6760,19 +6859,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>సీక్వెన్షియల్ డౌన్‌లోడ్</translation>
+            <translation>వరుస డౌన్‌లోడ్</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>పీస్‌లు క్రమంలో డౌన్‌లోడ్ చేయబడ్డాయి (పీస్ 0 → చివరి)</translation>
+            <translation>క్రమంలో డౌన్‌లోడ్ చేసిన ముక్కలు (ముక్క 0 → చివరి)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>మొదటి &amp; చివరి ముక్కలకు ప్రాధాన్యత ఇవ్వండి</translation>
+            <translation>మొదటి &amp; చివరి ముక్కలకు ప్రాధాన్యత</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>ప్రారంభ ప్లేబ్యాక్ కోసం హెడర్/ఫుటర్ను ముందుగా లోడ్ చేస్తుంది</translation>
+            <translation>ప్రారంభ ప్లేబ్యాక్ కోసం హెడర్/ఫుటర్‌ను ముందే లోడ్ చేయండి</translation>
         </message>
     </context>
     <context>

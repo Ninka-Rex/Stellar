@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Kecepatan</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Unduhan</translation>
         </message>
@@ -1759,6 +1763,10 @@ Anda dapat mengubahnya di Opsi → Unduhan nanti.</translation>
         <message>
             <source>Files</source>
             <translation>File</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Pengaturan</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4263,7 +4271,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Maks. koneksi per server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Gunakan * sebagai wildcard</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. koneksi:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Batal</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Jeda</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Terputus</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Selesai</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Menerima data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Menunggu...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server mengembalikan halaman HTML, bukan file yang diharapkan. Tautan mungkin perlu dibuka di browser atau sudah kedaluwarsa. Tidak ada yang disimpan.</translation>
@@ -4351,6 +4410,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Koneksi maks. default per unduhan:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Jumlah koneksi maks.</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Timpa jumlah koneksi default untuk server tertentu. Gunakan tanda bintang (*) sebagai wildcard.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Jumlah</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Baru</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Edit</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Hapus</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Digunakan untuk menggabungkan aliran video dan audio.</translation>
@@ -5252,6 +5343,18 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Otomatis Blokir Xunlei, QQ, Baidu, Xfplay, DLBT dan Downloader Offline</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Mode anonim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Mode anonim tidak menyembunyikan alamat IP Anda. Ini hanya membatasi informasi yang disiarkan klien Anda (user-agent dan sidik jari klien). Untuk privasi nyata, gunakan VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Dinonaktifkan oleh mode anonim.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6370,6 +6473,14 @@ Click to open Statistics</source>
             <translation>Berkas</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Pengaturan</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Mengambil metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n item</translation>
         </message>
@@ -6647,26 +6758,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Pengaturan Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Kecepatan per-torrent, batas berbagi, penemuan peer, dan mode unduh</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Terapkan</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BATASAN BANDWIDTH</translation>
+            <translation>BATAS BANDWIDTH</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6678,7 +6777,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>BATASAN BERBAGI</translation>
+            <translation>BATAS BERBAGI</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6698,19 +6797,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Waktu seeding:</translation>
+            <translation>Waktu seed:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>mnt</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Waktu tidak aktif:</translation>
+            <translation>Waktu nonaktif:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER DISCOVERY</translation>
+            <translation>PENEMUAN REKAN</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6718,7 +6817,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Tabel Hash Tersebar</translation>
+            <translation>Tabel Hash Terdistribusi</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6737,32 +6836,32 @@ Click to open Statistics</source>
             <translation>Penemuan Layanan Lokal</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent Privat</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent pribadi</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT dan PeX dinonaktifkan oleh libtorrent</translation>
+            <translation>DHT dan PeX dinonaktifkan oleh libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODE DOWNLOAD</translation>
+            <translation>MODE UNDUH</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Download Urut</translation>
+            <translation>Unduhan berurutan</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Unduh potongan secara berurutan (potongan 0 → terakhir)</translation>
+            <translation>Potongan diunduh berurutan (potongan 0 → terakhir)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritaskan potongan awal &amp; akhir</translation>
+            <translation>Prioritaskan potongan pertama &amp; terakhir</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Memuat format tersedia...</translation>
+            <translation>Muat header/footer lebih awal untuk pemutaran dini</translation>
         </message>
     </context>
     <context>

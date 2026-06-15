@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Seb.</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Letöltés</translation>
         </message>
@@ -1759,6 +1763,10 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
         <message>
             <source>Files</source>
             <translation>Fájlok</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Beáll.</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4260,7 +4268,58 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Max. kapcs. egy kiszolgálóhoz</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Kiszolgáló</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Használhat csillagot helyettesítőként</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Max. kapcsolatok:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Mégse</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Szünetel</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Lecsatlakozva</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Kész</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Adatok fogadása...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Várakozás...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>A szerver HTML oldalt adott vissza a várt fájl helyett. Lehet, hogy a linket böngészőben kell megnyitni, vagy lejárt. Semmi sem lett mentve.</translation>
@@ -4348,6 +4407,38 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Alapért. max. kapcsolatok letöltésenként:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Max. kapcsolatok száma</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Egyedi kapcsolatszám megadása adott szerverekhez. Használj csillagot (*) helyettesítőként.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Szerver</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Szám</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Új</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Szerkesztés</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Törlés</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Videó és hangsávok egyesítéséhez.</translation>
@@ -5243,6 +5334,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Automatikus tiltás: Xunlei, QQ, Baidu, Xfplay, DLBT és offline letöltők</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Névtelen mód</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>A névtelen mód nem rejti el az IP-címedet. Csak a kliens által sugárzott információkat korlátozza (user-agent és kliens ujjlenyomat). Valódi névtelenséghez használj VPN-t.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Névtelen mód letiltotta.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6361,6 +6464,14 @@ Click to open Statistics</source>
             <translation>Fájlok</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Beállítások</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Metaadatok lekérése…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n elem</translation>
         </message>
@@ -6639,26 +6750,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrent beállítások</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Sebesség, megosztás, felfedezés, mód</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Bezárás</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Alkalmaz</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>SÁVSZABÁLYOK</translation>
+            <translation>SÁVSZÉLESSÉG-KORLÁTOK</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6670,7 +6769,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>MEGOSZTÁS</translation>
+            <translation>MEGOSZTÁSI KORLÁTOK</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6678,7 +6777,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Default</source>
-            <translation>Alapértelmezett</translation>
+            <translation>Alapért.</translation>
         </message>
         <message>
             <source>Unlimited</source>
@@ -6690,19 +6789,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Csírázás ideje</translation>
+            <translation>Seed idő:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>p</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Inaktív idő</translation>
+            <translation>Inaktív idő:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER FELLELÉS</translation>
+            <translation>PARTNERKERESÉS</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6710,7 +6809,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Elosztott Hash Táblázat</translation>
+            <translation>Elosztott hash tábla</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6718,7 +6817,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peer Cseré</translation>
+            <translation>Partnercsere</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6726,15 +6825,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Helyi szolgáltatásfelfedezés</translation>
+            <translation>Helyi szolgáltatásfelderítés</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Privát torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privát torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>A DHT és a PeX a libtorrent által letiltva.</translation>
+            <translation>A DHT és PeX letiltva a libtorrent által.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6746,15 +6845,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Letöltött darabok sorrendje (0. darab → utolsó)</translation>
+            <translation>Darabok letöltése sorrendben (0. darab → utolsó)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Az első és az utolsó elemek előtérbe helyezése</translation>
+            <translation>Első és utolsó darabok előnyben</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Előre tölti a fejléc/láblécet a korai lejátszáshoz</translation>
+            <translation>Fejléc/lábléc előretöltése korai lejátszáshoz</translation>
         </message>
     </context>
     <context>

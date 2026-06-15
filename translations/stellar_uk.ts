@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Швидкість</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Завантажити</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Файли</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Налаштування</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4267,7 +4275,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Макс. з'єднань на сервер</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Сервер</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Можна використовувати * як шаблон</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Макс. з'єднань:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасувати</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Пауза</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Відключено</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Завершено</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Отримання даних...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Очікування...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Сервер повернув HTML-сторінку замість очікуваного файлу. Можливо, посилання потрібно відкрити в браузері або воно застаріло. Нічого не збережено.</translation>
@@ -4355,6 +4414,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Макс. з'єднань за замовч.:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>К-сть з'єднань</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Перевизначити к-сть з'єднань для серверів. * — шаблон.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Сервер</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>К-сть</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Нове</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Редагувати</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Видалити</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Використовується для об'єднання відео- та аудіопотоків.</translation>
@@ -5256,6 +5347,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Авто-блок Xunlei, QQ, Baidu, Xfplay, DLBT та офлайн-завантажувачів</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Анонімний режим</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Анонімний режим не приховує вашу IP-адресу. Він лише обмежує інформацію, яку транслює ваш клієнт (user-agent та відбиток клієнта). Для справжньої приватності використовуйте VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Вимкнено анонімним режимом.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6375,6 +6478,14 @@ Click to open Statistics</source>
             <translation>Файли</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Налаштування</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Отримання метаданих…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n об'єкт(ів)</translation>
         </message>
@@ -6652,26 +6763,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Налаштування торентів</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Швидкість, ліміти обміну, виявлення пірів та режим завантаження для кожного торенту</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Закрити</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Застосувати</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ЛІМИ ШВИДКОСТІ</translation>
+            <translation>ОБМЕЖЕННЯ ПРОПУСКНОЇ ЗДАТНОСТІ</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6683,11 +6782,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ЛІМИ ОБМІНУ</translation>
+            <translation>ЛІМІТИ РОЗДАЧІ</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Співвідношення:</translation>
+            <translation>Рейтинг:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6715,7 +6814,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>ВИЯВЛЕННЯ ПІР</translation>
+            <translation>ПОШУК ПІРІВ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6739,15 +6838,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Локальне виявлення служб</translation>
+            <translation>Локальне виявлення</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Приватний торрент</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Приватний торент</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT і PeX вимкнено libtorrent.</translation>
+            <translation>DHT та PeX вимкнено libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6759,15 +6858,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Завантаження послідовно (фрагмент 0 → останній)</translation>
+            <translation>Завантаження частин по порядку (0 → остання)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Пріоритет перших і останніх фрагментів</translation>
+            <translation>Пріоритет перших і останніх частин</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Пріоритет заголовка/футера для раннього відтворення</translation>
+            <translation>Спершу заголовок/кінець для швидкого відтворення</translation>
         </message>
     </context>
     <context>

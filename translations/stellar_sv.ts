@@ -1071,6 +1071,10 @@ Kör manuellt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.m
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Hastighet</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Ladda ner</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Filer</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Inställningar</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4257,7 +4265,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Max anslutningar per server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Använd asterisk som jokertecken</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Max anslutningar:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Avbryt</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Pausad</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Frånkopplad</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Slutförd</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Tar emot data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Väntar...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Servern returnerade en HTML-sida istället för förväntad fil. Länken kan kräva öppning i webbläsare eller ha gått ut. Ingenting sparades.</translation>
@@ -4345,6 +4404,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Standard max ansl./nedladdning:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Max anslutningar</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Åsidosätt standardantalet anslutningar för specifika servrar. Använd asterisk (*) som jokertecken.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Antal</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Ny</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Redigera</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Radera</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Används för att slå samman video- och ljudströmmar.</translation>
@@ -5246,6 +5337,18 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT och Offline nedladdare</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonymt läge</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonymt läge döljer inte din IP-adress. Det begränsar endast informationen din klient sänder (user-agent och klientfingeravtryck). För verklig integritet, använd en VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Inaktiverat av anonymt läge.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6364,6 +6467,14 @@ Click to open Statistics</source>
             <translation>Filer</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Inställningar</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Hämtar metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n objekt</translation>
         </message>
@@ -6641,26 +6752,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrentinställningar</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Hastighet, delningsgränser, peerupptäckt och nedladdningsläge</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Stäng</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Verkställ</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BANDVIDDSGRÄNSER</translation>
+            <translation>BANDVÄDD</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6692,7 +6791,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Säddningstid:</translation>
+            <translation>Seedtid:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6704,7 +6803,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER-UPPTÄCKNING</translation>
+            <translation>PEER-UPPTÄCKT</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6712,7 +6811,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Distribuerad hash-tabell</translation>
+            <translation>Distribuerad hashtabell</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6720,7 +6819,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peer-byten</translation>
+            <translation>Peer-utbyte</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6728,19 +6827,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Lokal tjänstegenerering</translation>
+            <translation>Lokal tjänsteupptäckt</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Privat torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privat torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT och PeX inaktiverade av libtorrent</translation>
+            <translation>DHT och PeX inaktiverat av libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>LÄSNINGSMODE</translation>
+            <translation>NERLADDNINGSLÄGE</translation>
         </message>
         <message>
             <source>Sequential download</source>
@@ -6748,15 +6847,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Delar laddade i ordning (del 0 → sista)</translation>
+            <translation>Bitar nedladdade i ordning (bit 0 → sista)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritera första &amp; sista delar</translation>
+            <translation>Prioritera första &amp; sista bitar</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Laddar fram format för tidig uppspelning</translation>
+            <translation>Laddar header/footer först för tidig uppspelning</translation>
         </message>
     </context>
     <context>

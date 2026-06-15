@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Ταχύτητα</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Λήψη</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Αρχεία</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Ρυθμίσεις</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4267,7 +4275,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Μέγ. συνδέσεις ανά διακομιστή</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Διακομιστής</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Χρήση αστερίσκου ως μπαλαντέρ</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Μέγ. συνδέσεις:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Σε παύση</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Αποσυνδέθηκε</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Ολοκληρώθηκε</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Λήψη δεδομένων...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Αναμονή...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Ο διακομιστής επέστρεψε HTML αντί για αρχείο. Ο σύνδεσμος ίσως απαιτεί άνοιγμα σε browser ή έχει λήξει. Δεν αποθηκεύτηκε τίποτα.</translation>
@@ -4355,6 +4414,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Προεπ. μέγ. συνδέσεις ανά λήψη:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Αρ. μέγ. συνδέσεων</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Παράκαμψη προεπιλεγμένου αριθμού συνδέσεων για συγκεκριμένους διακομιστές. Χρησιμοποιήστε αστερίσκο (*) ως μπαλαντέρ.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Διακομιστής</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Αριθμός</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Νέο</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Επεξεργασία</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Διαγραφή</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Χρήση για συγχώνευση ροών βίντεο και ήχου.</translation>
@@ -5256,6 +5347,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Αυτόματος αποκλεισμός Xunlei, QQ, Baidu, Xfplay, DLBT και offline downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Ανώνυμη λειτουργία</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Η ανώνυμη λειτουργία δεν αποκρύπτει τη διεύθυνση IP σας. Περιορίζει μόνο τις πληροφορίες που εκπέμπει ο πελάτης σας (user-agent και αποτύπωμα πελάτη). Για πραγματική ιδιωτικότητα, χρησιμοποιήστε VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Απενεργοποιήθηκε από την ανώνυμη λειτουργία.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6375,6 +6478,14 @@ Click to open Statistics</source>
             <translation>Αρχεία</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Ρυθμίσεις</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Λήψη μεταδεδομένων…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n αντικείμενο(α)</translation>
         </message>
@@ -6652,26 +6763,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Ρυθμίσεις torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Ταχύτητα, όρια κοινοποίησης, ανακάλυψη peers, λειτουργία λήψης ανά torrent</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Κλείσιμο</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Εφαρμογή</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ΟΡΙΑ ΠΛΑΤΟΣ ΖΩΝΗΣ</translation>
+            <translation>ΟΡΙΑ ΕΥΡΟΥΣ ΖΩΝΗΣ</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6679,15 +6778,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Ανέβασμα:</translation>
+            <translation>Αποστολή:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ΟΡΙΑ ΚΟΙΝΟΠΟΙΗΣΗΣ</translation>
+            <translation>ΟΡΙΑ ΚΟΙΝΗΣ ΧΡΗΣΗΣ</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Λόγος:</translation>
+            <translation>Αναλογία:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6695,7 +6794,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Απεριόριστα</translation>
+            <translation>Απεριόριστο</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -6703,19 +6802,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Χρόνος seeding:</translation>
+            <translation>Χρόνος διαμοιρασμού:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>ελάχ</translation>
+            <translation>λεπτά</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Χρόνος ανενεργότητας:</translation>
+            <translation>Χρόνος αδράνειας:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>ΑΝΑΚΑΛΥΨΗ PEER</translation>
+            <translation>ΑΝΑΚΑΛΥΨΗ ΟΜΟΤΙΜΩΝ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6723,7 +6822,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Κατανεμημένος Πίνακας Αφής</translation>
+            <translation>Κατανεμημένος πίνακας κατακερματισμού</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6731,7 +6830,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Ανταλλαγή Peer</translation>
+            <translation>Ανταλλαγή ομότιμων</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6739,35 +6838,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Τοπική Ανακάλυψη Υπηρεσίας</translation>
+            <translation>Τοπική ανακάλυψη υπηρεσιών</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Ιδιωτικό torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Ιδιωτικό torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT και PeX απενεργοποιήθηκαν από το libtorrent.</translation>
+            <translation>DHT και PeX απενεργοποιημένα από το libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>ΛΟΓΙΚΗ ΛΗΨΗΣ</translation>
+            <translation>ΛΗΨΗ</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Διαδοχική λήψη</translation>
+            <translation>Σειριακή λήψη</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Λήψη τεμαχίων με σειρά (τεμάχιο 0 → τελευταίο)</translation>
+            <translation>Λήψη τμημάτων με σειρά</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Προτεραιότητα πρώτων &amp; τελευταίων τεμαχίων</translation>
+            <translation>Προτεραιότητα σε πρώτο &amp; τελευταίο</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Φόρτωση header/footer για νωρίτερη αναπαραγωγή</translation>
+            <translation>Πρώτα κεφαλίδα/υποσέλιδο για άμεση αναπαραγωγή</translation>
         </message>
     </context>
     <context>

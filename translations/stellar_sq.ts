@@ -1071,6 +1071,10 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Shpejtësia</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Dërgim</translation>
         </message>
@@ -1760,6 +1764,10 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
         <message>
             <source>Files</source>
             <translation>Skedarë</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Cilësimet</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4264,7 +4272,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Nr. maks. i lidhjeve për server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Serveri</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Mund të përdorni yllin si model zëvendësues</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Nr. maks. i lidhjeve:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulo</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Në pauzë</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Shkëputur</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Plotësuar</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Duke marrë të dhëna...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Në pritje...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serveri ktheu një faqe HTML në vend të skedarit të pritur. Lidhja mund të kërkojë hapje në shfletues ose mund të ketë skaduar. Asgjë nuk u ruajt.</translation>
@@ -4352,6 +4411,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Lidhjet maks. të parazgjedhura për shkarkim:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Nr. maks. i lidhjeve</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Mbishkruaj numrin e parazgjedhur të lidhjeve për serverë specifikë. Përdor yllin (*) si karakter i gjithanshëm.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Numër</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>I ri</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Redakto</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Fshij</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Përdoret për bashkimin e transmetimeve video dhe audio.</translation>
@@ -5251,6 +5342,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Blloko automatikisht Xunlei, QQ, Baidu, Xfplay, DLBT dhe shkarkuesit jashtë lidhjes</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Modalitet anonim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Modaliteti anonim nuk e fsheh adresën tuaj IP. Ai kufizon vetëm informacionin që transmeton klienti juaj (agjenti i përdoruesit dhe gjurma e klientit). Për privatësi të vërtetë, përdorni një VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Çaktivizuar nga modaliteti anonim.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6369,6 +6472,14 @@ Click to open Statistics</source>
             <translation>Skedarët</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Cilësimet</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Duke marrë metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n artikuj</translation>
         </message>
@@ -6646,38 +6757,26 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Rregullime Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Shpejtësia për torrent, kufizimet e ndarjes, zbulimi i peer-it dhe mënyra e ngarkimit</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Mbyll</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Apliko</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>KUFIZIME TË BANDWIDTH</translation>
+            <translation>KUFIZIMET E BANDËS</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Ngarkim:</translation>
+            <translation>Shkarko:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Ngarkim:</translation>
+            <translation>Ngarko:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>KUFIZIME TË NDARJES</translation>
+            <translation>KUFIJTË E SHPËRNDARJES</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6685,7 +6784,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Default</source>
-            <translation>Parazgjedhje</translation>
+            <translation>Parazgjedhur</translation>
         </message>
         <message>
             <source>Unlimited</source>
@@ -6693,11 +6792,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Vendos në</translation>
+            <translation>Cakto në</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Koha e seedingut</translation>
+            <translation>Koha e shpërndarjes:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6705,11 +6804,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Koha e pasaktivitetit</translation>
+            <translation>Koha joaktive:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>Zbulimi i peer-ve</translation>
+            <translation>ZBULIMI I BASHKËMOSHATARËVE</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6717,7 +6816,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Tabela Hashi e Shpërndarë</translation>
+            <translation>Tabelë Hash e Shpërndarë</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6725,7 +6824,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Shkëmbimi i Peer-ve</translation>
+            <translation>Shkëmbim Peer</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6733,35 +6832,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Zbulimi i shërbimit lokal</translation>
+            <translation>Zbulim Lokal Shërbimi</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privat</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent privat</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT dhe PeX të çaktivizuar nga libtorrent.</translation>
+            <translation>DHT dhe PeX çaktivizuar nga libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODOC KËRQIMI</translation>
+            <translation>MËNYRA E SHKARKIMIT</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Kërcim i shkarkimit</translation>
+            <translation>Shkarkim sekuencial</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Blokat e shkarkuara në rend (bloku 0 → fundi)</translation>
+            <translation>Pjesë të shkarkuara me radhë (pjesa 0 → e fundit)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioriteti i bllokut të parë dhe të fundit</translation>
+            <translation>Prioritizo pjesët e para &amp; të fundit</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Kryesore/mbi-kryesore për luajtje të hershme</translation>
+            <translation>Ngarkon fillimisht kokën/fundin për luajtje të hershme</translation>
         </message>
     </context>
     <context>

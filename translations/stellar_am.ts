@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>ፍጥነት</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>አውርድ</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ፋይሎች</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>ቅንብሮች</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4271,7 +4279,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>ለአገልጋይ ከፍተኛ የግንኙነት ብዛት</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>አገልጋይ</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>ኮከብ ምልክትን እንደ የዱር ካርድ መጠቀም ይችላሉ</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>ከፍተኛ የግንኙነት ብዛት:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ይቅር</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>እሺ</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>ቆሟል</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>ተቋርጧል</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>ተጠናቋል</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>ውሂብ በመቀበል ላይ...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>በመጠበቅ ላይ...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>አገልጋዩ ከሚጠበቀው ፋይል ይልቅ ኤችቲኤምኤል ገጽ መለሰ። አገናኙ በአሳሽ መከፈት ሊያስፈልገው ወይም ጊዜው አልፎበት ሊሆን ይችላል። ምንም አልተቀመጠም።</translation>
@@ -4359,6 +4418,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ነባሪ ከፍተኛ ግንኙነቶች በአንድ ማውረድ:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>ከፍተኛ ግንኙነቶች ቁጥር</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>ለተወሰኑ አገልጋዮች ነባሪውን የግንኙነት ብዛት ይሻሩ። ኮከብ (*) እንደ ምትክ ይጠቀሙ።</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>አገልጋይ</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>ቁጥር</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>አዲስ</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>አርትዕ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ሰርዝ</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>ለቪዲዮ እና ኦዲዮ ዥረቶች ማዋሀድ ያገለግላል።</translation>
@@ -5260,6 +5351,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei፣ QQ፣ Baidu፣ Xfplay፣ DLBT እና Offline አውርድ ራስ-ከልክል</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>ማንነት አልባ ሁነታ</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>ማንነት አልባ ሁነታ የአይፒ አድራሻህን አይደብቅም። ደንበኛህ የሚያሰራጨውን መረጃ ብቻ ይገድባል (ተጠቃሚ-ወኪል እና የደንበኛ አሻራ)። ለእውነተኛ ግላዊነት፣ ቪፒኤን ተጠቀም።</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>በማንነት አልባ ሁነታ ተሰናክሏል።</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6379,6 +6482,14 @@ Click to open Statistics</source>
             <translation>ፋይሎች</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>ቅንብሮች</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>ሜታዳታ በማምጣት ላይ…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ንጥል(እቲ)</translation>
         </message>
@@ -6656,19 +6767,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>የቶረንት ቅንብሮች</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>በቶረንት ፍጥነት፣ የማጋሪያ ገደቦች፣ አቻ ፍለጋ እና የማውረጃ ሁነታ</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ዝጋ</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>ተግብር</translation>
@@ -6691,7 +6790,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>ሬሾ፦</translation>
+            <translation>ጥምርታ:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6707,15 +6806,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>የዘር ጊዜ፦</translation>
+            <translation>የመዝራት ጊዜ:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>ዝቅተኛ</translation>
+            <translation>ደቂቃ</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>የስራ ፈት ጊዜ፦</translation>
+            <translation>የስራ ፈት ጊዜ:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
@@ -6743,11 +6842,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>የአካባቢ አገልግሎት ፍለጋ</translation>
+            <translation>አካባቢያዊ አገልግሎት ፍለጋ</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 የግል ቶረንት</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ የግል ዥረት</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6759,11 +6858,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>በቅደም ተከተል ማውረድ</translation>
+            <translation>ተከታታይ ማውረድ</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>ክፍሎች በቅደም ተከተል ወርደዋል (ክፍል 0 → መጨረሻ)</translation>
+            <translation>ቁርጥራጮች በቅደም ተከተል ወርደዋል (ቁራጭ 0 → መጨረሻ)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
@@ -6771,7 +6870,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>ለቅድመ ማጫወት ራስጌ/ግርጌ ቀድሞ ጫን</translation>
+            <translation>ለቅድመ ማጫወት ራስጌ/ግርጌን ቀድሞ ይጫናል</translation>
         </message>
     </context>
     <context>

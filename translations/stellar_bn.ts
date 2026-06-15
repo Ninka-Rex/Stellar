@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>গতি</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ডাউনলোড</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ফাইল</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>সেটিংস</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4267,7 +4275,58 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>সার্ভারের জন্য সর্বোচ্চ সংযোগ সংখ্যা</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>সার্ভার</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>ওয়াইল্ডকার্ড প্যাটার্ন হিসেবে তারকাচিহ্ন ব্যবহার করতে পারেন</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>সর্বোচ্চ সংযোগ সংখ্যা:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>বিরামপ্রাপ্ত</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>সংযোগ বিচ্ছিন্ন</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>সম্পূর্ণ</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>ডেটা গ্রহণ হচ্ছে...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>অপেক্ষা করছে...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>সার্ভার প্রত্যাশিত ফাইলের বদলে HTML পৃষ্ঠা ফেরত দিয়েছে। লিংকটি ব্রাউজারে খোলার প্রয়োজন হতে পারে বা মেয়াদ শেষ হয়ে গেছে। কিছুই সংরক্ষিত হয়নি।</translation>
@@ -4355,6 +4414,38 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ডিফল্ট সর্বোচ্চ সংযোগ/ডাউনলোড:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>সর্বোচ্চ সংযোগ সংখ্যা</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>নির্দিষ্ট সার্ভারের জন্য ডিফল্ট সংযোগ সংখ্যা ওভাররাইড করুন। ওয়াইল্ডকার্ড হিসেবে তারকাচিহ্ন (*) ব্যবহার করুন।</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>সার্ভার</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>সংখ্যা</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>নতুন</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>সম্পাদনা</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>মুছুন</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>ভিডিও ও অডিও স্ট্রিম একত্রীকরণে ব্যবহৃত।</translation>
@@ -5256,6 +5347,18 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT এবং অফলাইন ডাউনলোডার স্বয়ংক্রিয়ভাবে বান করুন</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>বেনামী মোড</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>বেনামী মোড আপনার আইপি ঠিকানা গোপন করে না। এটি শুধু আপনার ক্লায়েন্টের সম্প্রচারিত তথ্য (ইউজার-এজেন্ট ও ক্লায়েন্ট ফিঙ্গারপ্রিন্ট) সীমিত করে। প্রকৃত গোপনীয়তার জন্য ভিপিএন ব্যবহার করুন।</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>বেনামী মোড দ্বারা নিষ্ক্রিয়।</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6375,6 +6478,14 @@ Click to open Statistics</source>
             <translation>ফাইল</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>সেটিংস</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>মেটাডেটা আনা হচ্ছে…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n আইটেম</translation>
         </message>
@@ -6652,19 +6763,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>টরেন্ট সেটিংস</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>প্রতি-টরেন্ট গতি, শেয়ার সীমা, পিয়ার আবিষ্কার এবং ডাউনলোড মোড</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>বন্ধ</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>প্রয়োগ</translation>
@@ -6683,7 +6782,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>শেয়ার সীমা</translation>
+            <translation>শেয়ার সীমা</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6699,23 +6798,23 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>নির্ধারণ করুন</translation>
+            <translation>সেট করুন</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>সিডিং সময়:</translation>
+            <translation>সিডিং সময়:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>সর্বনিম্ন</translation>
+            <translation>মিনিট</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>নিষ্ক্রিয় সময়:</translation>
+            <translation>নিষ্ক্রিয় সময়:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>পিয়ার আবিষ্কার</translation>
+            <translation>পিয়ার আবিষ্কার</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6723,7 +6822,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>বিত্যস্ত হ্যাশ টেবিল</translation>
+            <translation>ডিস্ট্রিবিউটেড হ্যাশ টেবিল</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6731,7 +6830,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>পিয়ার বিনিময়</translation>
+            <translation>পিয়ার এক্সচেঞ্জ</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6739,15 +6838,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>স্থানীয় পরিষেবা আবিষ্কার</translation>
+            <translation>লোকাল সার্ভিস ডিসকভারি</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 গোপন টরেন্ট</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ প্রাইভেট টরেন্ট</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT এবং PeX libtorrent দ্বারা নিষ্ক্রিয়।</translation>
+            <translation>libtorrent দ্বারা DHT ও PeX নিষ্ক্রিয়।</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6759,15 +6858,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>ক্রমে টুকরো ডাউনলোড (টুকরো ০ → শেষ)</translation>
+            <translation>ক্রমিক ডাউনলোড (পিস 0 → শেষ)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>প্রথম ও শেষ টুকরো অগ্রাধিকার</translation>
+            <translation>প্রথম ও শেষ পিস অগ্রাধিকার</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>শুরুতে প্লেব্যাকের জন্য হেডার/ফুটার লোড</translation>
+            <translation>শুরুর প্লেব্যাকের জন্য হেডার/ফুটার আগে লোড</translation>
         </message>
     </context>
     <context>

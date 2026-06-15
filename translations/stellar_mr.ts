@@ -1072,6 +1072,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>गती</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>डाउनलोड</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>फाइल्स</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>सेटिंग्ज</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4265,7 +4273,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>सर्व्हरसाठी कमाल कनेक्शन संख्या</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>सर्व्हर</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>तुम्ही वाइल्डकार्ड पॅटर्न म्हणून तारा वापरू शकता</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>कमाल कनेक्शन संख्या:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>रद्द करा</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ठीक</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>थांबवले</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>डिस्कनेक्टेड</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>पूर्ण</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>डेटा प्राप्त होत आहे...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>प्रतीक्षा करत आहे...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>सर्व्हरने अपेक्षित फाइलऐवजी HTML पृष्ठ परत केले. लिंक ब्राउझरमध्ये उघडणे आवश्यक असू शकते किंवा कालबाह्य झाले असू शकते. काहीही जतन केले नाही.</translation>
@@ -4353,6 +4412,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>डीफॉल्ट कमाल कनेक्शन प्रति डाउनलोड:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>कमाल कनेक्शन संख्या</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>विशिष्ट सर्व्हरसाठी डीफॉल्ट कनेक्शन संख्या ओव्हरराइड करा. वाइल्डकार्ड म्हणून तारांकन (*) वापरा.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>सर्व्हर</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>संख्या</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>नवीन</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>संपादित करा</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>हटवा</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>व्हिडिओ आणि ऑडिओ प्रवाह विलीन करण्यासाठी वापरले जाते.</translation>
@@ -5252,6 +5343,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT आणि ऑफलाईन डाउनलोडरवर स्वयं बंदी</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>अनामिक मोड</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>अनामिक मोड तुमचा IP पत्ता लपवत नाही. तो फक्त तुमचा क्लायंट प्रसारित करत असलेली माहिती (user-agent आणि क्लायंट फिंगरप्रिंट) मर्यादित करतो. खऱ्या गोपनीयतेसाठी, VPN वापरा.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>अनामिक मोडमुळे अक्षम.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6370,6 +6473,14 @@ Click to open Statistics</source>
             <translation>फाइल्स</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>सेटिंग्ज</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>मेटाडेटा आणत आहे…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n वस्तू</translation>
         </message>
@@ -6647,19 +6758,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>टॉरेंट सेटिंग्ज</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>प्रति-टॉरेंट वेग, शेअर मर्यादा, पीअर शोध आणि डाउनलोड मोड</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करा</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>लागू करा</translation>
@@ -6682,7 +6781,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>प्रमाण:</translation>
+            <translation>गुणोत्तर:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6698,51 +6797,51 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>बीजिंग वेळ:</translation>
+            <translation>सीडिंग वेळ:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>किमान</translation>
+            <translation>मि</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>असक्रिय वेळ:</translation>
+            <translation>निष्क्रिय वेळ:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>पिअर शोध</translation>
+            <translation>पीअर शोध</translation>
         </message>
         <message>
             <source>DHT</source>
-            <translation>डीएचटी</translation>
+            <translation>DHT</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>वितरित हॅश टेबल</translation>
+            <translation>वितरित हॅश सारणी</translation>
         </message>
         <message>
             <source>PeX</source>
-            <translation>पीएक्स</translation>
+            <translation>PeX</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>पिअर विनिमय</translation>
+            <translation>पीअर एक्सचेंज</translation>
         </message>
         <message>
             <source>LSD</source>
-            <translation>एलएसडी</translation>
+            <translation>LSD</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>स्थानीय सेवा शोध</translation>
+            <translation>स्थानिक सेवा शोध</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 निजी टॉरेंट</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ खाजगी टोरेंट</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent ने DHT आणि PeX बंद केले.</translation>
+            <translation>libtorrent द्वारे DHT आणि PeX अक्षम.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6750,19 +6849,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>क्रमशः डाउनलोड</translation>
+            <translation>अनुक्रमिक डाउनलोड</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>पार्सल्स क्रमाने डाउनलोड (पार्सल 0 → अंतिम)</translation>
+            <translation>क्रमाने डाउनलोड केलेले तुकडे (तुकडा ० → शेवटचा)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>पहिले आणि अंतिम पार्सल्स प्राधान्य</translation>
+            <translation>पहिले व शेवटचे तुकडे प्राधान्य द्या</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>प्लेबॅकसाठी हेडर/फूटर लवकर लोड करणे</translation>
+            <translation>लवकर प्लेबॅकसाठी हेडर/फूटर आधी लोड करा</translation>
         </message>
     </context>
     <context>

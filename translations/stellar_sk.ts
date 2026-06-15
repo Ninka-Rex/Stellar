@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Rýchlosť</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Stiahnutie</translation>
         </message>
@@ -1757,6 +1761,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Súbory</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Nastavenia</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4255,7 +4263,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Max. počet pripojení na server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Môžete použiť hviezdičku ako zástupný znak</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Max. počet pripojení:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušiť</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Pozastavené</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Odpojené</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Dokončené</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Prijímam dáta...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Čakám...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server vrátil HTML stránku namiesto očakávaného súboru. Odkaz môže vyžadovať otvorenie v prehliadači alebo mohol vypršať. Nič sa neuložilo.</translation>
@@ -4343,6 +4402,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Predvolený max. počet pripojení na sťahovanie:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Max. počet pripojení</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Prepísať predvolený počet pripojení pre konkrétne servery. Použite hviezdičku (*) ako zástupný znak.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Počet</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Nový</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Upraviť</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Zmazať</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Používa sa na spájanie video a audio stôp.</translation>
@@ -5240,6 +5331,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto ban Xunlei, QQ, Baidu, Xfplay, DLBT a Offline downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonymný režim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonymný režim neskryje vašu IP adresu. Iba obmedzuje informácie, ktoré váš klient vysiela (user-agent a odtlačok klienta). Pre skutočné súkromie použite VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Zakázané anonymným režimom.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6358,6 +6461,14 @@ Click to open Statistics</source>
             <translation>Súbory</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Nastavenia</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Načítavam metadáta…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n položiek</translation>
         </message>
@@ -6635,26 +6746,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Nastavenia torrentov</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Rýchlosť torrentu, obmedzenia zdieľania, objavovanie peerov a režim sťahovania</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavrieť</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Použiť</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>OBMEDZENIA PÁSMU</translation>
+            <translation>LIMITY ŠÍRKY PÁSMA</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6662,15 +6761,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Nahranie:</translation>
+            <translation>Nahrať:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>OBMEDZENIA ZDIEĽANIA</translation>
+            <translation>LIMITY ZDIEĽANIA</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio:</translation>
+            <translation>Pomer:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6706,7 +6805,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Rozdelená tabuľka hashov</translation>
+            <translation>Distribuovaná hašovacia tabuľka</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6722,19 +6821,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Lokálne objavovanie služieb</translation>
+            <translation>Lokálne vyhľadávanie služieb</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Súkromný torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Súkromný torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT a PeX zakázané v libtorrent.</translation>
+            <translation>DHT a PeX zakázané cez libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>REŽIM STIAHŤ</translation>
+            <translation>REŽIM SŤAHOVANIA</translation>
         </message>
         <message>
             <source>Sequential download</source>
@@ -6742,15 +6841,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Súčasti sťahované v poradí (0 → posledná)</translation>
+            <translation>Sťahovať diely v poradí (0 → posledný)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Priorita prvej a poslednej súčasti</translation>
+            <translation>Uprednostniť prvé a posledné diely</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Načítavanie hlavičky/pätky pre skoré prehrávanie</translation>
+            <translation>Prednostne hlavička/päta pre skoré prehrávanie</translation>
         </message>
     </context>
     <context>

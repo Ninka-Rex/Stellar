@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>چټکتیا</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ډاونلوډ</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>فایلونه</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>تنظیمات</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4266,7 +4274,58 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>د سرور لپاره د اړیکو اعظمي شمېر</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>سرور</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>تاسو د وائلډ کارډ نمونې په توګه ستوری کارولی شئ</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>د اړیکو اعظمي شمېر:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>درېدلی</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>بېله</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>بشپړ</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>ډېټا ترلاسه کېږي...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>انتظار...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>سرور د متوقع فایل پر ځای HTML پاڼه راوګرځوله. لینک ښايي په براوزر کې پرانیستلو ته اړتیا ولري یا پای ته رسېدلی وي. هیڅ خوندي نه شو.</translation>
@@ -4354,6 +4413,38 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ډیفالټ اعظمي اړیکې په هر ډاونلوډ:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>اعظمي اړیکې شمېر</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>د ځانګړو سرورونو لپاره ډیفالټ اړیکې شمېر بدل کړئ. ستوری (*) د وائلډ کارډ په توګه وکاروئ.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>سرور</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>شمېر</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>نوی</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>سمول</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ړنګول</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>د ویډیو او آډیو جریانونو یوځای کولو لپاره کارول کیږي.</translation>
@@ -5253,6 +5344,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>د Xunlei, QQ, Baidu, Xfplay, DLBT او آف لاین ډاونلوډر اتوماتیک بندول</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>ورک نوم حالت</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>ورک نوم حالت ستاسو IP پته نه پټوي. دا یوازې هغه معلومات محدودوي چې ستاسو کلاینټ خپروي (کارن-اجنټ او کلاینټ نښه). د ریښتیني محرمیت لپاره، VPN وکاروئ.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>د ورک نوم حالت لخوا غیر فعال شوی.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6371,6 +6474,14 @@ Click to open Statistics</source>
             <translation>فایلونه</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>تنظیمات</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>مېټاډاټا راوړل کېږي…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n توکی(ان)</translation>
         </message>
@@ -6648,38 +6759,26 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>د ټورنټ تنظیمات</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>د هر ټورنټ سرعت، شریک محدودیتونه، همکار کشف، او ډاونلوډ حالت</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>بندول</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>پلي کول</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>د بینډویډت محدودیتونه</translation>
+            <translation>د بینډوېت محدودیتونه</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>ډاونلوډ:</translation>
+            <translation>ښکته کول:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>اپلوډ:</translation>
+            <translation>پورته کول:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>حدودهای اشتراک</translation>
+            <translation>د شریکولو محدودیتونه</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6691,27 +6790,27 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>بې حده</translation>
+            <translation>نامحدود</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>ته تنظیم</translation>
+            <translation>ته تنظیم کړئ</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>زمان سیدینگ:</translation>
+            <translation>د تخم وخت:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>لږ تر لږه</translation>
+            <translation>دقیقې</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>زمان غیرفعال:</translation>
+            <translation>غیر فعال وخت:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>کشف همتا</translation>
+            <translation>د ملګرو موندنه</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6719,7 +6818,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>جدول هش توزیع‌شده</translation>
+            <translation>وېشلی هش جدول</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6727,7 +6826,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>تبادل همتا</translation>
+            <translation>د پییر تبادله</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6735,35 +6834,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>کشف سرویس محلی</translation>
+            <translation>سیمه‌یز خدمت موندنه</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 تورنت خصوصی</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ خصوصي تورنټ</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT و PeX توسط libtorrent غیرفعال شده‌اند.</translation>
+            <translation>DHT او PeX د libtorrent لخوا غیر فعال شوي.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>حالت دانلود</translation>
+            <translation>ډاونلوډ حالت</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>دانلود ترتیبی</translation>
+            <translation>پرله‌پسې ډاونلوډ</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>قطعات به ترتیب دانلود می‌شوند (قطعه ۰ → آخرین)</translation>
+            <translation>په ترتیب ډاونلوډ شوې ټوټې (ټوټه 0 → وروستۍ)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>لومړي او وروستي برخې لومړیتوب ورکړئ</translation>
+            <translation>لومړۍ او وروستۍ ټوټې لومړیتوب ورکړئ</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>سرلیک/لاندې برخې مخکې بار کړئ ترڅو لومړنی پلې کیدل ممکن شي</translation>
+            <translation>د سر او پښې برخې د ژر پلې کولو لپاره مخکې باروي</translation>
         </message>
     </context>
     <context>

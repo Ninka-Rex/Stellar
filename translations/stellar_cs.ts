@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Rychlost</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Stáhnout</translation>
         </message>
@@ -1759,6 +1763,10 @@ Lze změnit v Možnosti → Stahování.</translation>
         <message>
             <source>Files</source>
             <translation>Soubory</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Nastavení</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4266,7 +4274,58 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Max. počet spojení na server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Lze použít hvězdičku jako zástupný znak</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Max. počet spojení:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušit</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Pozastaveno</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Odpojeno</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Dokončeno</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Příjem dat...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Čekání...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server vrátil HTML stránku místo očekávaného souboru. Odkaz může vyžadovat otevření v prohlížeči nebo mohl vypršet. Nic nebylo uloženo.</translation>
@@ -4354,6 +4413,38 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Výchozí max. spojení na stahování:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Max. počet spojení</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Přepsat výchozí počet spojení pro konkrétní servery. Použijte hvězdičku (*) jako zástupný znak.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Počet</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Nový</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Upravit</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Smazat</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Používá se pro slučování video a audio stop.</translation>
@@ -5255,6 +5346,18 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Automaticky blokovat Xunlei, QQ, Baidu, Xfplay, DLBT a offline stahovače</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonymní režim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonymní režim neskryje vaši IP adresu. Omezí pouze informace, které váš klient vysílá (user-agent a otisk klienta). Pro skutečné soukromí použijte VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Zakázáno anonymním režimem.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6374,6 +6477,14 @@ Klikněte pro otevření Statistiky</translation>
             <translation>Soubory</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Nastavení</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Načítání metadat…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n položek</translation>
         </message>
@@ -6651,26 +6762,14 @@ Klikněte pro otevření Statistiky</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Nastavení torrentů</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Rychlost, limity sdílení, objevování peerů a režim stahování pro každý torrent</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Použít</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMITY PŘENOSU</translation>
+            <translation>LIMITY ŠÍŘKY PÁSMA</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6678,7 +6777,7 @@ Klikněte pro otevření Statistiky</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Nahrávání:</translation>
+            <translation>Nahrát:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6694,7 +6793,7 @@ Klikněte pro otevření Statistiky</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Neomezeně</translation>
+            <translation>Neomezeno</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -6710,11 +6809,11 @@ Klikněte pro otevření Statistiky</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Čas nečinnosti:</translation>
+            <translation>Neaktivní čas:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>OBJEVOVÁNÍ PEERŮ</translation>
+            <translation>HLEDÁNÍ PEERŮ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6722,7 +6821,7 @@ Klikněte pro otevření Statistiky</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Distribuovaný hashovací strom</translation>
+            <translation>Distribuovaná hashovací tabulka</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6738,11 +6837,11 @@ Klikněte pro otevření Statistiky</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Lokální služba objevování</translation>
+            <translation>Lokální vyhledávání služeb</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Soukromý torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Soukromý torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6758,15 +6857,15 @@ Klikněte pro otevření Statistiky</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Stahovat díly v pořadí (díl 0 → poslední)</translation>
+            <translation>Stahovat díly popořadě (0 → poslední)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritizovat první a poslední díly</translation>
+            <translation>Upřednostnit první a poslední díly</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Načítá hlavičku/patičku pro brzké přehrávání</translation>
+            <translation>Přednačte hlavičku/patičku pro rychlé přehrávání</translation>
         </message>
     </context>
     <context>

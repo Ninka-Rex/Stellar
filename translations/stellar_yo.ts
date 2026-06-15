@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Ìyára</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Ṣagbasilẹ</translation>
         </message>
@@ -1760,6 +1764,10 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
         <message>
             <source>Files</source>
             <translation>Àwọn fáìlì</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Ètò</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4273,7 +4281,58 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Iye ìsopọ̀ tó pọ̀jù fún olùpín</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Olùpín</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>O lè lo àmì ìràwọ̀ bí àpẹẹrẹ ìfọwọ́sowọ́pọ̀</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Iye ìsopọ̀ tó pọ̀jù:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Fagilé</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ó dára</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Dádúró</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Ti ge asopọ</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Pari</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Ń gba data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Ń dúró...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Olùpèsè dá ojú-ewé HTML padà dípò fáìlì tí a retí. Ó ṣeé ṣe kí ìjápọ̀ náà nílò ṣíṣí nínú aṣàwákiri tàbí ó ti parí. Kò sí ohun tí a fipamọ́.</translation>
@@ -4361,6 +4420,38 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Ìsopọ̀ àìpọjù fún ìgbàkọ̀ọ̀kan:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Iye ìsopọ̀ àìpọjù</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Yí iye ìsopọ̀ àìpọjù padà fún àwọn olùpín pàtó. Lo ìràwọ̀ (*) gẹ́gẹ́ bí àmì ìdánimọ̀.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Olùpín</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Iye</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Tuntun</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Ṣàtúnṣe</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Parẹ́</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Lò fún pípapọ̀ fídíò àti àwọn ìṣàn ohùn.</translation>
@@ -5262,6 +5353,18 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Dina Xunlei, QQ, Baidu, Xfplay, DLBT ati Olugbasilẹ aisinilori laifọwọyi</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Ipò àìdánimọ̀</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Ipò àìdánimọ̀ kò fi àdírẹ́sì IP rẹ pamọ́. Ó kàn dín ìsọfúnni tí ẹ̀rọ rẹ ń gbé jáde lọ́wọ́ (aṣàmúlò-aṣojú àti ìtẹ̀ka ẹ̀rọ). Fún ìpamọ́ gidi, lo VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Dẹ́kun láti ipò àìdánimọ̀.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6381,6 +6484,14 @@ Tẹ láti ṣí Ìṣirò</translation>
             <translation>Àwọn fáìlì</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Ètò</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Ń mú metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n nkan</translation>
         </message>
@@ -6658,38 +6769,26 @@ Tẹ láti ṣí Ìṣirò</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Ètò Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Ìyára fún torrent kọ̀ọ̀kan, ààlà pínpín, ìṣàwárí ẹlẹgbẹ́, àti ọ̀nà gbígbà sílẹ̀</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
-            <translation>Fisílò</translation>
+            <translation>Fisílẹ̀</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ÀÀLÀ BANDWIDTH</translation>
+            <translation>ÀÀLÀ BÁǸDÚWÍDÌ</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Gbígbà sílẹ̀:</translation>
+            <translation>Ìgbasílẹ̀:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Gbígbé sókè:</translation>
+            <translation>Ìgbésókè:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ÀWỌN ÌDÍWỌ̀N PÍNPÍN</translation>
+            <translation>ÀÀLÀ ÌPÍN</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6697,23 +6796,23 @@ Tẹ láti ṣí Ìṣirò</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Àtìbẹ̀bẹ̀rẹ̀</translation>
+            <translation>Àtìpìlẹ̀</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Ailopin</translation>
+            <translation>Àìlóbì</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Ṣeto si</translation>
+            <translation>Ṣeto sí</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Àkókò fífúnrúgbin:</translation>
+            <translation>Àkókò ìfidúró:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>ìṣẹ́jú</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6729,7 +6828,7 @@ Tẹ láti ṣí Ìṣirò</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Tábìlì Ìpínkiri</translation>
+            <translation>Tábìlì Hàṣì Pínpín</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6745,11 +6844,11 @@ Tẹ láti ṣí Ìṣirò</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Ìṣàwárí Iṣẹ́ Agbègbè</translation>
+            <translation>Ìṣàwárí Iṣẹ́ Àdúgbò</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent àdáni</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Ìkọ̀kọ̀ torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6757,23 +6856,23 @@ Tẹ láti ṣí Ìṣirò</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>Ọ̀NÀ ÌGBAJÁDE</translation>
+            <translation>Ọ̀NÀ ÌṢÀFIHÀN</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Ìgba-ní-tẹ̀léra</translation>
+            <translation>Ìṣàfihàn lẹ́sẹẹsẹ</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Àwọn àpò ti ń gbà lẹ́sẹẹsẹ (àpò 0 → ìkẹyìn)</translation>
+            <translation>Àwọn àkójọpọ̀ tí a ṣe ìgbàsílẹ̀ létòlétò (àkójọpọ̀ 0 → ìkẹyìn)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Ṣàtẹ̀lé àkọ́kọ́ &amp; àtẹ̀lé ikẹyìn</translation>
+            <translation>Ṣàkọ́kọ́ àwọn àkójọpọ̀ àkọ́kọ́ &amp; ìkẹyìn</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Ṣàkọ́kọ́ àkọsílẹ̀/àtẹ̀lé fún ṣíṣe àwòrán ní kùtùkùtù</translation>
+            <translation>Ìṣètò-iwájú àkọsílẹ̀/àtẹlẹsẹ̀ fún ìṣàfihàn àkọ́kọ́</translation>
         </message>
     </context>
     <context>

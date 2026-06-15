@@ -1071,6 +1071,10 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Ọsọ</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Budata</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Faịlụ</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Ntọala</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4272,7 +4280,58 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Ọnụọgụ njikọ kacha maka sava</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Sava</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Ị nwere ike iji kpakpando dị ka ụkpụrụ nnọchi</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Ọnụọgụ njikọ kacha:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kagbuo</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ọ DỊ MMA</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Kwụsịtụrụ</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Apụọla</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Emechara</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Na-anata data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Na-eche...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Ihe nkesa weghachitere bụ ibe HTML kama faịlụ a tụrụ anya ya. Njikọ ahụ nwere ike ịchọ imeghe na ihe nchọgharị ma ọ bụ gafee oge. Ọ dịghị ihe echekwara.</translation>
@@ -4360,6 +4419,38 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Njikọ kacha elu ndabere maka nbudata ọ bụla:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Ọnụọgụ njikọ kacha elu</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Gbanwee ọnụọgụ njikọ ndabere maka sava ụfọdụ. Jiri akara kpakpando (*) dị ka ihe nnọchi anya.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Sava</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Ọnụọgụ</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Ọhụrụ</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Dezie</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Hichapụ</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Eji ejikọ vidiyo na iyi ọdịyo.</translation>
@@ -5261,6 +5352,18 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Machibidoro Xunlei, QQ, Baidu, Xfplay, DLBT na Offline downloader na-akpaghị aka</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Ọnọdụ nzuzo</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Ọnọdụ nzuzo anaghị ezochi adreesị IP gị. Ọ na-amachibido naanị ozi nke klient gị na-ekesa (user-agent na akara klient). Maka ezigbo nzuzo, jiri VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Gbanyụrụ site na ọnọdụ nzuzo.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6380,6 +6483,14 @@ Pịa imeghe Ọnụọgụ</translation>
             <translation>Faịlụ</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Ntọala</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Na-eweta metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ihe</translation>
         </message>
@@ -6657,26 +6768,14 @@ Pịa imeghe Ọnụọgụ</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Ntọala Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Ọsọ torrent n'otu n'otu, oke nkekọrịta, nchọpụta ndị ọgbọ, na ụdị nbudata</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Mechie</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
-            <translation>Tinye n'ọrụ</translation>
+            <translation>Tinye</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>OKE BANDWIDTH</translation>
+            <translation>Ókè bandwit</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6684,7 +6783,7 @@ Pịa imeghe Ọnụọgụ</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Nbugo:</translation>
+            <translation>Bulite:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6692,15 +6791,15 @@ Pịa imeghe Ọnụọgụ</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ọnụọgụ:</translation>
+            <translation>Oke:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Ndabara</translation>
+            <translation>Ndabere</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Enweghị ngwụcha</translation>
+            <translation>Enweghị oke</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -6720,7 +6819,7 @@ Pịa imeghe Ọnụọgụ</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>NCHỌTA NDỊ ỌGBỌ</translation>
+            <translation>NCHỌTA NDI ỌGBỌ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6747,8 +6846,8 @@ Pịa imeghe Ọnụọgụ</translation>
             <translation>Nchọpụta Ọrụ Mpaghara</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent nzuzo</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent nzuzo</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6764,15 +6863,15 @@ Pịa imeghe Ọnụọgụ</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Mpempe ebudatara n'usoro (mpempe 0 → nke ikpeazụ)</translation>
+            <translation>Iberibe ebudatara n'usoro (ibe 0 → nke ikpeazụ)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Bido na nke mbụ na nke ikpeazụ</translation>
+            <translation>Bute ụzọ ibe mbụ na nke ikpeazụ</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Buru ụzọ bute isi na ọdụ maka ịkpọ ngwa ngwa</translation>
+            <translation>Na-ebu ụzọ tinye nkụnye eji isi mee ihe maka ịkpọ ngwa ngwa</translation>
         </message>
     </context>
     <context>

@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Скорост</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Изтегляне</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Файлове</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Настройки</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4267,7 +4275,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Макс. брой връзки към сървър</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Сървър</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Може да използвате звездичка като шаблон</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Макс. брой връзки:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Отказ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Паузиран</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Прекъснат</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Завършено</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Получаване на данни...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Изчакване...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Сървърът върна HTML страница вместо очаквания файл. Линкът може да изисква отваряне в браузър или да е изтекъл. Нищо не беше запазено.</translation>
@@ -4355,6 +4414,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Макс. връзки за изтегляне по подразбиране:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Брой връзки</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Замяна на броя връзки по подразбиране за конкретни сървъри. Използвайте звездичка (*) като заместител.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Сървър</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Брой</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Нов</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Редактиране</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Изтриване</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Използва се за сливане на видео и аудио потоци.</translation>
@@ -5256,6 +5347,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Автоматичен бан на Xunlei, QQ, Baidu, Xfplay, DLBT и Offline downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Анонимен режим</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Анонимният режим не скрива вашия IP адрес. Той само ограничава информацията, която клиентът ви излъчва (user-agent и пръстов отпечатък). За истинска поверителност използвайте VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Забранено от анонимен режим.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6375,6 +6478,14 @@ Click to open Statistics</source>
             <translation>Файлове</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Настройки</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Извличане на метаданни…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n елемента</translation>
         </message>
@@ -6652,26 +6763,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Настройки на торента</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Скорост, лимити за споделяне, откриване на пиъри и режим на изтегляне</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Приложи</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ЛИМИТИ ЗА БАНДШИРЪК</translation>
+            <translation>ОГРАНИЧЕНИЯ НА ЧЕСТОТНАТА ЛЕНТА</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6683,7 +6782,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ЛИМИТИ ЗА СПОДЕЛЯНЕ</translation>
+            <translation>ОГРАНИЧЕНИЯ</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6695,15 +6794,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Неограничен</translation>
+            <translation>Без ограничение</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Задайте на</translation>
+            <translation>Задай на</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Време на сийдване:</translation>
+            <translation>Време за сийдване:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6711,11 +6810,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Време на неактивност:</translation>
+            <translation>Неактивно време:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>Откриване на пиъри</translation>
+            <translation>ОТКРИВАНЕ НА ПИЪРИ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6742,32 +6841,32 @@ Click to open Statistics</source>
             <translation>Локално откриване на услуги</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Частен торент</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Частен торент</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT и PeX са деактивирани от libtorrent.</translation>
+            <translation>DHT и PeX са изключени от libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>РЕЖИМ НА СВАЛЯНЕ</translation>
+            <translation>РЕЖИМ НА ИЗТЕГЛЯНЕ</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Последователно сваляне</translation>
+            <translation>Последователно изтегляне</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Парчета се свалят в ред (парче 0 → последно)</translation>
+            <translation>Изтегляне на частите по ред (част 0 → последна)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Приоритет на първите и последните парчета</translation>
+            <translation>Приоритет на първата и последната част</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Предварително зареждане на заглавие/край за ранно възпроизвеждане</translation>
+            <translation>Предварително зареждане на начало/край за ранно възпроизвеждане</translation>
         </message>
     </context>
     <context>

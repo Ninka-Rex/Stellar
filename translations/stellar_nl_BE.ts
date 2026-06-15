@@ -1072,6 +1072,10 @@ Handmatig uitvoeren: flatpak override --user --talk-name=org.freedesktop.Flatpak
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Snelheid</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Downloaden</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Bestanden</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Instellingen</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4264,7 +4272,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Max. verbindingen per server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Gebruik asterisk als jokerteken</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Max. verbindingen:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annuleren</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Gepauzeerd</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Verbinding verbroken</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Voltooid</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Gegevens ontvangen...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Wachten...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server gaf een HTML-pagina terug i.p.v. het verwachte bestand. De link moet mogelijk in een browser geopend worden of is verlopen. Niets opgeslagen.</translation>
@@ -4352,6 +4411,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Standaard max. verbindingen per download:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Max. aantal verbindingen</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Overschrijf het standaard aantal verbindingen voor specifieke servers. Gebruik een asterisk (*) als joker.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Aantal</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Nieuw</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Bewerken</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Verwijderen</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Gebruikt voor het samenvoegen van video- en audiostreams.</translation>
@@ -5249,6 +5340,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto-blokkeer Xunlei, QQ, Baidu, Xfplay, DLBT en offline downloaders</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonieme modus</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonieme modus verbergt je IP-adres niet. Het beperkt enkel de info die je client uitzendt (user-agent en client fingerprint). Voor echte privacy gebruik je een VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Uitgeschakeld door anonieme modus.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6367,6 +6470,14 @@ Click to open Statistics</source>
             <translation>Bestanden</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Instellingen</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Metadata ophalen…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n item(s)</translation>
         </message>
@@ -6644,26 +6755,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrentinstellingen</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Snelheid, delen, peers, modus</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Toepassen</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BANDWIDTH LIMITS</translation>
+            <translation>BANDREEDTELIMIETEN</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6675,7 +6774,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>DELEN LIMITS</translation>
+            <translation>DEEL LIMIETEN</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6691,7 +6790,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Instellen op</translation>
+            <translation>Ingesteld op</translation>
         </message>
         <message>
             <source>Seeding time:</source>
@@ -6707,7 +6806,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER ONDERZOEK</translation>
+            <translation>PEER ONTDEKKING</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6715,7 +6814,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Verdeelde Hash Tabel</translation>
+            <translation>Gedistribueerde hashtabel</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6723,7 +6822,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peer Uitwisseling</translation>
+            <translation>Peer-uitwisseling</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6731,19 +6830,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Lokale Service Ontdekking</translation>
+            <translation>Lokale servicedetectie</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Privé torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privétorrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT en PeX uitgeschakeld door libtorrent</translation>
+            <translation>DHT en PeX uitgeschakeld door libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>DOWNLOAD MODE</translation>
+            <translation>DOWNLOADMODUS</translation>
         </message>
         <message>
             <source>Sequential download</source>
@@ -6751,15 +6850,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Stukken in volgorde (stuk 0 → laatste)</translation>
+            <translation>Stukken in volgorde gedownload (stuk 0 → laatste)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioriteit eerste &amp; laatste stukken</translation>
+            <translation>Prioriteit aan eerste &amp; laatste stukken</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Kop/footer vooraf voor vroege afspeling</translation>
+            <translation>Laadt header/footer eerst voor vroege weergave</translation>
         </message>
     </context>
     <context>

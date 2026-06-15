@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Nopeus</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Lataus</translation>
         </message>
@@ -1758,6 +1762,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Tiedostot</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Asetukset</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4262,7 +4270,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Palvelimen yhteyksien enimmäismäärä</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Palvelin</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Voit käyttää tähteä jokerimerkkinä</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Yhteyksien enimmäismäärä:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Pysäytetty</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Katkaistu</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Valmis</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Vastaanotetaan dataa...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Odotetaan...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Palvelin palautti HTML-sivun odotetun tiedoston sijaan. Linkki saattaa vaatia avaamista selaimessa tai on vanhentunut. Mitään ei tallennettu.</translation>
@@ -4350,6 +4409,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Oletus maks. yhteyksiä/lataus:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. yhteyksien määrä</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Ohita oletusyhteyksien määrä tietyille palvelimille. Käytä tähteä (*) jokerimerkkinä.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Palvelin</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Määrä</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Uusi</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Muokkaa</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Poista</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Käytetään video- ja äänivirtojen yhdistämiseen.</translation>
@@ -5251,6 +5342,18 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Automaattinen estäminen Xunlei, QQ, Baidu, Xfplay, DLBT ja Offline downloaderille</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonyymitila</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonyymitila ei piilota IP-osoitettasi. Se rajoittaa vain asiakasohjelman lähettämiä tietoja (user-agent ja sormenjälki). Käytä VPN:ää todelliseen yksityisyyteen.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Estetty anonyymitilassa.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6369,6 +6472,14 @@ Click to open Statistics</source>
             <translation>Tiedostot</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Asetukset</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Noudetaan metatietoja…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n kohdetta</translation>
         </message>
@@ -6646,26 +6757,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrent-asetukset</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Virtausnopeus, jakorajat, vertaisten löytäminen ja lataustila</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Sulje</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Käytä</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LAJITTELURAJAT</translation>
+            <translation>KAISTARAJOITUKSET</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6681,7 +6780,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio:</translation>
+            <translation>Suhde:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6689,15 +6788,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Rajaton</translation>
+            <translation>Rajoittamaton</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Aseta</translation>
+            <translation>Aseta arvoon</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Siemen aika:</translation>
+            <translation>Jakamisaika:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6705,11 +6804,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Inaktiivinen aika:</translation>
+            <translation>Toimettomuusaika:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER-EHDOITUS</translation>
+            <translation>VERTAISTEN HAKU</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6717,7 +6816,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Jakeluhashaulukko</translation>
+            <translation>Hajautettu tiiviste</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6725,7 +6824,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peer-vaihto</translation>
+            <translation>Vertaisvaihto</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6733,35 +6832,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Paikallinen palveluiden löytäminen</translation>
+            <translation>Paikallinen palveluhaku</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Salainen torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Yksityinen torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT ja PeX pois päältä libtorrentissa</translation>
+            <translation>DHT ja PeX poistettu käytöstä libtorrentissa.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>LATAUS-REKI</translation>
+            <translation>LATAUSTILA</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Sekvenssilataus</translation>
+            <translation>Peräkkäislataus</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Palikat ladataan järjestyksessä (palikka 0 → viimeinen)</translation>
+            <translation>Osat ladattu järjestyksessä (osa 0 → viimeinen)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Painota ensimmäiset ja viimeiset palikat</translation>
+            <translation>Priorisoi ens. ja viim. osat</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Lataa otsikko/jalka alussa nopeamman toiston varten</translation>
+            <translation>Lataa otsikon/alatunnisteen ensin nopeaa toistoa varten</translation>
         </message>
     </context>
     <context>

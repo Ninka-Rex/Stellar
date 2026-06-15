@@ -1071,6 +1071,10 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Tezlik</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Yuklash</translation>
         </message>
@@ -1760,6 +1764,10 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
         <message>
             <source>Files</source>
             <translation>Fayllar</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Sozlamalar</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4258,7 +4266,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Server uchun maks. ulanishlar soni</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Yulduzchani andoza sifatida ishlatishingiz mumkin</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. ulanishlar soni:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>To‘xtatilgan</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Aloqa uzildi</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Yakunlandi</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Ma'lumot qabul qilinmoqda...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Kutilmoqda...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server HTML sahifasini qaytardi, kutilgan fayl o‘rniga. Havola brauzerda ochishni talab qilishi yoki muddati o‘tgan bo‘lishi mumkin. Hech narsa saqlanmadi.</translation>
@@ -4346,6 +4405,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Yuklab olish uchun standart maks. ulanishlar:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. ulanishlar soni</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Muayyan serverlar uchun standart ulanish sonini bekor qilish. Yulduzcha (*) belgisini joker sifatida ishlating.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Soni</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Yangi</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Tahrirlash</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>O‘chirish</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Video va audio oqimlarini birlashtirish uchun ishlatiladi.</translation>
@@ -5247,6 +5338,18 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT va Offline yuklovchilar avtomatik bloklanadi</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonim rejim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonim rejim IP manzilingizni yashirmaydi. U faqat mijozingiz tarqatadigan maʼlumotlarni cheklaydi (user-agent va mijoz barmoq izi). Haqiqiy maxfiylik uchun VPN dan foydalaning.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Anonim rejim tomonidan o‘chirilgan.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6365,6 +6468,14 @@ Click to open Statistics</source>
             <translation>Fayllar</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Sozlamalar</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Metamaʼlumotlar olinmoqda…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ta</translation>
         </message>
@@ -6642,26 +6753,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrent sozlamalari</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Suv oqimi, ulashuv, qo'shimchalar va rejim</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Yopish</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Qo‘llash</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BANDWIDTH LIMITS</translation>
+            <translation>TARMOQ CHEKLOVLARI</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6673,11 +6772,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>SHARE LIMITS</translation>
+            <translation>ULASHISH CHEGARALARI</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio:</translation>
+            <translation>Nisbat:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6689,23 +6788,23 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>O‘rnatish</translation>
+            <translation>Belgilash</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Ulanish vaqti:</translation>
+            <translation>Urug‘lash vaqti:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>daq</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Faolsizlik vaqti:</translation>
+            <translation>Faol bo‘lmagan vaqt:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER O'ZGARISH</translation>
+            <translation>TENGDOSHLARNI TOPISH</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6713,7 +6812,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Taqlidli Hash Jadvali</translation>
+            <translation>Taqsimlangan xesh jadvali</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6721,7 +6820,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Ijtimoiy Almashtirish</translation>
+            <translation>Tengdosh almashinuvi</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6729,35 +6828,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Mahalliy xizmatlarni aniqlash</translation>
+            <translation>Mahalliy xizmat kashfi</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Maxfiy torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Shaxsiy torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent DHT va PeX ni o'chirdi</translation>
+            <translation>DHT va PeX libtorrent tomonidan o‘chirilgan.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>YUKLASH REJIMI</translation>
+            <translation>YUKLAB OLISH REJIMI</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Ketinma yuklash</translation>
+            <translation>Ketma-ket yuklab olish</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Qismlar tartibda yuklandi (0-qism → oxirgi)</translation>
+            <translation>Tartib bilan yuklab olingan qismlar (0-qism → oxirgi)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Birinchi va oxirgi qismlarni ustunliklantirish</translation>
+            <translation>Birinchi va oxirgi qismlarga ustunlik berish</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Boshlig'i/oyoq qismini oldindan yuklash</translation>
+            <translation>Erta ijro uchun sarlavha/pastki qismni oldin yuklash</translation>
         </message>
     </context>
     <context>

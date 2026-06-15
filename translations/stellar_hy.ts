@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Արագություն</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Ներբեռնել</translation>
         </message>
@@ -1758,6 +1762,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Ֆայլեր</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Կարգավորումներ</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4264,7 +4272,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Միացումների առավելագույն քանակը սերվերի համար</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Սերվեր</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Կարող եք օգտագործել աստղանիշը որպես փոխարինիչ</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Միացումների առավելագույն քանակը՝</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Դադարեցված</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Անջատված</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Ավարտված</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Տվյալների ընդունում...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Սպասում...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Սերվերը HTML էջ վերադարձրեց սպասվող ֆայլի փոխարեն։ Հղումը կարող է պահանջել բացել դիտարկիչում կամ ժամկետանց է։ Ոչինչ չպահպանվեց։</translation>
@@ -4352,6 +4411,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Լռելյայն առավել. կապեր ներբեռնման համար՝</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Կապերի քանակ</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Փոխարինել լռելյայն կապերի քանակը կոնկրետ սերվերների համար։ Օգտագործեք աստղանիշ (*) որպես փոխարինիչ։</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Սերվեր</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Քանակ</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Նոր</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Խմբագրել</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Ջնջել</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Օգտագործվում է վիդեո և աուդիո հոսքերի միաձուլման համար։</translation>
@@ -5247,6 +5338,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Ավտոմատ արգելափակել Xunlei, QQ, Baidu, Xfplay, DLBT և Offline downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Անանուն ռեժիմ</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Անանուն ռեժիմը չի թաքցնում ձեր IP հասցեն։ Այն միայն սահմանափակում է ձեր հաճախորդի հեռարձակած տվյալները (user-agent և մատնահետք)։ Իրական գաղտնիության համար օգտագործեք VPN։</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Անջատված է անանուն ռեժիմով։</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6366,6 +6469,14 @@ Click to open Statistics</source>
             <translation>Ֆայլեր</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Կարգավորումներ</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Մետատվյալների ստացում…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n տարր(եր)</translation>
         </message>
@@ -6643,26 +6754,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Տորենտի կարգավորումներ</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Յուրաքանչյուր տորենտի արագություն, բաժնագրման սահմանափակումներ, գործընկերների հայտնաբերում և ներբեռնման ռեժիմ</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Փակել</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Կիրառել</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ԲԱՆԴՎԻԴԺԻ ՍԱՀՄԱՆԱՓԱԿՈՒՄՆԵՐ</translation>
+            <translation>ԱՐԱԳՈՒԹՅԱՆ ՍԱՀՄԱՆԱՓԱԿՈՒՄՆԵՐ</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6670,15 +6769,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Վերբեռնում՝</translation>
+            <translation>Վերբեռնում:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ԲԱԺՆԱԳՐՄԱՆ ՍԱՀՄԱՆԱՓԱԿՈՒՄՆԵՐ</translation>
+            <translation>ՍԱՀՄԱՆԱՓԱԿՈՒՄՆԵՐ</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Հարաբերակցություն՝</translation>
+            <translation>Գործակից:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6694,7 +6793,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Սերինգի ժամանակը՝</translation>
+            <translation>Սիդի ժամանակ:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6702,11 +6801,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Ակտիվ չլինելու ժամանակը՝</translation>
+            <translation>Անգործ. ժամանակ:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>ԳՈՐԾԱՐԱՐԻ ՀԱՅՏՆԵԼԸ</translation>
+            <translation>ՓԻՐԻ ՈՐՈՆՈՒՄ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6714,7 +6813,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Բաշխված հեշի աղյուսակ</translation>
+            <translation>Բաշխված հեշ աղյուսակ</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6722,7 +6821,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Գործընկերների փոխանակում</translation>
+            <translation>Փոխանակում</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6730,35 +6829,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Տեղական ծառայության հայտնաբերում</translation>
+            <translation>Տեղ. ծառ. հայտնաբերում</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Մասնավոր տորենտ</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Գաղտնի թորրենտ</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT-ն և PeX-ը անջատված են libtorrent-ի կողմից։</translation>
+            <translation>DHT-ն ու PeX-ն անջատված են libtorrent-ով:</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>ՆԽԱԳԻԾԻ ՌԵՋԻՄ</translation>
+            <translation>ՆԵՐԲԵՌՆՄԱՆ ՌԵԺԻՄ</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Հաջորդական ներբեռնում</translation>
+            <translation>Հերթ. ներբեռնում</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Ներբեռնված հատվածները հերթականությամբ (հատված 0 → վերջին)</translation>
+            <translation>Մասերը ներբեռնվում են հերթով (0-ից → վերջին)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Առաջնահերթություն՝ առաջին և վերջին հատվածներին</translation>
+            <translation>Առաջնահերթություն առաջին և վերջին մասերին</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Վերնագիր/վերջաբան նախնական բեռնում՝ վաղ հեռարձակման համար</translation>
+            <translation>Վաղ նվագարկման համար ներբեռնում է վերնագիր/ավարտ</translation>
         </message>
     </context>
     <context>

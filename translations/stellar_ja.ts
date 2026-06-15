@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>速度</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ダウンロード</translation>
         </message>
@@ -1757,6 +1761,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ファイル</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>設定</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4260,7 +4268,58 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>サーバーあたりの最大接続数</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>サーバー</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>ワイルドカードとしてアスタリスクを使用可</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>最大接続数:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>キャンセル</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>一時停止中</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>切断済み</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>完了</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>受信中...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>待機中...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>サーバーがファイルではなくHTMLページを返しました。リンクはブラウザでの表示が必要か、期限切れの可能性があります。何も保存されませんでした。</translation>
@@ -4348,6 +4407,38 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>既定の最大接続数:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>最大接続数</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>特定サーバーの既定接続数を上書き。ワイルドカードに*を使用。</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>サーバー</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>数</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>新規</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>編集</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>削除</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>動画・音声ストリームの結合に使用。</translation>
@@ -5249,6 +5340,18 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei、QQ、Baidu、Xfplay、DLBT、オフラインダウンローダーを自動ブロック</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>匿名モード</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>匿名モードはIPアドレスを隠しません。クライアントが送信する情報（ユーザーエージェントとフィンガープリント）を制限するだけです。本当のプライバシーにはVPNを使用してください。</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>匿名モードで無効</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6367,6 +6470,14 @@ Click to open Statistics</source>
             <translation>ファイル</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>設定</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>メタデータ取得中…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n 項目</translation>
         </message>
@@ -6644,42 +6755,30 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation> Torrent 設定</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation> Torrent 別速度、共有制限、ピア発見、ダウンロードモード</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>閉じる</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>適用</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation> バンド幅制限</translation>
+            <translation>帯域制限</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation> ダウンロード:</translation>
+            <translation>ダウンロード：</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation> アップロード:</translation>
+            <translation>アップロード:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation> 共有制限</translation>
+            <translation>共有制限</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation> レシオ:</translation>
+            <translation>比率:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6691,23 +6790,23 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>設定</translation>
+            <translation>設定:</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>シード時間</translation>
+            <translation>シード時間:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>最小</translation>
+            <translation>分</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>非アクティブ時間</translation>
+            <translation>非アクティブ時間:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>ピア発見</translation>
+            <translation>ピア検出</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6731,19 +6830,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>ローカルサービスディスカバリー</translation>
+            <translation>ローカルサービス検出</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 プライベート・トルネード</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ プライベートトレント</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent で DHT と PeX を無効化</translation>
+            <translation>libtorrentによりDHTとPeXが無効化</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>ダウンロードモード</translation>
+            <translation>DLモード</translation>
         </message>
         <message>
             <source>Sequential download</source>
@@ -6751,15 +6850,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>ピース順ダウンロード (0→最後)</translation>
+            <translation>ピースを順にダウンロード (0→最終)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>最初と最後のピースを優先</translation>
+            <translation>先頭・末尾ピースを優先</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>ヘッダー/フッターを先に読み込み</translation>
+            <translation>ヘッダー/フッターを先行取得し早期再生</translation>
         </message>
     </context>
     <context>

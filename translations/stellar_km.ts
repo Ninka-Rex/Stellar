@@ -1072,6 +1072,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>ល្បឿន</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ទាញយក</translation>
         </message>
@@ -1761,6 +1765,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ឯកសារ</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>ការកំណត់</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4273,7 +4281,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>ចំនួនតភ្ជាប់អតិបរមាសម្រាប់ម៉ាស៊ីនមេ</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>ម៉ាស៊ីនមេ</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>អ្នកអាចប្រើសញ្ញាផ្កាយជាគំរូអក្សរជំនួស</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>ចំនួនតភ្ជាប់អតិបរមា៖</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>បោះបង់</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>យល់ព្រម</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>បានផ្អាក</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>បានផ្ដាច់</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>រួចរាល់</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>កំពុងទទួលទិន្នន័យ...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>កំពុងរង់ចាំ...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>ម៉ាស៊ីនមេបានត្រឡប់ទំព័រ HTML ជំនួសឯកសារដែលរំពឹងទុក។ តំណអាចត្រូវការបើកក្នុងកម្មវិធីរុករក ឬអាចផុតកំណត់។ គ្មានអ្វីត្រូវបានរក្សាទុកទេ។</translation>
@@ -4361,6 +4420,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ការតភ្ជាប់អតិបរមាលំនាំដើមក្នុងមួយទាញយក៖</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>ចំនួនតភ្ជាប់អតិបរមា</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>ជាន់លើចំនួនតភ្ជាប់លំនាំដើមសម្រាប់ម៉ាស៊ីនមេជាក់លាក់។ ប្រើសញ្ញាផ្កាយ (*) ជាតួអក្សរជំនួស។</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>ម៉ាស៊ីនមេ</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>ចំនួន</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>ថ្មី</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>កែប្រែ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>លុប</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>ប្រើសម្រាប់បញ្ចូលគ្នានូវស្ទ្រីមវីដេអូ និងអូឌីយ៉ូ។</translation>
@@ -5262,6 +5353,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>ហាមឃាត់ដោយស្វ័យប្រវត្តិ Xunlei, QQ, Baidu, Xfplay, DLBT និងកម្មវិធីទាញយកក្រៅបណ្តាញ</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>របៀបអនាមិក</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>របៀបអនាមិកមិនលាក់អាសយដ្ឋាន IP របស់អ្នកទេ។ វាគ្រាន់តែកំណត់ព័ត៌មានដែលកម្មវិធីរបស់អ្នកផ្សាយ (user-agent និង client fingerprint)។ ដើម្បីភាពឯកជនពិតប្រាកដ សូមប្រើ VPN។</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>បានបិទដោយរបៀបអនាមិក។</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6381,6 +6484,14 @@ Click to open Statistics</source>
             <translation>ឯកសារ</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>ការកំណត់</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>កំពុងទាញយកទិន្នន័យមេតា…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ធាតុ</translation>
         </message>
@@ -6658,26 +6769,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>ការកំណត់ Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>ល្បឿនក្នុងមួយ Torrent, កម្រិតចែករំលែក, ការរកឃើញមិត្តភ័ក្តិ និងរបៀបទាញយក</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>អនុវត្ត</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>កម្រិតកម្រិតបញ្ជូន</translation>
+            <translation>ដែនកំណត់កម្រិតបញ្ជូន</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6685,15 +6784,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>ផ្ទុកឡើង៖</translation>
+            <translation>ផ្ទុកឡើង:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>កម្រិតចែករំលែក</translation>
+            <translation>ដែនកំណត់ចែករំលែក</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>សមាមាត្រ៖</translation>
+            <translation>សមាមាត្រ:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6709,19 +6808,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>ពេលបណ្ដុះ៖</translation>
+            <translation>រយៈពេលផ្សព្វផ្សាយ:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>អប្បបរមា</translation>
+            <translation>នាទី</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>ពេលអសកម្ម៖</translation>
+            <translation>រយៈពេលអសកម្ម:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>ការរកឃើញមិត្តភ័ក្តិ</translation>
+            <translation>ការស្វែងរកមិត្តភែរ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6737,7 +6836,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>ការផ្លាស់ប្តូរមិត្តភ័ក្តិ</translation>
+            <translation>ការផ្លាស់ប្តូរមិត្ត</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6745,15 +6844,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>ការរកឃើញសេវាកម្មក្នុងតំបន់</translation>
+            <translation>ការស្វែងរកសេវាក្នុងតំបន់</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 តុងឯកជន</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ តោរ៉ង់ឯកជន</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT និង PeX ត្រូវបានបិទដោយ libtorrent</translation>
+            <translation>DHT និង PeX ត្រូវបានបិទដោយ libtorrent។</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6765,15 +6864,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>បំណែកទាញយកតាមលំដាប់ (បំណែក 0 → ចុងក្រោយ)</translation>
+            <translation>ទាញយកដុំតាមលំដាប់ (ដុំ 0 → ចុងក្រោយ)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>ផ្តល់អាទិភាពបំណែកដំបូង និងចុងក្រោយ</translation>
+            <translation>ផ្ដល់អាទិភាពដុំដំបូង និងចុងក្រោយ</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>ផ្ទុកបឋមកថា/បាតកថាមុនសម្រាប់ចាក់ដំបូង</translation>
+            <translation>ផ្ទុកបឋមកថា/បាតកថាមុន សម្រាប់ចាក់ភ្លាមៗ</translation>
         </message>
     </context>
     <context>

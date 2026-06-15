@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>سرعت</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>دانلود</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>فایلها</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>تنظیمات</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4263,7 +4271,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>حداکثر اتصالات سرور</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>سرور</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>می‌توانید از ستاره به‌عنوان الگوی جانشین استفاده کنید</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>حداکثر اتصالات:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغو</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>تأیید</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>مکث</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>قطع</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>کامل</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>دریافت داده...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>در انتظار...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>سرور به‌جای فایل، صفحه HTML برگرداند. لینک ممکن است نیاز به بازشدن در مرورگر داشته باشد یا منقضی شده باشد. چیزی ذخیره نشد.</translation>
@@ -4351,6 +4410,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>حداکثر اتصالات پیش‌فرض:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>تعداد اتصالات</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>بازنویسی تعداد اتصال پیش‌فرض برای سرورهای خاص. از ستاره (*) به عنوان جانشین استفاده کنید.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>سرور</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>تعداد</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>جدید</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>ویرایش</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>حذف</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>برای ادغام جریان‌های ویدئو و صدا استفاده می‌شود.</translation>
@@ -5249,6 +5340,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>مسدود خودکار Xunlei، QQ، Baidu، Xfplay، DLBT و دانلودر آفلاین</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>حالت ناشناس</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>حالت ناشناس IP شما را پنهان نمی‌کند. فقط اطلاعاتی که کلاینت شما ارسال می‌کند (user-agent و اثر انگشت کلاینت) را محدود می‌کند. برای حریم خصوصی واقعی، از VPN استفاده کنید.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>غیرفعال شده توسط حالت ناشناس.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6367,6 +6470,14 @@ Click to open Statistics</source>
             <translation>فایلها</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>تنظیمات</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>دریافت فراداده…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n آیتم</translation>
         </message>
@@ -6644,26 +6755,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>تنظیمات تورنت</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>سرعت، محدودیت اشتراک، کشف هم‌پایه و حالت دانلود</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>بستن</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>اعمال</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>محدودیت پهن‌باند</translation>
+            <translation>محدودیت‌های پهنای باند</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6671,11 +6770,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>آپلود:</translation>
+            <translation>بارگذاری:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>محدودیت اشتراک</translation>
+            <translation>محدودیت‌های اشتراک</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6691,15 +6790,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>تنظیم به</translation>
+            <translation>تنظیم روی</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>زمان بذردهی:</translation>
+            <translation>زمان سیدینگ:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>حداقل</translation>
+            <translation>دقیقه</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6707,7 +6806,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>کشف هم‌پایه</translation>
+            <translation>کشف همتا</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6715,7 +6814,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>جدول هشت‌بندی توزیع‌شده</translation>
+            <translation>جدول هش توزیع‌شده</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6723,7 +6822,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>تبادل هم‌پایه</translation>
+            <translation>تبادل همتا</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6731,15 +6830,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>کشف محلی</translation>
+            <translation>کشف سرویس محلی</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 تورنت خصوصی</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ تورنت خصوصی</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT و PeX غیرفعال توسط libtorrent</translation>
+            <translation>DHT و PeX توسط libtorrent غیرفعال شد.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6747,19 +6846,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>دانلود متوالی</translation>
+            <translation>دانلود ترتیبی</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>دانلود قطعات به ترتیب (قطعه 0 → آخر)</translation>
+            <translation>دانلود قطعات به ترتیب (قطعه ۰ ← آخر)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>اولویت قطعات اول و آخر</translation>
+            <translation>اولویت با قطعات اول و آخر</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>بارگذاری هدر/فوتر برای پخش زودتر</translation>
+            <translation>بارگذاری زودهنگام سرصفحه/پاصفحه برای پخش سریع</translation>
         </message>
     </context>
     <context>

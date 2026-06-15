@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Brzina</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Preuzimanje</translation>
         </message>
@@ -1757,6 +1761,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Datoteke</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Postavke</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4264,7 +4272,58 @@ Postavke Stellara → Preglednik → Zaobiđi preuzimanje</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Maks. broj veza za poslužitelj</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Poslužitelj</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Zvjezdicu možete koristiti kao zamjenski znak</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. broj veza:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Odustani</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>U redu</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Pauzirano</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Isključeno</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Završeno</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Primanje podataka...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Čekanje...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Poslužitelj je vratio HTML stranicu umjesto očekivane datoteke. Veza možda zahtijeva otvaranje u pregledniku ili je istekla. Ništa nije spremljeno.</translation>
@@ -4352,6 +4411,38 @@ Postavke Stellara → Preglednik → Zaobiđi preuzimanje</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Zadani maks. broj veza po preuzimanju:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. broj veza</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Poništi zadani broj veza za određene poslužitelje. Koristi zvjezdicu (*) kao zamjenski znak.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Poslužitelj</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Broj</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Novo</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Uredi</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Izbriši</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Koristi se za spajanje video i audio zapisa.</translation>
@@ -5253,6 +5344,18 @@ Preporučuje se vezivanje Stellara na sučelje VPN-a i provjera aktivnosti VPN-a
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto Ban</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonimni način</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonimni način ne skriva tvoju IP adresu. Samo ograničava informacije koje tvoj klijent emitira (korisnički agent i otisak klijenta). Za stvarnu privatnost, koristi VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Onemogućeno anonimnim načinom.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6371,6 +6474,14 @@ Click to open Statistics</source>
             <translation>Datoteke</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Postavke</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Dohvaćanje metapodataka…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n stavka(na)</translation>
         </message>
@@ -6648,26 +6759,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Postavke torrenta</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Brzina po torrentu, ograničenja dijeljenja, otkrivanje vršnjaka i način preuzimanja</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Zatvori</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Primijeni</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>OGRAĐENJA PROPUSNOSTI</translation>
+            <translation>OGRANIČENJA PROPUSNOSTI</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6675,11 +6774,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Učitavanje:</translation>
+            <translation>Prijenos:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>OGRAĐENJA DIJELJENJA</translation>
+            <translation>OGRANIČENJA DIJELJENJA</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6699,7 +6798,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Vrijeme sijanja:</translation>
+            <translation>Vrijeme dijeljenja:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6711,7 +6810,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>OTKRIVANJE PEERA</translation>
+            <translation>OTKRIVANJE PEEROVA</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6719,7 +6818,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Distribuirana tablica hashova</translation>
+            <translation>Distribuirana hash tablica</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6727,7 +6826,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Razmjena peerova</translation>
+            <translation>Razmjena partnera</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6735,35 +6834,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Otkrivanje lokalne usluge</translation>
+            <translation>Lokalno otkrivanje usluga</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Privatni torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privatni torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT i PeX onemogućeni od strane libtorrent.</translation>
+            <translation>DHT i PeX onemogućeni od strane libtorrenta.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>NAČIN SPUŠTANJA</translation>
+            <translation>NAČIN PREUZIMANJA</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Slijedno spuštanje</translation>
+            <translation>Sekvencijalno preuzimanje</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Dijelovi preuzimani po redu (dijel 0 → zadnji)</translation>
+            <translation>Dijelovi preuzimani redom (dio 0 → zadnji)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritet prvih i zadnjih dijelova</translation>
+            <translation>Prioritet prvom i zadnjem dijelu</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Učitavanje zaglavlja i podnožja za rano puštanje</translation>
+            <translation>Učitava zaglavlje/podnožje za ranu reprodukciju</translation>
         </message>
     </context>
     <context>

@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>سۈرئەت</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>چۈشۈر</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ھۆججەتلەر</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>تەڭشەكلەر</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4271,7 +4279,58 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>مۇلازىمېتېرغا ئەڭ كۆپ باغلىنىش سانى</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>مۇلازىمېتېر</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>ھەرقانداق://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>يۇلتۇز بەلگىسىنى ئومۇمىي ئىپادە ئورنىدا ئىشلىتەلەيسىز</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>ئەڭ كۆپ باغلىنىش سانى:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>بىكار</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>جەزملە</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>توختىتىلدى</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>ئۈزۈلدى</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>تاماملاندى</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>سانلىق مەلۇمات قوبۇل قىلىنىۋاتىدۇ...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>كۈتۈۋاتىدۇ...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>سېرۋېر كۈتۈلگەن ھۆججەت ئورنىغا HTML بەت قايتۇردى. ئۇلىنىش توركۆرگۈدە ئېچىشنى تەلەپ قىلىشى ياكى ۋاقتى ئۆتكەن بولۇشى مۇمكىن. ھېچنېمە ساقلانمىدى.</translation>
@@ -4359,6 +4418,38 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>چۈشۈرۈش ئۈچۈن سۈكۈتتىكى ئەڭ كۆپ باغلىنىش:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>ئەڭ كۆپ باغلىنىش سانى</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>مەلۇم مۇلازىمېتېرلار ئۈچۈن سۈكۈتتىكى باغلىنىش سانىنى ئۆزگەرتىڭ. يۇلتۇز (*) نى ئومۇمىي بەلگە سۈپىتىدە ئىشلىتىڭ.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>مۇلازىمېتېر</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>سان</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>يېڭى</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>تەھرىرلەش</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ئۆچۈرۈش</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>ۋىدېئو ۋە ئاۋاز ئېقىملىرىنى بىرلەشتۈرۈشكە ئىشلىتىلىدۇ.</translation>
@@ -5260,6 +5351,18 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>شۇنلېي، QQ، بايدۇ، Xfplay، DLBT ۋە ئوفلاين چۈشۈرگۈچنى ئاپتوماتىك چەكلە</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>نامسىز ھالەت</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>نامسىز ھالەت IP ئادرېسىڭىزنى يوشۇرمايدۇ. ئۇ پەقەت خېرىدارىڭىز تارقىتىدىغان ئۇچۇرلارنى (ئىشلەتكۈچى ۋاكالەتچىسى ۋە خېرىدار بارماق ئىزى) چەكلەيدۇ. ھەقىقىي مەخپىيەتلىك ئۈچۈن VPN ئىشلىتىڭ.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>نامسىز ھالەتتە چەكلەنگەن.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6379,6 +6482,14 @@ Click to open Statistics</source>
             <translation>ھۆججەتلەر</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>تەڭشەكلەر</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>مېتادېتا ئېلىۋېلىنىۋاتىدۇ…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n تۈر</translation>
         </message>
@@ -6656,30 +6767,18 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>توررېنت تەڭشەكلىرى</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>ھەر توررېنتنىڭ تېزلىكى، ئورتاقلىشىش چېكى، پىر تېپىش ۋە چۈشۈرۈش ھالىتى</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ياپ</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
-            <translation>قوللان</translation>
+            <translation>ئىشلىتىش</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>كەڭ بەلۋاغ چېكلىمىسى</translation>
+            <translation>بەلۋاغ كەڭلىكى چەكلىمىسى</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>چۈشۈرۈش:</translation>
+            <translation>چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6687,7 +6786,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ئورتاقلىشىش چېكى</translation>
+            <translation>ئورتاقلىشىش چەكلىمىسى</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6707,11 +6806,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>تۇغۇش ۋاقتى:</translation>
+            <translation>ئۇرۇق ۋاقتى:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>دەق</translation>
+            <translation>مىنۇت</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6735,7 +6834,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>ھەمكار ئالماشتۇرۇش</translation>
+            <translation>ھەمبەھىر ئالماشتۇرۇش</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6746,12 +6845,12 @@ Click to open Statistics</source>
             <translation>يەرلىك مۇلازىمەت بايقاش</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 شەخسىي توررېنت</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ شەخسىي توررېنت</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent تەرىپىدىن DHT ۋە PeX چەكلەنگەن.</translation>
+            <translation>DHT ۋە PeX libtorrent تەرىپىدىن چەكلەنگەن.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6763,15 +6862,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>پارچىلار تەرتىپ بويىچە چۈشۈرۈلدى (0-پارچىدىن ئاخىرقىغىچە)</translation>
+            <translation>پارچىلار تەرتىپ بويىچە چۈشۈرۈلدى (0-پارچە → ئاخىرقى)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>ئالدى-كەينى بۆلەكلەرنى ئالدىن تارتىش</translation>
+            <translation>بىرىنچى ۋە ئاخىرقى پارچىلارنى ئالدىن قوي</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>بالدۇر ئوقۇش ئۈچۈن باش-ئاخىرنى ئالدىن يۈكلەش</translation>
+            <translation>بالدۇر ئويناش ئۈچۈن باش/ئاخىرنى ئالدىن يۈكلە</translation>
         </message>
     </context>
     <context>

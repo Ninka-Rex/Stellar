@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>속도</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>다운로드</translation>
         </message>
@@ -1758,6 +1762,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>파일</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>설정</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4259,7 +4267,58 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>서버당 최대 연결 수</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>서버</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>와일드카드로 별표 사용 가능</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>최대 연결 수:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>취소</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>확인</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>일시정지</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>연결 끊김</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>완료</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>데이터 수신 중...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>대기 중...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>서버가 파일 대신 HTML 페이지를 반환했습니다. 링크가 브라우저에서 열어야 하거나 만료되었을 수 있습니다. 저장된 항목 없음.</translation>
@@ -4347,6 +4406,38 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>다운로드당 기본 최대 연결 수:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>최대 연결 수</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>특정 서버의 기본 연결 수를 재정의합니다. 와일드카드로 별표(*)를 사용하세요.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>서버</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>개수</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>새로 만들기</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>편집</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>삭제</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>비디오와 오디오 스트림 병합에 사용.</translation>
@@ -5246,6 +5337,18 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT 및 오프라인 다운로드 자동 차단</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>익명 모드</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>익명 모드는 IP 주소를 숨기지 않습니다. 클라이언트가 전송하는 정보(사용자 에이전트 및 클라이언트 핑거프린트)만 제한합니다. 진정한 개인정보 보호를 위해서는 VPN을 사용하세요.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>익명 모드로 인해 비활성화됨.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6364,6 +6467,14 @@ Click to open Statistics</source>
             <translation>파일</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>설정</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>메타데이터 가져오는 중…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n 개 항목</translation>
         </message>
@@ -6641,19 +6752,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>토렌트 설정</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>토렌트당 속도, 공유 제한, 피어 발견, 다운로드 모드</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>적용</translation>
@@ -6688,23 +6787,23 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>설정</translation>
+            <translation>설정값</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>시드 시간</translation>
+            <translation>시딩 시간:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>최소</translation>
+            <translation>분</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>비활성 시간</translation>
+            <translation>비활성 시간:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER DISCOVERY</translation>
+            <translation>피어 검색</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6728,15 +6827,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>로컬 서비스 발견</translation>
+            <translation>로컬 서비스 검색</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 개인 토렌트</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ 비공개 토렌트</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent 에서 DHT 및 PeX 비활성화</translation>
+            <translation>libtorrent에 의해 DHT 및 PeX 비활성화됨.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6748,15 +6847,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>순서대로 조각 다운로드 (0 → 마지막)</translation>
+            <translation>순차적 조각 다운로드 (조각 0 → 마지막)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>처음/마지막 조각 우선</translation>
+            <translation>첫·마지막 조각 우선</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>헤더/푸터 미리 가져오기</translation>
+            <translation>초기 재생 위해 헤더·푸터 선행</translation>
         </message>
     </context>
     <context>

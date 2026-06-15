@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>速度</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>下载</translation>
         </message>
@@ -1760,6 +1764,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>文件</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>设置</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4267,7 +4275,58 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>服务器最大连接数</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>服务器</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>可使用星号作为通配符</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>最大连接数：</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>确定</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>已暂停</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>已断开</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>完成</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>接收数据中...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>等待中...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>服务器返回了HTML页面而非预期文件。链接可能需要浏览器打开或已过期。未保存任何内容。</translation>
@@ -4355,6 +4414,38 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>默认每下载最大连接数：</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>最大连接数</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>为特定服务器覆盖默认连接数。使用星号 (*) 作为通配符。</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>服务器</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>数量</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>新建</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>编辑</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>删除</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>用于合并视频和音频流。</translation>
@@ -5256,6 +5347,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>自动屏蔽迅雷、QQ、百度、Xfplay、DLBT 及离线下载</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>匿名模式</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>匿名模式不会隐藏您的IP地址。它仅限制客户端广播的信息（用户代理和客户端指纹）。如需真正的隐私保护，请使用VPN。</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>已由匿名模式禁用。</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6374,6 +6477,14 @@ Click to open Statistics</source>
             <translation>文件</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>设置</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>正在获取元数据…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n 个项目</translation>
         </message>
@@ -6651,19 +6762,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>torrent设置</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>每 torrent 速度、分享限制、对等点发现和下载模式</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>关闭</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>应用</translation>
@@ -6674,7 +6773,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Download:</source>
-            <translation>下载:</translation>
+            <translation>下载：</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6694,7 +6793,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>无限</translation>
+            <translation>无限制</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -6702,19 +6801,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>做种时间</translation>
+            <translation>做种时间:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>最小</translation>
+            <translation>分钟</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>不活动时间</translation>
+            <translation>闲置时间:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>对等发现</translation>
+            <translation>节点发现</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6730,7 +6829,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>对等交换</translation>
+            <translation>节点交换</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6741,12 +6840,12 @@ Click to open Statistics</source>
             <translation>本地服务发现</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 私有 torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ 私有种子</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent 已禁用 DHT 和 PeX</translation>
+            <translation>libtorrent 已禁用 DHT 和 PeX。</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6758,15 +6857,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>按顺序下载片段 (片段 0 → 最后)</translation>
+            <translation>按序下载分块（从首块至末块）</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>优先下载首尾片段</translation>
+            <translation>优先首尾分块</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>预加载头尾以尽早播放</translation>
+            <translation>前置头尾数据以便快速播放</translation>
         </message>
     </context>
     <context>

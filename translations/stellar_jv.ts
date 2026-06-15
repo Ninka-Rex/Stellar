@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Kacepetan</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Undhuh</translation>
         </message>
@@ -1759,6 +1763,10 @@ Sampeyan bisa ngubah ing Opsi → Unduhan mengko.</translation>
         <message>
             <source>Files</source>
             <translation>Berkas</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Setelan</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4271,7 +4279,58 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Maks. sambungan per server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Bisa nganggo tanda bintang kanggo pola wildcard</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. sambungan:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Batal</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Ngaso</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Pedhot</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Rampung</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Nampa data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Ngenteni...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server mbalekake kaca HTML, dudu berkas sing dikarepake. Tautan bisa uga kudu dibukak ing browser utawa wis kadaluwarsa. Ora ana sing disimpen.</translation>
@@ -4359,6 +4418,38 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Sambungan maks. standar saben unduhan:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Cacah sambungan maks.</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Timpa gunggung sambungan standar kanggo server tartamtu. Anggo tanda bintang (*) minangka wildcard.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Cacah</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Anyar</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Sunting</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Busak</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Kanggo nggabung video lan audio.</translation>
@@ -5260,6 +5351,18 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Blokir otomatis Xunlei, QQ, Baidu, Xfplay, DLBT lan pangundhuh offline</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Mode anonim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Mode anonim ora ndhelikake alamat IP-mu. Iki mung matesi informasi sing disiarake klien (user-agent lan sidik driji klien). Kanggo privasi nyata, gunakake VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Dipateni dening mode anonim.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6379,6 +6482,14 @@ Klik kanggo mbukak Statistik</translation>
             <translation>Berkas</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Setelan</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Njupuk metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n item</translation>
         </message>
@@ -6656,22 +6767,10 @@ Klik kanggo mbukak Statistik</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Setelan Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Kacepetan, watesan, lan mode saben torrent</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
-            <translation>Terapna</translation>
+            <translation>Terapake</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
@@ -6679,7 +6778,7 @@ Klik kanggo mbukak Statistik</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Undhuh:</translation>
+            <translation>Unduhan:</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6695,7 +6794,7 @@ Klik kanggo mbukak Statistik</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Standar</translation>
+            <translation>Baku</translation>
         </message>
         <message>
             <source>Unlimited</source>
@@ -6703,7 +6802,7 @@ Klik kanggo mbukak Statistik</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Disetel dadi</translation>
+            <translation>Setel menyang</translation>
         </message>
         <message>
             <source>Seeding time:</source>
@@ -6711,7 +6810,7 @@ Klik kanggo mbukak Statistik</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>mnt</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6735,7 +6834,7 @@ Klik kanggo mbukak Statistik</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Ijol-ijolan Peer</translation>
+            <translation>Tukar Peer</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6746,8 +6845,8 @@ Klik kanggo mbukak Statistik</translation>
             <translation>Panemon Layanan Lokal</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent pribadi</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent pribadi</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6763,15 +6862,15 @@ Klik kanggo mbukak Statistik</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Potongan diunduh urut (potongan 0 → pungkasan)</translation>
+            <translation>Potongan diundhuh urut (potongan 0 → pungkasan)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioritasna bagéan pisanan &amp; pungkasan</translation>
+            <translation>Prioritas potongan pisanan &amp; pungkasan</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Muat header/footer luwih dhisik kanggo puter awal</translation>
+            <translation>Muat ngarep header/footer kanggo puter awal</translation>
         </message>
     </context>
     <context>

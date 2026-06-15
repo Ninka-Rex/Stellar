@@ -1071,6 +1071,10 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Greitis</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Atsisiuntimas</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Failai</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Nustatymai</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4266,7 +4274,58 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Maks. jungčių sk. serveriui</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Serveris</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Galima naudoti žvaigždutę kaip pakaitos simbolį</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. jungčių sk.:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atšaukti</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Gerai</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Pristabdyta</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Atsijungta</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Baigta</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Gaunami duomenys...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Laukiama...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serveris grąžino HTML puslapį vietoj laukto failo. Nuorodą gali reikėti atidaryti naršyklėje arba ji galėjo pasibaigti. Nieko neišsaugota.</translation>
@@ -4354,6 +4413,38 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Numatytasis maks. ryšių sk. atsisiuntimui:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Maks. ryšių sk.</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Nepaisyti numatytojo ryšių skaičiaus konkretiems serveriams. Naudokite žvaigždutę (*) kaip pakaitos simbolį.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Serveris</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Skaičius</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Naujas</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Redaguoti</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Trinti</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Naudojamas vaizdo ir garso srautų sujungimui.</translation>
@@ -5250,6 +5341,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Automatinis draudimas: Xunlei, QQ, Baidu, Xfplay, DLBT ir nuolatinis atsisiuntėjas</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anoniminis režimas</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anoniminis režimas neslepia jūsų IP adreso. Jis tik apriboja jūsų kliento transliuojamą informaciją (naudotojo agentą ir kliento identifikatorių). Tikram privatumui naudokite VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Išjungta anoniminiu režimu.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6368,6 +6471,14 @@ Click to open Statistics</source>
             <translation>Failai</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Nustatymai</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Gaunami metaduomenys…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n elementų</translation>
         </message>
@@ -6645,46 +6756,34 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrento nustatymai</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Greitis, dalinimasis, draugai, režimas</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Taikyti</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>BANDWIDTH LIMITS</translation>
+            <translation>PRALAIDUMO RIBA</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Atsisiųsti:</translation>
+            <translation>Atsisiuntimas:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Išsiųsti:</translation>
+            <translation>Įkėlimas:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>SHARE LIMITS</translation>
+            <translation>DALIJIMOSI RIBOS</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio:</translation>
+            <translation>Santykis:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Numatytasis</translation>
+            <translation>Numatytas</translation>
         </message>
         <message>
             <source>Unlimited</source>
@@ -6696,7 +6795,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Sėjinimo laikas:</translation>
+            <translation>Sėjimo laikas:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6704,11 +6803,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Neaktyvus laikas:</translation>
+            <translation>Neveikimo laikas:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER DISCOVERY</translation>
+            <translation>SIUNTĖJŲ ATRADIMAS</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6716,7 +6815,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Skirstomoji hash lentelė</translation>
+            <translation>Paskirstyta maišos lentelė</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6724,7 +6823,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peer mainymasis</translation>
+            <translation>Keitimasis dalyviais</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6732,35 +6831,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Vietinio aptikimo paslaugos</translation>
+            <translation>Vietos paslaugų paieška</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Paslaptingas torrentas</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privatus torrentas</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT ir PeX išjungti libtorrent.</translation>
+            <translation>DHT ir PeX išjungta per libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>ATSIĖMIMO REŽIMAS</translation>
+            <translation>SIUNTIMO REŽIMAS</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Sequiencinis atsisiuntimas</translation>
+            <translation>Nuoseklus siuntimas</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Daliniai failai atsisiunčiami eiliškai (0 → paskutinis)</translation>
+            <translation>Dalys atsisiunčiamos iš eilės (0 → paskutinė)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Pirmieji ir paskutiniai daliniai failai prioritetai</translation>
+            <translation>Pirmenybė pirmai ir paskutinei dalims</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Antraštinis ir pėdsakinis failo galas atsisiunčiamas pirmiausia</translation>
+            <translation>Pirmiausia įkelia antraštę/poraštę ankstyvam atkūrimui</translation>
         </message>
     </context>
     <context>

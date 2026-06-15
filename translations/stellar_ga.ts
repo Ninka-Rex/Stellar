@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Luas</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Íoslódáil</translation>
         </message>
@@ -1758,6 +1762,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Comhaid</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Socruithe</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4265,7 +4273,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Uasmhéid nasc don fhreastalaí</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Freastalaí</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Is féidir réiltín a úsáid mar phatrún saoróg</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Uasmhéid nasc:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cealaigh</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Sos</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Dícheangailte</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Críochnaithe</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Sonraí á bhfáil...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Ag fanacht...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>D'fhill an freastalaí leathanach HTML in ionad an chomhaid a rabhthas ag súil leis. Seans go gcaithfear an nasc a oscailt i mbrabhsálaí nó go bhfuil sé imithe in éag. Níor sábháladh aon rud.</translation>
@@ -4353,6 +4412,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Uas. naisc réamhshocraithe in aghaidh íoslódála:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Uimhir uas. nasc</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Sáraigh an líon réamhshocraithe nasc do fhreastalaithe ar leith. Úsáid réiltín (*) mar ionadadóir.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Freastalaí</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Uimhir</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Nua</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Cuir in eagar</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Scrios</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Úsáidte chun sruthanna físe agus fuaime a chumasc.</translation>
@@ -5254,6 +5345,18 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Bac uathoibríoch Xunlei, QQ, Baidu, Xfplay, DLBT agus íoslódálaí as líne</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Mód gan ainm</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Ní cheiltíonn mód gan ainm do sheoladh IP. Ní chuireann sé teorainn ach leis an eolas a chraolann do chliant (gníomhaire úsáideora agus méarlorg an chliaint). Le haghaidh fíorphríobháideachais, bain úsáid as VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Díchumasaithe ag mód gan ainm.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6372,6 +6475,14 @@ Click to open Statistics</source>
             <translation>Comhaid</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Socruithe</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Meiteashonraí á bhfáil…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n mír(eanna)</translation>
         </message>
@@ -6649,26 +6760,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Socruithe Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Luas, teorainneacha roinnte, aimsiú comhpháirteanna, mód íoslódála</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
-            <translation>Cuir i bhFeidhm</translation>
+            <translation>Cuir i bhfeidhm</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>TEORAINNEANNA LEATHANDBANDA</translation>
+            <translation>TEORAINNEACHA BANDALEITHID</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6680,7 +6779,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>TEORAINNEANNA ROINNE</translation>
+            <translation>TEORAINNEACHA ROINNTE</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6692,7 +6791,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Gan teorainn</translation>
+            <translation>Neamhtheoranta</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -6712,7 +6811,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>FAIGHTHEOIR</translation>
+            <translation>AIMSIÚ PIARAÍ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6720,7 +6819,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Tábla Hais Dáilte</translation>
+            <translation>Tábla Haise Dáilte</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6728,7 +6827,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Malartú Comhpháirteach</translation>
+            <translation>Malartú Piaraí</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6739,32 +6838,32 @@ Click to open Statistics</source>
             <translation>Fionnachtain Seirbhíse Áitiúil</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent príobháideach</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torant príobháideach</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT agus PeX faoi ghlas ag libtorrent.</translation>
+            <translation>DHT agus PeX díchumasaithe ag libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MÓD ÍOSCLADHA</translation>
+            <translation>MÓD ÍOSLÓDÁLA</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Íoslódáil seicheamhach</translation>
+            <translation>Íoslódáil sheicheamhach</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Píosaí íoslódáilte in ord (píosa 0 → deireanach)</translation>
+            <translation>Píosaí íoslódáilte in ord (píosa 0 → deireadh)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Tosaíocht ar chéad &amp; deireanach píosaí</translation>
+            <translation>Tús áite do chéad &amp; phíosaí deiridh</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Lódáil chéadach ceanntásc/bunús le haghaidh imreoidh luath</translation>
+            <translation>Luchtú tosaigh ceanntásc/buntásc le haghaidh athsheinm luath</translation>
         </message>
     </context>
     <context>

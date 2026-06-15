@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>မြန်နှုန်း</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ဒေါင်းလုဒ်</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ဖိုင်များ</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>ဆက်တင်များ</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4271,7 +4279,58 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>ဆာဗာအတွက် ချိတ်ဆက်မှု အများဆုံး</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>ဆာဗာ</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>ကြယ်ပွင့်ကို ပုံစံအစားထိုးအဖြစ် သုံးနိုင်သည်</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>ချိတ်ဆက်မှု အများဆုံး:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ပယ်ဖျက်</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>အိုကေ</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>ခေတ္တရပ်</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>ချိတ်ဆက်မှုပြတ်တောက်</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>ပြီးပြည့်စုံ</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>ဒေတာလက်ခံနေသည်...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>စောင့်ဆိုင်းနေသည်...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>ဆာဗာက ဖိုင်အစား HTML စာမျက်နှာ ပြန်ပို့သည်။ လင့်ခ်ကို ဘရောက်ဆာတွင် ဖွင့်ရန် လိုအပ်နိုင်သည် သို့မဟုတ် သက်တမ်းကုန်သွားနိုင်သည်။ ဘာမှ မသိမ်းဆည်းခဲ့ပါ။</translation>
@@ -4359,6 +4418,38 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ဒေါင်းလုဒ်တစ်ခုလျှင် မူလချိတ်ဆက်မှုအများဆုံး:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>ချိတ်ဆက်မှုအရေအတွက်</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>သတ်မှတ်ဆာဗာများအတွက် မူလချိတ်ဆက်မှုအရေအတွက်ကို ပြောင်းလဲပါ။ အားလုံးကိုဆိုလိုရန် ကြယ်ပွင့် (*) သုံးပါ။</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>ဆာဗာ</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>အရေအတွက်</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>အသစ်</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>တည်းဖြတ်</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ဖျက်မည်</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>ဗီဒီယိုနှင့် အသံလမ်းကြောင်းများ ပေါင်းစည်းရန် သုံးသည်။</translation>
@@ -5260,6 +5351,18 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT နှင့် Offline downloader တို့ကို အလိုအလျောက် ပိတ်ပင်ရန်</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>အမည်မသိမုဒ်</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>အမည်မသိမုဒ်သည် သင့် IP လိပ်စာကို ဖုံးကွယ်မထားပါ။ ၎င်းသည် သင့်ကလိုင်းယင့်မှ ထုတ်လွှင့်သည့် အချက်အလက် (user-agent နှင့် client fingerprint) ကိုသာ ကန့်သတ်ထားသည်။ အစစ်အမှန် ကိုယ်ရေးလုံခြုံမှုအတွက် VPN ကို အသုံးပြုပါ။</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>အမည်မသိမုဒ်ဖြင့် ပိတ်ထားသည်။</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6379,6 +6482,14 @@ Click to open Statistics</source>
             <translation>ဖိုင်များ</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>ဆက်တင်များ</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>မက်တာဒေတာ ရယူနေသည်…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ခု</translation>
         </message>
@@ -6656,26 +6767,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>တောရင့်ဆက်တင်များ</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>တောရင့်တစ်ခုချင်းစီအတွက် မြန်နှုန်း၊ မျှဝေမှုကန့်သတ်ချက်များ၊ ပီယာရှာဖွေမှုနှင့် ဒေါင်းလုဒ်မုဒ်</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ပိတ်</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
-            <translation>အသုံးပြု</translation>
+            <translation>အသုံးပြုမည်</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ဘန်းဝဒ်ကန့်သတ်ချက်များ</translation>
+            <translation>ဘန်းဝဒ် ကန့်သတ်ချက်များ</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6683,11 +6782,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>အပ်လုဒ်:</translation>
+            <translation>တင်ရန်:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>မျှဝေမှုကန့်သတ်ချက်များ</translation>
+            <translation>မျှဝေမှု ကန့်သတ်ချက်များ</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6707,11 +6806,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>စိုက်ချိန်:</translation>
+            <translation>မျိုးစေ့ချိန်:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>အနည်းဆုံး</translation>
+            <translation>မိနစ်</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6735,7 +6834,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>ပီယာဖလှယ်မှု</translation>
+            <translation>ပီယာ လဲလှယ်မှု</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6743,15 +6842,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>ဒေသတွင်းဝန်ဆောင်မှုရှာဖွေမှု</translation>
+            <translation>ဒေသတွင်း ဝန်ဆောင်မှု ရှာဖွေမှု</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 သီးသန့် တိုရန့်</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ သီးသန့် တိုရန့်</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent မှ DHT နှင့် PeX ပိတ်ထား</translation>
+            <translation>libtorrent မှ DHT နှင့် PeX ကို ပိတ်ထားသည်။</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6763,15 +6862,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>အပိုင်းများ အစဉ်လိုက် (အပိုင်း ၀ → နောက်ဆုံး)</translation>
+            <translation>အစဉ်လိုက်ဒေါင်းလုဒ်လုပ်ထားသောအပိုင်းများ (အပိုင်း ၀ → နောက်ဆုံး)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>ပထမနှင့် နောက်ဆုံးအပိုင်း ဦးစားပေး</translation>
+            <translation>ပထမနှင့်နောက်ဆုံးအပိုင်းများကိုဦးစားပေးပါ</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>အစောပိုင်းဖွင့်ရန် ခေါင်းစီး/အောက်ခြေ ရှေ့တင်</translation>
+            <translation>စောစီးစွာဖွင့်ရန်အတွက်ခေါင်းစီး/အောက်ခြေကိုရှေ့တင်ပါ</translation>
         </message>
     </context>
     <context>

@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>வேகம்</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>பதிவிறக்கம்</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>கோப்புகள்</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>அமைப்புகள்</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4271,7 +4279,58 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>சேவையகத்திற்கான அதிகபட்ச இணைப்புகள்</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>சேவையகம்</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>வைல்டுகார்டு வடிவமாக நட்சத்திரக் குறியைப் பயன்படுத்தலாம்</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>அதிகபட்ச இணைப்புகள்:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ரத்துசெய்</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>சரி</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>இடைநிறுத்தப்பட்டது</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>துண்டிக்கப்பட்டது</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>முழுமையானது</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>தரவு பெறப்படுகிறது...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>காத்திருக்கிறது...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>எதிர்பார்த்த கோப்புக்குப் பதிலாக HTML பக்கம் கிடைத்தது. இணைப்பு உலாவியில் திறக்கப்பட வேண்டும் அல்லது காலாவதியாகி இருக்கலாம். எதுவும் சேமிக்கப்படவில்லை.</translation>
@@ -4359,6 +4418,38 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>இயல்புநிலை அதிகபட்ச இணைப்புகள்/பதிவிறக்கம்:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>அதிகபட்ச இணைப்புகள் எண்</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>குறிப்பிட்ட சேவையகங்களுக்கான இயல்புநிலை இணைப்பு எண்ணிக்கையை மாற்று. வைல்டுகார்டாக நட்சத்திரக்குறி (*) பயன்படுத்தவும்.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>சேவையகம்</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>எண்</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>புதிய</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>திருத்து</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>நீக்கு</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>வீடியோ மற்றும் ஆடியோ ஸ்ட்ரீம்களை இணைக்கப் பயன்படுகிறது.</translation>
@@ -5260,6 +5351,18 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>சுன்லீ, QQ, பைடு, Xfplay, DLBT மற்றும் ஆஃப்லைன் டவுன்லோடரைத் தானாகத் தடைசெய்</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>அடையாளமற்ற முறை</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>அடையாளமற்ற முறை உங்கள் IP முகவரியை மறைக்காது. இது உங்கள் கிளையன்ட் ஒளிபரப்பும் தகவலை (user-agent மற்றும் கிளையன்ட் கைரேகை) மட்டுமே கட்டுப்படுத்துகிறது. உண்மையான தனியுரிமைக்கு, VPN பயன்படுத்தவும்.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>அடையாளமற்ற முறையால் முடக்கப்பட்டது.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6379,6 +6482,14 @@ Click to open Statistics</source>
             <translation>கோப்புகள்</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>அமைப்புகள்</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>மெட்டாடேட்டாவைப் பெறுகிறது…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n உருப்படி(கள்)</translation>
         </message>
@@ -6656,19 +6767,7 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>டோரண்ட் அமைப்புகள்</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>ஒவ்வொரு டோரண்டிற்கும் வேகம், பகிர்வு வரம்புகள், பியர் கண்டுபிடிப்பு, பதிவிறக்க முறை</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>மூடு</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>விண்ணப்பி</translation>
@@ -6679,11 +6778,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Download:</source>
-            <translation>↓:</translation>
+            <translation>பதிவிறக்கம்:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>↑:</translation>
+            <translation>பதிவேற்றம்:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6711,7 +6810,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>min</source>
-            <translation>குறைந்தபட்சம்</translation>
+            <translation>நிமி</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6727,7 +6826,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>விநியோக ஹாஷ் அட்டவணை</translation>
+            <translation>பகிர்ந்த ஹாஷ் அட்டவணை</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6746,12 +6845,12 @@ Click to open Statistics</source>
             <translation>உள்ளூர் சேவை கண்டுபிடிப்பு</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 தனியார் டொரண்ட்</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ தனியார் டொரண்ட்</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent-ஆல் DHT மற்றும் PeX முடக்கப்பட்டது</translation>
+            <translation>libtorrent-ஆல் DHT மற்றும் PeX முடக்கப்பட்டது.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6771,7 +6870,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>தொடக்க பின்னணிக்கு தலை/அடி முன்னேற்று</translation>
+            <translation>தொடக்க/இறுதிப் பகுதிகளை முன்னேற்றி விரைவு இயக்கத்தை அனுமதி</translation>
         </message>
     </context>
     <context>

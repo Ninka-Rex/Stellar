@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>വേഗം</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>ഡൗൺലോഡ്</translation>
         </message>
@@ -1758,6 +1762,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>ഫയലുകൾ</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>ക്രമീകരണങ്ങൾ</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4270,7 +4278,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>ഒരു സെർവറിനുള്ള പരമാവധി കണക്ഷനുകൾ</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>സെർവർ</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>വൈൽഡ്കാർഡ് പാറ്റേണായി നക്ഷത്രചിഹ്നം ഉപയോഗിക്കാം</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>പരമാവധി കണക്ഷനുകൾ:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>റദ്ദാക്കുക</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ശരി</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>താൽക്കാലികമായി നിർത്തി</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>വിച്ഛേദിച്ചു</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>പൂർത്തിയായി</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>ഡാറ്റ സ്വീകരിക്കുന്നു...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>കാത്തിരിക്കുന്നു...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>പ്രതീക്ഷിച്ച ഫയലിനു പകരം സെർവർ HTML പേജ് നൽകി. ലിങ്ക് ബ്രൗസറിൽ തുറക്കേണ്ടതോ കാലഹരണപ്പെട്ടതോ ആകാം. ഒന്നും സംരക്ഷിച്ചില്ല.</translation>
@@ -4358,6 +4417,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>ഡൗൺലോഡിന് പരമാവധി കണക്ഷനുകൾ:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>പരമാവധി കണക്ഷനുകൾ</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>നിർദ്ദിഷ്ട സെർവറുകൾക്ക് ഡിഫോൾട്ട് കണക്ഷൻ എണ്ണം മാറ്റുക. വൈൽഡ്കാർഡായി നക്ഷത്രചിഹ്നം (*) ഉപയോഗിക്കുക.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>സെർവർ</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>എണ്ണം</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>പുതിയത്</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>എഡിറ്റ്</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ഇല്ലാതാക്കുക</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>വീഡിയോ, ഓഡിയോ സ്ട്രീമുകൾ ലയിപ്പിക്കാൻ ഉപയോഗിക്കുന്നു.</translation>
@@ -5257,6 +5348,18 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT, ഓഫ്‌ലൈൻ ഡൗൺലോഡർ എന്നിവ സ്വയം നിരോധിക്കുക</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>അജ്ഞാത മോഡ്</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>അജ്ഞാത മോഡ് നിങ്ങളുടെ IP വിലാസം മറയ്ക്കില്ല. ഇത് നിങ്ങളുടെ ക്ലയന്റ് പ്രക്ഷേപണം ചെയ്യുന്ന വിവരങ്ങൾ (user-agent, client fingerprint) മാത്രം പരിമിതപ്പെടുത്തുന്നു. യഥാർത്ഥ സ്വകാര്യതയ്ക്ക് VPN ഉപയോഗിക്കുക.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>അജ്ഞാത മോഡ് പ്രവർത്തനരഹിതമാക്കി.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6376,6 +6479,14 @@ Click to open Statistics</source>
             <translation>ഫയലുകൾ</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>ക്രമീകരണങ്ങൾ</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>മെറ്റാഡാറ്റ ലഭ്യമാക്കുന്നു…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n ഐറ്റം(കൾ)</translation>
         </message>
@@ -6653,26 +6764,14 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>ടോറന്റ് സെറ്റിംഗുകൾ</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>ടോറന്റ്-തലത്തിലുള്ള വേഗത, ഷെയർ പരിധികൾ, പിയാർ കണ്ടെത്തൽ, ഡൗൺലോഡ് മോഡ്</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>പ്രയോഗിക്കുക</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ബാൻഡ്‌വിഡ്ത്ത് പരിധികൾ</translation>
+            <translation>ബാൻഡ്വിഡ്ത്ത് പരിധികൾ</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6684,7 +6783,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ഷെയർ പരിധികൾ</translation>
+            <translation>പങ്കിടൽ പരിധികൾ</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6692,7 +6791,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Default</source>
-            <translation>സ്ഥിരസ്ഥിതി</translation>
+            <translation>സ്ഥിരം</translation>
         </message>
         <message>
             <source>Unlimited</source>
@@ -6700,7 +6799,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>സജ്ജമാക്കുക</translation>
+            <translation>ഇതിലേക്ക് സജ്ജമാക്കുക</translation>
         </message>
         <message>
             <source>Seeding time:</source>
@@ -6708,7 +6807,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>min</source>
-            <translation>കുറഞ്ഞത്</translation>
+            <translation>മിനി</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6724,7 +6823,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>വിതരണ ഹാഷ് ടേബിൾ</translation>
+            <translation>വിതരണ ഹാഷ് പട്ടിക</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6740,15 +6839,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>ലോക്കൽ സർവീസ് കണ്ടെത്തൽ</translation>
+            <translation>ലോക്കൽ സർവീസ് ഡിസ്കവറി</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 സ്വകാര്യ ടോറന്റ്</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ സ്വകാര്യ ടോറന്റ്</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>ലൈബ്രെടോറന്റ് മൂലം DHT, PeX നിഷ്ക്രിയമാക്കി.</translation>
+            <translation>libtorrent DHT, PeX പ്രവർത്തനരഹിതമാക്കി.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6756,19 +6855,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>ക്രമാനുസരണ ഡൗൺലോഡ്</translation>
+            <translation>ക്രമാനുഗത ഡൗൺലോഡ്</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>പീസുകൾ ക്രമത്തിൽ ഡൗൺലോഡ് ചെയ്യുന്നു (പീസ് 0 → അവസാനം)</translation>
+            <translation>ക്രമത്തിൽ ഡൗൺലോഡ് ചെയ്ത ഭാഗങ്ങൾ (ഭാഗം 0 → അവസാനം)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>ആദ്യ &amp; അവസാന പീസുകൾക്ക് മുൻഗണന</translation>
+            <translation>ആദ്യ &amp; അവസാന ഭാഗങ്ങൾ മുൻഗണന</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>ആദ്യ പ്ലേബാക്കിന് ഹെഡർ/ഫുട്ടർ ലോഡ് ചെയ്യുന്നു</translation>
+            <translation>ആദ്യ പ്ലേബാക്കിനായി ഹെഡർ/ഫൂട്ടർ മുൻകൂട്ടി ലോഡ്</translation>
         </message>
     </context>
     <context>

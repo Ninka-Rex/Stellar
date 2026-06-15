@@ -1071,6 +1071,10 @@ Chạy thủ công: flatpak override --user --talk-name=org.freedesktop.Flatpak 
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Tốc độ</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Tải xuống</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Tệp</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Cài đặt</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4265,7 +4273,58 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Số kết nối tối đa cho máy chủ</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Máy chủ</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Có thể dùng dấu sao làm ký tự đại diện</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Số kết nối tối đa:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Hủy</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Tạm dừng</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Mất kết nối</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Hoàn tất</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Đang nhận dữ liệu...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Đang chờ...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Máy chủ trả về trang HTML thay vì tệp mong đợi. Liên kết có thể cần mở trong trình duyệt hoặc đã hết hạn. Không có gì được lưu.</translation>
@@ -4353,6 +4412,38 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Số KN tối đa mặc định/tải:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Số KN tối đa</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Ghi đè số KN mặc định cho máy chủ cụ thể. Dùng dấu sao (*) làm ký tự đại diện.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Máy chủ</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Số</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Mới</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Sửa</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Xóa</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Dùng để ghép luồng video và âm thanh.</translation>
@@ -5254,6 +5345,18 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Tự động chặn Xunlei, QQ, Baidu, Xfplay, DLBT và trình tải offline</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Chế độ ẩn danh</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Chế độ ẩn danh không ẩn địa chỉ IP của bạn. Nó chỉ giới hạn thông tin mà máy khách của bạn phát đi (user-agent và dấu vết máy khách). Để có sự riêng tư thực sự, hãy dùng VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Bị tắt bởi chế độ ẩn danh.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6373,6 +6476,14 @@ Nhấp để xem thống kê</translation>
             <translation>Tệp</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Cài đặt</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Đang lấy siêu dữ liệu…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n mục</translation>
         </message>
@@ -6650,26 +6761,14 @@ Nhấp để xem thống kê</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Cài đặt Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Tốc độ, giới hạn chia sẻ, phát hiện đồng trang và chế độ tải</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Áp dụng</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>GIỚI HẠN BANDWIDTH</translation>
+            <translation>GIỚI HẠN BĂNG THÔNG</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -6685,7 +6784,7 @@ Nhấp để xem thống kê</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Tỷ lệ:</translation>
+            <translation>Tỉ lệ:</translation>
         </message>
         <message>
             <source>Default</source>
@@ -6693,7 +6792,7 @@ Nhấp để xem thống kê</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Không giới hạn</translation>
+            <translation>Vô hạn</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -6701,11 +6800,11 @@ Nhấp để xem thống kê</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Thời gian seeding:</translation>
+            <translation>Thời gian seed:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>tối thiểu</translation>
+            <translation>phút</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6713,7 +6812,7 @@ Nhấp để xem thống kê</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>Khám phá đồng đẳng</translation>
+            <translation>KHÁM PHÁ PEER</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6729,7 +6828,7 @@ Nhấp để xem thống kê</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Trao đổi đồng đẳng</translation>
+            <translation>Trao đổi ngang hàng</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6737,31 +6836,31 @@ Nhấp để xem thống kê</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Khám phá dịch vụ địa phương</translation>
+            <translation>Khám phá cục bộ</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent riêng</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent riêng tư</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT và PeX bị vô hiệu hóa bởi libtorrent</translation>
+            <translation>DHT và PeX bị tắt bởi libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>CHẾ ĐỘ TẢI XUỐNG</translation>
+            <translation>CHẾ ĐỘ ↓</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Tải tuần tự</translation>
+            <translation>↓ Tuần tự</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Tải từng phần theo thứ tự (phần 0 → cuối)</translation>
+            <translation>Tải mảnh theo thứ tự (mảnh 0 → cuối)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Ưu tiên các phần đầu và cuối</translation>
+            <translation>Ưu tiên mảnh đầu &amp; cuối</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>

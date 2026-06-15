@@ -1071,6 +1071,10 @@ Gudanar da hannu: flatpak override --user --talk-name=org.freedesktop.Flatpak or
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Gudu</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Sauke</translation>
         </message>
@@ -1759,6 +1763,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Fayiloli</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Saituna</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4272,7 +4280,58 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Matsakaicin adadin haɗi ga sabar</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Sabar</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>kowane://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Kuna iya amfani da alamar tauraro azaman tsarin daji</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Matsakaicin adadin haɗi:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Soke</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ok</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Dakatar da</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>An katse</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Cikakke</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Ana karɓar bayanai...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Ana jira...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Sabar ta dawo da shafin HTML maimakon fayil ɗin da ake tsammani. Ƙila hanyar tana buƙatar buɗewa a cikin burauza ko kuma ta ƙare. Babu abin da aka ajiye.</translation>
@@ -4360,6 +4419,38 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Matsakaicin haɗi na tsoho kowane zazzagewa:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Adadin haɗi</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Maye gurbin adadin haɗin tsoho don takamaiman sabobin. Yi amfani da alamar tauraro (*) azaman kati.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Saba</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Adadi</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Sabo</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Gyara</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Share</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Ana amfani don haɗa rafukan bidiyo da sauti.</translation>
@@ -5261,6 +5352,18 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Toshe Xunlei, QQ, Baidu, Xfplay, DLBT da Offline downloader kai tsaye</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Yanayin ɓoye</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Yanayin ɓoye baya ɓoye adireshin IP ɗinka. Yana iyakance bayanan da abokin cinikinka ke watsawa (user-agent da sawun yatsa). Don sirri na gaske, yi amfani da VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>An kashe ta yanayin ɓoye.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6380,6 +6483,14 @@ Danna don buɗe Ƙididdiga</translation>
             <translation>Fayiloli</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Saituna</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Ana ɗauko metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n abu/abubuwa</translation>
         </message>
@@ -6657,30 +6768,18 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Saitunan Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Gudun kowane-torrent, iyakokin rabawa, gano takwarori, da yanayin saukewa</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Rufe</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Aiwatar</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>IYAKOKIN BANDWIDTH</translation>
+            <translation>IYAKAR BANDWIDTH</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Sauke:</translation>
+            <translation>Saukarwa:</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6688,7 +6787,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>IYAKAN RABAWA</translation>
+            <translation>IYAKAN RABA</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6712,7 +6811,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>ƙarami</translation>
+            <translation>minti</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6720,7 +6819,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>GANO ABOKAN TSARA</translation>
+            <translation>GANO ABOKAI</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6747,8 +6846,8 @@ Danna don buɗe Ƙididdiga</translation>
             <translation>Gano Sabis na Gida</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent na sirri</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent mai zaman kansa</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6760,19 +6859,19 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Sauke a jere</translation>
+            <translation>Sauke jere</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Guda-guda da aka sauke a jere (guda 0 → na ƙarshe)</translation>
+            <translation>Sauke guntu a jere (guntu 0 → ƙarshe)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Fara da farko da ƙarshe</translation>
+            <translation>Ba da fifiko ga guntu na farko &amp; na ƙarshe</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Sanya kai/ƙafa gaba don kallo da wuri</translation>
+            <translation>Sanya kan rubutu/ƙafar rubutu gaba don kunnawa da wuri</translation>
         </message>
     </context>
     <context>

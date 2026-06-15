@@ -1071,6 +1071,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Хурд</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Татаж авах</translation>
         </message>
@@ -1758,6 +1762,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Файлууд</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Тохиргоо</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4256,7 +4264,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Серверийн холболтын дээд тоо</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Сервер</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Од тэмдэгтийг орлуулагч болгон ашиглаж болно</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Холболтын дээд тоо:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Түр зогссон</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Салгасан</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Дууссан</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Өгөгдөл хүлээн авч байна...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Хүлээж байна...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Сервер хүлээгдсэн файлын оронд HTML хуудас буцаалаа. Холбоосыг хөтөч дээр нээх шаардлагатай эсвэл хугацаа дууссан байж болно. Юу ч хадгалагдаагүй.</translation>
@@ -4344,6 +4403,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Татахад анхдагч хамгийн их холболт:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Хамгийн их холболтын тоо</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Тодорхой серверүүдэд анхдагч холболтын тоог дарж бич. Од (*) тэмдгийг орлуулагч болгон ашигла.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Сервер</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Тоо</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Шинэ</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Засварлах</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Устгах</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Видео болон аудио урсгалыг нэгтгэхэд ашиглагдана.</translation>
@@ -5245,6 +5336,18 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Xunlei, QQ, Baidu, Xfplay, DLBT болон Offline downloader-ийг автоматаар хорих</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Нэргүй горим</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Нэргүй горим нь таны IP хаягийг нуудаггүй. Энэ нь зөвхөн таны клиентийн дамжуулдаг мэдээллийг (хэрэглэгчийн агент болон клиентийн хурууны хээ) хязгаарладаг. Жинхэнэ нууцлалын хувьд VPN ашиглана уу.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Нэргүй горимоор идэвхгүйжсэн.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6363,6 +6466,14 @@ Click to open Statistics</source>
             <translation>Файлууд</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Тохиргоо</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Мета өгөгдөл татаж байна…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n элемент</translation>
         </message>
@@ -6640,38 +6751,26 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrent тохируулга</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Торрент тус бүрийн хурд, хуваалтын хязгаар, хамтрагч ололт, ачаалалын төрөл</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Хаах</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Хэрэглэх</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>ХАЛДВАЛЫН ХЯЗГААР</translation>
+            <translation>ЗУРВАСЫН ХЯЗГААР</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Ачаалал:</translation>
+            <translation>Татах:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Тээвэрлэлт:</translation>
+            <translation>Байршуулах:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ХУВААЛТЫН ХЯЗГААР</translation>
+            <translation>ХУВААХ ХЯЗГААР</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6687,11 +6786,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Тохируулах</translation>
+            <translation>Тохируулах:</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Хүрээлүүлэх хугацаа:</translation>
+            <translation>Тарих хугацаа:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6703,7 +6802,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>ХӨТӨӨЛӨӨ</translation>
+            <translation>ПЭЭР ИЛРҮҮЛЭЛТ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6711,7 +6810,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Хуваарилагдсан хэсгүүдийн хүснэгт</translation>
+            <translation>Тархмал хэш хүснэгт</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6719,7 +6818,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Хүсэгч солилцоо</translation>
+            <translation>Үе тэнгийн солилцоо</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6727,35 +6826,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Дотоод үйлчилгээний нээлт</translation>
+            <translation>Дотоод үйлчилгээ илрүүлэлт</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Хувийн torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Хувийн торрент</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent-ээр DHT болон PeX-ийг хуурамч болгосон</translation>
+            <translation>DHT болон PeX-г libtorrent идэвхгүй болгосон.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>САРГАХ РЕЖИМ</translation>
+            <translation>ТАТАХ ГОРИМ</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Дараалсан саргалт</translation>
+            <translation>Дараалсан таталт</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Хэсгүүдийг дарааллаар саргалсан (0-р хэсгээс эхлэн)</translation>
+            <translation>Дарааллаар татах (0-р хэсгээс сүүлд)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Эх бол төгсгөлийн хэсгүүдийг эрчимжүүлсэн</translation>
+            <translation>Эхний ба сүүлийн хэсгийг тэргүүлэх</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Заавал дугаар, төгсгөлийг эхлүүлэх</translation>
+            <translation>Эрт тоглуулахын тулд толгой/хөлийг түрүүлж ачаалах</translation>
         </message>
     </context>
     <context>

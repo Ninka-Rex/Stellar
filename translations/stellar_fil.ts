@@ -1071,6 +1071,10 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Bilis</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Nakukuha</translation>
         </message>
@@ -1760,6 +1764,10 @@ Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
         <message>
             <source>Files</source>
             <translation>Mga File</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Mga Setting</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4261,7 +4269,58 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Max. bilang ng koneksyon sa server</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Pwedeng gamitin ang asterisk bilang wildcard pattern</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Max. bilang ng koneksyon:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kanselahin</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Naka-pause</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Nadiskonekta</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Kumpleto</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Tumatanggap ng data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Naghihintay...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Nagbalik ang server ng HTML page sa halip na file. Maaaring kailangan buksan sa browser o expired na ang link. Walang na-save.</translation>
@@ -4349,6 +4408,38 @@ Stellar Options → Browser → Bypass Download Interception</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Default na max. na koneksyon bawat download:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Bilang ng max. na koneksyon</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>I-override ang default na bilang ng koneksyon para sa mga partikular na server. Gamitin ang asterisk (*) bilang wildcard.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Bilang</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Bago</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>I-edit</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Burahin</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Ginagamit sa pagsasama ng video at audio streams.</translation>
@@ -5250,6 +5341,18 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT at Offline downloader</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonymous mode</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Hindi itinatago ng anonymous mode ang iyong IP address. Nililimitahan lamang nito ang impormasyong ibino-broadcast ng iyong client (user-agent at client fingerprint). Para sa tunay na privacy, gumamit ng VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Naka-disable ng anonymous mode.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6368,6 +6471,14 @@ Click to open Statistics</source>
             <translation>Mga File</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Mga Setting</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Kinukuha ang metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n item(s)</translation>
         </message>
@@ -6645,38 +6756,26 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Mga Setting ng Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Bilang-torrent, limit ng pagbabahagi, paghahanap ng peer, at mode ng pag-download</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Isara</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Ilapat</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMIT NG BANDWIDTH</translation>
+            <translation>LIMITASYON SA BANDWIDTH</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Pag-download:</translation>
+            <translation>I-download:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Pag-upload:</translation>
+            <translation>I-upload:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>LIMIT NG PAGBABAHAGI</translation>
+            <translation>LIMITASYON SA PAGBABAHAGI</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6696,7 +6795,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Oras ng pag-seeding:</translation>
+            <translation>Oras ng pag-seed:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6704,11 +6803,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Oras ng hindi aktibo:</translation>
+            <translation>Oras ng hindi paggamit:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER DISCOVERY</translation>
+            <translation>PAGTUKLAS NG PEER</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6724,7 +6823,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peer Exchange</translation>
+            <translation>Palitan ng Peer</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6732,15 +6831,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Pagtukoy sa Serbisyo</translation>
+            <translation>Local Service Discovery</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Pribadong Torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Pribadong torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>Nag-disable ang DHT at PeX ng libtorrent.</translation>
+            <translation>DHT at PeX di-pinagana ng libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
@@ -6748,19 +6847,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Pagsasagawa ng pag-download</translation>
+            <translation>Sunod-sunod na download</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Pag-download ng mga piraso nang may pagkakasunod-sunod</translation>
+            <translation>Pirasong sunod-sunod na dina-download</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Pagpapasidhihan ng unang at huling piraso</translation>
+            <translation>Unahin ang una at huling piraso</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Pagkuha ng header at footer para sa maagang paglalaro</translation>
+            <translation>Inuuna ang header/footer para sa maagang pag-playback</translation>
         </message>
     </context>
     <context>

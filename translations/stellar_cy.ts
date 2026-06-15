@@ -1070,6 +1070,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Cyflymder</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Lawrlwythiad</translation>
         </message>
@@ -1759,6 +1763,10 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
         <message>
             <source>Files</source>
             <translation>Ffeiliau</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Gosodiadau</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4272,7 +4280,58 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Nifer uchaf cysylltiadau i weinydd</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Gweinydd</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>unrhyw://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Cewch ddefnyddio seren fel patrwm cerdyn gwyllt</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Nifer uchaf cysylltiadau:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Canslo</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Iawn</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Wedi'i oedi</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Datgysylltwyd</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Wedi cwblhau</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Derbyn data...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Aros...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Dychwelodd y gweinydd dudalen HTML yn lle'r ffeil ddisgwyliedig. Efallai bod angen agor y ddolen mewn porwr neu ei bod wedi dod i ben. Ni chadwyd dim.</translation>
@@ -4360,6 +4419,38 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Cysylltiadau diofyn fesul llwyth:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Nifer y cysylltiadau</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Diystyru'r nifer cysylltiadau diofyn ar gyfer gweinyddion penodol. Defnyddiwch seren (*) fel cerdyn gwyllt.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Gweinydd</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Nifer</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Newydd</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Golygu</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Dileu</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Defnyddir i gyfuno ffrydiau fideo a sain.</translation>
@@ -5261,6 +5352,18 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Gwahardd Xunlei, QQ, Baidu, Xfplay, DLBT a lawrlwythwyr all-lein yn awtomatig</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Modd anhysbys</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Nid yw modd anhysbys yn cuddio'ch cyfeiriad IP. Mae'n cyfyngu ar y wybodaeth mae eich cleient yn ei darlledu (user-agent ac olion bysedd cleient). Am breifatrwydd go iawn, defnyddiwch VPN.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Analluogwyd gan fodd anhysbys.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6380,6 +6483,14 @@ Cliciwch i agor Ystadegau</translation>
             <translation>Ffeiliau</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Gosodiadau</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Wrthi'n nôl metadata…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n eitem(au)</translation>
         </message>
@@ -6657,19 +6768,7 @@ Cliciwch i agor Ystadegau</translation>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Gosodiadau Torrent</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Cyflymder fesul torrent, terfynau rhannu, darganfod cyfoedion, a modd lawrlwytho</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Gweithredu</translation>
@@ -6680,11 +6779,11 @@ Cliciwch i agor Ystadegau</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Lawrlwytho:</translation>
+            <translation>Llwytho i lawr:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Lanlwytho:</translation>
+            <translation>Llwytho i fyny:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
@@ -6712,7 +6811,7 @@ Cliciwch i agor Ystadegau</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>lleiaf</translation>
+            <translation>mun</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -6728,7 +6827,7 @@ Cliciwch i agor Ystadegau</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Tabl Hash Gwasgaredig</translation>
+            <translation>Tabl Hash Dosbarthedig</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6736,7 +6835,7 @@ Cliciwch i agor Ystadegau</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Cyfnewid Cyfoedion</translation>
+            <translation>Cyfnewid Cymheiriaid</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6747,8 +6846,8 @@ Cliciwch i agor Ystadegau</translation>
             <translation>Darganfod Gwasanaeth Lleol</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent preifat</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Torrent preifat</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
@@ -6756,7 +6855,7 @@ Cliciwch i agor Ystadegau</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODD LLWYTHO</translation>
+            <translation>MODD LLWYTHO I LAWR</translation>
         </message>
         <message>
             <source>Sequential download</source>
@@ -6764,7 +6863,7 @@ Cliciwch i agor Ystadegau</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Darnau wedi'u llwytho mewn trefn (darn 0 → olaf)</translation>
+            <translation>Darnau wedi'u lawrlwytho mewn trefn (darn 0 → olaf)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>

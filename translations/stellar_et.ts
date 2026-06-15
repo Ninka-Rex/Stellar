@@ -1087,6 +1087,10 @@ Reviewing conciseness and UI feel:
     <context>
         <name>DownloadProgressDialog</name>
         <message>
+            <source>Speed</source>
+            <translation>Kiirus</translation>
+        </message>
+        <message>
             <source>Download</source>
             <translation>Laadimine</translation>
         </message>
@@ -1774,6 +1778,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Files</source>
             <translation>Failid</translation>
+        </message>
+        <message>
+            <source>Settings</source>
+            <translation>Seaded</translation>
         </message>
         <message>
             <source>Swarm Map</source>
@@ -4278,7 +4286,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>ServerConnLimitDialog</name>
+        <message>
+            <source>Max. connections number for a server</source>
+            <translation>Serveri maks. ühenduste arv</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>any://</source>
+            <translation>any://</translation>
+        </message>
+        <message>
+            <source>You may use asterisk as a wildcard pattern</source>
+            <translation>Võid kasutada tärni metamärgina</translation>
+        </message>
+        <message>
+            <source>Max. connections number:</source>
+            <translation>Maks. ühenduste arv:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Tühista</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
         <name>SegmentedTransfer</name>
+        <message>
+            <source>Paused</source>
+            <translation>Peatatud</translation>
+        </message>
+        <message>
+            <source>Disconnected</source>
+            <translation>Ühendus katkestatud</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>Valmis</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>Andmete vastuvõtt...</translation>
+        </message>
+        <message>
+            <source>Waiting...</source>
+            <translation>Ootel...</translation>
+        </message>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server tagastas HTML-lehe oodatud faili asemel. Link võib vajada brauseris avamist või on aegunud. Midagi ei salvestatud.</translation>
@@ -4366,6 +4425,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Default max. connections per download:</source>
+            <translation>Vaikimisi max ühendusi allalaadimise kohta:</translation>
+        </message>
+        <message>
+            <source>Max. connections number</source>
+            <translation>Max ühenduste arv</translation>
+        </message>
+        <message>
+            <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+            <translation>Alista vaikimisi ühenduste arv konkreetsetele serveritele. Kasuta tärni (*) metamärgina.</translation>
+        </message>
+        <message>
+            <source>Server</source>
+            <translation>Server</translation>
+        </message>
+        <message>
+            <source>Number</source>
+            <translation>Arv</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>Uus</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>Muuda</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Kustuta</translation>
+        </message>
         <message>
             <source>Used for merging video and audio streams.</source>
             <translation>Kasutatakse video ja heli voogude ühendamiseks.</translation>
@@ -5262,6 +5353,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
             <translation>Automaatne keelamine</translation>
+        </message>
+        <message>
+            <source>Anonymous mode</source>
+            <translation>Anonüümne režiim</translation>
+        </message>
+        <message>
+            <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+            <translation>Anonüümne režiim ei peida sinu IP-aadressi. See piirab ainult infot, mida sinu klient edastab (user-agent ja kliendi sõrmejälg). Tõelise privaatsuse jaoks kasuta VPN-i.</translation>
+        </message>
+        <message>
+            <source>Disabled by anonymous mode.</source>
+            <translation>Anonüümse režiimi tõttu keelatud.</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
@@ -6380,6 +6483,14 @@ Click to open Statistics</source>
             <translation>Failid</translation>
         </message>
         <message>
+            <source>Settings</source>
+            <translation>Seaded</translation>
+        </message>
+        <message>
+            <source>Fetching metadata…</source>
+            <translation>Metaandmete toomine…</translation>
+        </message>
+        <message>
             <source>%n item(s)</source>
             <translation>%n element(ide)</translation>
         </message>
@@ -6657,30 +6768,18 @@ Click to open Statistics</source>
         </message>
     </context>
     <context>
-        <name>TorrentSpeedLimitDialog</name>
-        <message>
-            <source>Torrent Settings</source>
-            <translation>Torrenti seaded</translation>
-        </message>
-        <message>
-            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Torrenti kiirus, jagamispiirangud, peeride avastamine ja allalaadimirežiim</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Sulge</translation>
-        </message>
+        <name>TorrentSettingsPanel</name>
         <message>
             <source>Apply</source>
             <translation>Rakenda</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LAADIMISPIIRANGUD</translation>
+            <translation>RIBALAIUSE PIIRANGUD</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Laadimine:</translation>
+            <translation>Allalaadimine:</translation>
         </message>
         <message>
             <source>Upload:</source>
@@ -6688,7 +6787,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>JAGAMISPIIRANGUD</translation>
+            <translation>JAGAMISE PIIRANGUD</translation>
         </message>
         <message>
             <source>Ratio:</source>
@@ -6708,7 +6807,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Siia</translation>
+            <translation>Külviaeg:</translation>
         </message>
         <message>
             <source>min</source>
@@ -6716,11 +6815,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Erand</translation>
+            <translation>Passiivsusaeg:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>PEER DISCOVERY</translation>
+            <translation>VASTASTE LEIDMINE</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -6728,7 +6827,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Distribueeritud hashitabel</translation>
+            <translation>Hajusräsipuu</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -6736,7 +6835,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Peeride vahetus</translation>
+            <translation>Partnerivahetus</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -6744,35 +6843,35 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Lokaalne teenuse avastamine</translation>
+            <translation>Kohalik teenuseavastus</translation>
         </message>
         <message>
-            <source>🔒 Private torrent</source>
-            <translation>🔒 Isiklik torrent</translation>
+            <source>⚠ Private torrent</source>
+            <translation>⚠ Privaatne torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT ja PeX on libtorrenti poolt keelatud</translation>
+            <translation>DHT ja PeX on libtorrenti poolt keelatud.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>LAADIMISREŽIIM</translation>
+            <translation>ALLALAADIMISREŽIIM</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Järjekindel laadimine</translation>
+            <translation>Järjestikune allalaadimine</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Tükid laaditakse järjekorras (tükk 0 → viimane)</translation>
+            <translation>Tükid laetakse järjest (tükk 0 → viimane)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Eelistatakse esimesi ja viimasi tükke</translation>
+            <translation>Eelista esimest ja viimast tükki</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Pealkiri/jalajälg laaditakse esialgseks taasesituseks</translation>
+            <translation>Laeb päise/jaluse varajaseks taasesituseks</translation>
         </message>
     </context>
     <context>
