@@ -584,7 +584,7 @@ jobs:
           [ "${#ASSETS[@]}" -gt 0 ] || { echo "ERROR: no release assets found"; exit 1; }
           gh release create "$VERSION" \
             --repo "${{ github.repository }}" \
-            --title "$VERSION Beta" \
+            --title "v$VERSION Beta" \
             --notes-file release-body.md \
             --target master \
             "${ASSETS[@]}"
