@@ -626,6 +626,8 @@ Window {
                     Item {
                         id: fmtDropWrapper
                         Layout.fillWidth: true
+                        Layout.preferredHeight: 30
+                        z: 50
 
                         Rectangle {
                             id: fmtTrigger
@@ -1234,7 +1236,7 @@ Window {
                     }
                 }
 
-                Item { implicitHeight: 4 }
+                Item { implicitHeight: 12 }
             }       // closes optCol ColumnLayout
             }       // closes optScroll ScrollView
             }       // closes format picker + quality dropdown ColumnLayout
