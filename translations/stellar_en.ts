@@ -185,6 +185,10 @@
 <context>
     <name>AppController</name>
     <message>
+        <source>%1/%2 complete · %3 MB</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Download Complete</source>
         <translation></translation>
     </message>
@@ -1722,6 +1726,10 @@ Click  Add URL  to start.</source>
 </context>
 <context>
     <name>DownloadTableRow</name>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../app/qml/main/DownloadTableRow.qml" line="158"/>
         <source>Pending</source>
@@ -3867,6 +3875,14 @@ Project</source>
 <context>
     <name>Main</name>
     <message>
+        <source>Completed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Downloading %1%</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/Main.qml" line="2996"/>
         <source>Tasks</source>
         <translation></translation>
@@ -4582,6 +4598,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/Main.qml" line="1759"/>
+        <source>Channel/Playlist</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/Main.qml" line="1456"/>
         <source>File Name</source>
         <translation></translation>
@@ -4603,7 +4624,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </message>
     <message>
         <location filename="../app/qml/Main.qml" line="1921"/>
-        <source>Item %1</source>
+        <source>Pending…</source>
         <translation></translation>
     </message>
     <message>

@@ -79,6 +79,14 @@
 #endif
 
 namespace {
+// yt-dlp progress lines are untrusted text; a garbled "[download] … at 9e9TiB/s"
+// can parse to a finite-but-absurd byte/sec value that then prints "388548235 MB/s"
+// and overflows downstream int casts. Reject anything above ~50 GB/s as bogus.
+qint64 sanitizeYtdlpSpeed(qint64 bytesPerSec) {
+    constexpr qint64 kMaxSaneSpeed = 50LL * 1000 * 1000 * 1000; // 50 GB/s
+    return (bytesPerSec < 0 || bytesPerSec > kMaxSaneSpeed) ? 0 : bytesPerSec;
+}
+
 QJsonArray chromeNativeMessagingOrigins()
 {
     return QJsonArray{
@@ -2491,6 +2499,21 @@ void AppController::restoreDownloads() {
                 while (restoreIndex < itemCount) {
                     DownloadItem *item = items.at(restoreIndex);
                     ++restoreIndex;
+                    // yt-dlp channel child rows are display-only mirrors of the
+                    // container's single worker — they are not queue-managed. Adding
+                    // them to the queue would let scheduleNext() spawn a bogus HTTP
+                    // worker against the channel URL. Add straight to the model.
+                    if (!item->parentId().isEmpty()) {
+                        // A child caught mid-download has no worker after restart;
+                        // don't leave it falsely "Downloading".
+                        if (item->statusEnum() == DownloadItem::Status::Downloading)
+                            item->setStatus(DownloadItem::Status::Paused);
+                        m_downloadModel->addItem(item);
+                        ++m_restoreNonTorrentDone;
+                        if (slice.elapsed() >= kRestoreSliceMs)
+                            break;
+                        continue;
+                    }
                     m_queue->enqueueRestored(item);
                     // watchItem deferred to finalizeRestore — connecting
                     // signal handlers here makes them fire during
@@ -4752,7 +4775,7 @@ void AppController::resumeDownload(const QString &id) {
             const QString tmpl      = p2 >= 0 ? stored.mid(p2 + 1) : QString();
             const YtdlpOptions resumeOpts = YtdlpOptions::fromJson(item->ytdlpExtraOptions());
             startYtdlpWorker(item, formatId, container, /*resume=*/true, tmpl,
-                             item->ytdlpPlaylistMode(), 0, resumeOpts);
+                             item->ytdlpPlaylistMode(), resumeOpts.maxItems, resumeOpts);
         }
         return;
     }
@@ -4819,7 +4842,7 @@ void AppController::redownload(const QString &id) {
         const QString tmpl2     = q2 >= 0 ? stored2.mid(q2 + 1) : QString();
         const YtdlpOptions redownloadOpts = YtdlpOptions::fromJson(item->ytdlpExtraOptions());
         startYtdlpWorker(item, formatId, container, /*resume=*/false, tmpl2,
-                         item->ytdlpPlaylistMode(), 0, redownloadOpts);
+                         item->ytdlpPlaylistMode(), redownloadOpts.maxItems, redownloadOpts);
         return;
     }
 
@@ -4855,6 +4878,51 @@ void AppController::redownload(const QString &id) {
 void AppController::deleteDownload(const QString &id, int mode) {
     if (m_pendingTorrentItems.contains(id)) {
         discardTorrentDownload(id);
+        return;
+    }
+
+    // Channel/playlist container: cascade-delete its child video rows first
+    // (children are not queue-managed, so they'd otherwise be orphaned).
+    if (auto *parent = m_downloadModel->itemById(id); parent && parent->isChannelContainer()) {
+        // Abort the worker BEFORE removing any child. Otherwise a buffered
+        // playlistItem* signal fires its lambda mid-deletion, which re-creates a
+        // just-removed child (ensureYtdlpChild) and drives recomputeChannelAggregate
+        // over a half-torn-down model — a use-after-free that crashed in
+        // QMetaObject::activate.
+        if (auto *w = m_ytdlpWorkers.take(id)) { w->abort(); w->deleteLater(); }
+        if (id == m_activeYtdlpBatchId) {
+            m_activeYtdlpBatchId.clear();
+            m_activeYtdlpBatchLabel.clear();
+            emit ytdlpBatchChanged();
+        }
+        const QList<DownloadItem *> all = m_downloadModel->allItems();
+        QStringList childIds;
+        for (DownloadItem *it : all)
+            if (it->parentId() == id) childIds << it->id();
+        for (const QString &childId : childIds)
+            deleteDownload(childId, mode);
+    }
+
+    // A child row has no queue entry / worker of its own — it mirrors the
+    // container's single worker. Remove it directly from the model + DB.
+    if (auto *child = m_downloadModel->itemById(id); child && !child->parentId().isEmpty()) {
+        QString childFile;
+        if (mode > 0 && child->statusEnum() == DownloadItem::Status::Completed
+                && !child->filename().isEmpty()
+                && !child->filename().contains(QLatin1Char('/'))
+                && !child->filename().contains(QLatin1Char('\\')))
+            childFile = child->savePath() + QStringLiteral("/") + child->filename();
+        m_downloadModel->removeItem(id);
+        m_db->remove(id);
+        if (!childFile.isEmpty()) {
+            const int capturedMode = mode;
+            QThreadPool::globalInstance()->start([capturedMode, childFile]() {
+                const QFileInfo fi(childFile);
+                if (!fi.exists() || !fi.isFile()) return;
+                if (capturedMode == 2) QFile::moveToTrash(childFile);
+                else                   QFile::remove(childFile);
+            });
+        }
         return;
     }
     // Capture file path and URL before the item is removed from queue
@@ -4968,11 +5036,20 @@ void AppController::openFile(const QString &id) {
         openLocalPath(item->savePath());
         return;
     }
-    if (item->filename().isEmpty()) {
+    // Channel container has no single file of its own — open its folder.
+    if (item->isChannelContainer()) {
         openLocalPath(item->savePath());
         return;
     }
-    openLocalPath(item->savePath() + QStringLiteral("/") + item->filename());
+    // yt-dlp children: display name is the clean title (no extension); the real
+    // on-disk filename lives in ytdlpRealFile.
+    const QString effName = !item->ytdlpRealFile().isEmpty()
+        ? item->ytdlpRealFile() : item->filename();
+    if (effName.isEmpty()) {
+        openLocalPath(item->savePath());
+        return;
+    }
+    openLocalPath(item->savePath() + QStringLiteral("/") + effName);
 }
 
 void AppController::openFolder(const QString &id) {
@@ -4985,17 +5062,26 @@ void AppController::openFolderSelectFile(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
     if (!item) return;
 
+    // Channel container: no single file — just open its folder.
+    if (item->isChannelContainer()) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
+    // yt-dlp children store the real on-disk filename (with extension) separately
+    // from the clean display title.
+    const QString effName = !item->ytdlpRealFile().isEmpty()
+        ? item->ytdlpRealFile() : item->filename();
 #if defined(STELLAR_WINDOWS)
     // If the filename is unknown (e.g. yt-dlp item where metadata wasn't captured),
     // just open the directory so the user isn't sent to the wrong place.
-    if (item->filename().isEmpty()) {
+    if (effName.isEmpty()) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
         return;
     }
     // For multi-file torrents the "filename" is the torrent's root folder name;
     // selecting it inside savePath highlights the folder in Explorer, which is
     // what the user expects from "Open folder".
-    const QString filePath = item->savePath() + QLatin1Char('/') + item->filename();
+    const QString filePath = item->savePath() + QLatin1Char('/') + effName;
     if (!QFileInfo::exists(filePath)) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
         return;
@@ -5009,11 +5095,11 @@ void AppController::openFolderSelectFile(const QString &id) {
     ShellExecuteW(nullptr, L"open", L"explorer.exe", params.c_str(), nullptr, SW_SHOWNORMAL);
 
 #else
-    if (item->filename().isEmpty()) {
+    if (effName.isEmpty()) {
         openLocalPath(item->savePath());
         return;
     }
-    const QString filePath = item->savePath() + QLatin1Char('/') + item->filename();
+    const QString filePath = item->savePath() + QLatin1Char('/') + effName;
     if (!QFileInfo::exists(filePath)) {
         openLocalPath(item->savePath());
         return;
@@ -6563,15 +6649,19 @@ void AppController::scheduleSave(const QString &id) {
 }
 
 void AppController::flushDirty() {
-    const auto items = m_queue->items();
-    for (DownloadItem *item : items) {
-        if (m_dirtyIds.contains(item->id())) {
-            // Resume data is written by the torrentResumeDataChanged connection
-            // in watchItem — do NOT call saveResumeData() here or it creates a
-            // feedback loop: save → saveResumeData → new blob → torrentChanged
-            // → scheduleSave → save again, repeating every second.
-            m_db->save(item);
-        }
+    // Resolve dirty ids through the model, not the queue: yt-dlp channel child
+    // rows are display-only mirrors added straight to the model (never enqueued),
+    // so iterating m_queue->items() would silently drop their saves and they'd
+    // vanish on restart.
+    for (const QString &id : std::as_const(m_dirtyIds)) {
+        DownloadItem *item = m_downloadModel->itemById(id);
+        if (!item)
+            continue;
+        // Resume data is written by the torrentResumeDataChanged connection
+        // in watchItem — do NOT call saveResumeData() here or it creates a
+        // feedback loop: save → saveResumeData → new blob → torrentChanged
+        // → scheduleSave → save again, repeating every second.
+        m_db->save(item);
     }
     m_dirtyIds.clear();
 }
@@ -8271,6 +8361,17 @@ void AppController::finalizeYtdlpDownload(const QString &url,
 
     item->setIsYtdlp(true);
     item->setYtdlpPlaylistMode(playlistMode);
+    // A playlist/channel download is the aggregate parent ("container") row; each
+    // video becomes a child row beneath it. Give it a meaningful display name.
+    if (playlistMode) {
+        item->setIsChannelContainer(true);
+        item->setTreeExpanded(true);
+        if (!videoTitle.isEmpty())
+            item->setFilename(videoTitle);
+        else
+            item->setFilename(qurl.toString());
+        item->setFilenameManuallySet(true);  // don't let filesystem reconcile overwrite it
+    }
 
     const QString resolvedCategory = category.isEmpty()
         ? m_categoryModel->categoryForUrl(qurl, QString())
@@ -8281,7 +8382,11 @@ void AppController::finalizeYtdlpDownload(const QString &url,
 
     // Convert QML-supplied options map to a typed struct, then serialise to JSON
     // so the options survive an app restart and can be replayed on resume.
-    const YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
+    YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
+    // Persist the "Latest N" limit inside the options blob so a resumed batch keeps
+    // the same item cap instead of silently expanding to the whole channel.
+    if (playlistMode && maxItems > 0)
+        opts.maxItems = maxItems;
     const QString optsJson  = opts.toJson();
     if (!optsJson.isEmpty())
         item->setYtdlpExtraOptions(optsJson);
@@ -8392,6 +8497,30 @@ void AppController::resumeLastYtdlpBatch() {
     resumeDownload(m_lastYtdlpBatchId);
 }
 
+void AppController::showYtdlpBatchForItem(const QString &id) {
+    auto *item = m_downloadModel->itemById(id);
+    if (!item || !item->isYtdlp() || !item->ytdlpPlaylistMode())
+        return;
+
+    // Already the active or last-known batch: items are still in memory, just make
+    // sure the label and resume affordance reflect this download, then notify.
+    if (id == m_activeYtdlpBatchId || id == m_lastYtdlpBatchId) {
+        m_lastYtdlpBatchId = id;
+        if (m_activeYtdlpBatchLabel.isEmpty())
+            m_activeYtdlpBatchLabel = item->url().toString();
+        emit ytdlpBatchChanged();
+        return;
+    }
+
+    // A different (e.g. finished-then-restarted-app) playlist download: there are
+    // no live per-item rows to show, so present the batch as a single-line summary
+    // and let Resume restart it. m_lastYtdlpBatchId enables the Resume button.
+    m_lastYtdlpBatchId      = id;
+    m_activeYtdlpBatchLabel = item->url().toString();
+    m_activeYtdlpBatchItems.clear();
+    emit ytdlpBatchChanged();
+}
+
 // ── yt-dlp internal helpers ───────────────────────────────────────────────────
 
 // Look for ffmpeg next to the yt-dlp binary first (bundled install), then fall
@@ -8425,8 +8554,135 @@ bool AppController::retryYtdlpWithBrowserCookies(const QString &downloadId, cons
     scheduleSave(downloadId);
 
     startYtdlpWorker(item, formatId, container, /*resume=*/false, outputTemplate,
-                     item->ytdlpPlaylistMode(), 0, opts);
+                     item->ytdlpPlaylistMode(), opts.maxItems, opts);
     return true;
+}
+
+void AppController::recomputeChannelAggregate(DownloadItem *container) {
+    if (!container || !container->isChannelContainer())
+        return;
+
+    const int total = m_activeYtdlpBatchItems.size();
+    if (total <= 0)
+        return;
+
+    int completed = 0, downloading = 0, knownSize = 0;
+    qint64 sumDone = 0, sumTotal = 0;
+    double countDone = 0.0;       // count-based completion total (0..total)
+    qint64 activeSpeed = 0;
+
+    for (const QVariant &v : std::as_const(m_activeYtdlpBatchItems)) {
+        const QVariantMap row = v.toMap();
+        const QString st  = row.value(QStringLiteral("status")).toString();
+        const double  pct = qBound(0.0, row.value(QStringLiteral("progress")).toDouble(), 100.0);
+        const qint64  tb  = row.value(QStringLiteral("totalBytes")).toLongLong();
+        const bool    done = (st == QLatin1String("Completed"));
+
+        if (done) ++completed;
+        else if (st == QLatin1String("Downloading")) {
+            ++downloading;
+            activeSpeed += row.value(QStringLiteral("speedBps")).toLongLong();
+        }
+
+        // Per-video completion fraction (0..1) for the count-based fallback.
+        countDone += done ? 1.0 : pct / 100.0;
+
+        // Byte accumulation, only over rows whose size yt-dlp actually knows.
+        if (tb > 0) {
+            ++knownSize;
+            sumTotal += tb;
+            sumDone  += done ? tb : qint64(double(tb) * pct / 100.0);
+        }
+    }
+
+    // Byte-based when every row reports a size; otherwise a count-weighted blend so
+    // a DASH "NA" row can't drag the bar to zero. The byte-fraction (over known
+    // rows) and the count-fraction (over all rows) are averaged, each weighted by
+    // how many rows back it.
+    double fraction;
+    if (sumTotal <= 0) {
+        fraction = countDone / double(total);
+    } else if (knownSize == total) {
+        fraction = double(sumDone) / double(sumTotal);
+    } else {
+        const double byteFrac  = double(sumDone) / double(sumTotal);
+        const double countFrac = countDone / double(total);
+        fraction = (byteFrac * knownSize + countFrac * total) / double(knownSize + total);
+    }
+    fraction = qBound(0.0, fraction, 1.0);
+
+    // Container bytes hold the REAL summed bytes (for the Size column). These are 0
+    // while every video's size is still unknown — so the percent rides
+    // aggregateProgress instead of DownloadItem::progress(). Never feed the video
+    // count into totalBytes (that printed a bogus "3 B").
+    container->setTotalBytes(sumTotal);
+    container->setDoneBytes(qMin(sumDone, sumTotal));
+    container->setAggregateProgress(fraction);
+
+    // Container speed = sum of active children (yt-dlp downloads one at a time, but
+    // summing is robust). Per-row speeds are already sanitised at ingest.
+    container->setSpeed(sanitizeYtdlpSpeed(activeSpeed));
+
+    // Status text / subtitle: "2/3 complete · 124.0 MB".
+    const double mb = double(sumDone) / (1024.0 * 1024.0);
+    container->setAggregateStatusText(
+        tr("%1/%2 complete · %3 MB")
+            .arg(completed).arg(total)
+            .arg(QString::number(mb, 'f', mb >= 100.0 ? 0 : 1)));
+    container->setChildCounts(total, completed, downloading);
+
+    // NOTE: do NOT stamp container->setLastTryAt() here. It is connected to
+    // DownloadTableModel::onItemChanged (a heavy re-sort path); stamping a
+    // monotonically-increasing currentDateTime() every aggregate tick fired that
+    // slot on every progress update, and combined with scroll-driven delegate
+    // churn produced a re-entrant signal storm that crashed in QMetaObject::activate.
+    // The container's lastTryAt is already set once when the batch starts, which is
+    // enough to float it under the "last try date" sort.
+
+    m_ytdlpBatchProgress = fraction * 100.0;
+}
+
+// A child's display name is a placeholder until yt-dlp reports the real info_dict
+// title. Only placeholders may be replaced — a real title must never be overwritten
+// (Destination/Merger lines carry sanitised filesystem names that would otherwise
+// flicker the row mid-download).
+static bool isPlaceholderChildName(const QString &name, int index) {
+    return name.isEmpty()
+        || name == QObject::tr("Video %1").arg(index)
+        || name == QStringLiteral("Pending…");
+}
+
+DownloadItem *AppController::ensureYtdlpChild(DownloadItem *container, int index,
+                                              const QString &title) {
+    if (!container || index <= 0)
+        return nullptr;
+    const QString childId = container->id() + QLatin1Char('#') + QString::number(index);
+    DownloadItem *child = m_downloadModel->itemById(childId);
+    if (!child) {
+        child = new DownloadItem(childId, container->url());
+        child->setParentId(container->id());
+        child->setIsYtdlp(true);
+        child->setSavePath(container->savePath());
+        child->setCategory(container->category());
+        child->setQueueId(container->queueId());
+        // Stable birth order for sibling sorting: nudge addedAt by index so the
+        // grouped comparator keeps videos in playlist order.
+        child->setAddedAt(container->addedAt().addMSecs(index));
+        child->setFilename(title.isEmpty()
+            ? tr("Video %1").arg(index)
+            : title);
+        child->setStatus(DownloadItem::Status::Downloading);
+        // enqueueHeld would add it to a queue; children are display-only mirrors of
+        // the container's single worker, so add straight to the model + persist.
+        m_downloadModel->addItem(child);
+        watchItem(child);
+        emit downloadAdded(child);
+        scheduleSave(childId);
+    } else if (!title.isEmpty() && child->filename() != title
+               && isPlaceholderChildName(child->filename(), index)) {
+        child->setFilename(title);
+    }
+    return child;
 }
 
 QString AppController::detectFfmpegPath(const QString &ytdlpBinaryPath) {
@@ -8487,10 +8743,30 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
                                      this);
     m_ytdlpWorkers[item->id()] = worker;
     if (playlistMode) {
+        // Resuming the same batch keeps the existing item list visible instead of
+        // blanking the whole table while yt-dlp re-scans the playlist. Already-
+        // completed rows stay "Completed" (the download archive / --continue skip
+        // them); everything else is reset to "Queued" so stale "Downloading"
+        // states from the interrupted run don't linger.
+        const bool resumingSameBatch = resume
+            && item->id() == m_lastYtdlpBatchId
+            && !m_activeYtdlpBatchItems.isEmpty();
         m_activeYtdlpBatchId = item->id();
         m_lastYtdlpBatchId = item->id();
         m_activeYtdlpBatchLabel = item->url().toString();
-        m_activeYtdlpBatchItems.clear();
+        if (resumingSameBatch) {
+            for (int i = 0; i < m_activeYtdlpBatchItems.size(); ++i) {
+                QVariantMap row = m_activeYtdlpBatchItems[i].toMap();
+                if (row.value(QStringLiteral("status")).toString() != QStringLiteral("Completed")) {
+                    row[QStringLiteral("status")] = QStringLiteral("Queued");
+                    row[QStringLiteral("progress")] = 0.0;
+                    row[QStringLiteral("timeLeft")] = QString();
+                    m_activeYtdlpBatchItems[i] = row;
+                }
+            }
+        } else {
+            m_activeYtdlpBatchItems.clear();
+        }
         emit ytdlpBatchChanged();
     }
 
@@ -8498,7 +8774,12 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
             [this, item](int index, int total, const QString &title) {
         if (!item || item->id() != m_activeYtdlpBatchId || index <= 0)
             return;
-        while (m_activeYtdlpBatchItems.size() < total) {
+        // The --print "before_dl:" hook reports an item's index/title *before* the
+        // console "Downloading item N of M" line that carries the total — so total
+        // can still be 0 here. Grow the list to at least `index` so the row exists;
+        // the total is reconciled when the count line arrives.
+        const int wanted = qMax(total, index);
+        while (m_activeYtdlpBatchItems.size() < wanted) {
             QVariantMap blank;
             blank[QStringLiteral("index")] = m_activeYtdlpBatchItems.size() + 1;
             blank[QStringLiteral("title")] = QString();
@@ -8510,12 +8791,15 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         }
         QVariantMap row = m_activeYtdlpBatchItems[index - 1].toMap();
         row[QStringLiteral("index")] = index;
+        // Leave title empty until yt-dlp reports the real one — the UI shows a
+        // "Pending…" placeholder for blank titles rather than a bare "Item N".
         if (!title.trimmed().isEmpty())
             row[QStringLiteral("title")] = title.trimmed();
-        else if (row[QStringLiteral("title")].toString().isEmpty())
-            row[QStringLiteral("title")] = QStringLiteral("Item %1").arg(index);
         row[QStringLiteral("status")] = QStringLiteral("Downloading");
         m_activeYtdlpBatchItems[index - 1] = row;
+        // Mirror into a child row in the main download table.
+        ensureYtdlpChild(item, index, title.trimmed());
+        recomputeChannelAggregate(item);
         emit ytdlpBatchChanged();
     });
     connect(worker, &YtdlpTransfer::playlistItemProgress, this,
@@ -8523,10 +8807,11 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         if (!item || item->id() != m_activeYtdlpBatchId || index <= 0 || index > m_activeYtdlpBatchItems.size())
             return;
         QVariantMap row = m_activeYtdlpBatchItems[index - 1].toMap();
-        row[QStringLiteral("progress")] = percent;
+        row[QStringLiteral("progress")] = qBound(0.0, percent, 100.0);
         row[QStringLiteral("status")] = percent >= 99.5 ? QStringLiteral("Completed")
                                                         : QStringLiteral("Downloading");
         m_activeYtdlpBatchItems[index - 1] = row;
+        recomputeChannelAggregate(item);
         emit ytdlpBatchChanged();
     });
     connect(worker, &YtdlpTransfer::playlistItemProgressData, this,
@@ -8534,14 +8819,50 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
                          qint64 speedBps, const QString &eta) {
         if (!item || item->id() != m_activeYtdlpBatchId || index <= 0 || index > m_activeYtdlpBatchItems.size())
             return;
+        const double pct = qBound(0.0, percent, 100.0);
+        const qint64 safeSpeed = sanitizeYtdlpSpeed(speedBps);
         QVariantMap row = m_activeYtdlpBatchItems[index - 1].toMap();
-        row[QStringLiteral("progress")] = percent;
-        if (totalBytes > 0)
-            row[QStringLiteral("totalBytes")] = static_cast<qlonglong>(totalBytes);
-        row[QStringLiteral("timeLeft")] = eta;
-        row[QStringLiteral("status")] = percent >= 99.5 ? QStringLiteral("Completed")
-                                                        : QStringLiteral("Downloading");
+        row[QStringLiteral("progress")] = pct;
+        // Grow-only: a smaller current-phase total (DASH reports per-stream sizes)
+        // must never replace a larger, already-known estimate.
+        const qint64 prevTotal = row.value(QStringLiteral("totalBytes")).toLongLong();
+        const qint64 bestTotal = qMax(prevTotal, totalBytes > 0 ? totalBytes : 0);
+        if (bestTotal > 0)
+            row[QStringLiteral("totalBytes")] = static_cast<qlonglong>(bestTotal);
+        row[QStringLiteral("speedBps")] = static_cast<qlonglong>(safeSpeed);
+        // yt-dlp's own eta is often "NA" on fragmented (DASH) downloads — derive
+        // one from remaining bytes / current speed so the column isn't always blank.
+        QString etaStr = eta;
+        if (etaStr.isEmpty() && bestTotal > 0 && safeSpeed > 0 && pct < 99.5) {
+            const qint64 remaining = bestTotal - qint64(double(bestTotal) * pct / 100.0);
+            if (remaining > 0) {
+                const int s = int(qBound<qint64>(0, remaining / safeSpeed, 100LL * 3600));
+                etaStr = (s >= 3600)
+                    ? QStringLiteral("%1:%2:%3").arg(s / 3600)
+                          .arg((s % 3600) / 60, 2, 10, QLatin1Char('0'))
+                          .arg(s % 60, 2, 10, QLatin1Char('0'))
+                    : QStringLiteral("%1:%2").arg(s / 60)
+                          .arg(s % 60, 2, 10, QLatin1Char('0'));
+            }
+        }
+        // Keep-last: don't blink the ETA to blank between estimates; only overwrite
+        // when we have a fresh value or the item is finishing.
+        if (!etaStr.isEmpty() || pct >= 99.5)
+            row[QStringLiteral("timeLeft")] = etaStr;
+        row[QStringLiteral("status")] = pct >= 99.5 ? QStringLiteral("Completed")
+                                                    : QStringLiteral("Downloading");
         m_activeYtdlpBatchItems[index - 1] = row;
+        // Mirror live stats onto the child row.
+        if (DownloadItem *child = ensureYtdlpChild(item, index, QString())) {
+            if (bestTotal > 0) {
+                child->setTotalBytes(bestTotal);
+                child->setDoneBytes(qint64(double(bestTotal) * pct / 100.0));
+            }
+            child->setSpeed(safeSpeed);
+            if (pct < 99.5 && child->statusEnum() != DownloadItem::Status::Downloading)
+                child->setStatus(DownloadItem::Status::Downloading);
+        }
+        recomputeChannelAggregate(item);
         emit ytdlpBatchChanged();
     });
     connect(worker, &YtdlpTransfer::playlistItemFinished, this,
@@ -8551,9 +8872,33 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         QVariantMap row = m_activeYtdlpBatchItems[index - 1].toMap();
         row[QStringLiteral("status")] = QStringLiteral("Completed");
         row[QStringLiteral("progress")] = 100.0;
+        row[QStringLiteral("speedBps")] = 0;
         row[QStringLiteral("timeLeft")] = QString();
         m_activeYtdlpBatchItems[index - 1] = row;
+        // Finalise the child row: pull the real title from the batch map (it may
+        // have arrived after the child was first created with a placeholder).
+        const QString finalTitle = row.value(QStringLiteral("title")).toString();
+        if (DownloadItem *child = ensureYtdlpChild(item, index, finalTitle)) {
+            if (child->totalBytes() > 0)
+                child->setDoneBytes(child->totalBytes());
+            child->setSpeed(0);
+            child->setStatus(DownloadItem::Status::Completed);
+            scheduleSave(child->id());
+        }
+        recomputeChannelAggregate(item);
         emit ytdlpBatchChanged();
+    });
+
+    connect(worker, &YtdlpTransfer::playlistItemFilePath, this,
+            [this, item](int index, const QString &filename) {
+        if (!item || item->id() != m_activeYtdlpBatchId || index <= 0)
+            return;
+        // Store the real on-disk filename on the child so open/reveal/properties
+        // target the actual file, not the clean display title (no extension).
+        if (DownloadItem *child = ensureYtdlpChild(item, index, QString())) {
+            child->setYtdlpRealFile(filename);
+            scheduleSave(child->id());
+        }
     });
 
     const QString id = item->id();

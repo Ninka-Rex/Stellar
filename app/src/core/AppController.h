@@ -137,9 +137,11 @@ class AppController : public QObject {
     // True when a custom proxy (HTTP or SOCKS5) is currently active
     Q_PROPERTY(bool proxyActive READ proxyActive NOTIFY proxyActiveChanged)
     Q_PROPERTY(bool ytdlpBatchActive READ ytdlpBatchActive NOTIFY ytdlpBatchChanged)
+    Q_PROPERTY(QString ytdlpBatchId READ ytdlpBatchId NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(bool ytdlpBatchCanResume READ ytdlpBatchCanResume NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QString ytdlpBatchLabel READ ytdlpBatchLabel NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QVariantList ytdlpBatchItems READ ytdlpBatchItems NOTIFY ytdlpBatchChanged)
+    Q_PROPERTY(double ytdlpBatchProgress READ ytdlpBatchProgress NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QVariantList torrentBannedPeers READ torrentBannedPeers NOTIFY torrentBannedPeersChanged)
     Q_PROPERTY(QString publicIp READ publicIp NOTIFY publicIpChanged)
     Q_PROPERTY(int publicIpListenPort READ publicIpListenPort NOTIFY publicIpChanged)
@@ -217,9 +219,11 @@ public:
     RssManager *rssManager() const { return m_rssManager; }
     bool proxyActive() const { return m_proxyActive; }
     bool ytdlpBatchActive() const { return !m_activeYtdlpBatchId.isEmpty(); }
+    QString ytdlpBatchId() const { return m_activeYtdlpBatchId; }
     bool ytdlpBatchCanResume() const { return !m_lastYtdlpBatchId.isEmpty(); }
     QString ytdlpBatchLabel() const { return m_activeYtdlpBatchLabel; }
     QVariantList ytdlpBatchItems() const { return m_activeYtdlpBatchItems; }
+    double ytdlpBatchProgress() const { return m_ytdlpBatchProgress; }
     QVariantList torrentBannedPeers() const;
     QString publicIp() const { return m_torrentSession ? m_torrentSession->detectedExternalAddress() : QString(); }
     int publicIpListenPort() const { return m_torrentSession ? m_torrentSession->listenPort() : 0; }
@@ -293,6 +297,10 @@ public:
     Q_INVOKABLE void downloadYtdlpBinary();
     Q_INVOKABLE void stopActiveYtdlpBatch();
     Q_INVOKABLE void resumeLastYtdlpBatch();
+    // Re-bind the channel/batch progress dialog to a specific yt-dlp playlist
+    // download (e.g. user double-clicked the row). Repopulates the item list from
+    // the live/last batch when it matches, so the dialog reopens with content.
+    Q_INVOKABLE void showYtdlpBatchForItem(const QString &id);
     Q_INVOKABLE bool retryYtdlpWithBrowserCookies(const QString &downloadId, const QString &browser);
     Q_INVOKABLE bool isTorrentUri(const QString &value) const;
     Q_INVOKABLE QObject *downloadById(const QString &id) const;
@@ -818,6 +826,7 @@ private:
     QString                           m_lastYtdlpBatchId;
     QString                           m_activeYtdlpBatchLabel;
     QVariantList                      m_activeYtdlpBatchItems;
+    double                            m_ytdlpBatchProgress{0.0};
     QMap<QString, DownloadItem *>    m_pendingTorrentItems;
     QTimer                 *m_torrentSpeedHistoryTimer{nullptr};
     struct TorrentSpeedSample {
@@ -870,6 +879,14 @@ private:
                           bool forceOverwrites = false);
     void onYtdlpWorkerFinished(const QString &id);
     void onYtdlpWorkerFailed(const QString &id, const QString &reason);
+    // Create-or-fetch the child DownloadItem row for one video of a channel/
+    // playlist container. Children are id'd "<containerId>#<index>" and parented
+    // to the container so the download table shows one row per video.
+    DownloadItem *ensureYtdlpChild(DownloadItem *container, int index, const QString &title);
+    // Single source of truth for a channel container's aggregate progress, status
+    // text, child counts, speed and last-try sort key. Called from the three
+    // playlist-item signal lambdas after they mutate m_activeYtdlpBatchItems.
+    void recomputeChannelAggregate(DownloadItem *container);
     // Returns the path to ffmpeg if found next to yt-dlp or on system PATH.
     static QString detectFfmpegPath(const QString &ytdlpBinaryPath);
     static bool ytdlpErrorSuggestsCookies(const QString &reason);

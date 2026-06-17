@@ -25,6 +25,16 @@
 #include <cmath>
 #include <limits>
 
+namespace {
+// yt-dlp progress lines are untrusted; a garbled value+unit can parse to a
+// finite-but-absurd bytes/sec that prints "388548235 MB/s" and overflows
+// downstream int casts. Reject anything above ~50 GB/s.
+qint64 sanitizeSpeed(qint64 bytesPerSec) {
+    constexpr qint64 kMaxSaneSpeed = 50LL * 1000 * 1000 * 1000;
+    return (bytesPerSec < 0 || bytesPerSec > kMaxSaneSpeed) ? 0 : bytesPerSec;
+}
+}
+
 // ── Constructor / Destructor ──────────────────────────────────────────────────
 
 YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
@@ -270,6 +280,19 @@ void YtdlpTransfer::start() {
              << (m_jsRuntimeName + QLatin1Char(':') + m_jsRuntimePath);
     }
 
+    // ── Exact per-item titles (playlist mode) ─────────────────────────────────
+    // We can't use --print here: it forces --quiet in yt-dlp, which suppresses the
+    // "[download] Downloading item N of M", "Destination:" and progress lines this
+    // class relies on — leaving the channel progress dialog blank with no activity.
+    // Instead --progress-template injects the exact (untruncated, UTF-8) title and
+    // playlist index INTO the download progress line, without implying --quiet. The
+    // U+001F unit separators (never present in titles) frame our fields so the
+    // parser can pick them out from yt-dlp's own progress text.
+    if (m_playlistMode) {
+        args << QStringLiteral("--progress-template")
+             << QStringLiteral("download:\x1FSTPROG\x1F%(info.playlist_index)s\x1F%(info.title)s\x1F%(progress._percent)s\x1F%(progress.total_bytes)s\x1F%(progress.total_bytes_estimate)s\x1F%(progress.speed)s\x1F%(progress.eta)s\x1F%(progress.downloaded_bytes)s\x1F%(info.filesize_approx)s\x1F");
+    }
+
     args << m_item->url().toString();
 
     m_process = new QProcess(this);
@@ -366,20 +389,109 @@ void YtdlpTransfer::onReadyReadStdout() {
     }
 }
 
+void YtdlpTransfer::advancePlaylistItem(int newIndex) {
+    if (!m_playlistMode || newIndex <= m_playlistStartedIndex)
+        return;
+    // Any items between the last-started and the new one are now finished. (Items
+    // skipped by the download archive jump the index forward; mark them done too.)
+    for (int done = m_playlistStartedIndex; done > 0 && done < newIndex; ++done) {
+        emit playlistItemProgress(done, 100.0);
+        emit playlistItemFinished(done);
+    }
+    m_playlistStartedIndex = newIndex;
+}
+
 void YtdlpTransfer::handleLine(const QString &line) {
     if (m_playlistMode) {
+        // ── Custom progress line from --progress-template ──────────────────────
+        // Emitted every progress tick as (U+001F = separator, never in titles):
+        //   \x1FSTPROG\x1F<index>\x1F<title>\x1F<downloaded>\x1F<total>\x1F
+        //     <total_estimate>\x1F<speed>\x1F<eta>\x1F
+        // The title here is the raw, untruncated, correctly-encoded value from
+        // yt-dlp's info_dict — unlike the console "Downloading item" line which
+        // carries no title at all and the legacy "[download] X%" text which is
+        // styled/truncated. Missing numeric fields render as "NA".
+        // (QString::trimmed() strips the outer separators since 0x1F < 0x20, so we
+        // match on the marker token and split on the surviving internal ones.)
+        if (line.startsWith(QStringLiteral("STPROG\x1F"))) {
+            const QStringList p = line.split(QChar(0x1F));
+            // p: ["STPROG", index, title, percent, total, total_est, speed, eta,
+            //     downloaded, filesize_approx]
+            // Numeric fields are raw yt-dlp values; missing ones render as "NA".
+            // total_bytes/estimate/speed can be floats ("1234.0"), so parse as
+            // double, not int.
+            if (p.size() >= 8) {
+                const int idx = p.at(1).toInt();
+                if (idx > 0) {
+                    advancePlaylistItem(idx);
+                    m_playlistCurrentIndex = idx;
+                }
+
+                if (m_playlistCurrentIndex > 0) {
+                    const QString title = p.at(2).trimmed();
+                    if (!title.isEmpty())
+                        emit playlistItemStarted(m_playlistCurrentIndex,
+                                                 m_playlistTotalItems, title);
+
+                    bool okPct = false, okTot = false, okEst = false,
+                         okSpd = false, okEta = false, okDone = false, okApprox = false;
+                    const double pct   = p.at(3).toDouble(&okPct);
+                    const double total = p.at(4).toDouble(&okTot);
+                    const double est   = p.at(5).toDouble(&okEst);
+                    const double speed = p.at(6).toDouble(&okSpd);
+                    const double etaS  = p.at(7).toDouble(&okEta);
+                    const double done   = p.size() > 8 ? p.at(8).toDouble(&okDone)   : 0.0;
+                    const double approx = p.size() > 9 ? p.at(9).toDouble(&okApprox) : 0.0;
+
+                    const double percent = okPct ? qBound(0.0, pct, 100.0) : 0.0;
+                    // YouTube DASH reports total_bytes/estimate as "NA" mid-fragment.
+                    // Fall back to info.filesize_approx, then derive a total from the
+                    // bytes downloaded so far divided by the percent complete.
+                    qint64 totalBytes = okTot && total > 0 ? qint64(total)
+                                      : (okEst && est > 0 ? qint64(est) : 0);
+                    if (totalBytes <= 0 && okApprox && approx > 0)
+                        totalBytes = qint64(approx);
+                    if (totalBytes <= 0 && okDone && done > 0 && percent > 1.0) {
+                        const double derived = done * 100.0 / percent;
+                        // Cap the percent-derived total: a near-zero percent makes
+                        // this explode, which later overflows int casts / formatters.
+                        totalBytes = (std::isfinite(derived) && derived > 0
+                                      && derived < 1.0e13) ? qint64(derived) : 0;
+                    }
+                    // yt-dlp eta is seconds; the UI formats "MM:SS"/"HH:MM:SS".
+                    QString etaStr;
+                    if (okEta && etaS > 0 && etaS < 100.0 * 3600.0) {
+                        const int s = int(etaS);
+                        etaStr = (s >= 3600)
+                            ? QStringLiteral("%1:%2:%3").arg(s / 3600)
+                                  .arg((s % 3600) / 60, 2, 10, QLatin1Char('0'))
+                                  .arg(s % 60, 2, 10, QLatin1Char('0'))
+                            : QStringLiteral("%1:%2").arg(s / 60)
+                                  .arg(s % 60, 2, 10, QLatin1Char('0'));
+                    }
+                    emit playlistItemProgressData(m_playlistCurrentIndex, percent,
+                                                  totalBytes,
+                                                  okSpd ? sanitizeSpeed(qint64(speed)) : 0, etaStr);
+                }
+            }
+            return;
+        }
+
+        // The console "Downloading item N of M" line carries the reliable total
+        // count (and current index). It contains no title.
         static const QRegularExpression kItemRe(
-            QStringLiteral(R"(\[download\]\s+Downloading item\s+(\d+)\s+of\s+(\d+)(?::\s*(.*))?)"),
+            QStringLiteral(R"(\[download\]\s+Downloading item\s+(\d+)\s+of\s+(\d+))"),
             QRegularExpression::CaseInsensitiveOption);
         const QRegularExpressionMatch itemMatch = kItemRe.match(line);
         if (itemMatch.hasMatch()) {
-            m_playlistCurrentIndex = itemMatch.captured(1).toInt();
+            const int newIdx = itemMatch.captured(1).toInt();
+            advancePlaylistItem(newIdx);
+            m_playlistCurrentIndex = newIdx;
             m_playlistTotalItems = itemMatch.captured(2).toInt();
-            const QString capturedTitle = itemMatch.captured(3).trimmed();
             qDebug() << "[YtdlpTransfer] downloading item" << m_playlistCurrentIndex
-                     << "of" << m_playlistTotalItems << "title:" << capturedTitle;
+                     << "of" << m_playlistTotalItems;
             emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems,
-                                     capturedTitle);
+                                     QString());
         }
     }
 
@@ -398,9 +510,15 @@ void YtdlpTransfer::handleLine(const QString &line) {
                              path.lastIndexOf(QLatin1Char('\\')));
         const QString filename = sanitizeFilename((sep >= 0) ? path.mid(sep + 1) : path);
         if (!filename.isEmpty()) {
-            m_item->setFilename(filename);
+            // In playlist mode the parent is a channel container whose name must
+            // stay the channel title — the per-video filename feeds the child row
+            // via playlistItemStarted instead of overwriting the container.
+            if (!m_playlistMode)
+                m_item->setFilename(filename);
+            // Playlist mode: display name stays the clean title (set via STPROG);
+            // carry the real on-disk filename separately for open/reveal.
             if (m_playlistMode && m_playlistCurrentIndex > 0)
-                emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
+                emit playlistItemFilePath(m_playlistCurrentIndex, filename);
         }
         return;
     }
@@ -419,9 +537,10 @@ void YtdlpTransfer::handleLine(const QString &line) {
                                  name.lastIndexOf(QLatin1Char('\\')));
             const QString filename = sanitizeFilename((sep >= 0) ? name.mid(sep + 1) : name);
             if (!filename.isEmpty()) {
-                m_item->setFilename(filename);
+                if (!m_playlistMode)
+                    m_item->setFilename(filename);
                 if (m_playlistMode && m_playlistCurrentIndex > 0) {
-                    emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
+                    emit playlistItemFilePath(m_playlistCurrentIndex, filename);
                     emit playlistItemProgress(m_playlistCurrentIndex, 100.0);
                     emit playlistItemFinished(m_playlistCurrentIndex);
                 }
@@ -440,8 +559,12 @@ void YtdlpTransfer::handleLine(const QString &line) {
     // Capture this to update the filename from .webm → .mp4 (or whatever container).
     if (line.startsWith(QStringLiteral("[Merger]")) ||
         line.startsWith(QStringLiteral("[ffmpeg]"))) {
-        m_item->setStatus(DownloadItem::Status::Assembling);
-        m_item->setSpeed(0);
+        // In playlist mode m_item is the container — keep its aggregate status; the
+        // merge belongs to a single child, not the whole channel.
+        if (!m_playlistMode) {
+            m_item->setStatus(DownloadItem::Status::Assembling);
+            m_item->setSpeed(0);
+        }
 
         // "[Merger] Merging formats into "…path…""
         const int quoteOpen  = line.indexOf(QLatin1Char('"'));
@@ -452,9 +575,10 @@ void YtdlpTransfer::handleLine(const QString &line) {
                                  path.lastIndexOf(QLatin1Char('\\')));
             const QString filename = sanitizeFilename((sep >= 0) ? path.mid(sep + 1) : path);
             if (!filename.isEmpty()) {
-                m_item->setFilename(filename);
+                if (!m_playlistMode)
+                    m_item->setFilename(filename);
                 if (m_playlistMode && m_playlistCurrentIndex > 0)
-                    emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
+                    emit playlistItemFilePath(m_playlistCurrentIndex, filename);
             }
         }
 
@@ -502,7 +626,7 @@ bool YtdlpTransfer::tryParseProgressLine(const QString &line) {
     const QString eta        = m.captured(6);
 
     const qint64 phaseTotal = parseSizeToBytes(totalVal, totalUnit);
-    const qint64 speedBps   = parseSizeToBytes(speedVal, speedUnit);
+    const qint64 speedBps   = sanitizeSpeed(parseSizeToBytes(speedVal, speedUnit));
     const qint64 phaseDone  = (phaseTotal > 0)
         ? static_cast<qint64>(phaseTotal * pct / 100.0)
         : 0;
@@ -533,14 +657,21 @@ bool YtdlpTransfer::tryParseProgressLine(const QString &line) {
     const qint64 overallDone  = m_accumulatedBytes + m_currentPhaseDone;
     const qint64 overallTotal = m_accumulatedBytes + m_currentPhaseTotal;
 
-    m_item->setTotalBytes(overallTotal);
-    m_item->setDoneBytes(overallDone);
-    m_item->setSpeed(speedBps);
+    // In playlist mode m_item is the channel *container*; its bytes/speed/status are
+    // the aggregate over all videos, owned by AppController::recomputeChannelAggregate.
+    // Writing single-phase numbers here would stomp that aggregate (the original
+    // "parent shows current video % / 0.0%" bug). Per-video stats flow via the
+    // playlistItem* signals below instead.
+    if (!m_playlistMode) {
+        m_item->setTotalBytes(overallTotal);
+        m_item->setDoneBytes(overallDone);
+        m_item->setSpeed(speedBps);
 
-    // Restore Downloading status if a previous Assembling marker was set for
-    // a different stream in a multi-pass download.
-    if (m_item->statusEnum() == DownloadItem::Status::Assembling)
-        m_item->setStatus(DownloadItem::Status::Downloading);
+        // Restore Downloading status if a previous Assembling marker was set for
+        // a different stream in a multi-pass download.
+        if (m_item->statusEnum() == DownloadItem::Status::Assembling)
+            m_item->setStatus(DownloadItem::Status::Downloading);
+    }
 
     emit progressChanged(overallDone, overallTotal, speedBps);
     if (m_playlistMode && m_playlistCurrentIndex > 0) {
@@ -573,9 +704,24 @@ void YtdlpTransfer::onProcessFinished(int exitCode, QProcess::ExitStatus exitSta
     m_item->setResumeCapable(true);
 
     if (exitCode == 0 && exitStatus == QProcess::NormalExit) {
-        // Clamp doneBytes to totalBytes so progress shows exactly 100 %
-        if (m_item->totalBytes() > 0)
+        // Clamp doneBytes to totalBytes so progress shows exactly 100 %. In playlist
+        // mode the container's 100% is set by recomputeChannelAggregate once every
+        // child is finished (below) — don't stomp the aggregate here.
+        if (!m_playlistMode && m_item->totalBytes() > 0)
             m_item->setDoneBytes(m_item->totalBytes());
+
+        // Clean exit = the whole playlist downloaded. Finalise EVERY item, not just
+        // from m_playlistStartedIndex: yt-dlp can finish items out of order (or skip
+        // the final 100% tick), leaving an earlier item stuck at 99% forever. The
+        // emits are idempotent — already-completed rows stay completed.
+        if (m_playlistMode) {
+            const int last = qMax(qMax(m_playlistCurrentIndex, m_playlistStartedIndex),
+                                  m_playlistTotalItems);
+            for (int done = 1; done <= last; ++done) {
+                emit playlistItemProgress(done, 100.0);
+                emit playlistItemFinished(done);
+            }
+        }
 
         // ── Filesystem filename reconciliation ───────────────────────────────
         // The filename we store comes from parsing "[download] Destination:" or
@@ -591,7 +737,10 @@ void YtdlpTransfer::onProcessFinished(int exitCode, QProcess::ExitStatus exitSta
         // scan the save directory for the newest file — Qt's QDir uses Windows
         // native Unicode APIs (FindFirstFileW) to read directory entries, so the
         // filename it returns is always correct regardless of stdout encoding.
-        {
+        // Skip for playlist containers: their name is the channel title, and there
+        // are many output files (one per video) — there's no single name to
+        // reconcile. Per-video filenames live on the child rows instead.
+        if (!m_playlistMode) {
             const QString storedPath = m_saveDir + QLatin1Char('/') + m_item->filename();
             if (m_item->filename().isEmpty() || !QFile::exists(storedPath)) {
                 // Stdout-derived filename is missing or doesn't match any real file

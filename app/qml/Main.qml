@@ -165,6 +165,17 @@ ApplicationWindow {
 
     function showDownloadProgressForItem(item) {
         if (!item) return
+        // yt-dlp channel/playlist downloads (the container row OR any of its child
+        // video rows) have no HTTP segmented-progress; their multi-item batch
+        // window is the only meaningful progress view. Redirect here so no caller
+        // path (double-click, properties, open-progress) can leak the HTTP dialog.
+        if (item.isYtdlp && (item.ytdlpPlaylistMode
+                || (item.parentId && item.parentId.length > 0))) {
+            var batchId = item.ytdlpPlaylistMode ? item.id : item.parentId
+            App.showYtdlpBatchForItem(batchId)
+            showAndActivate(ytdlpBatchWindow)
+            return
+        }
         // Never open the progress window for an already-finished download — the
         // complete dialog handles those. Guards a race where a fast (e.g. numbered
         // duplicate) download completes before the deferred show() runs, leaving an
@@ -1542,7 +1553,7 @@ ApplicationWindow {
         id: ytdlpBatchWindow
         transientParent: root
         width: 760
-        height: 520
+        height: 500
         minimumWidth: 520
         minimumHeight: 360
         maximumHeight: 500
@@ -1559,10 +1570,18 @@ ApplicationWindow {
             }
         }
 
+        // Auto-open only once when a NEW batch starts — keyed on the active batch
+        // id. ytdlpBatchChanged fires on every progress tick (and every video
+        // finish), so re-showing unconditionally yanked the window back to the
+        // foreground constantly. The user can close it; it must stay closed until
+        // a different batch begins.
+        property string _autoShownBatchId: ""
         Connections {
             target: App
             function onYtdlpBatchChanged() {
-                if (App.ytdlpBatchActive) {
+                if (App.ytdlpBatchActive
+                        && App.ytdlpBatchId !== ytdlpBatchWindow._autoShownBatchId) {
+                    ytdlpBatchWindow._autoShownBatchId = App.ytdlpBatchId
                     ytdlpBatchWindow.show()
                     ytdlpBatchWindow.raise()
                     ytdlpBatchWindow.requestActivate()
@@ -1625,7 +1644,9 @@ ApplicationWindow {
         }
 
         function formatBytesShort(bytes) {
-            if (!bytes || bytes <= 0) return ""
+            // Guard against absurd/garbled values from yt-dlp (NaN, Infinity, huge):
+            // never let the UI render "388548235 MB".
+            if (!isFinite(bytes) || bytes <= 0 || bytes > 1e15) return ""
             if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(2) + " GB"
             if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + " MB"
             if (bytes >= 1024) return (bytes / 1024).toFixed(1) + " KB"
@@ -1728,48 +1749,119 @@ ApplicationWindow {
             return c
         }
         property int _statsQueued: Math.max(0, _statsTotal - _statsDone - _statsActive)
+        // Single source of truth, computed in C++ (recomputeChannelAggregate) so the
+        // header bar and the main-table parent row always agree.
         property int _statsAvgProgress: {
-            if (App.ytdlpBatchItems.length === 0) return 0
-            var sum = 0.0
-            for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
-                sum += (App.ytdlpBatchItems[i].progress || 0)
-            return Math.round(sum / App.ytdlpBatchItems.length)
+            App.ytdlpBatchChanged   // re-evaluate on every batch tick
+            return Math.round(Math.max(0, Math.min(100, App.ytdlpBatchProgress)))
+        }
+        // Combined download speed of the currently-active video(s). yt-dlp runs a
+        // single worker, but video+audio phases and quick item hand-off mean more
+        // than one row can read "Downloading" for a tick — sum to be safe.
+        property real _statsSpeed: {
+            App.ytdlpBatchChanged   // re-evaluate on every batch tick
+            var bps = 0
+            for (var i = 0; i < App.ytdlpBatchItems.length; ++i) {
+                var it = App.ytdlpBatchItems[i]
+                if ((it.status || "") === "Downloading")
+                    bps += (it.speedBps || 0)
+            }
+            return bps
+        }
+
+        function _fmtSpeed(bps) {
+            // Guard absurd/garbled speeds (NaN, Infinity, > ~50 GB/s) so the header
+            // can never read "388548235 MB/s".
+            if (!isFinite(bps) || bps <= 0 || bps > 5e10) return "0 B/s"
+            if (bps >= 1000000000) return (bps / 1000000000).toFixed(2) + " GB/s"
+            if (bps >= 1000000)    return (bps / 1000000).toFixed(2) + " MB/s"
+            if (bps >= 1000)       return (bps / 1000).toFixed(1) + " KB/s"
+            return Math.round(bps) + " B/s"
         }
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 8
-            spacing: 6
+            spacing: 0
 
-            // ── Title ────────────────────────────────────────────────────
-            Text {
+            // ── Themed progress header (mirrors the HTTP progress dialog) ──
+            Rectangle {
                 Layout.fillWidth: true
-                text: App.ytdlpBatchLabel.length > 0 ? App.ytdlpBatchLabel : "Channel/Playlist"
-                color: "#d8d8d8"
-                font.pixelSize: 12 * App.fontScale
-                elide: Text.ElideMiddle
-            }
+                Layout.preferredHeight: headerCol.implicitHeight + 8
+                color: ColorPalette.headerStripBg
+                border.width: 0
+                radius: 0
 
-            // ── Summary stats ────────────────────────────────────────────
-            Text {
-                id: summaryText
-                Layout.fillWidth: true
-                text: qsTr("Total: %1").arg(ytdlpBatchWindow._statsTotal)
-                      + "   " + qsTr("Completed: %1").arg(ytdlpBatchWindow._statsDone)
-                      + "   " + qsTr("Downloading: %1").arg(ytdlpBatchWindow._statsActive)
-                      + "   " + qsTr("Queued: %1").arg(ytdlpBatchWindow._statsQueued)
-                      + "   " + qsTr("Overall: %1%").arg(ytdlpBatchWindow._statsAvgProgress)
-                color: "#9fa9b8"
-                font.pixelSize: 11 * App.fontScale
-                elide: Text.ElideRight
+                ColumnLayout {
+                    id: headerCol
+                    anchors { left: parent.left; right: parent.right
+                              verticalCenter: parent.verticalCenter
+                              leftMargin: 14; rightMargin: 14 }
+                    spacing: 4
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: App.ytdlpBatchLabel.length > 0 ? App.ytdlpBatchLabel : qsTr("Channel/Playlist")
+                        color: ColorPalette.textHeader
+                        font.pixelSize: 13 * App.fontScale
+                        font.bold: true
+                        elide: Text.ElideMiddle
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: 8
+
+                        Text {
+                            text: ytdlpBatchWindow._statsAvgProgress + "%"
+                            color: ColorPalette.textHeader
+                            font.pixelSize: 12 * App.fontScale
+                            font.bold: true
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: 5; radius: 2
+                            color: ColorPalette.windowBg
+                            border.color: ColorPalette.dividerBg
+                            clip: true
+                            Rectangle {
+                                width: Math.max(0, parent.width * ytdlpBatchWindow._statsAvgProgress / 100)
+                                height: parent.height; radius: parent.radius
+                                color: ColorPalette.accent
+                                Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
+                            }
+                        }
+
+                        Text {
+                            visible: ytdlpBatchWindow._statsSpeed > 0
+                            text: "↓ " + ytdlpBatchWindow._fmtSpeed(ytdlpBatchWindow._statsSpeed)
+                            color: ColorPalette.textHeader
+                            font.pixelSize: 11 * App.fontScale
+                        }
+                    }
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: qsTr("Total: %1").arg(ytdlpBatchWindow._statsTotal)
+                              + "   " + qsTr("Completed: %1").arg(ytdlpBatchWindow._statsDone)
+                              + "   " + qsTr("Downloading: %1").arg(ytdlpBatchWindow._statsActive)
+                              + "   " + qsTr("Queued: %1").arg(ytdlpBatchWindow._statsQueued)
+                        color: ColorPalette.textSecond
+                        font.pixelSize: 11 * App.fontScale
+                        elide: Text.ElideRight
+                    }
+                }
             }
 
             // ── Table ────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: "#181818"
-                border.color: "#313131"
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+                Layout.topMargin: 8
+                color: ColorPalette.inputBg
+                border.color: ColorPalette.border
                 radius: 4
                 clip: true
 
@@ -1801,7 +1893,7 @@ ApplicationWindow {
                                     visible: ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragInsertBeforeKey === modelData.key
                                     width: 2; height: parent.height
                                     anchors.left: parent.left
-                                    color: "#4488dd"
+                                    color: ColorPalette.accent
                                     z: 20
                                 }
 
@@ -1812,7 +1904,7 @@ ApplicationWindow {
                                           && index === hdrRepeater.count - 1
                                     width: 2; height: parent.height
                                     anchors.right: parent.right
-                                    color: "#4488dd"
+                                    color: ColorPalette.accent
                                     z: 20
                                 }
 
@@ -1825,7 +1917,7 @@ ApplicationWindow {
                                         rightMargin: 12
                                     }
                                     text: modelData.title
-                                    color: "#b0b0b0"
+                                    color: ColorPalette.textSecond
                                     font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     horizontalAlignment: modelData.key === "index" ? Text.AlignHCenter : Text.AlignLeft
@@ -2000,7 +2092,10 @@ ApplicationWindow {
                         id: batchRow
                         required property int index
                         required property var modelData
-                        width: batchListView.contentWidth
+                        // Stretch the stripe across the full viewport even when the
+                        // columns are narrower than the list, so alternating row
+                        // colors reach the right edge.
+                        width: Math.max(batchListView.contentWidth, batchListView.width)
                         height: 28
                         color: batchRowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
                         clip: true
@@ -2021,7 +2116,7 @@ ApplicationWindow {
                                     horizontalAlignment: Text.AlignHCenter
                                     verticalAlignment: Text.AlignVCenter
                                     text: batchRow.itemData.index || (batchRow.batchRowIndex + 1)
-                                    color: "#8b8b8b"
+                                    color: ColorPalette.textMuted
                                     font.pixelSize: 11 * App.fontScale
                                 }
                             }
@@ -2038,7 +2133,7 @@ ApplicationWindow {
                                     verticalAlignment: Text.AlignVCenter
                                     text: {
                                         var t = batchRow.itemData.title
-                                        if (t === undefined || t === null || t === "") return qsTr("Item %1").arg(batchRow.batchRowIndex + 1)
+                                        if (t === undefined || t === null || t === "") return qsTr("Pending…")
                                         return t
                                     }
                                     color: ColorPalette.textPrimary
@@ -2062,7 +2157,7 @@ ApplicationWindow {
                                         if (!tb || tb <= 0) return ""
                                         return ytdlpBatchWindow.formatBytesShort(tb)
                                     }
-                                    color: "#b0b0b0"
+                                    color: ColorPalette.textSecond
                                     font.pixelSize: 12 * App.fontScale
                                 }
                             }
@@ -2080,13 +2175,14 @@ ApplicationWindow {
                                     text: {
                                         var st = batchRow.itemData.status || "Queued"
                                         var pct = batchRow.itemData.progress || 0
-                                        if (st === "Downloading" && pct > 0)
-                                            return st + " (" + pct.toFixed(1) + "%)"
                                         if (st === "Completed")
-                                            return st + " (100%)"
+                                            return qsTr("Completed")
+                                        if (st === "Downloading")
+                                            // Cap at 99: a running item must never read 100%.
+                                            return qsTr("Downloading %1%").arg(Math.min(99, Math.round(pct)))
                                         return st
                                     }
-                                    color: "#b0b0b0"
+                                    color: ColorPalette.textSecond
                                     font.pixelSize: 12 * App.fontScale
                                 }
                             }
@@ -2108,7 +2204,7 @@ ApplicationWindow {
                                         if (eta === "") return ""
                                         return ytdlpBatchWindow.formatTimeLeft(eta)
                                     }
-                                    color: "#b0b0b0"
+                                    color: ColorPalette.textSecond
                                     font.pixelSize: 12 * App.fontScale
                                 }
                             }
@@ -2122,7 +2218,7 @@ ApplicationWindow {
                                 return pct / 100 * Math.max(0, Math.min(batchListView.width, batchRow.width - batchListView.contentX))
                             }
                             height: 2
-                            color: "#4488dd"
+                            color: ColorPalette.accent
                             visible: (batchRow.itemData.status || "") === "Downloading"
                         }
 
@@ -2131,7 +2227,7 @@ ApplicationWindow {
                             anchors.bottom: parent.bottom
                             width: parent.width
                             height: 1
-                            color: "#2e2e2e"
+                            color: ColorPalette.dividerBg
                         }
                     }
                 }
@@ -2140,6 +2236,10 @@ ApplicationWindow {
             // ── Buttons ──────────────────────────────────────────────────
             RowLayout {
                 Layout.fillWidth: true
+                Layout.leftMargin: 8
+                Layout.rightMargin: 8
+                Layout.topMargin: 6
+                Layout.bottomMargin: 8
                 Item { Layout.fillWidth: true }
                 DlgButton {
                     text: qsTr("Stop")
@@ -4338,9 +4438,31 @@ ApplicationWindow {
                 onOpenProgressRequested: (item) => {
                     root.showDownloadProgressForItem(item)
                 }
+                onOpenChannelProgressRequested: (item) => {
+                    if (!item) return
+                    App.showYtdlpBatchForItem(item.id)
+                    ytdlpBatchWindow.show()
+                    ytdlpBatchWindow.raise()
+                    ytdlpBatchWindow.requestActivate()
+                }
                 onOpenPropertiesRequested: (item) => {
                     if (!item)
                         return
+                    // yt-dlp channel container: properties = the channel batch progress
+                    // dialog, not the HTTP file-properties dialog (no single file).
+                    if (item.isChannelContainer) {
+                        App.showYtdlpBatchForItem(item.id)
+                        ytdlpBatchWindow.show()
+                        ytdlpBatchWindow.raise()
+                        ytdlpBatchWindow.requestActivate()
+                        return
+                    }
+                    // yt-dlp items (children + singles) use the download progress dialog
+                    // regardless of state — the file-properties dialog is HTTP/torrent only.
+                    if (item.isYtdlp) {
+                        root.showDownloadProgressForItem(item)
+                        return
+                    }
                     if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
                         root.showDownloadProgressForItem(item)
                         return

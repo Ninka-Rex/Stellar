@@ -106,6 +106,24 @@ class DownloadItem : public QObject {
     Q_PROPERTY(bool     isYtdlp       READ isYtdlp        CONSTANT)
     Q_PROPERTY(QString  ytdlpFormatId READ ytdlpFormatId  NOTIFY ytdlpFormatIdChanged)
     Q_PROPERTY(bool     ytdlpPlaylistMode READ ytdlpPlaylistMode NOTIFY ytdlpPlaylistModeChanged)
+    // Download tree (channel/playlist grouping): a "channel container" is the
+    // aggregate parent row; child rows carry parentId == container id. treeExpanded
+    // is only meaningful on a container (controls child-row visibility).
+    Q_PROPERTY(QString  parentId          READ parentId       WRITE setParentId    NOTIFY parentIdChanged)
+    Q_PROPERTY(bool     isChannelContainer READ isChannelContainer WRITE setIsChannelContainer NOTIFY isChannelContainerChanged)
+    Q_PROPERTY(bool     treeExpanded      READ treeExpanded   WRITE setTreeExpanded NOTIFY treeExpandedChanged)
+    // Channel-container aggregate (set by AppController::recomputeChannelAggregate;
+    // meaningful only when isChannelContainer). aggregateStatusText is the parent
+    // row's status/subtitle ("2/3 complete · 124 MB"); the child counts feed it.
+    Q_PROPERTY(QString  aggregateStatusText READ aggregateStatusText WRITE setAggregateStatusText NOTIFY aggregateStatusTextChanged)
+    // 0..1 channel completion (byte-based w/ count fallback). Distinct from
+    // progress(): the container's totalBytes/doneBytes hold REAL summed bytes for
+    // the Size column, which is 0 while every video's size is still unknown — so
+    // the progress bar/percent must read this instead.
+    Q_PROPERTY(double   aggregateProgress     READ aggregateProgress     WRITE setAggregateProgress NOTIFY aggregateProgressChanged)
+    Q_PROPERTY(int      childCount            READ childCount            NOTIFY childCountsChanged)
+    Q_PROPERTY(int      childCompletedCount   READ childCompletedCount   NOTIFY childCountsChanged)
+    Q_PROPERTY(int      childDownloadingCount READ childDownloadingCount NOTIFY childCountsChanged)
 
 public:
     enum class Status { Queued, Checking, Downloading, Moving, Seeding, Paused, Assembling, Completed, Error };
@@ -137,6 +155,14 @@ public:
     QString      errorString()    const { return m_errorString; }
     QString      referrer()       const { return m_referrer; }
     QString      parentUrl()      const { return m_parentUrl; }
+    QString      parentId()       const { return m_parentId; }
+    bool         isChannelContainer() const { return m_isChannelContainer; }
+    bool         treeExpanded()   const { return m_treeExpanded; }
+    QString      aggregateStatusText()   const { return m_aggregateStatusText; }
+    double       aggregateProgress()     const { return m_aggregateProgress; }
+    int          childCount()            const { return m_childCount; }
+    int          childCompletedCount()   const { return m_childCompletedCount; }
+    int          childDownloadingCount() const { return m_childDownloadingCount; }
     QString      username()       const { return m_username; }
     QString      password()       const { return m_password; }
     QDateTime    lastTryAt()      const { return m_lastTryAt; }
@@ -165,6 +191,24 @@ public:
     QString cookies() const { return m_cookies; }
     void setReferrer(const QString &v)  { if (m_referrer  != v) { m_referrer  = v; emit referrerChanged();  } }
     void setParentUrl(const QString &v) { if (m_parentUrl != v) { m_parentUrl = v; emit parentUrlChanged(); } }
+    void setParentId(const QString &v)  { if (m_parentId  != v) { m_parentId  = v; emit parentIdChanged(); } }
+    void setIsChannelContainer(bool v)  { if (m_isChannelContainer != v) { m_isChannelContainer = v; emit isChannelContainerChanged(); } }
+    void setTreeExpanded(bool v)        { if (m_treeExpanded != v) { m_treeExpanded = v; emit treeExpandedChanged(); } }
+    void setAggregateStatusText(const QString &v) { if (m_aggregateStatusText != v) { m_aggregateStatusText = v; emit aggregateStatusTextChanged(); } }
+    void setAggregateProgress(double v) {
+        // NOTE: qFuzzyCompare is unreliable around 0.0 (always reports "not equal"),
+        // which made this emit every call and could feed a signal storm. Use a plain
+        // epsilon so an unchanged value is a true no-op.
+        if (qAbs(m_aggregateProgress - v) > 1e-6) { m_aggregateProgress = v; emit aggregateProgressChanged(); }
+    }
+    void setChildCounts(int total, int completed, int downloading) {
+        if (m_childCount == total && m_childCompletedCount == completed
+            && m_childDownloadingCount == downloading)
+            return;
+        m_childCount = total; m_childCompletedCount = completed;
+        m_childDownloadingCount = downloading;
+        emit childCountsChanged();
+    }
     void setUsername(const QString &v)  { if (m_username  != v) { m_username  = v; emit usernameChanged();  } }
     void setPassword(const QString &v)  { if (m_password  != v) { m_password  = v; emit passwordChanged();  } }
     void setLastTryAt(const QDateTime &v) { if (m_lastTryAt != v) { m_lastTryAt = v; emit lastTryAtChanged(); } }
@@ -269,6 +313,10 @@ public:
         if (m_ytdlpPlaylistMode != v) { m_ytdlpPlaylistMode = v; emit ytdlpPlaylistModeChanged(); }
     }
     void setYtdlpExtraOptions(const QString &v) { m_ytdlpExtraOptions = v; } // no signal — internal resume metadata
+    // Real on-disk filename (with extension) yt-dlp wrote for this item. Display
+    // name (filename) is the clean video title; this is what open/reveal target.
+    QString ytdlpRealFile() const { return m_ytdlpRealFile; }
+    void setYtdlpRealFile(const QString &v) { m_ytdlpRealFile = v; } // no signal — only used by open/reveal/properties
 
 signals:
     void filenameChanged();
@@ -303,6 +351,12 @@ signals:
     void torrentFlagsChanged();
     void ytdlpFormatIdChanged();
     void ytdlpPlaylistModeChanged();
+    void parentIdChanged();
+    void isChannelContainerChanged();
+    void treeExpandedChanged();
+    void aggregateStatusTextChanged();
+    void aggregateProgressChanged();
+    void childCountsChanged();
 
 private:
     static QString formatDateTime(const QDateTime &dt);
@@ -329,6 +383,14 @@ private:
     QString      m_cookies;
     QString      m_referrer;
     QString      m_parentUrl;
+    QString      m_parentId;
+    bool         m_isChannelContainer{false};
+    bool         m_treeExpanded{true};
+    QString      m_aggregateStatusText;
+    double       m_aggregateProgress{0.0};
+    int          m_childCount{0};
+    int          m_childCompletedCount{0};
+    int          m_childDownloadingCount{0};
     QString      m_username;
     QString      m_password;
     QDateTime    m_lastTryAt;
@@ -375,6 +437,7 @@ private:
     QString      m_ytdlpFormatId;       // yt-dlp format selector used for this download
     bool         m_ytdlpPlaylistMode{false};
     QString      m_ytdlpExtraOptions;   // JSON blob of extra yt-dlp options for resume
+    QString      m_ytdlpRealFile;       // real on-disk filename (with ext) for open/reveal
     static std::atomic<int>  s_dateStyle;
     static std::atomic<bool> s_use24Hour;
     static std::atomic<bool> s_showSeconds;

@@ -56,6 +56,7 @@ struct YtdlpOptions {
     bool    liveFromStart       = false;   // --live-from-start
     bool    useArchive          = false;   // --download-archive <saveDir>/yt-dlp-archive.txt
     bool    ignoreErrors        = false;   // --ignore-errors (skip failed items in playlist)
+    int     maxItems            = 0;       // 0 = all; N = only first N items ("Latest N"). Persisted so resume keeps the limit.
     int     waitForVideoSecs    = 0;       // --wait-for-video MIN (scheduled stream; 0=disabled)
     int     concurrentFragments = 1;       // --concurrent-fragments N (DASH/HLS)
 
@@ -85,6 +86,7 @@ struct YtdlpOptions {
         if (liveFromStart)            o[QLatin1String("liveFromStart")]         = true;
         if (useArchive)               o[QLatin1String("useArchive")]            = true;
         if (ignoreErrors)             o[QLatin1String("ignoreErrors")]          = true;
+        if (maxItems > 0)             o[QLatin1String("maxItems")]              = maxItems;
         if (waitForVideoSecs > 0)     o[QLatin1String("waitForVideoSecs")]      = waitForVideoSecs;
         if (concurrentFragments > 1)  o[QLatin1String("concurrentFragments")]   = concurrentFragments;
         if (rateLimitKBps > 0)        o[QLatin1String("rateLimitKBps")]         = rateLimitKBps;
@@ -113,6 +115,7 @@ struct YtdlpOptions {
         opts.liveFromStart         = o[QLatin1String("liveFromStart")].toBool();
         opts.useArchive            = o[QLatin1String("useArchive")].toBool();
         opts.ignoreErrors          = o[QLatin1String("ignoreErrors")].toBool();
+        opts.maxItems              = o[QLatin1String("maxItems")].toInt(0);
         opts.waitForVideoSecs      = o[QLatin1String("waitForVideoSecs")].toInt(0);
         opts.concurrentFragments   = o[QLatin1String("concurrentFragments")].toInt(1);
         opts.rateLimitKBps         = o[QLatin1String("rateLimitKBps")].toInt(0);
@@ -221,6 +224,9 @@ signals:
     void playlistItemProgressData(int index, double percent, qint64 totalBytes,
                                   qint64 speedBps, const QString &eta);
     void playlistItemFinished(int index);
+    // Real on-disk filename (with extension) yt-dlp wrote for this playlist item,
+    // distinct from the clean display title — used for open/reveal targeting.
+    void playlistItemFilePath(int index, const QString &filename);
 
 private slots:
     void onReadyReadStdout();
@@ -234,6 +240,10 @@ private:
 
     // Dispatch a single, complete line of yt-dlp stdout.
     void handleLine(const QString &line);
+
+    // Mark playlist progression: when the active item index advances, the prior
+    // item is complete. Emits playlistItemFinished for every index now passed.
+    void advancePlaylistItem(int newIndex);
 
     // Parse a "[download] X% of Y.YYUnit at S.SS Unit/s ETA …" line.
     // Returns true if the line was recognized as a progress line and processed.
@@ -289,4 +299,8 @@ private:
     bool   m_seenFullPhase{false};  // true once the first 100 % has been seen
     int    m_playlistCurrentIndex{0};
     int    m_playlistTotalItems{0};
+    // Highest playlist index we've started; when the index advances, the previous
+    // item is complete (a video may have several download phases — video, then
+    // audio — so per-phase 100% is NOT a reliable per-item completion signal).
+    int    m_playlistStartedIndex{0};
 };

@@ -102,16 +102,53 @@ Rectangle {
             height:  rowRect.height - 1
             clip: true
             Row {
-                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
+                // Children of a channel container are indented; the container row
+                // shows a collapse/expand twisty.
+                readonly property bool _isChild: rowRect.item && rowRect.item.parentId && rowRect.item.parentId.length > 0
+                // Indent children by the parent's twisty (20) + spacing (6) so the
+                // child file icons line up directly under the container's file icon.
+                readonly property int _indent: _isChild ? 26 : 0
+                anchors { verticalCenter: parent.verticalCenter; left: parent.left
+                          leftMargin: 6 + _indent }
                 spacing: 6
-                width: parent.width - 12
+                width: parent.width - 12 - _indent
+
+                // Expand/collapse twisty (container rows only). A passive
+                // TapHandler is used (not a MouseArea) so the row's preventStealing
+                // MouseArea doesn't swallow the press before it reaches the twisty.
+                // Double-clicks on the twisty are caught in the row's onDoubleClicked
+                // via the _twistyHit() hit-test so they toggle instead of opening
+                // the channel dialog.
+                Item {
+                    id: twisty
+                    visible: rowRect.item && rowRect.item.isChannelContainer
+                    width: visible ? 20 : 0
+                    height: 20
+                    anchors.verticalCenter: parent.verticalCenter
+                    Text {
+                        anchors.centerIn: parent
+                        text: (rowRect.item && rowRect.item.treeExpanded) ? "▾" : "▸"  // ▾ / ▸
+                        color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textSecond
+                        font.pixelSize: 14 * App.fontScale
+                    }
+                    TapHandler {
+                        acceptedButtons: Qt.LeftButton
+                        gesturePolicy: TapHandler.ReleaseWithinBounds
+                        onTapped: if (rowRect.item)
+                            App.downloadModel.setExpanded(rowRect.item.id, !rowRect.item.treeExpanded)
+                    }
+                }
+
                 Image {
                     width: 18; height: 18
                     anchors.verticalCenter: parent.verticalCenter
                     source: {
                         if (!rowRect.item) return ""
                         var basePath = (rowRect.item.savePath + "/" + rowRect.item.filename).replace(/\\/g, "/")
-                        if (rowRect.item.isTorrent && !rowRect.item.torrentIsSingleFile)
+                        // A trailing "/" makes the icon provider yield a folder icon.
+                        // Channel/playlist containers and multi-file torrents are folders.
+                        if (rowRect.item.isChannelContainer
+                            || (rowRect.item.isTorrent && !rowRect.item.torrentIsSingleFile))
                             basePath += "/"
                         return "image://fileicon/" + basePath + (rowRect.item.status === "Completed" ? "?c=1" : "")
                     }
@@ -120,7 +157,13 @@ Rectangle {
                     asynchronous: true
                 }
                 Text {
-                    text: rowRect.item ? rowRect.item.filename : ""
+                    text: {
+                        if (!rowRect.item) return ""
+                        // Container rows append a live "N/M complete · NN MB" subtitle.
+                        if (rowRect.item.isChannelContainer && rowRect.item.aggregateStatusText !== "")
+                            return rowRect.item.filename + "   —   " + rowRect.item.aggregateStatusText
+                        return rowRect.item.filename
+                    }
                     color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                     font.pixelSize: 12 * App.fontScale
                     width: parent.parent.width - 42
@@ -156,14 +199,21 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 text: {
                     if (!rowRect.item) return ""
+                    // Channel container: show the aggregate "2/3 complete · NN MB".
+                    if (rowRect.item.isChannelContainer && rowRect.item.status !== "Completed"
+                        && rowRect.item.aggregateStatusText !== "")
+                        return rowRect.item.aggregateStatusText
                     if (rowRect.item.isTorrent && !rowRect.item.torrentHasMetadata)
                         return qsTr("Pending")
+                    if (rowRect.item.status === "Completed")
+                        return qsTr("Completed")
                     if (rowRect.item.status === "Downloading")
-                        return (rowRect.item.progress * 100).toFixed(1) + "%"
+                        // Cap at 99%: a running item must never read 100%.
+                        return Math.min(99, Math.round(rowRect.item.progress * 100)) + "%"
                     if (rowRect.item.status === "Paused" && rowRect.item.progress > 0)
-                        return qsTr("%1% (Stopped)").arg((rowRect.item.progress * 100).toFixed(1))
+                        return qsTr("%1% (Stopped)").arg(Math.round(rowRect.item.progress * 100))
                     if (rowRect.item.status === "Checking" && rowRect.item.progress > 0)
-                        return qsTr("Checking (%1%)").arg((rowRect.item.progress * 100).toFixed(1))
+                        return qsTr("Checking (%1%)").arg(Math.round(rowRect.item.progress * 100))
                     return rowRect.item.statusText
                 }
                 color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
@@ -431,7 +481,15 @@ Rectangle {
         Rectangle {
             visible: !progStrip._metadataPending
             anchors { left: parent.left; bottom: parent.bottom }
-            width: rowRect.item ? rowRect.item.progress * progStrip._viewportWidth : 0
+            width: {
+                if (!rowRect.item) return 0
+                // Channel container's real bytes can be 0 while sizes are unknown;
+                // ride the byte+count aggregate instead.
+                var f = rowRect.item.isChannelContainer
+                    ? rowRect.item.aggregateProgress
+                    : rowRect.item.progress
+                return f * progStrip._viewportWidth
+            }
             height: parent.height
             color: ColorPalette.progressDownloading
         }
@@ -491,7 +549,11 @@ Rectangle {
                 }
             }
             if (dragActive && table.categoryDragProxy) {
-                var winPos = mapToItem(null, mouse.x, mouse.y)
+                // Map into the proxy's own parent space (the ApplicationWindow
+                // contentItem, whose origin is below the menuBar) — not the scene
+                // (mapToItem(null,...)), which includes the menuBar height and would
+                // shift the proxy + label down-right of the real cursor.
+                var winPos = mapToItem(table.categoryDragProxy.parent, mouse.x, mouse.y)
                 table.categoryDragProxy.x = winPos.x
                 table.categoryDragProxy.y = winPos.y
             }
@@ -537,8 +599,34 @@ Rectangle {
 
         onDoubleClicked: function(mouse) {
             if (!rowRect.item) return
+            // Double-click on the container twisty toggles expand/collapse rather
+            // than opening any progress dialog.
+            if (rowRect.item.isChannelContainer) {
+                var tp = mapToItem(twisty, mouse.x, mouse.y)
+                if (tp.x >= 0 && tp.x <= twisty.width && tp.y >= 0 && tp.y <= twisty.height) {
+                    App.downloadModel.setExpanded(rowRect.item.id, !rowRect.item.treeExpanded)
+                    return
+                }
+            }
             if (rowRect.item.isTorrent) {
                 table.openPropertiesRequested(rowRect.item)
+                return
+            }
+            // A yt-dlp channel/playlist download has its own multi-item progress
+            // window — reopen that instead of single-file progress/properties.
+            if (rowRect.item.isYtdlp && rowRect.item.ytdlpPlaylistMode) {
+                table.openChannelProgressRequested(rowRect.item)
+                return
+            }
+            // A child video row: while still downloading it has no HTTP-style
+            // segmented progress (the parent's single yt-dlp worker drives all
+            // videos) — open the parent's channel progress dialog. Once finished,
+            // fall through to the normal open-file / properties behaviour.
+            if (rowRect.item.parentId && rowRect.item.parentId.length > 0
+                    && rowRect.item.status !== "Completed") {
+                var parent = App.downloadModel.itemById(rowRect.item.parentId)
+                if (parent)
+                    table.openChannelProgressRequested(parent)
                 return
             }
             if (rowRect.item.status === "Downloading" || rowRect.item.status === "Assembling") {

@@ -746,8 +746,60 @@ static void selectWorkingGraphicsBackend()
 #endif
 }
 
+#if defined(Q_OS_WIN) && defined(STELLAR_CRASH_TRACE)
+#include <windows.h>
+#include <dbghelp.h>
+static LONG WINAPI stellarCrashHandler(EXCEPTION_POINTERS *info) {
+    HANDLE proc = GetCurrentProcess();
+    SymSetOptions(SYMOPT_LOAD_LINES | SYMOPT_DEFERRED_LOADS);
+    SymInitialize(proc, nullptr, TRUE);
+    FILE *f = nullptr;
+    fopen_s(&f, "crashtrace.txt", "w");
+    if (f) fprintf(f, "Exception 0x%08lX at %p\n",
+                   info->ExceptionRecord->ExceptionCode,
+                   info->ExceptionRecord->ExceptionAddress);
+    CONTEXT *ctx = info->ContextRecord;
+    STACKFRAME64 frame{};
+    frame.AddrPC.Offset    = ctx->Rip; frame.AddrPC.Mode    = AddrModeFlat;
+    frame.AddrFrame.Offset = ctx->Rbp; frame.AddrFrame.Mode = AddrModeFlat;
+    frame.AddrStack.Offset = ctx->Rsp; frame.AddrStack.Mode = AddrModeFlat;
+    for (int i = 0; i < 40; ++i) {
+        if (!StackWalk64(IMAGE_FILE_MACHINE_AMD64, proc, GetCurrentThread(),
+                         &frame, ctx, nullptr, SymFunctionTableAccess64,
+                         SymGetModuleBase64, nullptr) || frame.AddrPC.Offset == 0)
+            break;
+        char buf[sizeof(SYMBOL_INFO) + 512]{};
+        auto *sym = reinterpret_cast<SYMBOL_INFO *>(buf);
+        sym->SizeOfStruct = sizeof(SYMBOL_INFO);
+        sym->MaxNameLen   = 511;
+        DWORD64 disp = 0;
+        DWORD lineDisp = 0;
+        IMAGEHLP_LINE64 line{}; line.SizeOfStruct = sizeof(line);
+        const bool haveSym  = SymFromAddr(proc, frame.AddrPC.Offset, &disp, sym);
+        const bool haveLine = SymGetLineFromAddr64(proc, frame.AddrPC.Offset, &lineDisp, &line);
+        // Module + offset always resolves even with no PDB — the reliable signal.
+        IMAGEHLP_MODULE64 mod{}; mod.SizeOfStruct = sizeof(mod);
+        const bool haveMod = SymGetModuleInfo64(proc, frame.AddrPC.Offset, &mod);
+        const DWORD64 base = SymGetModuleBase64(proc, frame.AddrPC.Offset);
+        if (f) fprintf(f, "%2d  %-16s +0x%llX  | %s%s%s%s%lu\n", i,
+                       haveMod ? mod.ModuleName : "?",
+                       (unsigned long long)(frame.AddrPC.Offset - base),
+                       haveSym ? sym->Name : "",
+                       haveSym ? "  " : "",
+                       haveLine ? line.FileName : "",
+                       haveLine ? ":" : "",
+                       haveLine ? line.LineNumber : 0UL);
+    }
+    if (f) fclose(f);
+    return EXCEPTION_EXECUTE_HANDLER;
+}
+#endif
+
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_WIN) && defined(STELLAR_CRASH_TRACE)
+    SetUnhandledExceptionFilter(stellarCrashHandler);
+#endif
     // Silence Qt's harmless "OpenType support missing ... script 20" font-DB
     // warnings -- Qt logs these for scripts (e.g. Braille) no installed UI font
     // shapes. They're cosmetic noise, not a real problem.

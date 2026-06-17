@@ -16,6 +16,7 @@
 
 #include "DownloadItem.h"
 #include <QFileInfo>
+#include <QQmlEngine>
 
 std::atomic<int>  DownloadItem::s_dateStyle{0};
 std::atomic<bool> DownloadItem::s_use24Hour{true};
@@ -24,6 +25,14 @@ std::atomic<bool> DownloadItem::s_showSeconds{true};
 DownloadItem::DownloadItem(const QString &id, const QUrl &url, QObject *parent)
     : QObject(parent), m_id(id), m_url(url), m_addedAt(QDateTime::currentDateTime())
 {
+    // DownloadItems are owned by C++ (held in DownloadTableModel) and exposed to QML
+    // via the model's "item" role. A QObject with no parent returned to QML defaults
+    // to JavaScriptOwnership — the V4 GC could then delete it while a delegate
+    // binding still references it (dangling QObject→JS wrapper → access violation in
+    // Qt6Qml during scroll). Pin C++ ownership so only C++ ever frees them. Channel
+    // child rows in particular are created parentless at runtime and hit this.
+    QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
+
     m_filename = QFileInfo(url.path()).fileName();
     if (m_filename.isEmpty())
         m_filename = QStringLiteral("download");

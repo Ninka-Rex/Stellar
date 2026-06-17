@@ -101,6 +101,9 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setResumeCapable(obj[QLatin1String("resumeCapable")].toBool());
         item->setReferrer(obj[QLatin1String("referrer")].toString());
         item->setParentUrl(obj[QLatin1String("parentUrl")].toString());
+        item->setParentId(obj[QLatin1String("parentId")].toString());
+        item->setIsChannelContainer(obj[QLatin1String("isChannelContainer")].toBool());
+        item->setTreeExpanded(obj[QLatin1String("treeExpanded")].toBool(true));
         item->setUsername(deobfuscateCred(obj[QLatin1String("username")].toString()));
         item->setPassword(deobfuscateCred(obj[QLatin1String("password")].toString()));
         {
@@ -121,6 +124,7 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setYtdlpFormatId(obj[QLatin1String("ytdlpFormatId")].toString());
         item->setYtdlpPlaylistMode(obj[QLatin1String("ytdlpPlaylistMode")].toBool(false));
         item->setYtdlpExtraOptions(obj[QLatin1String("ytdlpExtraOptions")].toString());
+        item->setYtdlpRealFile(obj[QLatin1String("ytdlpRealFile")].toString());
         item->setIsTorrent(obj[QLatin1String("isTorrent")].toBool(false));
         item->setTorrentSource(obj[QLatin1String("torrentSource")].toString());
         item->setTorrentTrackers(obj[QLatin1String("torrentTrackers")].toVariant().toStringList());
@@ -204,6 +208,12 @@ void DownloadDatabase::save(DownloadItem *item) {
     m[QStringLiteral("addedAt")]        = item->addedAt().toString(Qt::ISODate);
     m[QStringLiteral("referrer")]       = item->referrer();
     m[QStringLiteral("parentUrl")]      = item->parentUrl();
+    if (!item->parentId().isEmpty())
+        m[QStringLiteral("parentId")]   = item->parentId();
+    if (item->isChannelContainer()) {
+        m[QStringLiteral("isChannelContainer")] = true;
+        m[QStringLiteral("treeExpanded")]       = item->treeExpanded();
+    }
     // Only persist credentials when present; obfuscate to avoid plaintext in backups.
     if (!item->username().isEmpty())
         m[QStringLiteral("username")] = obfuscateCred(item->username());
@@ -219,6 +229,8 @@ void DownloadDatabase::save(DownloadItem *item) {
         m[QStringLiteral("ytdlpPlaylistMode")] = item->ytdlpPlaylistMode();
         if (!item->ytdlpExtraOptions().isEmpty())
             m[QStringLiteral("ytdlpExtraOptions")] = item->ytdlpExtraOptions();
+        if (!item->ytdlpRealFile().isEmpty())
+            m[QStringLiteral("ytdlpRealFile")] = item->ytdlpRealFile();
     }
     if (item->isTorrent()) {
         m[QStringLiteral("isTorrent")] = true;

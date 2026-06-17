@@ -214,6 +214,7 @@ Window {
         ignoreErrorsCheck.checked = false; waitForVideoCheck.checked = false
         waitForVideoField.text = "60"; concFragField.text = ""
         rateLimitField.text = ""
+        scopeCombo.currentIndex = 0
         advancedExpanded = false
     }
 
@@ -861,42 +862,31 @@ Window {
                             color: ColorPalette.textSecond; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
                         }
 
-                        Rectangle {
+                        RowLayout {
                             Layout.fillWidth: true
                             visible: root._isYoutubeChannelRootUrl
-                            radius: 3; color: ColorPalette.cardBg; border.color: "#333333"
-                            implicitHeight: scopeRow.implicitHeight + 12
-
-                            RowLayout {
-                                id: scopeRow
-                                anchors { fill: parent; margins: 6 }
-                                spacing: 6
-                                Text { text: qsTr("Scope:"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium }
-                                ButtonGroup { id: scopeGroup }
-                                Repeater {
-                                    model: [{id:"scopeAll",t:qsTr("All uploads"),chk:true},{id:"scopeVid",t:qsTr("Videos")},{id:"scopeSho",t:qsTr("Shorts")},{id:"scopeLiv",t:qsTr("Live")}]
-                                    StyledRadioButton {
-                                        required property var modelData
-                                        id: scopeRb
-                                        objectName: modelData.id
-                                        checked: modelData.chk || false
-                                        text: modelData.t
-                                        ButtonGroup.group: scopeGroup
-                                        topPadding: 0; bottomPadding: 0
-                                        padding: 0; leftPadding: indicator.width + 4
-                                        Layout.alignment: Qt.AlignVCenter
-                                        font.pixelSize: 11 * App.fontScale
-                                        indicator: Rectangle {
-                                            implicitWidth: 13; implicitHeight: 13; radius: 7
-                                            color: scopeRb.checked ? ColorPalette.selectionBg : ColorPalette.inputBg
-                                            border.color: scopeRb.checked ? "#4488dd" : "#555555"
-                                            Rectangle { width: 5; height: 5; radius: 3; anchors.centerIn: parent; color: "#4488dd"; visible: scopeRb.checked }
-                                        }
-                                        contentItem: Text {
-                                            leftPadding: 4; text: scopeRb.text; color: ColorPalette.textPrimary
-                                            font: scopeRb.font; verticalAlignment: Text.AlignVCenter
-                                        }
-                                    }
+                            spacing: 8
+                            Text { text: qsTr("Scope:"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium; Layout.alignment: Qt.AlignVCenter }
+                            StyledComboBox {
+                                id: scopeCombo
+                                Layout.fillWidth: true
+                                font.pixelSize: 12 * App.fontScale
+                                // Index maps to scope in the download handler:
+                                // 0=All uploads, 1=Videos, 2=Shorts, 3=Live
+                                model: [qsTr("All uploads"), qsTr("Videos"), qsTr("Shorts"), qsTr("Live")]
+                                currentIndex: 0
+                                contentItem: Text { leftPadding: 8; text: scopeCombo.displayText; color: ColorPalette.textPrimary; font: scopeCombo.font; verticalAlignment: Text.AlignVCenter }
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: scopeCombo.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
+                                delegate: ItemDelegate {
+                                    id: _scDel; width: scopeCombo.width; height: 26
+                                    contentItem: Text { text: modelData; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; verticalAlignment: Text.AlignVCenter; leftPadding: 8 }
+                                    background: Rectangle { color: _scDel.hovered ? "#2a3a5a" : ColorPalette.inputBg }
+                                }
+                                popup: Popup {
+                                    y: scopeCombo.height + 2; width: scopeCombo.width
+                                    implicitHeight: contentItem.implicitHeight + 4; padding: 2
+                                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
+                                    contentItem: ListView { implicitHeight: contentHeight; clip: true; model: scopeCombo.delegateModel }
                                 }
                             }
                         }
@@ -1283,11 +1273,10 @@ Window {
                     var nItems   = (isPl && allVideosGroup.checkedButton && allVideosGroup.checkedButton.text !== qsTr("All videos"))
                                    ? (parseInt(latestNField.text) || 10) : 0
                     var scope    = "all"
-                    if (root._isYoutubeChannelRootUrl && scopeGroup.checkedButton) {
-                        var sn = scopeGroup.checkedButton.objectName
-                        if (sn === "scopeVid") scope = "videos"
-                        else if (sn === "scopeSho") scope = "shorts"
-                        else if (sn === "scopeLiv") scope = "live"
+                    if (root._isYoutubeChannelRootUrl) {
+                        if (scopeCombo.currentIndex === 1) scope = "videos"
+                        else if (scopeCombo.currentIndex === 2) scope = "shorts"
+                        else if (scopeCombo.currentIndex === 3) scope = "live"
                     }
                     root.downloadRequested(root._channelScopedUrl(scope), formatId, container,
                                            savePath, catId, root.uniqueFilename, root._title,

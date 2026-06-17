@@ -62,6 +62,9 @@ public:
     Q_INVOKABLE void setFilterCategory(const QString &filter);
     Q_INVOKABLE void setFilterQueue(const QString &filter);
     Q_INVOKABLE void sortBy(const QString &column, bool ascending);
+    // Expand/collapse a channel-container's child rows. Inserts/removes the
+    // contiguous child block without resetting the model.
+    Q_INVOKABLE void setExpanded(const QString &containerId, bool expanded);
     QList<DownloadItem *> allItems() const { return m_items; }
 
 public slots:
@@ -89,6 +92,14 @@ private:
     void rebuildVisibleSet();
     bool matchesFilter(DownloadItem *item) const;
     int compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const;
+    // Hierarchy-aware comparator: orders top-level rows by the active column, but
+    // keeps each container's children contiguously beneath it (parent first, then
+    // children in birth order). Used by every sort site so groups never split.
+    int treeCompare(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const;
+    // Top-level anchor for grouping: the item itself, or its parent container.
+    DownloadItem *topAnchor(DownloadItem *item) const;
+    // True when the item is a child whose container is collapsed (so it must hide).
+    bool hiddenByCollapse(DownloadItem *item) const;
     static int statusSortKey(const QString &status);
 
     QList<DownloadItem *> m_items;

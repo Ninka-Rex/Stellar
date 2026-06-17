@@ -55,6 +55,75 @@ DownloadTableModel::DownloadTableModel(QObject *parent)
     : QAbstractTableModel(parent) {
 }
 
+DownloadItem *DownloadTableModel::topAnchor(DownloadItem *item) const {
+    if (!item || item->parentId().isEmpty())
+        return item;
+    DownloadItem *parent = m_itemsById.value(item->parentId(), nullptr);
+    return parent ? parent : item;  // orphaned child falls back to itself
+}
+
+bool DownloadTableModel::hiddenByCollapse(DownloadItem *item) const {
+    if (!item || item->parentId().isEmpty())
+        return false;
+    DownloadItem *parent = m_itemsById.value(item->parentId(), nullptr);
+    return parent && !parent->treeExpanded();
+}
+
+int DownloadTableModel::treeCompare(DownloadItem *a, DownloadItem *b,
+                                    const QString &column, bool ascending) const {
+    DownloadItem *anchorA = topAnchor(a);
+    DownloadItem *anchorB = topAnchor(b);
+
+    // Different groups: order by their top-level anchors under the active column.
+    if (anchorA != anchorB)
+        return compareItems(anchorA, anchorB, column, ascending);
+
+    // Same group. A container always precedes its own children.
+    const bool aIsAnchor = (a == anchorA);
+    const bool bIsAnchor = (b == anchorB);
+    if (aIsAnchor != bIsAnchor)
+        return aIsAnchor ? -1 : 1;
+
+    // Two children of the same container: keep stable birth order (added time,
+    // then id) so siblings never reshuffle as their stats change.
+    if (a->addedAt() != b->addedAt())
+        return a->addedAt() < b->addedAt() ? -1 : 1;
+    return a->id() < b->id() ? -1 : (a->id() > b->id() ? 1 : 0);
+}
+
+void DownloadTableModel::setExpanded(const QString &containerId, bool expanded) {
+    DownloadItem *container = m_itemsById.value(containerId, nullptr);
+    if (!container || container->treeExpanded() == expanded)
+        return;
+
+    container->setTreeExpanded(expanded);
+
+    // Rebuild m_visible from scratch under a full model reset. Surgical
+    // insert/remove of the child block is fragile: rapid expand/collapse combined
+    // with the live re-sort (onItemChanged / flushVolatileSort can move the
+    // container or a child the same frame) repeatedly desynced the row count from
+    // the begin/end*Rows signals and crashed deep inside Qt's view machinery
+    // (access violation in Qt6Core during delegate refresh). A reset is O(n) but
+    // expand/collapse is a deliberate, infrequent user action — correctness wins.
+    // matchesFilter() already excludes children of a collapsed container via
+    // hiddenByCollapse(), so this naturally adds/removes the right rows.
+    QList<DownloadItem *> rebuilt;
+    rebuilt.reserve(m_items.size());
+    const bool showAll = (m_filterCategory == QStringLiteral("all") && m_filterQueue.isNull());
+    for (DownloadItem *it : m_items) {
+        if (showAll ? !hiddenByCollapse(it) : matchesFilter(it))
+            rebuilt.append(it);
+    }
+    std::sort(rebuilt.begin(), rebuilt.end(), [this](DownloadItem *a, DownloadItem *b) {
+        return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
+    });
+
+    beginResetModel();
+    m_visible = rebuilt;
+    rebuildVisibleSet();
+    endResetModel();
+}
+
 int DownloadTableModel::rowCount(const QModelIndex &parent) const {
     return parent.isValid() ? 0 : m_visible.size();
 }
@@ -113,6 +182,7 @@ void DownloadTableModel::connectItemSignals(DownloadItem *item) {
     connect(item, &DownloadItem::torrentChanged,     this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::categoryChanged,    this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::queueIdChanged,     this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::lastTryAtChanged,   this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::doneBytesChanged,    this, &DownloadTableModel::onItemProgressChanged);
     connect(item, &DownloadItem::speedChanged,        this, &DownloadTableModel::onItemProgressChanged);
     connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::onItemProgressChanged);
@@ -135,7 +205,7 @@ void DownloadTableModel::addItem(DownloadItem *item) {
         // Find insert position based on current sort
         int insertPos = m_visible.size();
         for (int i = 0; i < m_visible.size(); ++i) {
-            if (compareItems(m_visible.at(i), item, m_sortColumn, m_sortAscending) > 0) {
+            if (treeCompare(m_visible.at(i), item, m_sortColumn, m_sortAscending) > 0) {
                 insertPos = i;
                 break;
             }
@@ -152,6 +222,9 @@ void DownloadTableModel::removeItem(const QString &id) {
         if (m_items[i]->id() == id) {
             DownloadItem *item = m_items[i];
             item->disconnect(this);
+            // Drop any dangling reference: a stale pointer left in m_volatileDirty
+            // would be dereferenced by the next flushVolatileSort (use-after-free).
+            m_volatileDirty.remove(item);
             m_items.removeAt(i);
             m_itemsById.remove(id);
             int visRow = m_visible.indexOf(item);
@@ -199,7 +272,7 @@ void DownloadTableModel::endBulkAdd() {
     }
     std::sort(m_visible.begin(), m_visible.end(),
         [this](DownloadItem *a, DownloadItem *b) {
-            return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+            return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
         });
     rebuildVisibleSet();
 
@@ -233,7 +306,13 @@ void DownloadTableModel::setFilterCategory(const QString &filter) {
 
     QList<DownloadItem*> newVisible;
     if (m_filterCategory == QStringLiteral("all")) {
-        newVisible = m_items;
+        // "all" shows every item EXCEPT children hidden under a collapsed
+        // container — otherwise switching categories silently re-expands them
+        // (and then re-expanding duplicates the rows already in m_visible).
+        newVisible.reserve(m_items.size());
+        for (auto *item : m_items) {
+            if (!hiddenByCollapse(item)) newVisible.append(item);
+        }
     } else {
         newVisible.reserve(m_items.size());
         for (auto *item : m_items) {
@@ -241,7 +320,7 @@ void DownloadTableModel::setFilterCategory(const QString &filter) {
         }
     }
     std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
-        return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+        return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
     });
 
     if (newVisible == m_visible) return;
@@ -264,7 +343,7 @@ void DownloadTableModel::setFilterQueue(const QString &filter) {
         if (matchesFilter(item)) newVisible.append(item);
     }
     std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
-        return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+        return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
     });
 
     if (newVisible == m_visible) return;
@@ -280,59 +359,11 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
     m_sortAscending = ascending;
     if (m_visible.isEmpty()) return;
 
-    // Sort only the visible items - much faster than sorting all items
-    static const QStringList kTorrentCols = {
-        QStringLiteral("seeders"), QStringLiteral("peers"), QStringLiteral("ratio"),
-        QStringLiteral("uploaded"), QStringLiteral("downloaded"), QStringLiteral("upspeed")
-    };
-    std::sort(m_visible.begin(), m_visible.end(), [&](DownloadItem *a, DownloadItem *b) -> bool {
-        // Non-torrent items always sort after torrent items for torrent-specific columns.
-        if (kTorrentCols.contains(column) && a->isTorrent() != b->isTorrent())
-            return a->isTorrent();  // torrent < non-torrent (comes first)
-        int cmpResult = 0;
-        if (column == QStringLiteral("name"))
-            cmpResult = a->filename().toLower().compare(b->filename().toLower());
-        else if (column == QStringLiteral("size"))
-            cmpResult = a->totalBytes() < b->totalBytes() ? -1 : (a->totalBytes() > b->totalBytes() ? 1 : 0);
-        else if (column == QStringLiteral("status"))
-            cmpResult = statusSortKey(a->status()) - statusSortKey(b->status());
-        else if (column == QStringLiteral("timeleft"))
-            cmpResult = a->timeLeft().compare(b->timeLeft());
-        else if (column == QStringLiteral("speed") || column == QStringLiteral("downspeed"))
-            cmpResult = a->speed() < b->speed() ? -1 : (a->speed() > b->speed() ? 1 : 0);
-        else if (column == QStringLiteral("upspeed"))
-            cmpResult = a->torrentUploadSpeed() < b->torrentUploadSpeed() ? -1 : (a->torrentUploadSpeed() > b->torrentUploadSpeed() ? 1 : 0);
-        else if (column == QStringLiteral("added"))
-            cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
-        else if (column == QStringLiteral("saveto"))
-            cmpResult = a->savePath().toLower().compare(b->savePath().toLower());
-        else if (column == QStringLiteral("description"))
-            cmpResult = a->description().toLower().compare(b->description().toLower());
-        else if (column == QStringLiteral("referrer"))
-            cmpResult = a->referrer().toLower().compare(b->referrer().toLower());
-        else if (column == QStringLiteral("parenturl"))
-            cmpResult = a->parentUrl().toLower().compare(b->parentUrl().toLower());
-        else if (column == QStringLiteral("lasttry"))
-            cmpResult = a->lastTryAt() < b->lastTryAt() ? -1 : (a->lastTryAt() > b->lastTryAt() ? 1 : 0);
-        else if (column == QStringLiteral("seeders"))
-            // Sort by tracker-reported total (listSeeders), not connected count — the
-            // connected count is noisy (0–50) and nearly identical across active torrents.
-            cmpResult = a->torrentListSeeders() < b->torrentListSeeders() ? -1 : (a->torrentListSeeders() > b->torrentListSeeders() ? 1 : 0);
-        else if (column == QStringLiteral("peers"))
-            cmpResult = a->torrentListPeers() < b->torrentListPeers() ? -1 : (a->torrentListPeers() > b->torrentListPeers() ? 1 : 0);
-        else if (column == QStringLiteral("queue"))
-            cmpResult = a->queueId().compare(b->queueId());
-        else if (column == QStringLiteral("ratio"))
-            cmpResult = a->torrentRatio() < b->torrentRatio() ? -1 : (a->torrentRatio() > b->torrentRatio() ? 1 : 0);
-        else if (column == QStringLiteral("uploaded"))
-            cmpResult = a->torrentUploaded() < b->torrentUploaded() ? -1 : (a->torrentUploaded() > b->torrentUploaded() ? 1 : 0);
-        else if (column == QStringLiteral("downloaded"))
-            cmpResult = a->torrentDownloaded() < b->torrentDownloaded() ? -1 : (a->torrentDownloaded() > b->torrentDownloaded() ? 1 : 0);
-        else
-            cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
-
-        if (cmpResult != 0) return ascending ? (cmpResult < 0) : (cmpResult > 0);
-        return a->id() < b->id();
+    // Sort the visible list with the hierarchy-aware comparator so channel
+    // children stay grouped under their container regardless of sort column.
+    // (treeCompare delegates per-column logic to compareItems — single source.)
+    std::sort(m_visible.begin(), m_visible.end(), [&](DownloadItem *a, DownloadItem *b) {
+        return treeCompare(a, b, column, ascending) < 0;
     });
 
     // Simple approach: emit dataChanged for the entire range since rows haven't changed
@@ -340,6 +371,10 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
 }
 
 bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
+    // A child of a collapsed container is never visible, regardless of category.
+    if (hiddenByCollapse(item))
+        return false;
+
     if (!m_filterQueue.isNull()) {
         if (m_filterQueue == QStringLiteral("queue_any")) {
             return !item->queueId().isEmpty();
@@ -384,7 +419,10 @@ void DownloadTableModel::rebuildVisible() {
     QList<DownloadItem*> newVisible;
 
     if (m_filterCategory == QStringLiteral("all") && m_filterQueue.isNull()) {
-        newVisible = m_items;
+        newVisible.reserve(m_items.size());
+        for (auto *item : m_items) {
+            if (!hiddenByCollapse(item)) newVisible.append(item);
+        }
     } else {
         newVisible.reserve(m_items.size());
         for (auto *item : m_items) {
@@ -392,7 +430,7 @@ void DownloadTableModel::rebuildVisible() {
         }
     }
     std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
-        return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+        return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
     });
 
     if (m_visible != newVisible) {
@@ -411,12 +449,25 @@ void DownloadTableModel::onItemChanged() {
     int visRow = m_visible.indexOf(item);
 
     if (shouldBeVisible && visRow < 0) {
-        // Item now matches filter — insert it at the correct position.
-        // m_visibleSet gives O(1) membership while walking m_items.
-        int insertPos = 0;
-        for (int i = 0; i < m_items.size(); ++i) {
-            if (m_items[i] == item) break;
-            if (m_visibleSet.contains(m_items[i])) ++insertPos;
+        // Item now matches filter — insert it at the correct sorted position.
+        int insertPos;
+        if (!item->parentId().isEmpty() || item->isChannelContainer()) {
+            // Grouped item: position by the hierarchy-aware comparator so children
+            // land inside their container's block, not by raw m_items order.
+            insertPos = m_visible.size();
+            for (int i = 0; i < m_visible.size(); ++i) {
+                if (treeCompare(m_visible[i], item, m_sortColumn, m_sortAscending) > 0) {
+                    insertPos = i;
+                    break;
+                }
+            }
+        } else {
+            // Plain row: keep the cheap m_items-order walk (m_visibleSet = O(1)).
+            insertPos = 0;
+            for (int i = 0; i < m_items.size(); ++i) {
+                if (m_items[i] == item) break;
+                if (m_visibleSet.contains(m_items[i])) ++insertPos;
+            }
         }
         beginInsertRows({}, insertPos, insertPos);
         m_visible.insert(insertPos, item);
@@ -428,27 +479,54 @@ void DownloadTableModel::onItemChanged() {
         m_visibleSet.remove(item);
         endRemoveRows();
     } else if (shouldBeVisible && visRow >= 0) {
+        // A container moving must carry its whole child block, which the single-row
+        // bubble below can't express. Re-sort the grouped list and emit a minimal
+        // diff instead (same jump-free technique as flushVolatileSort).
+        if (item->isChannelContainer()) {
+            const QList<DownloadItem *> before = m_visible;
+            std::stable_sort(m_visible.begin(), m_visible.end(),
+                [this](DownloadItem *a, DownloadItem *b) {
+                    return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
+                });
+            if (before == m_visible) {
+                emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
+                return;
+            }
+            int lo = 0;
+            while (lo < before.size() && before[lo] == m_visible[lo]) ++lo;
+            int hi = before.size() - 1;
+            while (hi > lo && before[hi] == m_visible[hi]) --hi;
+            emit dataChanged(index(lo, 0), index(hi, ColCount - 1), {ItemRole});
+            return;
+        }
+
         // Bubble the changed row to its correct sorted position using
         // move semantics — see the matching block in onItemProgressChanged
         // for the rationale (avoid layoutChanged-induced scroll snaps).
         int targetRow = visRow;
         while (targetRow > 0
-               && compareItems(m_visible[targetRow - 1], item, m_sortColumn, m_sortAscending) > 0) {
+               && treeCompare(m_visible[targetRow - 1], item, m_sortColumn, m_sortAscending) > 0) {
             --targetRow;
         }
         while (targetRow < m_visible.size() - 1
-               && compareItems(item, m_visible[targetRow + 1], m_sortColumn, m_sortAscending) > 0) {
+               && treeCompare(item, m_visible[targetRow + 1], m_sortColumn, m_sortAscending) > 0) {
             ++targetRow;
         }
 
         if (targetRow != visRow) {
             const int destinationChild = (targetRow > visRow) ? targetRow + 1 : targetRow;
-            beginMoveRows(QModelIndex(), visRow, visRow,
-                          QModelIndex(), destinationChild);
-            DownloadItem *moved = m_visible.takeAt(visRow);
-            m_visible.insert(targetRow, moved);
-            endMoveRows();
-            emit dataChanged(index(targetRow, 0), index(targetRow, ColCount - 1));
+            // beginMoveRows rejects an illegal move (dest inside [src, src+1]) by
+            // returning false; proceeding to mutate m_visible anyway would desync the
+            // row count from the view and crash inside Qt. Bail to a safe dataChanged.
+            if (beginMoveRows(QModelIndex(), visRow, visRow,
+                              QModelIndex(), destinationChild)) {
+                DownloadItem *moved = m_visible.takeAt(visRow);
+                m_visible.insert(targetRow, moved);
+                endMoveRows();
+                emit dataChanged(index(targetRow, 0), index(targetRow, ColCount - 1));
+            } else {
+                emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
+            }
         } else {
             emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
         }
@@ -535,7 +613,7 @@ void DownloadTableModel::flushVolatileSort() {
     const QList<DownloadItem *> before = m_visible;
     std::stable_sort(m_visible.begin(), m_visible.end(),
         [this](DownloadItem *a, DownloadItem *b) {
-            return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+            return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
         });
     m_volatileDirty.clear();
 
@@ -569,7 +647,7 @@ void DownloadTableModel::setUiActive(bool active) {
     // and repaint the whole table in a single pass.
     std::stable_sort(m_visible.begin(), m_visible.end(),
         [this](DownloadItem *a, DownloadItem *b) {
-            return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+            return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
         });
     m_volatileDirty.clear();
     // Single catch-up repaint of the whole table — values genuinely went stale
