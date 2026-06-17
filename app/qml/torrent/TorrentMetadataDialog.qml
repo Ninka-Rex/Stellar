@@ -23,13 +23,24 @@ import QtQuick.Layouts
 
 Window {
     id: root
+    // While still fetching metadata the dialog collapses to a small cozy window
+    // (just name + a slow indeterminate bar); it expands to the full file-picker
+    // size once metadata arrives. _applyMetaSize() drives the swap + re-center.
     width: 800
     height: 500
-    minimumWidth: 800
-    minimumHeight: 460
-    title: item && item.filename ? item.filename : qsTr("Torrent Metadata")
+    minimumWidth: 360
+    minimumHeight: 150
+    title: !metadataArrived ? qsTr("Fetching metadata")
+           : (item && item.filename ? item.filename : qsTr("Torrent Metadata"))
     color: ColorPalette.cardBg
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    // Qt.Window (not Qt.Dialog) so each metadata window gets its own Windows
+    // taskbar button, independent of the main window. Not transient-parented for
+    // the same reason — see ownerWindow (used only for centering).
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+           | Qt.WindowSystemMenuHint | Qt.WindowMinimizeButtonHint
+    // Owner used purely to center this dialog over the main window. NOT
+    // transientParent — that would demote this to a tool window with no taskbar entry.
+    property var ownerWindow: null
 
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
@@ -104,7 +115,17 @@ Window {
     readonly property var fileModel: downloadId.length > 0 ? App.torrentFileModel(downloadId) : null
     // Latched true once metadata arrives; never flips back. Prevents the Loader
     // from swapping sourceComponent on every libtorrent tick (which resets scroll).
-    property bool _metadataArrived: false
+    property bool metadataArrived: false
+    // True while a magnet/infohash is still pulling its metadata. The dialog
+    // collapses to a small cozy "fetching" window in this state.
+    readonly property bool _fetchingMeta: !!item && item.isTorrent && !item.torrentHasMetadata
+    // True while the torrent is actually transferring (or being verified/moved).
+    // Header progress bar + status word only show in these states or while
+    // fetching — never during pre-download file selection (e.g. a lone "Paused").
+    readonly property bool _torrentActive: !!item
+        && (item.status === "Downloading" || item.status === "Seeding"
+            || item.status === "Assembling" || item.status === "Checking"
+            || item.status === "Moving")
     // Suppress per-tick file_progress() walks while this dialog is hidden.
     // FilePropertiesDialog also gates on its Files tab; here the entire dialog
     // is a file picker so visibility alone is the right signal.
@@ -152,7 +173,7 @@ Window {
     }
 
     function _centerOnOwner() {
-        var owner = root.transientParent
+        var owner = root.ownerWindow
         if (owner) {
             x = owner.x + Math.round((owner.width  - width)  / 2)
             y = owner.y + Math.round((owner.height - height) / 2)
@@ -161,6 +182,25 @@ Window {
         x = Math.round((Screen.width  - width)  / 2)
         y = Math.round((Screen.height - height) / 2)
     }
+
+    // Collapse to a small cozy window while fetching metadata; expand to the full
+    // file-picker once metadata arrives. Re-center after the size change.
+    function _applyMetaSize() {
+        if (root.metadataArrived) {
+            root.minimumWidth = 800; root.minimumHeight = 460
+            root.width = 800;        root.height = 500
+        } else {
+            root.minimumWidth = 460; root.minimumHeight = 170
+            root.width = 480;        root.height = 170
+        }
+        _centerOnOwner()
+    }
+
+    // Expand the moment metadata lands. Deferred so the Loader swap to filesView
+    // completes before the window resizes (matches FilePropertiesDialog idiom).
+    // A property starting with "_" can't form an on<Prop>Changed handler, so watch
+    // it via Connections on self.
+    onMetadataArrivedChanged: Qt.callLater(_applyMetaSize)
 
     function fileUrlFromPath(path) {
         var p = String(path || "").trim().replace(/\\/g, "/")
@@ -235,12 +275,8 @@ Window {
     onVisibleChanged: {
         if (visible) {
             App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")
-            root._userInteracted = false
-            root._metadataArrived = !!(root.item && root.item.torrentHasMetadata)
-            root.metaMapZoom = 1.0
-            root.metaMapPanX = 0
-            root.metaMapPanY = 0
-            _centerOnOwner()
+            root.metadataArrived = !!(root.item && root.item.torrentHasMetadata)
+            _applyMetaSize()
             if (item) {
                 category = item.category || ""
                 description = item.description || ""
@@ -259,28 +295,18 @@ Window {
         }
     }
 
-    // Update window title and latch metadata state when item is assigned.
+    // Latch metadata state when item is assigned. (Window title is a declarative
+    // binding on `title:` above — don't assign it imperatively or the binding breaks.)
     onItemChanged: {
-        // Reset to default first so a stale name from a previous torrent never persists.
-        root.title = qsTr("Torrent Metadata")
-        if (root.item && root.item.filename && root.item.filename.length > 0)
-            root.title = root.item.filename
         if (root.item && root.item.torrentHasMetadata)
-            root._metadataArrived = true
+            root.metadataArrived = true
     }
 
     Connections {
         target: root.item
-        function onFilenameChanged() {
-            if (root.item && root.item.filename && root.item.filename.length > 0)
-                root.title = root.item.filename
-        }
         function onTorrentHasMetadataChanged() {
-            if (root.item && root.item.torrentHasMetadata) {
-                if (root.item.filename && root.item.filename.length > 0)
-                    root.title = root.item.filename
-                root._metadataArrived = true
-            }
+            if (root.item && root.item.torrentHasMetadata)
+                root.metadataArrived = true
         }
     }
 
@@ -305,234 +331,6 @@ Window {
         return 0
     }
 
-    // ?? Swarm map properties (mirrored from FilePropertiesDialog peer map) ??
-    readonly property var metaPeerModel: downloadId.length > 0 ? App.torrentPeerModel(downloadId) : null
-    readonly property bool metaMapActive: visible && !!(item) && !item.torrentHasMetadata && metaPeerModel !== null
-    onMetaMapActiveChanged: { if (metaPeerModel) metaPeerModel.setLiveUpdatesEnabled(metaMapActive) }
-
-    // Pan drag state helpers
-    property real _metaLastPanX: 0
-    property real _metaLastPanY: 0
-
-    // Auto-fit: animate zoom+pan to bound all plotted peers
-    property bool _userInteracted: false   // set true when user manually zooms/pans; suppresses auto-fit
-
-    // ?? Query peer model rows directly for coordinates avoids depending on ??
-    // Repeater delegate instantiation timing (itemAt() is unreliable during
-    // the Loader/Component lifecycle).
-    function metaAutoFit(mapW, mapH) {
-        var pm = root.metaPeerModel
-        if (!pm || mapW <= 0 || mapH <= 0) return
-
-        var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
-        var found = false
-
-        // Include the local "You" dot if available
-        if (pm.hasLocalLocation) {
-            var lpx = root.metaMapX(pm.localLongitude, mapW)
-            var lpy = root.metaMapY(pm.localLatitude, mapW, mapH)
-            minX = lpx; maxX = lpx; minY = lpy; maxY = lpy
-            found = true
-        }
-
-        var count = pm.rowCount()
-        for (var i = 0; i < count; i++) {
-            var lat = pm.data(pm.index(i, 0), 271)   // LatitudeRole  = Qt::UserRole+15
-            var lon = pm.data(pm.index(i, 0), 272)   // LongitudeRole = Qt::UserRole+16
-            var flat = Number(lat), flon = Number(lon)
-            if (!isFinite(flat) || !isFinite(flon) || (flat === 0 && flon === 0)) continue
-            var px = root.metaMapX(flon, mapW)
-            var py = root.metaMapY(flat, mapW, mapH)
-            if (px < minX) minX = px
-            if (px > maxX) maxX = px
-            if (py < minY) minY = py
-            if (py > maxY) maxY = py
-            found = true
-        }
-        if (!found) return
-
-        var pad = 64
-        var spanX = Math.max(1, maxX - minX) + pad * 2
-        var spanY = Math.max(1, maxY - minY) + pad * 2
-        var fitZoom = Math.min(mapW / spanX, mapH / spanY)
-        fitZoom = Math.max(1.0, Math.min(6.0, fitZoom))
-
-        var cx = (minX + maxX) / 2
-        var cy = (minY + maxY) / 2
-        root.metaMapZoom = fitZoom
-        root.metaMapPanX = mapW / 2 - cx * fitZoom
-        root.metaMapPanY = mapH / 2 - cy * fitZoom
-    }
-
-    function compactSpeed(bps) {
-        var n = Number(bps) || 0
-        if (n <= 0) return "0 B/s"
-        if (n >= 1000000000) return (n / 1000000000).toFixed(2) + " GB/s"
-        if (n >= 1000000) return (n / 1000000).toFixed(1) + " MB/s"
-        if (n >= 1000) return (n / 1000).toFixed(1) + " KB/s"
-        return Math.round(n) + " B/s"
-    }
-
-    property real   metaMapZoom: 1.0
-    property real   metaMapPanX: 0
-    property real   metaMapPanY: 0
-
-    Behavior on metaMapZoom { enabled: !root._userInteracted; NumberAnimation { duration: 1400; easing.type: Easing.InOutQuart } }
-    Behavior on metaMapPanX { enabled: !root._userInteracted; NumberAnimation { duration: 1400; easing.type: Easing.InOutQuart } }
-    Behavior on metaMapPanY { enabled: !root._userInteracted; NumberAnimation { duration: 1400; easing.type: Easing.InOutQuart } }
-    property real   metaMapLonOffset: 0.5
-    property real   metaMapLatOffset: 4.5
-    readonly property real metaMapSvgMinX: 1.0
-    readonly property real metaMapSvgMaxX: 799.0
-    readonly property real metaMapSvgMinY: 1.0
-    readonly property real metaMapSvgMaxY: 385.91
-
-    property bool   metaMapHoverVisible: false
-    property real   metaMapHoverX: 0
-    property real   metaMapHoverY: 0
-    property string metaMapHoverEndpoint: ""
-    property int    metaMapHoverPort: 0
-    property string metaMapHoverClient: ""
-    property string metaMapHoverCountryCode: ""
-    property string metaMapHoverRegionCode: ""
-    property string metaMapHoverRegionName: ""
-    property string metaMapHoverCityName: ""
-    property int    metaMapHoverRtt: 0
-    property int    metaMapHoverDownSpeed: 0
-    property int    metaMapHoverUpSpeed: 0
-    property bool   metaMapHoverIsSeed: false
-    property string metaMapHoverSource: ""
-    property string metaMapHoverFlags: ""
-    property real   metaMapHoverProgress: 0.0
-
-    function metaMapX(longitude, mapWidth) {
-        var lon = Number(longitude) + metaMapLonOffset
-        if (!isFinite(lon)) lon = 0
-        var normalized = (lon + 180.0) / 360.0
-        var drawableWidth = metaMapSvgMaxX - metaMapSvgMinX
-        return ((metaMapSvgMinX + normalized * drawableWidth) / 800.0) * mapWidth
-    }
-    function metaMapY(latitude, mapWidth, mapHeight) {
-        var lat = Number(latitude) + metaMapLatOffset
-        if (!isFinite(lat)) lat = 0
-        lat = Math.max(-90, Math.min(90, lat))
-        var normalized = (90 - lat) / 180
-        var drawableHeight = metaMapSvgMaxY - metaMapSvgMinY
-        return ((metaMapSvgMinY + normalized * drawableHeight) / 387.0) * mapHeight
-    }
-    function metaPeerMapColor(isSeed) {
-        return isSeed ? "#4caf7d" : "#5f93c9"
-    }
-    function metaCountryFullName(cc) {
-        var names = {
-            "AF":"Afghanistan","AX":"?.land Islands","AL":"Albania","DZ":"Algeria","AS":"American Samoa",
-            "AD":"Andorra","AO":"Angola","AI":"Anguilla","AQ":"Antarctica","AG":"Antigua and Barbuda",
-            "AR":"Argentina","AM":"Armenia","AW":"Aruba","AU":"Australia","AT":"Austria",
-            "AZ":"Azerbaijan","BS":"Bahamas","BH":"Bahrain","BD":"Bangladesh","BB":"Barbados",
-            "BY":"Belarus","BE":"Belgium","BZ":"Belize","BJ":"Benin","BM":"Bermuda",
-            "BT":"Bhutan","BO":"Bolivia","BQ":"Bonaire","BA":"Bosnia and Herzegovina","BW":"Botswana",
-            "BV":"Bouvet Island","BR":"Brazil","IO":"British Indian Ocean Territory","BN":"Brunei",
-            "BG":"Bulgaria","BF":"Burkina Faso","BI":"Burundi","CV":"Cabo Verde","KH":"Cambodia",
-            "CM":"Cameroon","CA":"Canada","KY":"Cayman Islands","CF":"Central African Republic",
-            "TD":"Chad","CL":"Chile","CN":"China","CX":"Christmas Island","CC":"Cocos Islands",
-            "CO":"Colombia","KM":"Comoros","CG":"Congo","CD":"DR Congo","CK":"Cook Islands",
-            "CR":"Costa Rica","CI":"C?te d'Ivoire","HR":"Croatia","CU":"Cuba","CW":"Cura?ao",
-            "CY":"Cyprus","CZ":"Czech Republic","DK":"Denmark","DJ":"Djibouti","DM":"Dominica",
-            "DO":"Dominican Republic","EC":"Ecuador","EG":"Egypt","SV":"El Salvador","GQ":"Equatorial Guinea",
-            "ER":"Eritrea","EE":"Estonia","SZ":"Eswatini","ET":"Ethiopia","FK":"Falkland Islands",
-            "FO":"Faroe Islands","FJ":"Fiji","FI":"Finland","FR":"France","GF":"French Guiana",
-            "PF":"French Polynesia","TF":"French Southern Territories","GA":"Gabon","GM":"Gambia",
-            "GE":"Georgia","DE":"Germany","GH":"Ghana","GI":"Gibraltar","GR":"Greece",
-            "GL":"Greenland","GD":"Grenada","GP":"Guadeloupe","GU":"Guam","GT":"Guatemala",
-            "GG":"Guernsey","GN":"Guinea","GW":"Guinea-Bissau","GY":"Guyana","HT":"Haiti",
-            "HM":"Heard Island","VA":"Holy See","HN":"Honduras","HK":"Hong Kong","HU":"Hungary",
-            "IS":"Iceland","IN":"India","ID":"Indonesia","IR":"Iran","IQ":"Iraq",
-            "IE":"Ireland","IM":"Isle of Man","IL":"Israel","IT":"Italy","JM":"Jamaica",
-            "JP":"Japan","JE":"Jersey","JO":"Jordan","KZ":"Kazakhstan","KE":"Kenya",
-            "KI":"Kiribati","KP":"North Korea","KR":"South Korea","KW":"Kuwait","KG":"Kyrgyzstan",
-            "LA":"Laos","LV":"Latvia","LB":"Lebanon","LS":"Lesotho","LR":"Liberia",
-            "LY":"Libya","LI":"Liechtenstein","LT":"Lithuania","LU":"Luxembourg","MO":"Macao",
-            "MG":"Madagascar","MW":"Malawi","MY":"Malaysia","MV":"Maldives","ML":"Mali",
-            "MT":"Malta","MH":"Marshall Islands","MQ":"Martinique","MR":"Mauritania","MU":"Mauritius",
-            "YT":"Mayotte","MX":"Mexico","FM":"Micronesia","MD":"Moldova","MC":"Monaco",
-            "MN":"Mongolia","ME":"Montenegro","MS":"Montserrat","MA":"Morocco","MZ":"Mozambique",
-            "MM":"Myanmar","NA":"Namibia","NR":"Nauru","NP":"Nepal","NL":"Netherlands",
-            "NC":"New Caledonia","NZ":"New Zealand","NI":"Nicaragua","NE":"Niger","NG":"Nigeria",
-            "NU":"Niue","NF":"Norfolk Island","MK":"North Macedonia","MP":"Northern Mariana Islands",
-            "NO":"Norway","OM":"Oman","PK":"Pakistan","PW":"Palau","PS":"Palestine",
-            "PA":"Panama","PG":"Papua New Guinea","PY":"Paraguay","PE":"Peru","PH":"Philippines",
-            "PN":"Pitcairn","PL":"Poland","PT":"Portugal","PR":"Puerto Rico","QA":"Qatar",
-            "RE":"R?union","RO":"Romania","RU":"Russia","RW":"Rwanda","BL":"Saint Barth?lemy",
-            "SH":"Saint Helena","KN":"Saint Kitts and Nevis","LC":"Saint Lucia","MF":"Saint Martin",
-            "PM":"Saint Pierre and Miquelon","VC":"Saint Vincent and the Grenadines","WS":"Samoa",
-            "SM":"San Marino","ST":"Sao Tome and Principe","SA":"Saudi Arabia","SN":"Senegal",
-            "RS":"Serbia","SC":"Seychelles","SL":"Sierra Leone","SG":"Singapore","SX":"Sint Maarten",
-            "SK":"Slovakia","SI":"Slovenia","SB":"Solomon Islands","SO":"Somalia","ZA":"South Africa",
-            "GS":"South Georgia","SS":"South Sudan","ES":"Spain","LK":"Sri Lanka","SD":"Sudan",
-            "SR":"Suriname","SJ":"Svalbard and Jan Mayen","SE":"Sweden","CH":"Switzerland",
-            "SY":"Syria","TW":"Taiwan","TJ":"Tajikistan","TZ":"Tanzania","TH":"Thailand",
-            "TL":"Timor-Leste","TG":"Togo","TK":"Tokelau","TO":"Tonga","TT":"Trinidad and Tobago",
-            "TN":"Tunisia","TR":"Turkey","TM":"Turkmenistan","TC":"Turks and Caicos Islands",
-            "TV":"Tuvalu","UG":"Uganda","UA":"Ukraine","AE":"United Arab Emirates",
-            "GB":"United Kingdom","US":"United States","UM":"US Minor Outlying Islands",
-            "UY":"Uruguay","UZ":"Uzbekistan","VU":"Vanuatu","VE":"Venezuela","VN":"Vietnam",
-            "VG":"British Virgin Islands","VI":"US Virgin Islands","WF":"Wallis and Futuna",
-            "EH":"Western Sahara","YE":"Yemen","ZM":"Zambia","ZW":"Zimbabwe"
-        }
-        return names[cc] || cc
-    }
-    function metaPeerPlaceText(countryCode, regionCode, regionName, cityName) {
-        var cc = safeStr(countryCode).toUpperCase()
-        var city = safeStr(cityName)
-        var region = safeStr(regionCode)
-        var rname = safeStr(regionName)
-        var placeParts = []
-        if (city) placeParts.push(city)
-        if (region && (cc === "US" || cc === "CA")) placeParts.push(region)
-        else if (rname) placeParts.push(rname)
-        var lines = []
-        if (placeParts.length > 0) lines.push(placeParts.join(", "))
-        if (cc) lines.push(metaCountryFullName(cc))
-        return lines.join("\n")
-    }
-    function metaFlagColor(flag) {
-        switch (flag) {
-        case "IN":  return "#e8c84a"
-        case "OUT": return ColorPalette.textSecond
-        case "TRK": return "#5f93c9"
-        case "DHT": return "#4db8ff"
-        case "PEX": return "#a06de8"
-        case "LSD": return "#4caf7d"
-        case "UTP": return "#5ecfe8"
-        case "ENC": return "#7dd87d"
-        case "SNB": return "#e86a5c"
-        case "UPO": return "#c97de8"
-        case "OPT": return "#e8a35c"
-        case "HPX": return "#ff8ab4"
-        case "I2P": return "#a8ff78"
-        default:    return ColorPalette.textSecond
-        }
-    }
-    function metaShowPeerHover(peer, x, y) {
-        metaMapHoverVisible = !!peer
-        if (!peer) return
-        metaMapHoverEndpoint = safeStr(peer.endpoint)
-        metaMapHoverPort = peer.port | 0
-        metaMapHoverClient = safeStr(peer.client)
-        metaMapHoverCountryCode = safeStr(peer.countryCode)
-        metaMapHoverRegionCode = safeStr(peer.regionCode)
-        metaMapHoverRegionName = safeStr(peer.regionName)
-        metaMapHoverCityName = safeStr(peer.cityName)
-        metaMapHoverRtt = peer.rtt | 0
-        metaMapHoverDownSpeed = peer.downSpeed | 0
-        metaMapHoverUpSpeed = peer.upSpeed | 0
-        metaMapHoverIsSeed = !!peer.isSeed
-        metaMapHoverSource = safeStr(peer.source)
-        metaMapHoverFlags = safeStr(peer.flags)
-        metaMapHoverProgress = Number(peer.progress) || 0
-        metaMapHoverX = Number(x) || 0
-        metaMapHoverY = Number(y) || 0
-    }
 
     function metadataPeerCount() {
         if (!root.item)
@@ -654,11 +452,12 @@ Window {
                     }
 
                     Text {
+                        // Only show the status word while actively transferring — not
+                        // the lone "Paused"/"Queued" during file selection, and not
+                        // "Fetching metadata" (that's the window title now).
                         visible: !!root.item && root.item.status !== "Error"
-                        text: !root.item ? ""
-                              : (root.item.isTorrent && !root.item.torrentHasMetadata)
-                                ? qsTr("Fetching metadata…")
-                                : (root.item.statusText || "")
+                                 && root._torrentActive && root.metadataArrived
+                        text: root.item ? (root.item.statusText || "") : ""
                         color: ColorPalette.textHeader
                         font.pixelSize: 11 * App.fontScale
                         font.bold: true
@@ -667,7 +466,10 @@ Window {
 
                 TorrentProgressBar {
                     Layout.fillWidth: true
-                    implicitHeight: 5
+                    // Collapse to zero height when not transferring/fetching so the
+                    // header stays clean during file selection.
+                    visible: root._torrentActive || root._fetchingMeta
+                    implicitHeight: visible ? 5 : 0
                     item: root.item
                 }
             }
@@ -681,9 +483,48 @@ Window {
             Layout.margins: 12
             spacing: 6
 
+        // ── Cozy fetching panel: shown only while metadata is still downloading.
+        // The header already carries the torrent name, the "Fetching metadata…"
+        // label and the slow indeterminate progress sweep — here we just add a
+        // hint line + a Cancel button so the small window feels complete.
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            visible: !root.metadataArrived
+            spacing: 12
+
+            Item { Layout.fillHeight: true }
+
+            Text {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
+                color: ColorPalette.textSecond
+                font.pixelSize: 12 * App.fontScale
+                wrapMode: Text.WordWrap
+            }
+
+            Item { Layout.fillHeight: true }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: qsTr("Cancel")
+                    onClicked: {
+                        if (root.downloadId.length > 0)
+                            App.discardTorrentDownload(root.downloadId)
+                        root.close()
+                    }
+                }
+            }
+        }
+
         // Tab strip directly below the header: Files | Settings.
         Rectangle {
-            Layout.fillWidth: true; height: 30
+            Layout.fillWidth: true
+            visible: root.metadataArrived
+            height: visible ? 30 : 0
             color: ColorPalette.panelBg
 
             Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
@@ -718,6 +559,7 @@ Window {
         StackLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            visible: root.metadataArrived
             currentIndex: root.metaTab
 
             // ?? Files page — save options + description + file list ???????????
@@ -880,8 +722,11 @@ Window {
                     Loader {
                         id: contentLoader
                         anchors.fill: parent
-                        active: !!root.item
-                        sourceComponent: root._metadataArrived ? filesView : waitingView
+                        // The whole Files page is hidden until metadata arrives (the
+                        // cozy fetching panel handles the wait), so this only ever
+                        // shows the file list.
+                        active: !!root.item && root.metadataArrived
+                        sourceComponent: filesView
                     }
                 }
             }
@@ -898,6 +743,9 @@ Window {
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
+            // Full action buttons only after metadata arrives — the fetching panel
+            // has its own Cancel.
+            visible: root.metadataArrived
 
             Item { Layout.fillWidth: true }
 
@@ -934,447 +782,6 @@ Window {
             }
         }
         } // body ColumnLayout
-    }
-
-    Component {
-        id: waitingView
-
-        Item {
-            anchors.fill: parent
-
-            // Simple spinner shown when swarm map is disabled in settings
-            Rectangle {
-                anchors.fill: parent
-                color: ColorPalette.mapCanvasBg
-                radius: 3
-                visible: !App.settings.showSwarmMapWhileFetchingMetadata
-
-                Column {
-                    anchors.centerIn: parent
-                    spacing: 14
-
-                    BusyIndicator {
-                        running: true
-                        width: 40; height: 40
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
-                    Text {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
-                        color: ColorPalette.textSecond
-                        font.pixelSize: 13 * App.fontScale
-                    }
-                }
-            }
-
-            // ?? World swarm map ??????????????????????????????????????????
-            Rectangle {
-                anchors.fill: parent
-                color: ColorPalette.mapCanvasBg
-                radius: 3
-                clip: true
-                visible: App.settings.showSwarmMapWhileFetchingMetadata
-
-                // Overlay status row at the top
-                Rectangle {
-                    id: metaStatusBar
-                    anchors { top: parent.top; left: parent.left; right: parent.right }
-                    height: 34
-                    color: ColorPalette.mapPanelBg
-                    z: 10
-
-                    Row {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                        spacing: 10
-
-                        BusyIndicator {
-                            running: true
-                            width: 18
-                            height: 18
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-
-                        Text {
-                            anchors.verticalCenter: parent.verticalCenter
-                            text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
-                            color: ColorPalette.textSecond
-                            font.pixelSize: 12 * App.fontScale
-                        }
-                    }
-
-                    // Peer/seed legend top-right
-                    Row {
-                        anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
-                        spacing: 10
-
-                        Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("Peer"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
-                        Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("Seed"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
-                        Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("You"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
-                    }
-                }
-
-                // Map area
-                Item {
-                    id: metaMapRoot
-                    anchors { top: metaStatusBar.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-                    anchors.margins: 8
-                    clip: true
-
-                    // Auto-fit state
-                    property bool _hasFitOnce: false
-                    property bool _pendingFit: false
-
-                    function tryFit() {
-                        if (root._userInteracted) return
-                        if (metaMapRoot.width <= 0 || metaMapRoot.height <= 0) {
-                            metaMapRoot._pendingFit = true
-                            return
-                        }
-                        var pm = root.metaPeerModel
-                        if (!pm || pm.rowCount() === 0) {
-                            metaMapRoot._pendingFit = true
-                            return
-                        }
-                        // Check at least one peer has real geo coordinates
-                        var hasAny = false
-                        var n = pm.rowCount()
-                        for (var i = 0; i < n; i++) {
-                            var lat = Number(pm.data(pm.index(i, 0), 271))
-                            var lon = Number(pm.data(pm.index(i, 0), 272))
-                            if (isFinite(lat) && isFinite(lon) && !(lat === 0 && lon === 0)) {
-                                hasAny = true; break
-                            }
-                        }
-                        if (!hasAny) {
-                            metaMapRoot._pendingFit = true
-                            return
-                        }
-                        metaMapRoot._pendingFit = false
-                        metaMapRoot._hasFitOnce = true
-                        root.metaAutoFit(metaMapRoot.width, metaMapRoot.height)
-                    }
-
-                    // Fire pending fit once we have real dimensions
-                    onWidthChanged:  { if (metaMapRoot._pendingFit && width  > 0) metaMapRoot.tryFit() }
-                    onHeightChanged: { if (metaMapRoot._pendingFit && height > 0) metaMapRoot.tryFit() }
-
-                    // Short delay on first-peer fit so delegates finish constructing
-                    // before metaAutoFit iterates itemAt() for coordinates.
-                    Timer {
-                        id: metaFirstFitTimer
-                        interval: 50
-                        repeat: false
-                        onTriggered: metaMapRoot.tryFit()
-                    }
-
-                    // Debounce timer for subsequent peer changes (2s)
-                    Timer {
-                        id: metaFitTimer
-                        interval: 2000
-                        repeat: false
-                        onTriggered: {
-                            if (!root._userInteracted)
-                                root.metaAutoFit(metaMapRoot.width, metaMapRoot.height)
-                        }
-                    }
-
-                    Connections {
-                        target: root.metaPeerModel
-                        function onRowsInserted() {
-                            if (root._userInteracted) return
-                            if (!metaMapRoot._hasFitOnce) {
-                                if (!metaFirstFitTimer.running)
-                                    metaFirstFitTimer.start()
-                            } else {
-                                metaFitTimer.restart()
-                            }
-                        }
-                        // Geo-IP resolves asynchronously: peer is inserted with lat/lon=0,
-                        // then dataChanged fires once the coordinates are populated.
-                        function onDataChanged() {
-                            if (root._userInteracted) return
-                            if (!metaMapRoot._hasFitOnce && !metaFirstFitTimer.running)
-                                metaFirstFitTimer.start()
-                        }
-                        function onRowsRemoved() { metaFitTimer.restart() }
-                        function onModelReset()  {
-                            metaMapRoot._hasFitOnce = false
-                            metaMapRoot._pendingFit = false
-                            metaFirstFitTimer.stop()
-                            metaFitTimer.stop()
-                        }
-                    }
-
-                    // ?? Zoom/pan gestures suppress auto-fit once user interacts ??
-                    WheelHandler {
-                        target: null
-                        onWheel: function(event) {
-                            root._userInteracted = true
-                            var factor = event.angleDelta.y > 0 ? 1.15 : (1.0 / 1.15)
-                            var newZoom = Math.max(1.0, Math.min(8.0, root.metaMapZoom * factor))
-                            var mouseX = event.x - root.metaMapPanX
-                            var mouseY = event.y - root.metaMapPanY
-                            root.metaMapPanX = event.x - mouseX * (newZoom / root.metaMapZoom)
-                            root.metaMapPanY = event.y - mouseY * (newZoom / root.metaMapZoom)
-                            root.metaMapZoom = newZoom
-                        }
-                    }
-
-                    DragHandler {
-                        id: metaMapPanDrag
-                        target: null
-                        onTranslationChanged: {
-                            root._userInteracted = true
-                            root.metaMapPanX += translation.x - (root._metaLastPanX || 0)
-                            root.metaMapPanY += translation.y - (root._metaLastPanY || 0)
-                            root._metaLastPanX = translation.x
-                            root._metaLastPanY = translation.y
-                        }
-                        onActiveChanged: {
-                            if (!active) { root._metaLastPanX = 0; root._metaLastPanY = 0 }
-                        }
-                        acceptedButtons: Qt.LeftButton
-                    }
-
-                    Item {
-                        id: metaMapCanvas
-                        x: root.metaMapPanX
-                        y: root.metaMapPanY
-                        width: metaMapRoot.width
-                        height: metaMapRoot.height
-                        scale: root.metaMapZoom
-                        transformOrigin: Item.TopLeft
-
-                        readonly property real mapX: metaWorldImg.x + (metaWorldImg.width - metaWorldImg.paintedWidth) / 2
-                        readonly property real mapY: metaWorldImg.y + (metaWorldImg.height - metaWorldImg.paintedHeight) / 2
-                        readonly property real mapWidth: metaWorldImg.paintedWidth
-                        readonly property real mapHeight: metaWorldImg.paintedHeight
-
-                        Image {
-                            id: metaWorldImg
-                            anchors.fill: parent
-                            source: ColorPalette.dark ? "../icons/world-map.svg" : "../icons/world-map-light.svg"
-                            fillMode: Image.PreserveAspectFit
-                            smooth: true
-                            sourceSize.width: 2400
-                            sourceSize.height: 1161
-                        }
-
-                        // Peer dots with pop-in animation
-                        Repeater {
-                            id: metaPeerRepeater
-                            model: root.metaMapActive ? root.metaPeerModel : null
-                            Component.onCompleted: {
-                                if (!metaMapRoot._hasFitOnce && !root._userInteracted)
-                                    metaFirstFitTimer.restart()
-                            }
-
-                            delegate: Item {
-                                required property string endpoint
-                                required property int    port
-                                required property string client
-                                required property string countryCode
-                                required property string regionCode
-                                required property string regionName
-                                required property string cityName
-                                required property double latitude
-                                required property double longitude
-                                required property int    rtt
-                                required property int    downSpeed
-                                required property int    upSpeed
-                                required property bool   isSeed
-                                required property string source
-                                required property string flags
-                                required property double progress
-
-                                readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
-
-                                visible: hasCoordinates
-                                x: metaMapCanvas.mapX + root.metaMapX(longitude, metaMapCanvas.mapWidth) - width / 2
-                                y: metaMapCanvas.mapY + root.metaMapY(latitude, metaMapCanvas.mapWidth, metaMapCanvas.mapHeight) - height / 2
-                                width: 16
-                                height: 16
-                                scale: 1.0 / root.metaMapZoom
-                                transformOrigin: Item.Center
-
-                                // Peer is actively helping fetch metadata
-                                readonly property bool isActive: downSpeed > 0 || upSpeed > 0
-
-                                // Pop-in when first plotted
-                                Component.onCompleted: {
-                                    if (hasCoordinates) dotScale.restart()
-                                }
-
-                                ScaleAnimator {
-                                    id: dotScale
-                                    target: dotCircle
-                                    from: 0
-                                    to: 1
-                                    duration: 350
-                                    easing.type: Easing.OutBack
-                                }
-
-                                // Ripple only on peers actively sending data
-                                SequentialAnimation {
-                                    running: hasCoordinates && isActive
-                                    loops: Animation.Infinite
-                                    NumberAnimation { target: dotRipple; property: "scale"; from: 0.8; to: 2.4; duration: 1000; easing.type: Easing.OutQuad }
-                                    NumberAnimation { target: dotRipple; property: "opacity"; from: 0.6; to: 0; duration: 350 }
-                                    PropertyAction  { target: dotRipple; property: "scale"; value: 0.8 }
-                                    PropertyAction  { target: dotRipple; property: "opacity"; value: 0.6 }
-                                }
-
-                                // Ripple ring (hidden when peer is idle)
-                                Rectangle {
-                                    id: dotRipple
-                                    anchors.centerIn: parent
-                                    width: 10; height: 10
-                                    radius: 5
-                                    color: "transparent"
-                                    border.color: isSeed ? "#4caf7d" : "#5f93c9"
-                                    border.width: 1.5
-                                    transformOrigin: Item.Center
-                                    opacity: 0
-                                    visible: parent.isActive
-                                }
-
-                                Rectangle {
-                                    id: dotCircle
-                                    anchors.centerIn: parent
-                                    width: 10; height: 10; radius: 5
-                                    color: root.metaPeerMapColor(isSeed)
-                                    border.color: metaMarkerMouse.containsMouse ? ColorPalette.textPrimary : ColorPalette.mapBorder
-                                    border.width: 1
-                                    transformOrigin: Item.Center
-                                }
-
-                                MouseArea {
-                                    id: metaMarkerMouse
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    acceptedButtons: Qt.NoButton
-                                    onEntered: {
-                                        var p = parent.mapToItem(metaMapRoot, parent.width / 2, 0)
-                                        root.metaShowPeerHover(parent, p.x, p.y)
-                                    }
-                                    onPositionChanged: {
-                                        var p = parent.mapToItem(metaMapRoot, parent.width / 2, 0)
-                                        root.metaShowPeerHover(parent, p.x, p.y)
-                                    }
-                                    onExited: root.metaMapHoverVisible = false
-                                }
-                            }
-                        }
-
-                        // "You" dot
-                        Item {
-                            id: metaYouDot
-                            visible: !!root.metaPeerModel && root.metaPeerModel.hasLocalLocation
-                            x: metaMapCanvas.mapX + root.metaMapX(root.metaPeerModel ? root.metaPeerModel.localLongitude : 0, metaMapCanvas.mapWidth) - width / 2
-                            y: metaMapCanvas.mapY + root.metaMapY(root.metaPeerModel ? root.metaPeerModel.localLatitude : 0, metaMapCanvas.mapWidth, metaMapCanvas.mapHeight) - height / 2
-                            width: 16; height: 16
-                            scale: 1.0 / root.metaMapZoom
-                            transformOrigin: Item.Center
-
-                            Rectangle {
-                                anchors.centerIn: parent
-                                width: 10; height: 10; radius: 5
-                                color: "#9959e6"
-                                border.color: ColorPalette.mapBorder; border.width: 1
-                            }
-                        }
-                    }
-
-                    // Hover tooltip
-                    Rectangle {
-                        visible: root.metaMapHoverVisible
-                        x: Math.max(10, Math.min(metaMapRoot.width - width - 10, root.metaMapHoverX + 14))
-                        y: Math.max(10, Math.min(metaMapRoot.height - height - 10, root.metaMapHoverY - height / 2))
-                        width: 200
-                        implicitHeight: metaTooltipCol.implicitHeight + 10
-                        color: ColorPalette.mapTooltipBg
-                        border.color: ColorPalette.mapBorder
-                        radius: 4
-                        z: 20
-
-                        Column {
-                            id: metaTooltipCol
-                            anchors.fill: parent
-                            anchors.margins: 7
-                            spacing: 4
-
-                            Row {
-                                spacing: 5; width: parent.width
-                                Text {
-                                    text: root.metaMapHoverEndpoint
-                                    color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true
-                                    elide: Text.ElideRight
-                                    width: Math.min(implicitWidth, parent.width - metaTipPort.implicitWidth - 5)
-                                }
-                                Text {
-                                    id: metaTipPort
-                                    text: root.metaMapHoverPort
-                                    color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale; font.bold: true
-                                    anchors.baseline: parent.children[0].baseline
-                                }
-                            }
-
-                            Text {
-                                visible: root.metaMapHoverClient.length > 0
-                                text: root.metaMapHoverClient
-                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
-                                elide: Text.ElideRight; width: parent.width
-                            }
-
-                            Text {
-                                visible: root.metaMapHoverCountryCode.length > 0
-                                text: root.metaPeerPlaceText(root.metaMapHoverCountryCode, root.metaMapHoverRegionCode, root.metaMapHoverRegionName, root.metaMapHoverCityName)
-                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
-                                elide: Text.ElideRight; width: parent.width
-                            }
-
-                            // Flags
-                            Flow {
-                                width: parent.width; spacing: 2
-                                Repeater {
-                                    model: root.metaMapHoverFlags
-                                        ? root.metaMapHoverFlags.split(" ").filter(function(f){ return f.length > 0 })
-                                        : []
-                                    delegate: Rectangle {
-                                        required property string modelData
-                                        height: 14; width: tipBadge.implicitWidth + 6
-                                        radius: 2; color: "transparent"
-                                        border.color: root.metaFlagColor(modelData); border.width: 1
-                                        Text {
-                                            id: tipBadge
-                                            anchors.centerIn: parent
-                                            text: modelData; color: ColorPalette.textPrimary
-                                            font.pixelSize: 9 * App.fontScale; font.bold: true
-                                        }
-                                    }
-                                }
-                            }
-
-                            Text {
-                                text: qsTr("↓ %1  ↑ %2").arg(root.compactSpeed(root.metaMapHoverDownSpeed)).arg(root.compactSpeed(root.metaMapHoverUpSpeed))
-                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: parent.width
-                            }
-
-                            Text {
-                                text: qsTr("RTT %1  %2% done")
-                                    .arg(root.metaMapHoverRtt > 0 ? (root.metaMapHoverRtt + " ms") : "–")
-                                    .arg(Math.round(root.metaMapHoverProgress * 100))
-                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: parent.width
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     Component {

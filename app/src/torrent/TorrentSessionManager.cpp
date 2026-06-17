@@ -2964,17 +2964,25 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     item->setTorrentConnections(st.num_connections);
 
     const QString id = item->id();
+    const bool isPaused = m_pausedIds.contains(id)
+        || (flags & libtorrent::torrent_flags::paused) != libtorrent::torrent_flags_t{};
+    // A paused torrent must never read "Moving" — a download-later torrent whose
+    // save folder differs from default triggers a background move_storage() on
+    // confirm, which would otherwise flash "Moving" for a few seconds before
+    // settling on "Paused". The move still completes in the background; we just
+    // keep the visible status as Paused. A genuine user-initiated move on a
+    // running torrent still shows Moving (it isn't paused).
     if (m_movingIds.contains(id)) {
-        if (st.moving_storage) {
+        if (st.moving_storage && !st.errc && !isPaused) {
             item->setStatus(DownloadItem::Status::Moving);
             return;
         }
-        m_movingIds.remove(id);
+        if (!st.moving_storage)
+            m_movingIds.remove(id);
     }
     if (st.errc) {
         item->setStatus(DownloadItem::Status::Error);
-    } else if (m_pausedIds.contains(id)
-        || (flags & libtorrent::torrent_flags::paused) != libtorrent::torrent_flags_t{}) {
+    } else if (isPaused) {
         item->setStatus(DownloadItem::Status::Paused);
         // libtorrent can report stale nonzero rates on the tick immediately
         // after pausing; zero them explicitly so the torrent doesn't appear

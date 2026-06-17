@@ -197,7 +197,6 @@ class AppSettings : public QObject {
     Q_PROPERTY(QStringList excludedAddresses  READ excludedAddresses   WRITE setExcludedAddresses   NOTIFY excludedAddressesChanged)
     Q_PROPERTY(bool swarmMapShowInactive READ swarmMapShowInactive WRITE setSwarmMapShowInactive NOTIFY swarmMapShowInactiveChanged)
     Q_PROPERTY(bool swarmMapShowTrackers READ swarmMapShowTrackers WRITE setSwarmMapShowTrackers NOTIFY swarmMapShowTrackersChanged)
-    Q_PROPERTY(bool showSwarmMapWhileFetchingMetadata READ showSwarmMapWhileFetchingMetadata WRITE setShowSwarmMapWhileFetchingMetadata NOTIFY showSwarmMapWhileFetchingMetadataChanged)
     Q_PROPERTY(QString customUserAgent READ customUserAgent WRITE setCustomUserAgent NOTIFY customUserAgentChanged)
     Q_PROPERTY(QStringList sidebarOrder READ sidebarOrder WRITE setSidebarOrder NOTIFY sidebarOrderChanged)
     Q_PROPERTY(QStringList torrentSubcatOrder READ torrentSubcatOrder WRITE setTorrentSubcatOrder NOTIFY torrentSubcatOrderChanged)
@@ -232,7 +231,6 @@ public:
     QStringList excludedAddresses()   const { return m_excludedAddresses; }
     bool        swarmMapShowInactive() const { return m_swarmMapShowInactive; }
     bool        swarmMapShowTrackers() const { return m_swarmMapShowTrackers; }
-    bool        showSwarmMapWhileFetchingMetadata() const { return m_showSwarmMapWhileFetchingMetadata; }
     QString customUserAgent()     const { return m_customUserAgent; }
     QStringList sidebarOrder()         const { return m_sidebarOrder; }
     QStringList torrentSubcatOrder()   const { return m_torrentSubcatOrder; }
@@ -267,7 +265,6 @@ public:
     void setExcludedAddresses(const QStringList &v);
     void setSwarmMapShowInactive(bool v);
     void setSwarmMapShowTrackers(bool v);
-    void setShowSwarmMapWhileFetchingMetadata(bool v);
     void setCustomUserAgent(const QString &v);
     void setSidebarOrder(const QStringList &v);
     void setTorrentSubcatOrder(const QStringList &v);
@@ -314,7 +311,6 @@ signals:
     void excludedAddressesChanged();
     void swarmMapShowInactiveChanged();
     void swarmMapShowTrackersChanged();
-    void showSwarmMapWhileFetchingMetadataChanged();
     void customUserAgentChanged();
     void sidebarOrderChanged();
     void torrentSubcatOrderChanged();
@@ -343,7 +339,6 @@ private:
     QStringList m_excludedAddresses;
     bool        m_swarmMapShowInactive{true};
     bool        m_swarmMapShowTrackers{true};
-    bool        m_showSwarmMapWhileFetchingMetadata{true};
     QString     m_customUserAgent;
     QStringList m_sidebarOrder{{"downloads", "unfinished", "finished", "grabber", "queues", "torrents"}};
     QStringList m_torrentSubcatOrder{{"torrent_downloading", "torrent_seeding", "torrent_stopped",

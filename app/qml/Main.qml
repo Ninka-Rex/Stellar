@@ -252,34 +252,65 @@ ApplicationWindow {
         return ""
     }
 
+    // ── Map of downloadId → TorrentMetadataDialog instances ──────────────
+    // One window per torrent so several can be open at once (mirrors the
+    // _progressDialogs pattern). Each is a top-level Window; closing destroys it.
+    property var _torrentMetaDialogs: ({})
+
+    function _getOrCreateTorrentMetaDialog(downloadId) {
+        if (!downloadId || downloadId.length === 0)
+            return null
+        if (_torrentMetaDialogs[downloadId])
+            return _torrentMetaDialogs[downloadId]
+        var dlg = torrentMetadataDialogComponent.createObject(root, { downloadId: downloadId, ownerWindow: root })
+        if (!dlg)
+            return null
+        dlg.closing.connect(function(close) {
+            Qt.callLater(function() {
+                if (_torrentMetaDialogs[downloadId]) {
+                    _torrentMetaDialogs[downloadId].destroy()
+                    delete _torrentMetaDialogs[downloadId]
+                    _torrentMetaDialogs = _torrentMetaDialogs
+                }
+            })
+        })
+        _torrentMetaDialogs[downloadId] = dlg
+        _torrentMetaDialogs = _torrentMetaDialogs
+        return dlg
+    }
+
     function showTorrentMetadataDialog(downloadId, startWhenReady) {
         if (!downloadId || downloadId.length === 0)
             return
-        torrentMetadataDialog.pendingSourceLabel = ""
-        torrentMetadataDialog.downloadId = downloadId
-        torrentMetadataDialog.startWhenReady = startWhenReady
-        torrentMetadataDialog.show()
-        torrentMetadataDialog.raise()
-        torrentMetadataDialog.requestActivate()
+        var dlg = _getOrCreateTorrentMetaDialog(downloadId)
+        if (!dlg)
+            return
+        dlg.pendingSourceLabel = ""
+        dlg.startWhenReady = startWhenReady
+        dlg.show()
+        dlg.raise()
+        dlg.requestActivate()
     }
 
     function showTorrentMetadataDialogForFile(torrentFilePath, saveDir, category, description, startWhenReady) {
         if (!torrentFilePath || torrentFilePath.length === 0)
             return
-        torrentMetadataDialog.downloadId = ""
-        torrentMetadataDialog.pendingSourceLabel = torrentFilePath.split(/[/\\]/).pop()
-        torrentMetadataDialog.savePath = saveDir
-        torrentMetadataDialog.category = category || ""
-        torrentMetadataDialog.description = description || ""
-        torrentMetadataDialog.startWhenReady = startWhenReady
+        var pendingLabel = torrentFilePath.split(/[/\\]/).pop()
         Qt.callLater(function() {
             var torrentFileId = App.addTorrentFile(torrentFilePath, saveDir, category || "", description || "", false, "")
             if (!torrentFileId || torrentFileId.length === 0)
-                return // duplicate ▶€” torrentDuplicateDetected signal already fired
-            torrentMetadataDialog.downloadId = torrentFileId
-            torrentMetadataDialog.show()
-            torrentMetadataDialog.raise()
-            torrentMetadataDialog.requestActivate()
+                return // duplicate — torrentDuplicateDetected signal already fired
+            var dlg = _getOrCreateTorrentMetaDialog(torrentFileId)
+            if (!dlg)
+                return
+            dlg.pendingSourceLabel = pendingLabel
+            dlg.savePath = saveDir
+            dlg.category = category || ""
+            dlg.description = description || ""
+            dlg.startWhenReady = startWhenReady
+            dlg.show()
+            dlg.raise()
+            dlg.requestActivate()
         })
     }
 
@@ -2270,30 +2301,33 @@ ApplicationWindow {
         }
     }
 
-    TorrentMetadataDialog {
-        id: torrentMetadataDialog
-        transientParent: root
-        onDownloadNowRequested: (downloadId, savePath, category, description) => {
-            App.confirmTorrentDownload(downloadId, savePath, category, description, true, "")
-        }
-        onDownloadLaterRequested: (downloadId, savePath, category, description) => {
-            if (App.settings.showQueueSelectionOnDownloadLater) {
-                queueSelectionDialog.initialQueueId = ""
-                queueSelectionDialog.initialStartProcessing = false
-                queueSelectionDialog.initialAskAgain = false
-                queueSelectionDialog.queueIds = App.queueIds()
-                queueSelectionDialog.queueNames = App.queueNames()
-                queueSelectionDialog.pendingContext = "torrentLater"
-                queueSelectionDialog.pendingTorrentLaterDownloadId = downloadId
-                queueSelectionDialog.pendingTorrentLaterSavePath = savePath
-                queueSelectionDialog.pendingTorrentLaterCategory = category
-                queueSelectionDialog.pendingTorrentLaterDesc = description
-                queueSelectionDialog.noteText = "Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting."
-                queueSelectionDialog.show()
-                queueSelectionDialog.raise()
-                queueSelectionDialog.requestActivate()
-            } else {
-                App.confirmTorrentDownload(downloadId, savePath, category, description, false, "")
+    // One TorrentMetadataDialog window is created per torrent on demand via
+    // _getOrCreateTorrentMetaDialog (see _torrentMetaDialogs map above).
+    Component {
+        id: torrentMetadataDialogComponent
+        TorrentMetadataDialog {
+            onDownloadNowRequested: (downloadId, savePath, category, description) => {
+                App.confirmTorrentDownload(downloadId, savePath, category, description, true, "")
+            }
+            onDownloadLaterRequested: (downloadId, savePath, category, description) => {
+                if (App.settings.showQueueSelectionOnDownloadLater) {
+                    queueSelectionDialog.initialQueueId = ""
+                    queueSelectionDialog.initialStartProcessing = false
+                    queueSelectionDialog.initialAskAgain = false
+                    queueSelectionDialog.queueIds = App.queueIds()
+                    queueSelectionDialog.queueNames = App.queueNames()
+                    queueSelectionDialog.pendingContext = "torrentLater"
+                    queueSelectionDialog.pendingTorrentLaterDownloadId = downloadId
+                    queueSelectionDialog.pendingTorrentLaterSavePath = savePath
+                    queueSelectionDialog.pendingTorrentLaterCategory = category
+                    queueSelectionDialog.pendingTorrentLaterDesc = description
+                    queueSelectionDialog.noteText = "Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting."
+                    queueSelectionDialog.show()
+                    queueSelectionDialog.raise()
+                    queueSelectionDialog.requestActivate()
+                } else {
+                    App.confirmTorrentDownload(downloadId, savePath, category, description, false, "")
+                }
             }
         }
     }

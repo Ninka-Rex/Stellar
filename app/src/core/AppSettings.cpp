@@ -213,7 +213,6 @@ void AppSettings::load() {
     m_launchOnStartup         = m_settings.value(QStringLiteral("launchOnStartup"), true).toBool();
     m_swarmMapShowInactive = m_settings.value(QStringLiteral("swarmMapShowInactive"), true).toBool();
     m_swarmMapShowTrackers = m_settings.value(QStringLiteral("swarmMapShowTrackers"), true).toBool();
-    m_showSwarmMapWhileFetchingMetadata = m_settings.value(QStringLiteral("showSwarmMapWhileFetchingMetadata"), true).toBool();
     m_customUserAgent         = m_settings.value(
         QStringLiteral("customUserAgent"),
         QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION))).toString();
@@ -313,7 +312,6 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("excludedAddresses"),     m_excludedAddresses);
     m_settings.setValue(QStringLiteral("swarmMapShowInactive"),  m_swarmMapShowInactive);
     m_settings.setValue(QStringLiteral("swarmMapShowTrackers"),  m_swarmMapShowTrackers);
-    m_settings.setValue(QStringLiteral("showSwarmMapWhileFetchingMetadata"), m_showSwarmMapWhileFetchingMetadata);
     m_settings.setValue(QStringLiteral("launchOnStartup"),             m_launchOnStartup);
     m_settings.setValue(QStringLiteral("customUserAgent"),             m_customUserAgent);
     m_settings.setValue(QStringLiteral("sidebarOrder"),                m_sidebarOrder);
@@ -388,9 +386,6 @@ void AppSettings::setSwarmMapShowTrackers(bool v) {
     if (m_swarmMapShowTrackers != v) { m_swarmMapShowTrackers = v; emit swarmMapShowTrackersChanged(); save(); }
 }
 
-void AppSettings::setShowSwarmMapWhileFetchingMetadata(bool v) {
-    if (m_showSwarmMapWhileFetchingMetadata != v) { m_showSwarmMapWhileFetchingMetadata = v; emit showSwarmMapWhileFetchingMetadataChanged(); save(); }
-}
 
 void AppSettings::setCustomUserAgent(const QString &v) {
     if (m_customUserAgent != v) { m_customUserAgent = v; emit customUserAgentChanged(); save(); }

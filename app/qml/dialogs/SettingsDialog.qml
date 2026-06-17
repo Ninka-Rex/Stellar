@@ -161,7 +161,6 @@ Window {
     property bool   editShowPublicIpInStatusBar: false
     property bool   editStartDownloadWhileFileInfo: true
     property bool   editFillDescriptionMetadata: true
-    property bool   editShowSwarmMapWhileFetchingMetadata: true
     property bool   editShowQueueSelectionOnDownloadLater: true
     property bool   editShowQueueSelectionOnBatchDownload: true
     property bool   editUseCustomUserAgent:    false
@@ -556,7 +555,6 @@ Window {
         editGlobalUploadLimitKBps !== editSavedUploadLimitKBpsBaseline ||
         editStartDownloadWhileFileInfo !== App.settings.startDownloadWhileFileInfo ||
         editFillDescriptionMetadata !== App.settings.fillDescriptionMetadata ||
-        editShowSwarmMapWhileFetchingMetadata !== App.settings.showSwarmMapWhileFetchingMetadata ||
         editUseCustomUserAgent    !== App.settings.useCustomUserAgent ||
         editCustomUserAgent       !== App.settings.customUserAgent ||
         editShowQueueSelectionOnDownloadLater !== App.settings.showQueueSelectionOnDownloadLater ||
@@ -973,7 +971,6 @@ Window {
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
         App.settings.startDownloadWhileFileInfo = editStartDownloadWhileFileInfo
         App.settings.fillDescriptionMetadata = editFillDescriptionMetadata
-        App.settings.showSwarmMapWhileFetchingMetadata = editShowSwarmMapWhileFetchingMetadata
         App.settings.showQueueSelectionOnDownloadLater = editShowQueueSelectionOnDownloadLater
         App.settings.showQueueSelectionOnBatchDownload  = editShowQueueSelectionOnBatchDownload
         App.settings.useCustomUserAgent    = editUseCustomUserAgent
@@ -1093,7 +1090,6 @@ Window {
         globalLimitChk.checked = editGlobalSpeedLimitEnabled
         editStartDownloadWhileFileInfo = App.settings.startDownloadWhileFileInfo
         editFillDescriptionMetadata = App.settings.fillDescriptionMetadata
-        editShowSwarmMapWhileFetchingMetadata = App.settings.showSwarmMapWhileFetchingMetadata
         editShowQueueSelectionOnDownloadLater = App.settings.showQueueSelectionOnDownloadLater
         editShowQueueSelectionOnBatchDownload  = App.settings.showQueueSelectionOnBatchDownload
         editUseCustomUserAgent    = App.settings.useCustomUserAgent
@@ -1995,14 +1991,6 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editFillDescriptionMetadata
                             onCheckedChanged: root.editFillDescriptionMetadata = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
-                        }
-
-                        StyledCheckBox {
-                            text: qsTr("Show swarm map when downloading torrent metadata")
-                            topPadding: 0; bottomPadding: 0
-                            checked: root.editShowSwarmMapWhileFetchingMetadata
-                            onCheckedChanged: root.editShowSwarmMapWhileFetchingMetadata = checked
                             contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 

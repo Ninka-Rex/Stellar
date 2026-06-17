@@ -24,11 +24,12 @@ Window {
     id: root
     title: qsTr("Queue Selection")
     width: 420
-    height: 250
+    // Size to content (house fixed-size-dialog pattern) so the bottom buttons keep
+    // a proper margin instead of touching the window edge.
+    height: mainCol.implicitHeight + 24
     minimumWidth: 380
-    minimumHeight: 250
     color: ColorPalette.cardBg
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
     modality: Qt.ApplicationModal
 
     Material.theme: ColorPalette.materialTheme
@@ -83,8 +84,8 @@ Window {
     }
 
     ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: 16
+        id: mainCol
+        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
         spacing: 10
 
         Text { text: qsTr("Put files into a queue?"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
@@ -126,9 +127,8 @@ Window {
 
         Text { Layout.fillWidth: true; text: root.noteText; color: "#8e97a8"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap }
 
-        Item { Layout.fillHeight: true }
-
         RowLayout {
+            Layout.topMargin: 6
             Layout.fillWidth: true
             Item { Layout.fillWidth: true }
             DlgButton {
