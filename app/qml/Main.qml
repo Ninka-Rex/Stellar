@@ -164,6 +164,41 @@ ApplicationWindow {
         return dlg
     }
 
+    // ── Map of downloadId FilePropertiesDialog instances ────────────────
+    // One window per download, each its own taskbar entry. Double-clicking a
+    // download already showing raises the existing window instead of stacking.
+    property var _propertiesDialogs: ({})
+
+    function showPropertiesForItem(item) {
+        if (!item) return
+        var id = item.id || ""
+        var existing = _propertiesDialogs[id]
+        if (existing) {
+            existing.item = item
+            showAndActivate(existing)
+            return
+        }
+        // Create without item, set owner + cascade FIRST, then set item — the
+        // dialog centers itself in onItemChanged, which needs ownerWindow and
+        // cascadeOffset already in place (object-literal init order is undefined).
+        var dlg = filePropertiesComponent.createObject(root, { ownerWindow: root })
+        if (!dlg) return
+        dlg.cascadeOffset = (Object.keys(_propertiesDialogs).length % 6) * 28
+        dlg.item = item
+        dlg.closing.connect(function(close) {
+            Qt.callLater(function() {
+                if (_propertiesDialogs[id]) {
+                    _propertiesDialogs[id].destroy()
+                    delete _propertiesDialogs[id]
+                    _propertiesDialogs = _propertiesDialogs  // trigger binding refresh
+                }
+            })
+        })
+        _propertiesDialogs[id] = dlg
+        _propertiesDialogs = _propertiesDialogs
+        showAndActivate(dlg)
+    }
+
     function showDownloadProgressForItem(item) {
         if (!item) return
         // yt-dlp channel/playlist downloads (the container row OR any of its child
@@ -3290,8 +3325,13 @@ ApplicationWindow {
         onConfirmed: (includeSeedingTorrents) => App.deleteAllCompleted(0, includeSeedingTorrents)
     }
 
-    // ── File Properties Dialog ───────────────────────────────────────────
-    FilePropertiesDialog { id: filePropertiesDialog; transientParent: root }
+    // ── Component for creating per-download properties dialogs ───────────
+    // Each is a standalone top-level Window (no transientParent) so it gets
+    // its own Windows taskbar entry instead of grouping under the main window.
+    Component {
+        id: filePropertiesComponent
+        FilePropertiesDialog {}
+    }
 
 // ── Columns Dialog ───────────────────────────────────────────────────────
     ColumnsDialog {
@@ -4502,23 +4542,7 @@ ApplicationWindow {
                         root.showDownloadProgressForItem(item)
                         return
                     }
-                    var changingType = filePropertiesDialog.visible
-                        && (!!filePropertiesDialog.item && !!filePropertiesDialog.item.isTorrent) !== !!item.isTorrent
-                    if (changingType) {
-                        // Close the window so Qt destroys the old layout state, then
-                        // reopen next frame with the new item already set.
-                        filePropertiesDialog.close()
-                        var pendingItem = item
-                        Qt.callLater(function() {
-                            filePropertiesDialog.item = pendingItem
-                            filePropertiesDialog.show()
-                            filePropertiesDialog.raise()
-                        })
-                    } else {
-                        filePropertiesDialog.item = item
-                        filePropertiesDialog.show()
-                        filePropertiesDialog.raise()
-                    }
+                    root.showPropertiesForItem(item)
                 }
                 onOpenColumnsSettingsRequested: {
                     columnsDialog.columnDefs = downloadTable.columnDefs.slice()

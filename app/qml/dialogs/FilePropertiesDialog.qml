@@ -28,7 +28,12 @@ Window {
     // Sizes are enforced via onItemChanged/onVisibleChanged so the window
     // always fits the content type, even when the user switches items.
     color: ColorPalette.cardBg
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
+    // No transientParent — a transient/owned window is hidden from the Windows
+    // taskbar. Null parent makes each properties window a top-level taskbar entry.
+    transientParent: null
+    // Qt.Window (not Qt.Dialog) so each properties window gets its own Windows
+    // taskbar entry — Qt.Dialog windows group under the parent's taskbar button.
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint | Qt.WindowMinimizeButtonHint
 
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
@@ -453,15 +458,22 @@ Window {
         }
     }
 
+    // Per-window cascade so stacked properties windows don't perfectly overlap.
+    property int cascadeOffset: 0
+    // Explicit owner for centering. transientParent is null (so the window gets
+    // its own taskbar entry), so we can't read geometry from it — pass the main
+    // window here instead.
+    property var ownerWindow: null
+
     function _centerOnOwner() {
-        var owner = root.transientParent
+        var owner = root.ownerWindow || root.transientParent
         if (owner) {
-            x = owner.x + Math.round((owner.width - width) / 2)
-            y = owner.y + Math.round((owner.height - height) / 2)
+            x = owner.x + Math.round((owner.width - width) / 2) + cascadeOffset
+            y = owner.y + Math.round((owner.height - height) / 2) + cascadeOffset
             return
         }
-        x = Math.round((Screen.width - width) / 2)
-        y = Math.round((Screen.height - height) / 2)
+        x = Math.round((Screen.width - width) / 2) + cascadeOffset
+        y = Math.round((Screen.height - height) / 2) + cascadeOffset
     }
 
     // Works around a Qt layout invalidation bug when the Loader swaps between
@@ -495,16 +507,20 @@ Window {
         if (torrentPeerModel) torrentPeerModel.sortBy(peerSortKey, peerSortAscending)
         if (root.item && root.item.isTorrent)
             refreshSpeedHistory()
+        // Size + position synchronously here (item is set before show() for a
+        // freshly created window) so the window appears already-placed — no
+        // one-frame flicker at screen-center before _centerOnOwner moves it.
+        root._applySize()
+        // Only place the window before it's first shown; re-setting item on an
+        // already-visible window (raise on re-open) must not yank it back to center.
+        if (!visible)
+            root._centerOnOwner()
         root.loadSwarmStatsForCurrent()
     }
     onVisibleChanged: {
         if (visible) {
             raise()
             requestActivate()
-            Qt.callLater(function() {
-                root._applySize()
-                root._centerOnOwner()
-            })
             root.loadSwarmStatsForCurrent()
         } else {
             root.persistSwarmStatsForCurrent()
