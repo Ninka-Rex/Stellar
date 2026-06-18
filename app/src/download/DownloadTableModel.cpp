@@ -579,15 +579,39 @@ void DownloadTableModel::onItemProgressChanged() {
         return;
     }
 
-    // Non-volatile sort column: only HTTP progress signals reach here. We need
-    // the real row index to emit a targeted dataChanged for that one row.
-    const int visRow = m_visible.indexOf(item);
-    if (visRow < 0) return;
+    // Non-volatile sort column. HTTP progress signals reach here, but so do
+    // torrent stat ticks when the active sort column isn't a volatile one
+    // (e.g. the default "added" sort): every seeding torrent emits
+    // torrentStatsChanged each alert tick. The work below must therefore stay
+    // O(1) until we know a repaint is actually needed.
 
     // Skip per-tick repaint when the window is hidden — no visible delegate to
     // update, and the queued dataChanged would have to be flushed all at once on
-    // restore. setUiActive(true) repaints the whole table instead.
+    // restore. setUiActive(true) repaints the whole table instead. Bail BEFORE
+    // the O(n) indexOf below: with the window hidden and a non-volatile sort,
+    // running indexOf once per seeding torrent per tick is O(n²) of pure waste
+    // (the dominant idle-while-seeding CPU cost with the tray window closed).
     if (!m_uiActive) return;
+
+    // Torrent stat ticks need no dataChanged at all here: the torrent columns'
+    // delegates bind directly to DownloadItem properties (torrentUploadSpeed,
+    // ratio, …), so their cell values update through Qt's property-binding
+    // system without any model notification. Emitting a per-row dataChanged for
+    // every seeding torrent every tick — each preceded by an O(n) indexOf —
+    // was O(n²) of pure waste with no visible effect. Only the HTTP DisplayRole
+    // columns (ColProgress / ColTimeLeft, read via data()) need the targeted
+    // emit, and those arrive via doneBytes/speed on non-torrent items.
+    if (item->isTorrent()) return;
+
+    // O(1) membership gate before the O(n) row lookup: an item that isn't
+    // visible (filtered out / collapsed child) needs no repaint and must not
+    // pay for the linear scan.
+    if (!m_visibleSet.contains(item)) return;
+
+    // Visible, UI active, HTTP item — the linear lookup to target the repaint
+    // is justified (at most the handful of rows on screen tick frequently).
+    const int visRow = m_visible.indexOf(item);
+    if (visRow < 0) return;
 
     emit dataChanged(index(visRow, ColProgress), index(visRow, ColTimeLeft));
 }
