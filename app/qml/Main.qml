@@ -95,6 +95,7 @@ ApplicationWindow {
     property bool _torrentFileDragActive: false
     readonly property int settingsPageBrowser: 3
     readonly property int settingsPageSpeedLimiter: 4
+    readonly property int settingsPageGeneral: 6
     readonly property int settingsPageAbout: 12
 
     // ── Minimize to tray on close ────────────────────────────────────────
@@ -3521,13 +3522,13 @@ ApplicationWindow {
         Action { shortcut: "Ctrl+F";       onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
 
         Action { shortcut: "F3";           onTriggered: downloadTable.findNextFiltered() }
-        Action { shortcut: "Ctrl+,";       onTriggered: settingsDialog.show() }
+        Action { shortcut: "Ctrl+,";       onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
         Action { shortcut: "Ctrl+S";       onTriggered: downloadTable.resumeSelected() }
         Action { shortcut: "Ctrl+Shift+P"; onTriggered: root.toggleSessionPause() }
         Action { shortcut: "Ctrl+I";       onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() } }
         Action { shortcut: "Ctrl+Shift+C"; onTriggered: { torrentCreatorDialog.show(); torrentCreatorDialog.raise(); torrentCreatorDialog.requestActivate() } }
         Action { shortcut: "Ctrl+D";       onTriggered: downloadTable.deselectAll() }
-        Action { shortcut: "Alt+O";        onTriggered: settingsDialog.show() }
+        Action { shortcut: "Alt+O";        onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
         Action { shortcut: "Ctrl+K";       onTriggered: downloadTable.pauseAll() }
         Action { shortcut: "Ctrl+Shift+W"; onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
         Action { shortcut: "Ctrl+P";       onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued" || item.status === "Seeding")) App.pauseDownload(item.id) } }
@@ -3778,7 +3779,7 @@ ApplicationWindow {
                 onTriggered: App.sessionPaused ? App.resumeSession() : App.pauseSession()
             }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Options…"); shortcutDisplay: "Alt+O"; iconSrc: "icons/gear.svg"; onTriggered: settingsDialog.show() }
+            CompactMenuItem { text: qsTr("Options…"); shortcutDisplay: "Alt+O"; iconSrc: "icons/gear.svg"; onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
         }
         Menu {
             id: _viewMenu
@@ -3960,7 +3961,7 @@ ApplicationWindow {
             title: qsTr("Options")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
-            CompactMenuItem { text: qsTr("Preferences…"); shortcutDisplay: "Ctrl+,"; iconSrc: "icons/gear.svg";      onTriggered: settingsDialog.show() }
+            CompactMenuItem { text: qsTr("Preferences…"); shortcutDisplay: "Ctrl+,"; iconSrc: "icons/gear.svg";      onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
             CompactMenuItem { text: qsTr("Scheduler");    iconSrc: "icons/scheduler.svg"; onTriggered: schedulerDialog.show() }
             CompactMenuItem {
                 id: _speedLimiterItem2
@@ -4148,7 +4149,7 @@ ApplicationWindow {
             onStopAllClicked:         App.pauseAllDownloads()
             onDeleteClicked:          downloadTable.deleteSelected()
             onDeleteCompletedClicked: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() }
-            onOptionsClicked:         settingsDialog.show()
+            onOptionsClicked:         root.showSettingsPage(root.settingsPageGeneral)
             onSchedulerClicked:       schedulerDialog.show()
             onStartQueueRequested:    (queueId) => App.startQueue(queueId)
             onStopQueueRequested:     (queueId) => App.stopQueue(queueId)
