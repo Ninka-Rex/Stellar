@@ -164,6 +164,38 @@ ApplicationWindow {
         return dlg
     }
 
+    // ── Download Complete dialogs ────────────────────────────────────────
+    // One window per finished download, each its own taskbar entry — they must
+    // NOT recycle (a new finish should never overwrite an existing window's
+    // contents). Keyed by id only to coalesce a re-finish of the same download.
+    property var _completeDialogs: ({})
+
+    function _showCompleteDialog(item) {
+        if (!item) return
+        var id = item.id || ""
+        var dlg = _completeDialogs[id]
+        if (!dlg) {
+            dlg = completeDialogComponent.createObject(root, { item: item })
+            if (!dlg) return
+            dlg.closing.connect(function(close) {
+                Qt.callLater(function() {
+                    if (_completeDialogs[id]) {
+                        _completeDialogs[id].destroy()
+                        delete _completeDialogs[id]
+                        _completeDialogs = _completeDialogs // trigger binding refresh
+                    }
+                })
+            })
+            _completeDialogs[id] = dlg
+            _completeDialogs = _completeDialogs
+        } else {
+            dlg.item = item
+        }
+        dlg.show()
+        dlg.raise()
+        dlg.requestActivate()
+    }
+
     // ── Map of downloadId FilePropertiesDialog instances ────────────────
     // One window per download, each its own taskbar entry. Double-clicking a
     // download already showing raises the existing window instead of stacking.
@@ -772,6 +804,11 @@ ApplicationWindow {
         DownloadProgressDialog {}
     }
 
+    Component {
+        id: completeDialogComponent
+        DownloadCompleteDialog { transientParent: null }
+    }
+
     // ── Controller signals ───────────────────────────────────────────────
     Connections {
         target: App
@@ -818,9 +855,7 @@ ApplicationWindow {
                 return
             if (!App.settings.showDownloadComplete)
                 return
-            completeDialog.item = item
-            completeDialog.show()
-            completeDialog.raise()
+            root._showCompleteDialog(item)
         }
         function onTrayGithubRequested() {
             App.openExternalUrl("https://github.com/Ninka-Rex/Stellar")
@@ -1424,8 +1459,7 @@ ApplicationWindow {
         if (action === 3) {
             // ── Resume or show complete no file info dialog ──────────────
             if (existing.status === "Completed") {
-                completeDialog.item = existing
-                completeDialog.show(); completeDialog.raise()
+                root._showCompleteDialog(existing)
             } else {
                 App.resumeDownload(existing.id)
             }
@@ -2644,9 +2678,8 @@ ApplicationWindow {
         }
     }
 
-    // ── Download Complete Dialog ─────────────────────────────────────────
-    // Detach from main window so each gets its own taskbar button, IDM-style.
-    DownloadCompleteDialog { id: completeDialog; transientParent: null }
+    // Download Complete dialogs are created per-download via _showCompleteDialog()
+    // (one window each, own taskbar button) — see _completeDialogs above.
 
     // ── Settings / About Dialog ──────────────────────────────────────────
     SettingsDialog {

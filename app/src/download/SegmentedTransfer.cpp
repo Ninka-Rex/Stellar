@@ -1326,6 +1326,8 @@ void SegmentedTransfer::onSegmentFinished(int index) {
     QNetworkReply::NetworkError err = seg.reply->error();
     int httpStatus = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     QByteArray retryAfterHdr = seg.reply->rawHeader("Retry-After");
+    if (httpStatus > 0)
+        seg.lastHttpStatus = httpStatus; // remembered for the retry-exhaustion message
 
     // Read any remaining bytes the network delivered before finishing — but ONLY
     // for a successful response. An error response (e.g. HTTP 429 from a
@@ -1373,6 +1375,22 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         return s == 408 || s == 429 || (s >= 500 && s < 600);
     };
 
+    // Friendly error text for the permanent (4xx) failures that reach emit failed()
+    // below. Explains what the status code means rather than a bare number; an
+    // uncommon code falls back to the generic "HTTP N on segment M".
+    auto httpStatusMessage = [](int s, int seg) -> QString {
+        switch (s) {
+        case 400: return tr("Bad request (HTTP 400) on segment %1").arg(seg);
+        case 401: return tr("Authentication required (HTTP 401) on segment %1").arg(seg);
+        case 403: return tr("Access forbidden (HTTP 403) on segment %1").arg(seg);
+        case 404: return tr("File not found (HTTP 404) on segment %1").arg(seg);
+        case 405: return tr("Method not allowed (HTTP 405) on segment %1").arg(seg);
+        case 410: return tr("File no longer available (HTTP 410) on segment %1").arg(seg);
+        case 451: return tr("Unavailable for legal reasons (HTTP 451) on segment %1").arg(seg);
+        default:  return tr("HTTP %1 on segment %2").arg(s).arg(seg);
+        }
+    };
+
     // Parse Retry-After once (seconds form only — the HTTP-date form is rare and
     // Qt's parser doesn't expose it cleanly here). Shared by the retry paths below.
     auto retryAfterMs = [&retryAfterHdr]() -> int {
@@ -1404,8 +1422,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         closeSegmentFile(seg); // ordered after any queued writes
         if (permanent) {
             m_item->setStatus(DownloadItem::Status::Error);
-            emit failed(tr("HTTP %1 on segment %2 (not retriable)")
-                        .arg(httpStatus).arg(index + 1));
+            emit failed(httpStatusMessage(httpStatus, index + 1));
             return;
         }
         if (hasHealthyProgress(index)) {
@@ -1422,8 +1439,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         closeSegmentFile(seg);
         if (isPermanentHttp(httpStatus)) {
             m_item->setStatus(DownloadItem::Status::Error);
-            emit failed(tr("HTTP %1 on segment %2 (not retriable)")
-                        .arg(httpStatus).arg(index + 1));
+            emit failed(httpStatusMessage(httpStatus, index + 1));
             return;
         }
         if (isRetriableHttp(httpStatus)) {
@@ -2756,7 +2772,12 @@ void SegmentedTransfer::retrySegment(int index, int extraDelayMs) {
             return;
         }
         m_item->setStatus(DownloadItem::Status::Error);
-        emit failed(tr("Segment %1 failed after %2 retries").arg(index + 1).arg(kMaxSegmentRetries));
+        // 429 survives the retry ladder when the server stays rate-limited the whole
+        // time — say so rather than a bare "failed after N retries".
+        if (seg.lastHttpStatus == 429)
+            emit failed(tr("Rate limited by server (HTTP 429) on segment %1 — too many requests").arg(index + 1));
+        else
+            emit failed(tr("Segment %1 failed after %2 retries").arg(index + 1).arg(kMaxSegmentRetries));
         return;
     }
 

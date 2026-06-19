@@ -1075,7 +1075,7 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     </message>
     <message>
         <location filename="../app/qml/dialogs/DownloadCompleteDialog.qml" line="107"/>
-        <source>Downloaded %1 (%2 Bytes)</source>
+        <source>Download complete — %1 (%2 Bytes)</source>
         <translation></translation>
     </message>
     <message>
@@ -1425,7 +1425,7 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     </message>
     <message>
         <location filename="../app/qml/dialogs/DownloadProgressDialog.qml" line="506"/>
-        <source>Cancel</source>
+        <source>Close</source>
         <translation></translation>
     </message>
     <message>
@@ -5496,9 +5496,35 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/src/download/SegmentedTransfer.cpp" line="1084"/>
-        <location filename="../app/src/download/SegmentedTransfer.cpp" line="1107"/>
-        <source>HTTP %1 on segment %2 (not retriable)</source>
+        <source>Bad request (HTTP 400) on segment %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Authentication required (HTTP 401) on segment %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Access forbidden (HTTP 403) on segment %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>File not found (HTTP 404) on segment %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Method not allowed (HTTP 405) on segment %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>File no longer available (HTTP 410) on segment %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>HTTP %1 on segment %2</source>
         <translation></translation>
     </message>
     <message>
@@ -5556,6 +5582,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <message>
         <location filename="../app/src/download/SegmentedTransfer.cpp" line="2284"/>
         <source>Segment %1 failed after %2 retries</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
         <translation></translation>
     </message>
 </context>

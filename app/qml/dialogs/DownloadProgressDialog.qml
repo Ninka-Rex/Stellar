@@ -154,7 +154,9 @@ Window {
 
     title: {
         if (!item) return qsTr("Download")
-        var pct = item.progress > 0 ? Math.round(item.progress * 100) + "% " : ""
+        // IDM-style: prefix the percentage only while actively receiving data.
+        var pct = (item.status === "Downloading" && item.progress > 0)
+                  ? Math.round(item.progress * 100) + "% " : ""
         return pct + item.filename
     }
 
@@ -653,9 +655,9 @@ Window {
                             }
                         }
 
-                        // Cancel
+                        // Close
                         DlgButton {
-                            text: qsTr("Cancel")
+                            text: qsTr("Close")
                             onClicked: root.close()
                         }
                     }

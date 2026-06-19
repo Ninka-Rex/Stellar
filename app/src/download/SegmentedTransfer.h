@@ -98,6 +98,7 @@ private:
         QByteArray pending;      // tail bytes from onSegmentFinished in throttled mode
         bool networkDone{false}; // reply finished but pending not yet flushed
         int    retryCount{0};    // number of retries attempted for this segment
+        int    lastHttpStatus{0}; // last HTTP status seen on this segment (for retry-exhaustion message)
         qint64 lastByteTime{0};  // QDateTime::currentMSecsSinceEpoch() of last received byte
         qint64 lastTickReceived{0}; // seg.received snapshot at previous progress tick
         double speedBps{0.0};       // EMA-smoothed per-connection speed (bytes/sec)

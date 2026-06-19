@@ -150,6 +150,18 @@ constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
 constexpr int kMaxMotdLengthChars = 280;
 constexpr qint64 kMotdDismissDurationMs = 7LL * 24LL * 60LL * 60LL * 1000LL;
 
+// Body text for the "Download Complete" tray notification: filename plus the
+// final size in parentheses (IDM-style, e.g. "powarc221002.exe (51.6 MB)").
+// Size omitted when unknown (0/negative) — never show "(0 B)".
+QString completionNotificationBody(const DownloadItem *item, const QString &name)
+{
+    const qint64 bytes = item ? item->totalBytes() : 0;
+    if (bytes <= 0)
+        return name;
+    const QString size = QLocale().formattedDataSize(bytes, 1, QLocale::DataSizeTraditionalFormat);
+    return QStringLiteral("%1 (%2)").arg(name, size);
+}
+
 // Open a local file or directory with the desktop's default handler.
 // On Linux QDesktopServices::openUrl() spawns xdg-open/kde-open as a child
 // process that inherits the launcher script's LD_LIBRARY_PATH/QT_* exports,
@@ -1835,7 +1847,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 const QString name = item->filename().isEmpty()
                     ? item->url().fileName()
                     : item->filename();
-                m_tray->showNotification(tr("Download Complete"), name);
+                m_tray->showNotification(tr("Download Complete"), completionNotificationBody(item, name));
             }
             emit downloadCompleted(item);
         }
@@ -2060,7 +2072,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             const QString name = item->filename().isEmpty()
                 ? item->url().fileName()
                 : item->filename();
-            m_tray->showNotification(tr("Download Complete"), name);
+            m_tray->showNotification(tr("Download Complete"), completionNotificationBody(item, name));
         }
         if (!isIpToCityUpdateItem
             && !isFfmpegUpdateItem
