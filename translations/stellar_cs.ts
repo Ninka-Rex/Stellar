@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 hotovo · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Stahování dokončeno</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Stahování dokončeno</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Staženo %1 (%2 B)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Staženo — %1 (%2 bajtů)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pozastavit</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
+            <source>Close</source>
+            <translation>Zavřít</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Klikněte na Přidat URL pro spuštění.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Dokončeno</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Čeká</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Dokončeno</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Stahování %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Úkoly</translation>
         </message>
@@ -3661,6 +3677,10 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Postup stahování kanálu</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanál/Playlist</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Název souboru</translation>
         </message>
@@ -3677,8 +3697,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Zbývající čas</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Položka %1</translation>
+            <source>Pending…</source>
+            <translation>Čeká…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Požadavek na stažení selhal.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 na segmentu %2 (neopakovatelné)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Chybný požadavek (HTTP 400) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Vyžadováno ověření (HTTP 401) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Přístup odepřen (HTTP 403) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Soubor nenalezen (HTTP 404) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metoda není povolena (HTTP 405) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Soubor již není dostupný (HTTP 410) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Nedostupné z právních důvodů (HTTP 451) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 na segmentu %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 selhal po %2 pokusech</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Omezeno serverem (HTTP 429) na segmentu %1 — příliš mnoho požadavků</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Vypnout DHT při nečinnosti</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Automaticky vypnout DHT, když neběží žádné torrenty, aby se aplikace přestala ohlašovat do sítě, když je nečinná.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Výchozí max. spojení na stahování:</translation>

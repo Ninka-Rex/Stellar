@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ສຳເລັດ · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ດາວໂຫຼດສຳເລັດ</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ດາວໂຫຼດສຳເລັດ</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>ດາວໂຫຼດແລ້ວ %1 (%2 ໄບຕ໌)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ດາວໂຫຼດສຳເລັດ — %1 (%2 ໄບຕ໌)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ຢຸດຊົ່ວຄາວ</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>ຍົກເລີກ</translation>
+            <source>Close</source>
+            <translation>ປິດ</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>ສຳເລັດແລ້ວ</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>ກຳລັງລໍຖ້າ</translation>
@@ -3099,6 +3107,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>ສຳເລັດແລ້ວ</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>ກຳລັງດາວໂຫຼດ %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>ໜ້າວຽກ</translation>
         </message>
@@ -3669,6 +3685,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ຄວາມຄືບໜ້າດາວໂຫຼດຊ່ອງ</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ຊ່ອງ/ລາຍການ</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ຊື່ໄຟລ໌</translation>
         </message>
@@ -3685,8 +3705,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ເວລາທີ່ເຫຼືອ</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>ລາຍການ %1</translation>
+            <source>Pending…</source>
+            <translation>ກຳລັງລໍຖ້າ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4371,8 +4391,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ຄຳຂໍດາວໂຫຼດລົ້ມເຫຼວ.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 ໃນສ່ວນ %2 (ບໍ່ສາມາດລອງໃໝ່ໄດ້)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>ຄຳຂໍບໍ່ຖືກຕ້ອງ (HTTP 400) ທີ່ສ່ວນ %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>ຕ້ອງການການຢັ້ງຢືນ (HTTP 401) ທີ່ສ່ວນ %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>ຫ້າມເຂົ້າ (HTTP 403) ສ່ວນ %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>ບໍ່ພົບໄຟລ໌ (HTTP 404) ສ່ວນ %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>ວິທີບໍ່ອະນຸຍາດ (HTTP 405) ສ່ວນ %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>ໄຟລ໌ບໍ່ມີແລ້ວ (HTTP 410) ສ່ວນ %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>ບໍ່ພ້ອມໃຊ້ດ້ວຍເຫດຜົນກົດໝາຍ (HTTP 451) ສ່ວນ %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 ສ່ວນ %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4418,9 +4466,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>ສ່ວນ %1 ລົ້ມເຫຼວຫຼັງລອງໃໝ່ %2 ຄັ້ງ</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>ຖືກຈຳກັດອັດຕາ (HTTP 429) ສ່ວນ %1 — ຄຳຂໍຫຼາຍເກີນໄປ</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>ປິດ DHT ເມື່ອບໍ່ໄດ້ໃຊ້</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ປິດ DHT ອັດຕະໂນມັດເມື່ອບໍ່ມີທໍຣ໌ເຣັນທີ່ກຳລັງແລ່ນ, ເພື່ອບໍ່ໃຫ້ແອັບປະກາດຕົວຕໍ່ເຄືອຂ່າຍຕອນບໍ່ໄດ້ໃຊ້.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ການເຊື່ອມຕໍ່ສູງສຸດຕໍ່ດາວໂຫຼດ:</translation>

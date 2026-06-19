@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 completo · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Descarga completa</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Descarga completa</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Descargado %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Descarga completa — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pausa</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Cancelar</translation>
+            <source>Close</source>
+            <translation>Cerrar</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Pulsa  Añadir URL  para empezar.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Completado</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Pendiente</translation>
@@ -3101,6 +3109,14 @@ Proyecto</translation>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Completado</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Descargando %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tareas</translation>
         </message>
@@ -3665,6 +3681,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Progreso de canal</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Canal/Lista</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Nombre</translation>
         </message>
@@ -3681,8 +3701,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Tiempo rest.</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Elemento %1</translation>
+            <source>Pending…</source>
+            <translation>Pendiente…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4367,8 +4387,36 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>La solicitud de descarga falló.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 en el segmento %2 (no reintentable)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Solicitud incorrecta (HTTP 400) en segmento %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Autenticación requerida (HTTP 401) en segmento %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Acceso prohibido (HTTP 403) en segmento %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Archivo no encontrado (HTTP 404) en segmento %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Método no permitido (HTTP 405) en segmento %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Archivo ya no disponible (HTTP 410) en segmento %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>No disponible por razones legales (HTTP 451) en segmento %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 en segmento %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4414,9 +4462,21 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segmento %1 falló tras %2 reintentos</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Límite de tasa del servidor (HTTP 429) en segmento %1 — demasiadas peticiones</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Desactivar DHT al estar inactivo</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Apagar DHT automáticamente cuando no haya torrents activos, para que la app deje de anunciarse en la red al estar inactiva.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Conexiones máx. por defecto:</translation>

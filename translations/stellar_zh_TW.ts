@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 已完成 · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>下載完成</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>下載完成</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>已下載 %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>下載完成 — %1 (%2 位元組)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>暫停</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>取消</translation>
+            <source>Close</source>
+            <translation>關閉</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1412,6 +1416,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>已完成</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>待處理</translation>
@@ -3090,6 +3098,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>已完成</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>下載中 %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>任務</translation>
         </message>
@@ -3653,6 +3669,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>頻道下載進度</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>頻道/播放清單</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>檔名</translation>
         </message>
@@ -3669,8 +3689,8 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>剩餘時間</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>項目 %1</translation>
+            <source>Pending…</source>
+            <translation>等待中…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4355,8 +4375,36 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>下載請求失敗。</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 在區段 %2 上（不可重試）</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>片段 %1 請求錯誤 (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>片段 %1 需要驗證 (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>區段 %1 禁止存取 (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>找不到檔案 (HTTP 404) 於區段 %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>不允許的方法 (HTTP 405) 於區段 %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>檔案已不存在 (HTTP 410)，位於段落 %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>因法律原因無法使用 (HTTP 451) 於段落 %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 在區段 %2 上</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4402,9 +4450,21 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>分段 %1 失敗，已重試 %2 次</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>伺服器對區段 %1 進行了速率限制 (HTTP 429) — 請求過多</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>閒置時停用 DHT</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>當沒有種子運行時自動關閉 DHT，這樣應用程式在閒置時就不會向網路宣告自己的存在。</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>預設每下載最大連線數：</translation>

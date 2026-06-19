@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 完了 · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ダウンロード完了</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ダウンロード完了</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1（%2 バイト）ダウンロード済み</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ダウンロード完了 — %1 (%2 バイト)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>一時停止</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>キャンセル</translation>
+            <source>Close</source>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1412,6 +1416,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>完了</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>保留中</translation>
@@ -3089,6 +3097,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>完了</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>ダウンロード中 %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>タスク</translation>
         </message>
@@ -3655,6 +3671,10 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>チャンネルのダウンロード進捗</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>チャンネル/再生リスト</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ファイル名</translation>
         </message>
@@ -3671,8 +3691,8 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>残り時間</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>項目 %1</translation>
+            <source>Pending…</source>
+            <translation>保留中…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4357,8 +4377,36 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>ダウンロード要求に失敗しました。</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1（セグメント %2、再試行不可）</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>不正リクエスト (HTTP 400) セグメント %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>認証必要 (HTTP 401) セグメント %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>セグメント%1でアクセス禁止 (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>セグメント%1でファイル未検出 (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>セグメント%1でメソッド不許可 (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>セグメント%1でファイル消失 (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>セグメント%1で法的理由により提供不可 (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>セグメント%2でHTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4404,9 +4452,21 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <source>Segment %1 failed after %2 retries</source>
             <translation>セグメント%1が%2回の再試行で失敗</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>セグメント%1でレート制限 (HTTP 429) — リクエスト過多</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>アイドル時DHT無効</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>トレント非実行時にDHTを自動停止し、アイドル中のネットワーク通知を防ぐ</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>既定の最大接続数:</translation>

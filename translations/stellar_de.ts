@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 abgeschlossen · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Download abgeschlossen</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Download abgeschlossen</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 heruntergeladen (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Download abgeschlossen — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pause</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Abbrechen</translation>
+            <source>Close</source>
+            <translation>Schließen</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Klicken Sie auf URL hinzufügen, um zu beginnen.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Fertig</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Ausstehend</translation>
@@ -3090,6 +3098,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Fertig</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Lade %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Aufgaben</translation>
         </message>
@@ -3660,6 +3676,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <translation>Kanal-Downloadfortschritt</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/Playlist</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Dateiname</translation>
         </message>
@@ -3676,8 +3696,8 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <translation>Restzeit</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Element %1</translation>
+            <source>Pending…</source>
+            <translation>Ausstehend…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4362,8 +4382,36 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <translation>Die Download-Anforderung ist fehlgeschlagen.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 auf Segment %2 (nicht wiederholbar)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Fehlerhafte Anfrage (HTTP 400) bei Segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Anmeldung erforderlich (HTTP 401) bei Segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Zugriff verweigert (HTTP 403) bei Segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Datei nicht gefunden (HTTP 404) bei Segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Methode nicht erlaubt (HTTP 405) bei Segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Datei nicht mehr verfügbar (HTTP 410) bei Segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Aus rechtlichen Gründen gesperrt (HTTP 451) bei Segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 bei Segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4409,9 +4457,21 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 nach %2 Wiederholungen fehlgeschlagen</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Ratenlimit (HTTP 429) bei Segment %1 – zu viele Anfragen</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>DHT im Leerlauf deaktivieren</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>DHT automatisch abschalten, wenn keine Torrents laufen, damit die App sich im Leerlauf nicht im Netzwerk meldet.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Standard max. Verbindungen pro Download:</translation>

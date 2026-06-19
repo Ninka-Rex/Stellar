@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 เสร็จ · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ดาวน์โหลดเสร็จ</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ดาวน์โหลดเสร็จสิ้น</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>ดาวน์โหลด %1 (%2 ไบต์)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ดาวน์โหลดเสร็จ — %1 (%2 ไบต์)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>หยุด</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
+            <source>Close</source>
+            <translation>ปิด</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>เสร็จแล้ว</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>รอดำเนินการ</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>เสร็จแล้ว</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>กำลังดาวน์โหลด %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>งาน</translation>
         </message>
@@ -3656,6 +3672,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ความคืบหน้าการดาวน์โหลดช่อง</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ช่อง/เพลย์ลิสต์</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ชื่อไฟล์</translation>
         </message>
@@ -3672,8 +3692,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>เวลาคงเหลือ</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>รายการ %1</translation>
+            <source>Pending…</source>
+            <translation>รอดำเนินการ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4358,8 +4378,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>คำขอดาวน์โหลดล้มเหลว</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 บนเซกเมนต์ %2 (ไม่ลองใหม่)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>คำขอไม่ถูกต้อง (HTTP 400) ที่ส่วน %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>ต้องยืนยันตัวตน (HTTP 401) ที่ส่วน %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>ห้ามเข้าถึง (HTTP 403) ที่ส่วน %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>ไม่พบไฟล์ (HTTP 404) ที่ส่วน %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>ไม่อนุญาตวิธีนี้ (HTTP 405) ที่ส่วน %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>ไฟล์ไม่พร้อมใช้งานแล้ว (HTTP 410) ที่ส่วน %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>ไม่พร้อมใช้งานด้วยเหตุผลทางกฎหมาย (HTTP 451) ที่ส่วน %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 ที่ส่วน %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4405,9 +4453,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>เซกเมนต์ %1 ล้มเหลวหลังลอง %2 ครั้ง</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>ถูกจำกัดอัตราโดยเซิร์ฟเวอร์ (HTTP 429) ที่ส่วน %1 — คำขอมากเกินไป</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>ปิด DHT เมื่อว่าง</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ปิด DHT อัตโนมัติเมื่อไม่มีทอร์เรนต์ทำงาน แอปจะหยุดประกาศตัวต่อเครือข่ายขณะว่าง</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>จำนวนการเชื่อมต่อสูงสุดต่อการดาวน์โหลด:</translation>

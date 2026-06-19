@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ተጠናቋል · %3 ሜባ</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ውርድ ተጠናቋል</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ማውረድ ተጠናቋል</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ወርዷል (%2 ባይት)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ማውረድ ተጠናቋል — %1 (%2 ባይት)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>አቁም</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>ይቅር</translation>
+            <source>Close</source>
+            <translation>ዝጋ</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>ተጠናቋል</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>በመጠባበቅ ላይ</translation>
@@ -3096,6 +3104,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>ተጠናቋል</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% በማውረድ ላይ</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>ተግባራት</translation>
         </message>
@@ -3666,6 +3682,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>የሰርጥ ማውረድ ሂደት</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ሰርጥ/አጫዋች ዝርዝር</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>የፋይል ስም</translation>
         </message>
@@ -3682,8 +3702,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>የቀረ ጊዜ</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>ንጥል %1</translation>
+            <source>Pending…</source>
+            <translation>በመጠባበቅ ላይ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4368,8 +4388,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>የማውረጃ ጥያቄው አልተሳካም።</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 በክፍል %2 ላይ (እንደገና መሞከር አይቻልም)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>መጥፎ ጥያቄ (HTTP 400) በክፍል %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>ማረጋገጫ ያስፈልጋል (HTTP 401) በክፍል %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>ክፍል %1 ላይ መድረስ አልተፈቀደም (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>ክፍል %1 ላይ ፋይል አልተገኘም (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>ክፍል %1 ላይ ዘዴ አይፈቀድም (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>ክፍል %1 ላይ ፋይል ከእንግዲህ አይገኝም (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>ክፍል %1 ላይ በህግ ምክንያት አይገኝም (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>ክፍል %2 ላይ HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4415,9 +4463,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>ክፍል %1 ከ%2 ሙከራዎች በኋላ አልተሳካም</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>ክፍል %1 ላይ በአገልጋይ ተመን ተገድቧል (HTTP 429) — በጣም ብዙ ጥያቄዎች</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>ስራ ፈት ጊዜ DHT አሰናክል</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ምንም ዥረት በማይሰራበት ጊዜ DHT በራስሰር አጥፋ፣ ስራ ፈት ሆኖ ሳለ መተግበሪያው እራሱን ለአውታረ መረብ ማሳወቁን እንዲያቆም።</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ነባሪ ከፍተኛ ግንኙነቶች በአንድ ማውረድ:</translation>

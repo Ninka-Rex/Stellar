@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 fullført · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Nedlasting fullført</translation>
         </message>
@@ -894,8 +898,8 @@ Kjør manuelt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.m
             <translation>Nedlasting fullført</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Nedlastet %1 (%2 bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Nedlasting fullført — %1 (%2 byte)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Kjør manuelt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.m
             <translation>Pause</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
+            <source>Close</source>
+            <translation>Lukk</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Klikk Legg til URL for å starte.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Fullført</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Venter</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Fullført</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Laster ned %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Oppgaver</translation>
         </message>
@@ -3654,6 +3670,10 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <translation>Kanalen laster ned</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/spilleliste</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Filnavn</translation>
         </message>
@@ -3670,8 +3690,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <translation>Tid igjen</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Element %1</translation>
+            <source>Pending…</source>
+            <translation>Venter…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4356,8 +4376,36 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <translation>Nedlastingsforespørselen mislyktes.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 på segment %2 (kan ikke prøves på nytt)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Ugyldig forespørsel (HTTP 400) på segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Autentisering kreves (HTTP 401) på segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Tilgang nektet (HTTP 403) på segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fil ikke funnet (HTTP 404) på segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metode ikke tillatt (HTTP 405) på segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fil ikke lenger tilgjengelig (HTTP 410) på segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Utilgjengelig av juridiske årsaker (HTTP 451) på segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 på segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4403,9 +4451,21 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 mislyktes etter %2 forsøk</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Frekvensbegrenset av server (HTTP 429) på segment %1 — for mange forespørsler</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Slå av DHT ved inaktivitet</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Slå av DHT automatisk når ingen torrenter kjører, slik at appen slutter å annonsere seg selv til nettverket ved inaktivitet.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Standard maks. tilkoblinger per nedlasting:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 emechaala · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Nbudata Emechara</translation>
         </message>
@@ -894,8 +898,8 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Nbudata emechala</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Ebudatara %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Nbudata emechaala — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Kwụsịtụ</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Kagbuo</translation>
+            <source>Close</source>
+            <translation>Mechie</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Emechara</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Na-echere</translation>
@@ -3097,6 +3105,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Emechara</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Na-ebudata %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Ọrụ</translation>
         </message>
@@ -3667,6 +3683,10 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Ọganihu Nbudata Ọwa</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Ọwa/Ndepụta egwu</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Aha Faịlụ</translation>
         </message>
@@ -3683,8 +3703,8 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Oge fọdụrụ</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Ihe %1</translation>
+            <source>Pending…</source>
+            <translation>Na-echere…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4369,8 +4389,36 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Arịrịọ nbudata ahụ dara.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 na ngalaba %2 (enweghị ike ịnwaleghachi)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Arịrịọ ọjọọ (HTTP 400) na nkebi %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Achọrọ nyocha (HTTP 401) na nkebi %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>A machibidoro iwu (HTTP 403) na nkebi %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Ahụghị faịlụ (HTTP 404) na nkebi %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Usoro akwadoghị (HTTP 405) na nkebi %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Faịlụ adịkwaghị (HTTP 410) na nkebi %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Adịghị maka ihe gbasara iwu (HTTP 451) na nkebi %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 na nkebi %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4416,9 +4464,21 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Mpaghara %1 dara mgbe %2 nwaghị</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Oke ọnụego site na sava (HTTP 429) na nkebi %1 — ọtụtụ arịrịọ</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Gbanyụọ DHT mgbe aka nkịtị</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Gbanyụọ DHT na-akpaghị aka mgbe ọ nweghị torrent na-agba, ka ngwa ahụ kwụsị ikwupụta onwe ya na netwọk mgbe aka nkịtị.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Njikọ kacha elu ndabere maka nbudata ọ bụla:</translation>

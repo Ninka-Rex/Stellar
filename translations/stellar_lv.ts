@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 pabeigts · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Lejupielāde pabeigta</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Lejupielāde pabeigta</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Lejupielādēts %1 (%2 B)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Lejupielāde pabeigta — %1 (%2 baiti)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pauzēt</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
+            <source>Close</source>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Noklikšķiniet uz Pievienot URL, lai sāktu.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Pabeigts</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Gaida</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Pabeigts</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Lejupielādē %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Uzdevumi</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanāla lejupielādes progress</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanāls/Atk. sar.</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Faila nosaukums</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Atlikušais laiks</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Vienums %1</translation>
+            <source>Pending…</source>
+            <translation>Gaida…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Lejupielādes pieprasījums neizdevās.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 segmentā %2 (nav atkārtoti mēģināms)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Nederīgs pieprasījums (HTTP 400) segmentam %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Nepieciešama autentifikācija (HTTP 401) segmentam %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Piekļuve liegta (HTTP 403) segmentam %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fails nav atrasts (HTTP 404) segmentam %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metode nav atļauta (HTTP 405) segmentam %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fails vairs nav pieejams (HTTP 410) segmentam %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Nav pieejams juridisku iemeslu dēļ (HTTP 451) segmentam %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 segmentam %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segments %1 neizdevās pēc %2 mēģinājumiem</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Servera ātruma ierobežojums (HTTP 429) segmentam %1 — pārāk daudz pieprasījumu</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Izslēgt DHT dīkstāvē</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Automātiski izslēgt DHT, kad nav aktīvu torrentu, lai lietotne pārtrauc paziņot par sevi tīklā dīkstāves laikā.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Noklusējuma maks. savienojumi lejupielādei:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 voltooid · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Download voltooid</translation>
         </message>
@@ -895,8 +899,8 @@ Handmatig uitvoeren: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Download voltooid</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 gedownload (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Download voltooid — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1176,8 +1180,8 @@ Handmatig uitvoeren: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Pauze</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
+            <source>Close</source>
+            <translation>Sluiten</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1415,6 +1419,10 @@ Klik op URL toevoegen om te starten.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Voltooid</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>In afwachting</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Voltooid</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% downloaden</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Taken</translation>
         </message>
@@ -3659,6 +3675,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanaal-downloadvoortgang</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanaal/Afspeellijst</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Bestandsnaam</translation>
         </message>
@@ -3675,8 +3695,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Resterende tijd</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Item %1</translation>
+            <source>Pending…</source>
+            <translation>In wacht…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4361,8 +4381,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>De downloadaanvraag is mislukt.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 op segment %2 (niet herhaalbaar)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Ongeldig verzoek (HTTP 400) op segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Authenticatie vereist (HTTP 401) op segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Toegang verboden (HTTP 403) op segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Bestand niet gevonden (HTTP 404) op segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Methode niet toegestaan (HTTP 405) op segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Bestand niet langer beschikbaar (HTTP 410) op segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Niet beschikbaar om juridische redenen (HTTP 451) op segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 op segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4408,9 +4456,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 mislukt na %2 pogingen</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Snelheidslimiet server (HTTP 429) op segment %1 — te veel verzoeken</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>DHT uitschakelen bij inactiviteit</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>DHT automatisch uitzetten als er geen torrents actief zijn, zodat de app stopt met zichzelf aan te kondigen op het netwerk bij inactiviteit.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Standaard max. verbindingen per download:</translation>

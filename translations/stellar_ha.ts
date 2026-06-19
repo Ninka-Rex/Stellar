@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 an kammala · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Saukarwa ta Kammala</translation>
         </message>
@@ -894,8 +898,8 @@ Gudanar da hannu: flatpak override --user --talk-name=org.freedesktop.Flatpak or
             <translation>Zazzagewa ta kammala</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>An zazzage %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Saukarwa ta ƙare — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Gudanar da hannu: flatpak override --user --talk-name=org.freedesktop.Flatpak or
             <translation>Dakata</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Soke</translation>
+            <source>Close</source>
+            <translation>Rufe</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Danna  Ƙara URL  don farawa.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>An Kammala</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Mai jiran aiki</translation>
@@ -3097,6 +3105,14 @@ Aiki</translation>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>An Kammala</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Ana saukewa %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Ayyuka</translation>
         </message>
@@ -3667,6 +3683,10 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Ci gaban Zazzagewar Tasha</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Tasha/Jeri</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Sunan fayil</translation>
         </message>
@@ -3683,8 +3703,8 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Lokaci ya rage</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Abu %1</translation>
+            <source>Pending…</source>
+            <translation>Jiran…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4369,8 +4389,36 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Buƙatar saukewa ta gaza.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 akan kashi %2 (ba za a iya sake gwadawa ba)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Buƙata mara kyau (HTTP 400) a sashi %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Ana buƙatar tabbatarwa (HTTP 401) a sashi %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>An hana shiga (HTTP 403) a sashi %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Ba a sami fayil ba (HTTP 404) a sashi %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Hanyar ba ta halatta ba (HTTP 405) a sashi %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fayil ɗin ba ya nan (HTTP 410) a sashi %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Ba a samuwa saboda dalilai na doka (HTTP 451) a sashi %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 a sashi %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4416,9 +4464,21 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Kashi %1 ya gaza bayan ƙoƙari %2</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>An iyakance ta sabar (HTTP 429) a sashi %1 — buƙatun sun yi yawa</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Kashe DHT lokacin da babu aiki</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Kashe DHT kai tsaye lokacin da babu torrents da ke gudana, don haka app ɗin ya daina sanar da kansa ga cibiyar sadarwa yayin da babu aiki.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Matsakaicin haɗi na tsoho kowane zazzagewa:</translation>

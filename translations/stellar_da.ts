@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 fuldført · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Download fuldført</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Download fuldført</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Downloadet %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Download fuldført — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pause</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Annuller</translation>
+            <source>Close</source>
+            <translation>Luk</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Klik Tilføj URL for at starte.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Fuldført</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Afventer</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Fuldført</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Downloader %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Opgaver</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Kanaldownloadfremdrift</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/Playliste</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Filnavn</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Tid tilbage</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Element %1</translation>
+            <source>Pending…</source>
+            <translation>Afventer…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Downloadanmodningen mislykkedes.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 på segment %2 (kan ikke gentages)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Ugyldig forespørgsel (HTTP 400) på segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Godkendelse påkrævet (HTTP 401) på segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Adgang forbudt (HTTP 403) på segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fil ikke fundet (HTTP 404) på segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metode ikke tilladt (HTTP 405) på segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fil ikke længere tilgængelig (HTTP 410) på segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Utilgængelig af juridiske årsager (HTTP 451) på segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 på segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 mislykkedes efter %2 forsøg</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Frekvensbegrænset af server (HTTP 429) på segment %1 — for mange forespørgsler</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Slå DHT fra når inaktiv</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Slå automatisk DHT fra når ingen torrents kører, så appen stopper med at annoncere sig selv på netværket mens den er inaktiv.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Standard maks. forbindelser pr. download:</translation>

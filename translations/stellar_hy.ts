@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ավարտված · %3 ՄԲ</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Ներբեռնումն ավարտվեց</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Ներբեռնումն ավարտված է</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Ներբեռնված է %1 (%2 Բայթ)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Ներբեռնումն ավարտված է — %1 (%2 բայթ)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Դադար</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Չեղարկել</translation>
+            <source>Close</source>
+            <translation>Փակել</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Ավարտված</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Սպասում</translation>
@@ -3090,6 +3098,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Ավարտված</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Ներբեռնվում է %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Խնդիրներ</translation>
         </message>
@@ -3659,6 +3675,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ալիքի ներբեռնման ընթացքը</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Ալիք/Երգացանկ</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Ֆայլի անուն</translation>
         </message>
@@ -3675,8 +3695,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Մնաց ժամ</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Տարր %1</translation>
+            <source>Pending…</source>
+            <translation>Սպասվում է…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4361,8 +4381,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ներբեռնման հարցումը ձախողվեց:</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 %2 հատվածի վրա (չվերափորձարկվող)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Սխալ հարցում (HTTP 400) հատվածում %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Պահանջվում է նույնականացում (HTTP 401) հատվածում %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Մուտքն արգելված է (HTTP 403) %1 հատվածում</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Ֆայլը չի գտնվել (HTTP 404) %1 հատվածում</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Մեթոդը թույլատրված չէ (HTTP 405) %1 հատվածում</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Ֆայլն այլևս հասանելի չէ (HTTP 410) %1 հատվածում</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Անհասանելի է իրավական պատճառներով (HTTP 451) %1 հատվածում</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 %2 հատվածում</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4408,9 +4456,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>%1 հատվածը ձախողվեց %2 կրկն. փորձից հետո</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Սերվերի կողմից սահմանափակված է (HTTP 429) %1 հատվածում — չափազանց շատ հարցում</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Անջատել DHT-ն անգործության ժամանակ</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Ավտոմատ անջատել DHT-ն, երբ թորենթներ չկան, որպեսզի հավելվածը դադարի ցանցում իր մասին հայտարարել անգործության ժամանակ։</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Լռելյայն առավել. կապեր ներբեռնման համար՝</translation>

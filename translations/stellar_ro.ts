@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 complet · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Descărcare completă</translation>
         </message>
@@ -894,8 +898,8 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Descărcare finalizată</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Descărcat %1 (%2 B)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Descărcare completă — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Pauză</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Anulează</translation>
+            <source>Close</source>
+            <translation>Închide</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Apăsați Adaugă URL pentru a începe.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Finalizat</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>În așteptare</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Finalizat</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Descărcare %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Sarcini</translation>
         </message>
@@ -3655,6 +3671,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Progres descărcare canal</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Canal/Playlist</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Nume fișier</translation>
         </message>
@@ -3671,8 +3691,8 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Timp rămas</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Element %1</translation>
+            <source>Pending…</source>
+            <translation>În așteptare…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4357,8 +4377,36 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Cererea de descărcare a eșuat.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 pe segmentul %2 (fără reîncercare)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Cerere greșită (HTTP 400) la segmentul %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Autentificare necesară (HTTP 401) la segmentul %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Acces interzis (HTTP 403) pe segmentul %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fișier negăsit (HTTP 404) pe segmentul %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metodă nepermisă (HTTP 405) pe segmentul %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fișier indisponibil (HTTP 410) pe segmentul %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Indisponibil din motive legale (HTTP 451) pe segmentul %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 pe segmentul %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4404,9 +4452,21 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segmentul %1 a eșuat după %2 reîncercări</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Rată limitată de server (HTTP 429) pe segmentul %1 — prea multe cereri</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Dezactivează DHT în repaus</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Oprește automat DHT când niciun torrent nu rulează, pentru ca aplicația să nu se mai anunțe în rețea în repaus.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Conexiuni max. implicite per descărcare:</translation>

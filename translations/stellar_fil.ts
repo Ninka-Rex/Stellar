@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 tapos · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Kumpleto na ang pag-download</translation>
         </message>
@@ -894,8 +898,8 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Natapos ang pag-download</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Nadala ang %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Tapos na download — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Ihinto</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Kanselahin</translation>
+            <source>Close</source>
+            <translation>Isara</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ I-click ang Add URL upang magsimula.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Tapos</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Nakabinbin</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Tapos</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Dina-download %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Mga Gawain</translation>
         </message>
@@ -3656,6 +3672,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Progress ng Pag-download</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Channel/Playlist</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Pangalan ng File</translation>
         </message>
@@ -3672,8 +3692,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Natitirang oras</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Item %1</translation>
+            <source>Pending…</source>
+            <translation>Naghihintay…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4358,8 +4378,36 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Nabigo ang download request.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 sa segment %2 (hindi na muling susubukan)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Masamang request (HTTP 400) sa segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Kailangan ng pagpapatunay (HTTP 401) sa segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Bawal pumasok (HTTP 403) sa segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Hindi makita ang file (HTTP 404) sa segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Hindi pinapayagan ang paraan (HTTP 405) sa segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Wala na ang file (HTTP 410) sa segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Di magamit dahil sa batas (HTTP 451) sa segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 sa segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4405,9 +4453,21 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Nabigo ang segment %1 pagkatapos ng %2 ulit</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Nilimitahan ng server (HTTP 429) sa segment %1 — sobrang daming hiling</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>I-disable ang DHT kapag idle</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Awtomatikong patayin ang DHT kapag walang torrent, para tumigil ang app sa pag-anunsyo sa network habang idle.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Default na max. na koneksyon bawat download:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 imekamilika · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Upakuaji Umekamilika</translation>
         </message>
@@ -894,8 +898,8 @@ Endesha wewe mwenyewe: flatpak override --user --talk-name=org.freedesktop.Flatp
             <translation>Mipango imekamilika</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Imechukuliwa %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Upakuaji umekamilika — %1 (%2 Baiti)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Endesha wewe mwenyewe: flatpak override --user --talk-name=org.freedesktop.Flatp
             <translation>Pauza</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Ghairi</translation>
+            <source>Close</source>
+            <translation>Funga</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Bonyeza  Onyesha URL  kuanza.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Imekamilika</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Inasubiri</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Imekamilika</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Inapakua %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Mashughuli</translation>
         </message>
@@ -3653,6 +3669,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Mwendo wa Kupakua Channel</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Idhaa/Orodha</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Jina la Faili</translation>
         </message>
@@ -3669,8 +3689,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Muda uliobaki</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Kipengee %1</translation>
+            <source>Pending…</source>
+            <translation>Inasubiri…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4355,8 +4375,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ombi la kupakua halikufaulu.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 kwenye sehemu %2 (haiwezi kujaribiwa tena)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Ombi baya (HTTP 400) kwenye sehemu %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Uthibitishaji unahitajika (HTTP 401) kwenye sehemu %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Ufikiaji umekatazwa (HTTP 403) kwenye sehemu %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Faili haijapatikana (HTTP 404) kwenye sehemu %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Mbinu hairuhusiwi (HTTP 405) kwenye sehemu %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Faili haipatikani tena (HTTP 410) kwenye sehemu %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Haipatikani kwa sababu za kisheria (HTTP 451) kwenye sehemu %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 kwenye sehemu %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4402,9 +4450,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Sehemu %1 imeshindwa baada ya majaribio %2</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Kiwango kimezuiliwa na seva (HTTP 429) kwenye sehemu %1 — maombi mengi mno</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Zima DHT wakati wa kutofanya kazi</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Zima DHT kiotomatiki wakati hakuna torrenti zinazoendesha, ili programu iache kujitangaza kwenye mtandao wakati haitumiki.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Idadi ya juu ya miunganisho kwa kila upakuaji:</translation>

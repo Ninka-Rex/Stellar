@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ukończono · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Pobieranie zakończone</translation>
         </message>
@@ -894,8 +898,8 @@ Uruchom ręcznie: flatpak override --user --talk-name=org.freedesktop.Flatpak or
             <translation>Pobieranie zakończone</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 pobrano (%2 bajtów)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Pobieranie zakończone — %1 (%2 B)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Uruchom ręcznie: flatpak override --user --talk-name=org.freedesktop.Flatpak or
             <translation>Pauza</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Anuluj</translation>
+            <source>Close</source>
+            <translation>Zamknij</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Kliknij Dodaj URL, aby rozpocząć.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Ukończono</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Oczekuje</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Ukończono</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Pobieranie %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Zadania</translation>
         </message>
@@ -3661,6 +3677,10 @@ Opcje Stellar → Przeglądarka → Omijaj przechwytywanie pobierania</translati
             <translation>Postęp pobierania kanału</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanał/Playlista</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Nazwa pliku</translation>
         </message>
@@ -3677,8 +3697,8 @@ Opcje Stellar → Przeglądarka → Omijaj przechwytywanie pobierania</translati
             <translation>Pozostały czas</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Element %1</translation>
+            <source>Pending…</source>
+            <translation>Oczekiwanie…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Opcje Stellar → Przeglądarka → Omijaj przechwytywanie pobierania</translati
             <translation>Żądanie pobrania nie powiodło się.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 na segmencie %2 (nie do ponowienia)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Błędne żądanie (HTTP 400) na segmencie %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Wymagane uwierzytelnienie (HTTP 401) na segmencie %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Dostęp zabroniony (HTTP 403) dla segmentu %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Plik nie znaleziony (HTTP 404) dla segmentu %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metoda niedozwolona (HTTP 405) dla segmentu %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Plik już niedostępny (HTTP 410) dla segmentu %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Niedostępne z przyczyn prawnych (HTTP 451) dla segmentu %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 dla segmentu %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Opcje Stellar → Przeglądarka → Omijaj przechwytywanie pobierania</translati
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 nie powiódł się po %2 próbach</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Ograniczenie prędkości (HTTP 429) dla segmentu %1 — zbyt wiele żądań</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Wyłącz DHT w bezczynności</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Wyłączaj DHT automatycznie, gdy nie ma aktywnych torrentów, aby aplikacja przestała ogłaszać się w sieci podczas bezczynności.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Domyślna maks. liczba połączeń na pobieranie:</translation>

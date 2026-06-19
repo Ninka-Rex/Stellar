@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 hoàn tất · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Tải xong</translation>
         </message>
@@ -894,8 +898,8 @@ Chạy thủ công: flatpak override --user --talk-name=org.freedesktop.Flatpak 
             <translation>Tải xuống hoàn thành</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Đã tải xuống %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Tải xong — %1 (%2 Byte)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Chạy thủ công: flatpak override --user --talk-name=org.freedesktop.Flatpak 
             <translation>Tạm dừng</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
+            <source>Close</source>
+            <translation>Đóng</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Nhấn Thêm URL để bắt đầu.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Xong</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Chờ</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Xong</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Đang tải %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Nhiệm vụ</translation>
         </message>
@@ -3660,6 +3676,10 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Tiến trình tải kênh</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kênh/D.sách</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Tên tệp</translation>
         </message>
@@ -3676,8 +3696,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Còn lại</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Mục %1</translation>
+            <source>Pending…</source>
+            <translation>Chờ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4362,8 +4382,36 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Yêu cầu tải thất bại.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 ở phân đoạn %2 (không thử lại được)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Yêu cầu lỗi (HTTP 400) ở đoạn %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Cần xác thực (HTTP 401) ở đoạn %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Truy cập bị cấm (HTTP 403) ở phân đoạn %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Không tìm thấy tệp (HTTP 404) ở phân đoạn %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Phương thức không được phép (HTTP 405) ở phân đoạn %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Tệp không còn khả dụng (HTTP 410) ở phân đoạn %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Không khả dụng vì lý do pháp lý (HTTP 451) ở phân đoạn %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 ở phân đoạn %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4409,9 +4457,21 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Phân đoạn %1 thất bại sau %2 lần thử</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Bị giới hạn tốc độ bởi máy chủ (HTTP 429) ở phân đoạn %1 — quá nhiều yêu cầu</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Tắt DHT khi rảnh</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Tự động tắt DHT khi không có torrent nào chạy, để ứng dụng ngừng thông báo sự hiện diện lên mạng khi rảnh.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Số KN tối đa mặc định/tải:</translation>

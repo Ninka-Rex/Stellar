@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 дууссан · %3 МБ</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Татаж дууслаа</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Татах дууслаа</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 (%2 байт) татагдлаа</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Татаж дууслаа — %1 (%2 Байт)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Зогсоох</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Цуцлах</translation>
+            <source>Close</source>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Дууссан</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Хүлээгдэж байна</translation>
@@ -3090,6 +3098,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Дууссан</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Татаж байна %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Бүтээгдэхүүн</translation>
         </message>
@@ -3651,6 +3667,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Зурвасын татах явц</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Суваг/Жагсаалт</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Файлын нэр</translation>
         </message>
@@ -3667,8 +3687,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Үлдсэн хугацаа</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Зүйл %1</translation>
+            <source>Pending…</source>
+            <translation>Хүлээгдэж байна…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4353,8 +4373,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Татаж авах хүсэлт амжилтгүй боллоо.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 сегмент %2 дээр (дахин оролдох боломжгүй)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Сегмент %1 дээр буруу хүсэлт (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Сегмент %1 дээр баталгаажуулалт шаардлагатай (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Сегмент %1-д хандахыг хориглов (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Сегмент %1-д файл олдсонгүй (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Сегмент %1-д зөвшөөрөгдөөгүй арга (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Сегмент %1-д файл боломжгүй болсон (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Сегмент %1-д хуулийн шалтгаанаар боломжгүй (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>Сегмент %2-д HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4400,9 +4448,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>%1 сегмент %2 дахин оролдлогын дараа амжилтгүй боллоо</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Сервер хязгаарлав (HTTP 429) сегмент %1 — хэт олон хүсэлт</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Сул зогсолтод DHT-г идэвхгүйжүүлэх</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Торрент ажиллахгүй үед DHT-г автоматаар унтрааж, апп сүлжээнд өөрийгөө зарлахаа болино.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Татахад анхдагч хамгийн их холболт:</translation>

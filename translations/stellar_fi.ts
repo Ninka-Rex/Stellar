@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 valmis · %3 Mt</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Lataus valmis</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Lataus valmis</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Ladattu %1 (%2 tavua)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Lataus valmis — %1 (%2 tavua)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Tauko</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Peruuta</translation>
+            <source>Close</source>
+            <translation>Sulje</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Klikkaa Lisää URL aloittaaksesi.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Valmis</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Odottaa</translation>
@@ -3090,6 +3098,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Valmis</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Ladataan %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tehtävät</translation>
         </message>
@@ -3657,6 +3673,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanavan latausedistys</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanava/Soittolista</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Tiedostonimi</translation>
         </message>
@@ -3673,8 +3693,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Aikaa jäljellä</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Kohde %1</translation>
+            <source>Pending…</source>
+            <translation>Odottaa…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4359,8 +4379,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Latauspyyntö epäonnistui.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 segmentillä %2 (ei uudelleenyritystä)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Virheellinen pyyntö (HTTP 400) segmentissä %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Todennus vaaditaan (HTTP 401) segmentissä %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Pääsy estetty (HTTP 403) segmentissä %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Tiedostoa ei löydy (HTTP 404) segmentissä %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Menetelmä ei sallittu (HTTP 405) segmentissä %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Tiedosto ei enää saatavilla (HTTP 410) segmentissä %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Ei saatavilla oikeudellisista syistä (HTTP 451) segmentissä %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 segmentissä %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4406,9 +4454,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segmentti %1 epäonnistui %2 yrityksen jälkeen</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Palvelin rajoittaa pyyntöjä (HTTP 429) segmentissä %1 — liikaa pyyntöjä</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Poista DHT käytöstä ollessa toimettomana</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Sammuta DHT automaattisesti, kun torrentteja ei ole käynnissä, jotta sovellus lakkaa ilmoittamasta itseään verkkoon ollessaan toimettomana.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Oletus maks. yhteyksiä/lataus:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 dokončené · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Sťahovanie dokončené</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Sťahovanie dokončené</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Sťahované %1 (%2 bajtov)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Stiahnuté — %1 (%2 bajtov)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pauza</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Zrušiť</translation>
+            <source>Close</source>
+            <translation>Zavrieť</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1412,6 +1416,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Dokončené</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Čaká</translation>
@@ -3089,6 +3097,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Dokončené</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Sťahujem %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Úlohy</translation>
         </message>
@@ -3650,6 +3666,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Pokroč download kanála</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanál/Playlist</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Názov súboru</translation>
         </message>
@@ -3666,8 +3686,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Zostávajúci čas</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Položka %1</translation>
+            <source>Pending…</source>
+            <translation>Čaká…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4352,8 +4372,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Požiadavka na stiahnutie zlyhala.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 na segmente %2 (neopakovateľné)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Chybná požiadavka (HTTP 400) pri segmente %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Vyžaduje sa overenie (HTTP 401) pri segmente %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Prístup zamietnutý (HTTP 403) na segmente %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Súbor nenájdený (HTTP 404) na segmente %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metóda nepovolená (HTTP 405) na segmente %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Súbor už nie je dostupný (HTTP 410) na segmente %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Nedostupné z právnych dôvodov (HTTP 451) na segmente %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 na segmente %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4399,9 +4447,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 zlyhal po %2 pokusoch</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Obmedzené serverom (HTTP 429) na segmente %1 — príliš veľa požiadaviek</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Vypnúť DHT pri nečinnosti</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Automaticky vypnúť DHT, keď nie sú spustené žiadne torrenty, aby sa aplikácia prestala ohlasovať v sieti, keď je nečinná.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Predvolený max. počet pripojení na sťahovanie:</translation>

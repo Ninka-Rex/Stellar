@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 પૂર્ણ · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ડાઉનલોડ પૂર્ણ</translation>
         </message>
@@ -895,8 +899,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ડાઉનલોડ પૂર્ણ</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ડાઉનલોડ (%2 બાઈટ)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ડાઉનલોડ પૂર્ણ — %1 (%2 બાઇટ)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1176,8 +1180,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>રોકો</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>રદ કરો</translation>
+            <source>Close</source>
+            <translation>બંધ કરો</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1415,6 +1419,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>પૂર્ણ</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>બાકી</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>પૂર્ણ</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>ડાઉનલોડ કરી રહ્યું છે %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>કાર્યો</translation>
         </message>
@@ -3656,6 +3672,10 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>ચેનલ ડાઉનલોડ પ્રગતિ</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ચેનલ/પ્લેલિસ્ટ</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ફાઇલ નામ</translation>
         </message>
@@ -3672,8 +3692,8 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>બાકી સમય</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>આઇટમ %1</translation>
+            <source>Pending…</source>
+            <translation>બાકી…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4358,8 +4378,36 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>ડાઉનલોડ વિનંતી નિષ્ફળ.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>સેગમેન્ટ %2 પર HTTP %1 (ફરી પ્રયાસ કરી શકાય તેમ નથી)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>સેગમેન્ટ %1 પર ખરાબ વિનંતી (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>સેગમેન્ટ %1 પર પ્રમાણીકરણ જરૂરી (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>સેગમેન્ટ %1 પર પ્રવેશ પ્રતિબંધિત (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>સેગમેન્ટ %1 પર ફાઇલ મળી નથી (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>સેગમેન્ટ %1 પર પદ્ધતિ માન્ય નથી (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>સેગમેન્ટ %1 પર ફાઇલ હવે ઉપલબ્ધ નથી (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>સેગમેન્ટ %1 પર કાનૂની કારણોસર અનુપલબ્ધ (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>સેગમેન્ટ %2 પર HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4405,9 +4453,21 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <source>Segment %1 failed after %2 retries</source>
             <translation>સેગમેન્ટ %1 %2 પ્રયાસો પછી નિષ્ફળ</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>સર્વર દ્વારા દર મર્યાદિત (HTTP 429) સેગમેન્ટ %1 પર — ઘણી બધી વિનંતીઓ</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>નિષ્ક્રિય હોય ત્યારે DHT બંધ કરો</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>જ્યારે કોઈ ટોરેન્ટ ચાલતું ન હોય ત્યારે DHT આપમેળે બંધ કરો, જેથી નિષ્ક્રિય સમયે એપ નેટવર્કમાં પોતાની જાહેરાત કરવાનું બંધ કરે.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ડાઉનલોડ દીઠ મહત્તમ કનેક્શન્સ:</translation>

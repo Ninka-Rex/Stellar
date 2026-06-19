@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 مكتمل · %3 م.ب</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>اكتمل التنزيل</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>اكتمل التنزيل</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>تم تنزيل %1 (%2 بايت)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>اكتمل التحميل — %1 (%2 بايت)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>إيقاف مؤقت</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>إلغاء</translation>
+            <source>Close</source>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>مكتمل</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>معلق</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>مكتمل</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>جاري التحميل %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>المهام</translation>
         </message>
@@ -3662,6 +3678,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>تقدم تنزيل القناة</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>قناة/قائمة</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>اسم الملف</translation>
         </message>
@@ -3678,8 +3698,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>الوقت المتبقي</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>عنصر %1</translation>
+            <source>Pending…</source>
+            <translation>معلق…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4364,8 +4384,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>فشل طلب التحميل.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 على المقطع %2 (غير قابل لإعادة المحاولة)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>طلب خاطئ (HTTP 400) للجزء %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>مصادقة مطلوبة (HTTP 401) للجزء %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>الوصول ممنوع (HTTP 403) للجزء %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>الملف غير موجود (HTTP 404) للجزء %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>الطريقة غير مسموحة (HTTP 405) للجزء %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>الملف لم يعد متاحاً (HTTP 410) للجزء %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>غير متاح لأسباب قانونية (HTTP 451) للجزء %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 للجزء %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4411,9 +4459,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>فشل الجزء %1 بعد %2 محاولة</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>تحديد المعدل من الخادم (HTTP 429) للجزء %1 — طلبات كثيرة</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>تعطيل DHT عند الخمول</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>إيقاف DHT تلقائياً عند عدم وجود تورنت نشط، ليتوقف التطبيق عن الإعلان عن نفسه للشبكة أثناء الخمول.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>الحد الأقصى الافتراضي للاتصالات لكل تنزيل:</translation>

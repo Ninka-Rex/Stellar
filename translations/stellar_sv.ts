@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 klart · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Nedladdning klar</translation>
         </message>
@@ -894,8 +898,8 @@ Kör manuellt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.m
             <translation>Nedladdning klar</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 nedladdad (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Nedladdning klar — %1 (%2 byte)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Kör manuellt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.m
             <translation>Pausa</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
+            <source>Close</source>
+            <translation>Stäng</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Klicka på Lägg till URL för att börja.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Klar</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Väntar</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Klar</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Laddar ner %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Uppgifter</translation>
         </message>
@@ -3652,6 +3668,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanalkonfiguration</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/Spellista</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Filnamn</translation>
         </message>
@@ -3668,8 +3688,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Återstående tid</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Objekt %1</translation>
+            <source>Pending…</source>
+            <translation>Väntar…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4354,8 +4374,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Nedladdningsbegäran misslyckades.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 på segment %2 (kan inte försökas igen)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Felaktig begäran (HTTP 400) på segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Autentisering krävs (HTTP 401) på segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Åtkomst nekad (HTTP 403) för segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fil ej hittad (HTTP 404) för segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metod ej tillåten (HTTP 405) för segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fil ej längre tillgänglig (HTTP 410) för segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Otillgänglig av juridiska skäl (HTTP 451) för segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 för segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4401,9 +4449,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 misslyckades efter %2 försök</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Hastighetsbegränsad (HTTP 429) för segment %1 — för många förfrågningar</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Inaktivera DHT vid inaktivitet</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Stäng av DHT automatiskt när inga torrents körs, så att appen slutar meddela sig till nätverket vid inaktivitet.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Standard max ansl./nedladdning:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 selesai · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Muat Turun Selesai</translation>
         </message>
@@ -894,8 +898,8 @@ Jalankan manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Muat turun selesai</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Dimuat turun %1 (%2 Bait)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Muat turun selesai — %1 (%2 Bait)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Jalankan manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Jeda</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
+            <source>Close</source>
+            <translation>Tutup</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Klik Tambah URL untuk bermula.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Selesai</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Tertunda</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Selesai</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Memuat turun %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tugas</translation>
         </message>
@@ -3659,6 +3675,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kemajuan Muat Turun Saluran</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Saluran/Senarai main</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Nama Fail</translation>
         </message>
@@ -3675,8 +3695,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Masa tinggal</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Item %1</translation>
+            <source>Pending…</source>
+            <translation>Tertunda…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4361,8 +4381,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Permintaan muat turun gagal.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 pada segmen %2 (tidak boleh cuba lagi)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Permintaan salah (HTTP 400) pada segmen %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Pengesahan diperlukan (HTTP 401) pada segmen %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Akses dilarang (HTTP 403) pada segmen %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fail tidak ditemui (HTTP 404) pada segmen %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Kaedah tidak dibenarkan (HTTP 405) pada segmen %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fail tidak lagi tersedia (HTTP 410) pada segmen %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Tidak tersedia atas sebab undang-undang (HTTP 451) pada segmen %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 pada segmen %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4408,9 +4456,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segmen %1 gagal selepas %2 cubaan</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Kadar dihadkan pelayan (HTTP 429) pada segmen %1 — terlalu banyak permintaan</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Nyahaktif DHT bila melahu</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Matikan DHT automatik bila tiada torrent berjalan, supaya aplikasi berhenti mengumumkan diri ke rangkaian semasa melahu.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Sambungan maks lalai setiap muat turun:</translation>

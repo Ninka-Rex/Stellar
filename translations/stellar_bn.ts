@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 সম্পন্ন · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ডাউনলোড সম্পন্ন</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ডাউনলোড সম্পন্ন</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ডাউনলোড হয়েছে (%2 বাইট)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ডাউনলোড সম্পন্ন — %1 (%2 বাইট)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>বিরতি</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>বাতিল</translation>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ URL যোগ করুন শুরু করতে।</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>সম্পন্ন</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>অপেক্ষমাণ</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>সম্পন্ন</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>ডাউনলোড হচ্ছে %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>টাস্ক</translation>
         </message>
@@ -3662,6 +3678,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>চ্যানেল ডাউনলোড অগ্রগতি</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>চ্যানেল/প্লেলিস্ট</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ফাইলের নাম</translation>
         </message>
@@ -3678,8 +3698,8 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>বাকি সময়</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>আইটেম %1</translation>
+            <source>Pending…</source>
+            <translation>অপেক্ষমাণ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4364,8 +4384,36 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>ডাউনলোড অনুরোধ ব্যর্থ হয়েছে।</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 সেগমেন্ট %2-এ (পুনরায় চেষ্টাযোগ্য নয়)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>সেগমেন্ট %1-এ খারাপ অনুরোধ (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>সেগমেন্ট %1-এ প্রমাণীকরণ প্রয়োজন (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>সেগমেন্ট %1-এ অ্যাক্সেস নিষিদ্ধ (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>সেগমেন্ট %1-এ ফাইল পাওয়া যায়নি (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>সেগমেন্ট %1-এ পদ্ধতি অনুমোদিত নয় (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>সেগমেন্ট %1-এ ফাইল আর উপলব্ধ নেই (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>আইনি কারণে অনুপলব্ধ (HTTP 451) সেগমেন্ট %1-এ</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>সেগমেন্ট %2-এ HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4411,9 +4459,21 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Segment %1 failed after %2 retries</source>
             <translation>সেগমেন্ট %1 ব্যর্থ, %2 পুনঃপ্রচেষ্টার পর</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>সার্ভার দ্বারা রেট সীমিত (HTTP 429) সেগমেন্ট %1-এ — অনেক বেশি অনুরোধ</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>নিষ্ক্রিয় হলে DHT বন্ধ করুন</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>যখন কোনো টরেন্ট চলছে না তখন স্বয়ংক্রিয়ভাবে DHT বন্ধ করুন, যাতে অ্যাপটি নিষ্ক্রিয় অবস্থায় নেটওয়ার্কে নিজেকে ঘোষণা করা বন্ধ করে।</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ডিফল্ট সর্বোচ্চ সংযোগ/ডাউনলোড:</translation>

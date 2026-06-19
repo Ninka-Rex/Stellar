@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ಪೂರ್ಣ · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ</translation>
         </message>
@@ -910,8 +914,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ (%2 ಬೈಟ್ಸ್)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣ — %1 (%2 ಬೈಟ್‌ಗಳು)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1191,8 +1195,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ವಿರಾಮ</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>ರದ್ದುಮಾಡು</translation>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1430,6 +1434,10 @@ URL ಸೇರಿಸಿ ಪ್ರಾರಂಭಿಸಿ.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>ಪೂರ್ಣಗೊಂಡಿದೆ</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>ಬಾಕಿ</translation>
@@ -3114,6 +3122,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>ಪೂರ್ಣಗೊಂಡಿದೆ</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>ಕಾರ್ಯಗಳು</translation>
         </message>
@@ -3683,6 +3699,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಚಾನೆಲ್ ಡೌನ್‌ಲೋಡ್ ಪ್ರಗತಿ</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ಚಾನೆಲ್/ಪ್ಲೇಪಟ್ಟಿ</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ಫೈಲ್ ಹೆಸರು</translation>
         </message>
@@ -3699,8 +3719,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಉಳಿದ ಸಮಯ</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>ಐಟಂ %1</translation>
+            <source>Pending…</source>
+            <translation>ಬಾಕಿ ಇದೆ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4385,8 +4405,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಡೌನ್ಲೋಡ್ ವಿನಂತಿಯು ವಿಫಲವಾಗಿದೆ.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 ವಿಭಾಗ %2 ನಲ್ಲಿ (ಮರುಪ್ರಯತ್ನಿಸಲಾಗದು)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ಕೆಟ್ಟ ವಿನಂತಿ (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ದೃಢೀಕರಣ ಅಗತ್ಯವಿದೆ (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ಪ್ರವೇಶ ನಿರಾಕರಿಸಲಾಗಿದೆ (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ಫೈಲ್ ಕಂಡುಬಂದಿಲ್ಲ (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ವಿಧಾನ ಅನುಮತಿಸಲಾಗಿಲ್ಲ (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ಫೈಲ್ ಇನ್ನು ಲಭ್ಯವಿಲ್ಲ (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ಕಾನೂನು ಕಾರಣಗಳಿಗಾಗಿ ಲಭ್ಯವಿಲ್ಲ (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>ವಿಭಾಗ %2 ನಲ್ಲಿ HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4432,9 +4480,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>ವಿಭಾಗ %1 %2 ಮರುಪ್ರಯತ್ನಗಳ ನಂತರ ವಿಫಲವಾಗಿದೆ</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>ವಿಭಾಗ %1 ನಲ್ಲಿ ಸರ್ವರ್‌ನಿಂದ ದರ ಸೀಮಿತಗೊಳಿಸಲಾಗಿದೆ (HTTP 429) — ತುಂಬಾ ವಿನಂತಿಗಳು</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>ನಿಷ್ಕ್ರಿಯವಾಗಿದ್ದಾಗ DHT ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ಯಾವುದೇ ಟೊರೆಂಟ್‌ಗಳು ಚಾಲನೆಯಲ್ಲಿಲ್ಲದಿದ್ದಾಗ DHT ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆಫ್ ಮಾಡಿ, ಹೀಗೆ ನಿಷ್ಕ್ರಿಯವಾಗಿರುವಾಗ ಆ್ಯಪ್ ನೆಟ್‌ವರ್ಕ್‌ಗೆ ತನ್ನನ್ನು ಪ್ರಕಟಿಸುವುದನ್ನು ನಿಲ್ಲಿಸುತ್ತದೆ.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ಡೀಫಾಲ್ಟ್ ಗರಿಷ್ಠ ಸಂಪರ್ಕಗಳು ಪ್ರತಿ ಡೌನ್‌ಲೋಡ್‌ಗೆ:</translation>

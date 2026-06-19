@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 تاماملاندى · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>چۈشۈرۈش تاماملاندى</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>چۈشۈرۈش تاماملاندى</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 چۈشۈرۈلدى (%2 بايت)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>چۈشۈرۈش تاماملاندى — %1 (%2 بايت)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ۋاقىتلىق توختات</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>بىكار</translation>
+            <source>Close</source>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>تاماملاندى</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>كۈتۈلۈۋاتىدۇ</translation>
@@ -3096,6 +3104,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>تاماملاندى</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% چۈشۈرۈلۈۋاتىدۇ</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>ۋەزىپىلەر</translation>
         </message>
@@ -3666,6 +3682,10 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>قانال چۈشۈرۈش جەريانى</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>قانال/پلەيلىست</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ھۆججەت ئاتى</translation>
         </message>
@@ -3682,8 +3702,8 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>قالغان ۋاقىت</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>تۈر %1</translation>
+            <source>Pending…</source>
+            <translation>كۈتۈلۈۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4368,8 +4388,36 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>چۈشۈرۈش تەلىپى مەغلۇپ بولدى.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 بۆلەكتە %2 (قايتا سىنالغىلى بولمايدۇ)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>ناچار تەلەپ (HTTP 400) %1 بۆلەكتە</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>دەلىللەش تەلەپ قىلىنىدۇ (HTTP 401) %1 بۆلەكتە</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>%1 بۆلەكتە كىرىش چەكلەنگەن (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>%1 بۆلەكتە ھۆججەت تېپىلمىدى (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>%1 بۆلەكتە ئۇسۇل رۇخسەت قىلىنمىدى (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>%1 بۆلەكتە ھۆججەت ئەمدى مەۋجۇت ئەمەس (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>%1 بۆلەكتە قانۇنىي سەۋەبلەر بىلەن مەۋجۇت ئەمەس (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>%2 بۆلەكتە HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4415,9 +4463,21 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <source>Segment %1 failed after %2 retries</source>
             <translation>%1 بۆلەك %2 قېتىم قايتا سىناشتىن كېيىن مەغلۇپ بولدى</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>%1 بۆلەكتە مۇلازىمېتەر تەرىپىدىن چەكلەندى (HTTP 429) — بەك كۆپ تەلەپ</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>بىكار ۋاقىتتا DHT نى چەكلە</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ھېچقانداق توررېنت ئىجرا بولمىغاندا DHT نى ئاپتوماتىك ئۆچۈرۈپ، بىكار ۋاقىتتا تورغا ئۆزىنى ئېلان قىلىشنى توختىتىدۇ.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>چۈشۈرۈش ئۈچۈن سۈكۈتتىكى ئەڭ كۆپ باغلىنىش:</translation>

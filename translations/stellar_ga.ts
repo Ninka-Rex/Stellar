@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 críochnaithe · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Íoslódáil Críochnaithe</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Íoslódáil críochnaithe</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Íoslódáilte %1 (%2 Byte)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Íoslódáil críochnaithe — %1 (%2 Beart)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Sos</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
+            <source>Close</source>
+            <translation>Dún</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Cliceáil Cuir URL leis chun tosú.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Críochnaithe</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Ar feitheamh</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Críochnaithe</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% á íoslódáil</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tascanna</translation>
         </message>
@@ -3660,6 +3676,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Dul chun cinn íoslódála na sraithe</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Cainéal/Seinmliosta</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Ainm Comhaid</translation>
         </message>
@@ -3676,8 +3696,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Am fágtha</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Mír %1</translation>
+            <source>Pending…</source>
+            <translation>Ar feitheamh…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4362,8 +4382,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Theip ar an iarratas íoslódála.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 ar dheighleog %2 (dothriailte)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Drochiarratas (HTTP 400) ar mhír %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Fíordheimhniú de dhíth (HTTP 401) ar mhír %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Toirmeasc rochtana (HTTP 403) ar mhír %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Comhad gan aimsiú (HTTP 404) ar mhír %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Modh neamhcheadaithe (HTTP 405) ar mhír %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Comhad gan bheith ar fáil a thuilleadh (HTTP 410) ar mhír %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Ar fáil ar chúiseanna dlí (HTTP 451) ar mhír %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 ar mhír %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4409,9 +4457,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Theip ar mhír %1 tar éis %2 iarracht</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Ráta teoranta ag freastalaí (HTTP 429) ar mhír %1 — an iomarca iarratas</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Díchumasaigh DHT nuair díomhaoin</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Múch DHT go huathoibríoch nuair nach bhfuil aon torrent ag rith, ionas nach bhfógraíonn an aip í féin ar an líonra agus í díomhaoin.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Uas. naisc réamhshocraithe in aghaidh íoslódála:</translation>

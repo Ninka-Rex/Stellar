@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 کامل · %3 مگابایت</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>دانلود کامل شد</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>دانلود تکمیل شد</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 دانلود شد (%2 بایت)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>دانلود کامل شد — %1 (%2 بایت)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>توقف</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>لغو</translation>
+            <source>Close</source>
+            <translation>بستن</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>تکمیل‌شده</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>در انتظار</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>تکمیل‌شده</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>در حال دانلود %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>وظایف</translation>
         </message>
@@ -3658,6 +3674,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>پیشرفت دانلود کانال</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>کانال/لیست پخش</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>نام فایل</translation>
         </message>
@@ -3674,8 +3694,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>زمان باقیمانده</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>مورد %1</translation>
+            <source>Pending…</source>
+            <translation>در انتظار…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4360,8 +4380,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>درخواست دانلود ناموفق بود.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 در بخش %2 (غیرقابل تکرار)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>درخواست نامعتبر (HTTP 400) در بخش %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>نیاز به احراز هویت (HTTP 401) در بخش %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>دسترسی ممنوع (HTTP 403) در قطعه %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>فایل یافت نشد (HTTP 404) در قطعه %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>متد مجاز نیست (HTTP 405) در قطعه %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>فایل دیگر موجود نیست (HTTP 410) در قطعه %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>به دلایل قانونی در دسترس نیست (HTTP 451) در قطعه %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 در قطعه %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4407,9 +4455,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>بخش %1 پس از %2 تلاش ناموفق ماند</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>محدودیت نرخ سرور (HTTP 429) در قطعه %1 — درخواست‌های زیاد</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>غیرفعال کردن DHT در حالت بیکار</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>خاموش کردن خودکار DHT وقتی تورنتی فعال نیست، تا برنامه خود را در شبکه اعلام نکند.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>حداکثر اتصالات پیش‌فرض:</translation>

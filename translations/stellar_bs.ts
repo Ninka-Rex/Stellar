@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 završeno · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Preuzimanje završeno</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Preuzimanje je završeno</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Preuzeto %1 (%2 B)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Preuzimanje završeno — %1 (%2 bajtova)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pauziraj</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Otkaži</translation>
+            <source>Close</source>
+            <translation>Zatvori</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Kliknite Dodaj URL za početak.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Završeno</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Na čekanju</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Završeno</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Preuzimanje %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Zadaci</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
             <translation>Napredak preuzimanja kanala</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/Lista</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Naziv datoteke</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
             <translation>Preostalo vrijeme</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Stavka %1</translation>
+            <source>Pending…</source>
+            <translation>Na čekanju…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
             <translation>Zahtjev za preuzimanje nije uspio.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 na segmentu %2 (ne može se ponoviti)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Loš zahtjev (HTTP 400) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Potrebna autentifikacija (HTTP 401) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Pristup zabranjen (HTTP 403) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Datoteka nije pronađena (HTTP 404) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metoda nije dozvoljena (HTTP 405) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Datoteka više nije dostupna (HTTP 410) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Nedostupno iz pravnih razloga (HTTP 451) na segmentu %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 na segmentu %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 nije uspio nakon %2 pokušaja</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Ograničenje od servera (HTTP 429) na segmentu %1 — previše zahtjeva</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Isključi DHT u mirovanju</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Automatski isključi DHT kada nema aktivnih torenta, kako bi aplikacija prestala da se oglašava na mreži dok je neaktivna.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Podrazumijevani maks. konekcija po preuzimanju:</translation>

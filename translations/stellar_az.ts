@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 tamamlandı · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Yükləmə Tamamlandı</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Yükləmə tamamlandı</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Yükləndi %1 (%2 Bayt)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Endirmə tamamlandı — %1 (%2 Bayt)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Dayandır</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Ləğv et</translation>
+            <source>Close</source>
+            <translation>Bağla</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ URL əlavə et düyməsini basın.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Tamamlandı</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Gözləyir</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Tamamlandı</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% endirilir</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tapşırıqlar</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <translation>Kanal yükləmə irəliləyişi</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/Çalğı siyahısı</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Fayl adı</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <translation>Qalan vaxt</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Element %1</translation>
+            <source>Pending…</source>
+            <translation>Gözləyir…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <translation>Yükləmə sorğusu uğursuz oldu.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 %2 seqmentində (təkrar cəhd edilə bilməz)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Seqment %1 üzrə səhv sorğu (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Seqment %1 üzrə autentifikasiya tələb olunur (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Seqment %1 üçün giriş qadağandır (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Seqment %1 üçün fayl tapılmadı (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Seqment %1 üçün icazə verilməyən metod (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Seqment %1 üçün fayl artıq mövcud deyil (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Seqment %1 üçün hüquqi səbəblərdən əlçatmazdır (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>Seqment %2 üçün HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <source>Segment %1 failed after %2 retries</source>
             <translation>%1 seqmenti %2 təkrar cəhddən sonra uğursuz oldu</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Seqment %1 üçün server tərəfindən limitləndi (HTTP 429) — çox sorğu</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Boşda DHT-ni söndür</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Heç bir torrent işləmədikdə DHT-ni avtomatik söndür ki, proqram boşda şəbəkəyə özünü elan etməsin.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Defolt maks. bağlantı sayı:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 завршени · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Преземањето заврши</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Преовоз завршен</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Преовозен %1 (%2 Бита)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Преземањето заврши — %1 (%2 бајти)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Пауза</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Откажи</translation>
+            <source>Close</source>
+            <translation>Затвори</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1415,6 +1419,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Завршено</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>На чекање</translation>
@@ -3093,6 +3101,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Завршено</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Преземам %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Задачи</translation>
         </message>
@@ -3660,6 +3676,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Напредок на преузимање на канал</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Канал/Плејлиста</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Име на датотека</translation>
         </message>
@@ -3676,8 +3696,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Преостанато време</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Ставка %1</translation>
+            <source>Pending…</source>
+            <translation>На чекање…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4362,8 +4382,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Барањето за симнување не успеа.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 на сегмент %2 (не може да се повтори)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Лошо барање (HTTP 400) на сегмент %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Потребна автентикација (HTTP 401) на сегмент %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Забранет пристап (HTTP 403) на сегмент %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Датотеката не е пронајдена (HTTP 404) на сегмент %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Методот не е дозволен (HTTP 405) на сегмент %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Датотеката повеќе не е достапна (HTTP 410) на сегмент %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Недостапна од правни причини (HTTP 451) на сегмент %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 на сегмент %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4409,9 +4457,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Сегментот %1 не успеа по %2 обиди</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Ограничување од сервер (HTTP 429) на сегмент %1 — премногу барања</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Исклучи DHT кога е неактивен</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Автоматски исклучи го DHT кога нема активни торенти, за да престане апликацијата да се најавува на мрежата додека е неактивна.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Стандардно макс. конекции по преземање:</translation>

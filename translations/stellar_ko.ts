@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 완료 · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>다운로드 완료</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>다운로드 완료</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 다운로드 (%2 바이트)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>다운로드 완료 — %1 (%2 바이트)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>일시 정지</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
+            <source>Close</source>
+            <translation>닫기</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>완료됨</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>대기 중</translation>
@@ -3090,6 +3098,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>완료됨</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>다운로드 중 %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>작업</translation>
         </message>
@@ -3654,6 +3670,10 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>채널 다운로드 진행</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>채널/재생목록</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>파일명</translation>
         </message>
@@ -3670,8 +3690,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>남은 시간</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>항목 %1</translation>
+            <source>Pending…</source>
+            <translation>대기 중…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4356,8 +4376,36 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>다운로드 요청 실패</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>세그먼트 %2에서 HTTP %1 (재시도 불가)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>세그먼트 %1 잘못된 요청 (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>세그먼트 %1 인증 필요 (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>세그먼트 %1 접근 금지 (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>세그먼트 %1 파일 없음 (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>세그먼트 %1 메서드 불허 (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>세그먼트 %1 파일 더 이상 없음 (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>세그먼트 %1 법적 사유로 불가 (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>세그먼트 %2 HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4403,9 +4451,21 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Segment %1 failed after %2 retries</source>
             <translation>세그먼트 %1 실패 (%2회 재시도)</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>세그먼트 %1 서버 속도 제한 (HTTP 429) — 요청 과다</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>유휴 시 DHT 끄기</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>토렌트가 없을 때 자동으로 DHT를 꺼서 네트워크에 알림을 중단합니다.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>다운로드당 기본 최대 연결 수:</translation>

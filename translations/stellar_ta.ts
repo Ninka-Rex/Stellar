@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 முடிந்தது · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>பதிவிறக்கம் முடிந்தது</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>பதிவிறக்கம் முடிந்தது</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 (%2 பைட்டுகள்) பதிவிறக்கப்பட்டது</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>பதிவிறக்கம் முடிந்தது — %1 (%2 பைட்டுகள்)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>இடைநிறுத்து</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>ரத்துசெய்</translation>
+            <source>Close</source>
+            <translation>மூடு</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>முடிந்தது</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>நிலுவையில்</translation>
@@ -3096,6 +3104,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>முடிந்தது</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% பதிவிறங்குகிறது</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>பணிகள்</translation>
         </message>
@@ -3666,6 +3682,10 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>சேனல் பதிவிறக்க முன்னேற்றம்</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>சேனல்/பிளேலிஸ்ட்</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>கோப்பு பெயர்</translation>
         </message>
@@ -3682,8 +3702,8 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>மீதி நேரம்</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>உருப்படி %1</translation>
+            <source>Pending…</source>
+            <translation>நிலுவையில்…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4368,8 +4388,36 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>பதிவிறக்க கோரிக்கை தோல்வியடைந்தது.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>பிரிவு %2 இல் HTTP %1 (மீண்டும் முயற்சிக்க முடியாது)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>பிரிவு %1ல் மோசமான கோரிக்கை (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>பிரிவு %1ல் அங்கீகாரம் தேவை (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>பகுதி %1-ல் அணுகல் தடை (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>பகுதி %1-ல் கோப்பு இல்லை (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>பகுதி %1-ல் முறை அனுமதியில்லை (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>பகுதி %1-ல் கோப்பு இனி கிடைக்காது (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>பகுதி %1-ல் சட்ட காரணங்களால் கிடைக்கவில்லை (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>பகுதி %2-ல் HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4415,9 +4463,21 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <source>Segment %1 failed after %2 retries</source>
             <translation>பிரிவு %1 %2 முயற்சிகளுக்குப் பின் தோல்வி</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>சேவையக வரம்பு (HTTP 429) பகுதி %1-ல் — அதிக கோரிக்கைகள்</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>செயலற்றபோது DHT-ஐ முடக்கு</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>டொரண்டுகள் இயங்காதபோது DHT-ஐ தானாக முடக்கு, இதனால் செயலற்ற நிலையில் பிணையத்தில் அறிவிப்பதை நிறுத்தும்.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>இயல்புநிலை அதிகபட்ச இணைப்புகள்/பதிவிறக்கம்:</translation>

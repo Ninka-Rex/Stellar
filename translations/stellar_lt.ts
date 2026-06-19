@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 baigta · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Atsisiuntimas baigtas</translation>
         </message>
@@ -894,8 +898,8 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Atsisiuntimas baigtas</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Atsisiųsta %1 (%2 B)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Atsisiuntimas baigtas — %1 (%2 B)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Pauzė</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
+            <source>Close</source>
+            <translation>Uždaryti</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Spauskite  Pridėti URL  pradžiai.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Baigta</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Laukiama</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Baigta</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Atsiunčiama %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Užduotys</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Kanalo atsisiuntimo progresas</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanalas / grojaraštis</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Failo vardas</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Likęs laikas</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Įrašas %1</translation>
+            <source>Pending…</source>
+            <translation>Laukiama…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Atsisiuntimo užklausa nepavyko.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 segmente %2 (nebandoma pakartotinai)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Klaidinga užklausa (HTTP 400) segmente %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Reikia autentifikacijos (HTTP 401) segmente %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Prieiga uždrausta (HTTP 403) segmente %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Failas nerastas (HTTP 404) segmente %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metodas neleidžiamas (HTTP 405) segmente %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Failas nebepasiekiamas (HTTP 410) segmente %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Nepasiekiama dėl teisinių priežasčių (HTTP 451) segmente %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 segmente %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segmentas %1 nepavyko po %2 bandymų</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Serveris riboja užklausas (HTTP 429) segmente %1 — per daug užklausų</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Išjungti DHT neveikiant</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Automatiškai išjungti DHT, kai nėra aktyvių torrentʼų, kad programa nustotų skelbtis tinkle.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Numatytasis maks. ryšių sk. atsisiuntimui:</translation>

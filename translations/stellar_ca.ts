@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 complet · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Baixada completada</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Descàrrega completada</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Descarregat %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Baixada completa — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Pausa</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
+            <source>Close</source>
+            <translation>Tanca</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Fes clic a Afegeix URL per començar.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Completat</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Pendent</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Completat</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Baixant %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tasques</translation>
         </message>
@@ -3662,6 +3678,10 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>Progrés de la descàrrega del canal</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Canal/Llista</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Nom del fitxer</translation>
         </message>
@@ -3678,8 +3698,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>Temps restant</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Element %1</translation>
+            <source>Pending…</source>
+            <translation>Pendent…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4364,8 +4384,36 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>La sol·licitud de descàrrega ha fallat.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 al segment %2 (no reintentable)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Sol·licitud incorrecta (HTTP 400) al segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Autenticació requerida (HTTP 401) al segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Accés prohibit (HTTP 403) al segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>No s'ha trobat el fitxer (HTTP 404) al segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Mètode no permès (HTTP 405) al segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>El fitxer ja no està disponible (HTTP 410) al segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>No disponible per raons legals (HTTP 451) al segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 al segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4411,9 +4459,21 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Segment %1 failed after %2 retries</source>
             <translation>El segment %1 ha fallat després de %2 intents</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Limitat per servidor (HTTP 429) al segment %1 — massa sol·licituds</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Desactiva el DHT quan estigui inactiu</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Desactiva el DHT automàticament quan no hi hagi torrents actius, perquè l'aplicació deixi d'anunciar-se a la xarxa mentre està inactiva.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Màx. connexions per defecte:</translation>

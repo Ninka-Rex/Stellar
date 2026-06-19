@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 i plotë · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Shkarkimi përfundoi</translation>
         </message>
@@ -894,8 +898,8 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Shkarkimi i përfunduar</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 shkarkuar (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Shkarkim i plotë — %1 (%2 Bajt)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Pauzë</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Anulo</translation>
+            <source>Close</source>
+            <translation>Mbyll</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Kliko Shto URL për të nisur.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Përfunduar</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Në pritje</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Përfunduar</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Duke shkarkuar %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Detyra</translation>
         </message>
@@ -3659,6 +3675,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Progresi i Kanaleve</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/Listë</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Emri i skedarit</translation>
         </message>
@@ -3675,8 +3695,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Koha e mbetur</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Artikulli %1</translation>
+            <source>Pending…</source>
+            <translation>Në pritje…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4361,8 +4381,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kërkesa e shkarkimit dështoi.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 në segmentin %2 (i pariprovueshëm)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Kërkesë e gabuar (HTTP 400) në segmentin %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Autentifikim i nevojshëm (HTTP 401) në segmentin %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Ndalohet hyrja (HTTP 403) në segmentin %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Skedari nuk u gjet (HTTP 404) në segmentin %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metodë e palejuar (HTTP 405) në segmentin %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Skedari nuk disponohet më (HTTP 410) në segmentin %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>I padisponueshëm për arsye ligjore (HTTP 451) në segmentin %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 në segmentin %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4408,9 +4456,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segmenti %1 dështoi pas %2 përpjekjesh</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Kufizim nga serveri (HTTP 429) në segmentin %1 — shumë kërkesa</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Çaktivizo DHT kur është pasiv</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Çaktivizo DHT automatikisht kur s'ka torrente, që aplikacioni të mos lajmërohet në rrjet kur është pasiv.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Lidhjet maks. të parazgjedhura për shkarkim:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ti pari · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Ìgbasílẹ̀ Ti Parí</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Ìgbàsílẹ̀ parí</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Ìgbàsílẹ̀ %1 (%2 Báìtì)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Ìgbasílẹ̀ ti pari — %1 (%2 Báìtì)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Dádúró</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
+            <source>Close</source>
+            <translation>Tì</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Tẹ  Fi URL kún  láti bẹ̀rẹ̀.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Ti pari</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Ń dúró</translation>
@@ -3098,6 +3106,14 @@ Iṣẹ́</translation>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Ti pari</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Ń gbàsílẹ̀ %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Àwọn iṣẹ́</translation>
         </message>
@@ -3668,6 +3684,10 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Ìlọsíwájú Ìgbarisilẹ̀ Ikanni</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Ìkànnì/Àtòjọ</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Orúkọ Fáìlì</translation>
         </message>
@@ -3684,8 +3704,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Àkókò tó kù</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Nǹkan %1</translation>
+            <source>Pending…</source>
+            <translation>Ń dúró…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4370,8 +4390,36 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Ìbéèrè ìgbàsílẹ̀ kùnà.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 lórí apá %2 (kò ṣeé túngbìyànjú)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Ìbéèrè búburú (HTTP 400) lórí apá %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Ìfàṣẹsí nílò (HTTP 401) lórí apá %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Wọle kọ (HTTP 403) lórí apá %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fáìlì kò rí (HTTP 404) lórí apá %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Ọ̀nà kò gbà (HTTP 405) lórí apá %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fáìlì kò sí mọ́ (HTTP 410) lórí apá %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Kò sí fún ìdí òfin (HTTP 451) lórí apá %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 lórí apá %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4417,9 +4465,21 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Segment %1 failed after %2 retries</source>
             <translation>Àpá %1 kùnà lẹ́yìn ìgbìyànjú %2</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Olùpín ti dín ìwọ̀n (HTTP 429) lórí apá %1 — ìbéèrè pọ̀ jù</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Pa DHT nígbà tí kò ṣiṣẹ́</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Pa DHT láìfọwọ́yí nígbà tí kò sí torrent tó ń ṣiṣẹ́, kí áàpù má baà kéde ara rẹ̀ sí nẹ́tíwọ́kì nígbà tí kò ṣiṣẹ́.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Ìsopọ̀ àìpọjù fún ìgbàkọ̀ọ̀kan:</translation>

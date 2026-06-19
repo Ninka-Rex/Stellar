@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 പൂർത്തിയായി · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ഡൗൺലോഡ് പൂർത്തിയായി</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ഡൗൺലോഡ് പൂർത്തിയായി</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ഡൗൺലോഡ് ചെയ്തു (%2 ബൈറ്റ്സ്)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ഡൗൺലോഡ് പൂർത്തിയായി — %1 (%2 ബൈറ്റുകൾ)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>നിർത്തുക</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
+            <source>Close</source>
+            <translation>അടയ്ക്കുക</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ URL ചേർക്കുക ആരംഭിക്കാൻ.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>പൂർത്തിയായി</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>തീർപ്പാകാത്തത്</translation>
@@ -3096,6 +3104,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>പൂർത്തിയായി</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% ഡൗൺലോഡ് ചെയ്യുന്നു</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>ടാസ്ക്കുകൾ</translation>
         </message>
@@ -3665,6 +3681,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ചാനൽ ഡൗൺലോഡ് പ്രോഗ്രസ്</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ചാനൽ/പ്ലേലിസ്റ്റ്</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ഫയൽ നാമം</translation>
         </message>
@@ -3681,8 +3701,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ശേഷിക്കുന്ന സമയം</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>ഇനം %1</translation>
+            <source>Pending…</source>
+            <translation>കാത്തിരിക്കുന്നു…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4367,8 +4387,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ഡൗൺലോഡ് അഭ്യർത്ഥന പരാജയപ്പെട്ടു.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 സെഗ്മെന്റ് %2-ൽ (വീണ്ടും ശ്രമിക്കാനാകില്ല)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ മോശം അഭ്യർത്ഥന (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ പ്രാമാണീകരണം ആവശ്യമാണ് (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ പ്രവേശനം നിരോധിച്ചിരിക്കുന്നു (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ ഫയൽ കണ്ടെത്തിയില്ല (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ രീതി അനുവദനീയമല്ല (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ ഫയൽ ഇനി ലഭ്യമല്ല (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ നിയമപരമായ കാരണങ്ങളാൽ ലഭ്യമല്ല (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>സെഗ്മെന്റ് %2-ൽ HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4414,9 +4462,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>സെഗ്മെന്റ് %1 %2 ശ്രമങ്ങൾക്ക് ശേഷം പരാജയപ്പെട്ടു</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>സെഗ്മെന്റ് %1-ൽ സെർവർ നിരക്ക് പരിമിതപ്പെടുത്തി (HTTP 429) — വളരെയധികം അഭ്യർത്ഥനകൾ</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>നിഷ്ക്രിയമാകുമ്പോൾ DHT പ്രവർത്തനരഹിതമാക്കുക</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ടോറന്റുകളൊന്നും പ്രവർത്തിക്കാത്തപ്പോൾ DHT യാന്ത്രികമായി ഓഫാക്കുക, അങ്ങനെ നിഷ്ക്രിയമായിരിക്കുമ്പോൾ ആപ്പ് നെറ്റ്‌വർക്കിലേക്ക് സ്വയം പ്രഖ്യാപിക്കുന്നത് നിർത്തുന്നു.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ഡൗൺലോഡിന് പരമാവധി കണക്ഷനുകൾ:</translation>

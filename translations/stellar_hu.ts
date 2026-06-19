@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 kész · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Letöltés kész</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Letöltés kész</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 letöltve (%2 byte)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Letöltés kész — %1 (%2 bájt)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Szünet</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Mégse</translation>
+            <source>Close</source>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Kattintson az Add URL gombra az indításhoz.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Kész</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Függőben</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Kész</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Letöltés %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Feladatok</translation>
         </message>
@@ -3655,6 +3671,10 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Csatorna Letöltés Halad</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Csatorna/Lejátszólista</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Fájlnév</translation>
         </message>
@@ -3671,8 +3691,8 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Hátralévő idő</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>%1. elem</translation>
+            <source>Pending…</source>
+            <translation>Függőben…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4357,8 +4377,36 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>A letöltési kérés sikertelen.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 a(z) %2 szegmensen (nem újrapróbálható)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Hibás kérés (HTTP 400) a(z) %1. szegmensnél</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Hitelesítés szükséges (HTTP 401) a(z) %1. szegmensnél</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Hozzáférés megtagadva (HTTP 403) a(z) %1 szegmensen</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fájl nem található (HTTP 404) a(z) %1 szegmensen</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Nem engedélyezett metódus (HTTP 405) a(z) %1 szegmensen</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fájl már nem elérhető (HTTP 410) a(z) %1 szegmensen</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Jogi okokból nem elérhető (HTTP 451) a(z) %1 szegmensen</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 a(z) %2 szegmensen</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4404,9 +4452,21 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <source>Segment %1 failed after %2 retries</source>
             <translation>%1. szegmens %2 újrapróbálkozás után meghiúsult</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Szerver korlátoz (HTTP 429) a(z) %1 szegmensen — túl sok kérés</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>DHT kikapcsolása tétlen állapotban</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>DHT automatikus kikapcsolása, ha nincs aktív torrent, így az alkalmazás nem jelzi magát a hálózatnak tétlen állapotban.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Alapért. max. kapcsolatok letöltésenként:</translation>

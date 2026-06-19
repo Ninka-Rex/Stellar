@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 සම්පූර්ණයි · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>බාගැනීම සම්පූර්ණයි</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>බාගැනීම සම්පූර්ණයි</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 (%2 බයිට්) බාගත කරන ලදී</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>බාගැනීම සම්පූර්ණයි — %1 (%2 බයිට්)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>විරාම කරන්න</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
+            <source>Close</source>
+            <translation>වසන්න</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>සම්පූර්ණයි</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>අපේක්ෂිත</translation>
@@ -3097,6 +3105,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>සම්පූර්ණයි</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% බාගනිමින්</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>කාර්ය</translation>
         </message>
@@ -3667,6 +3683,10 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>නාලිකා බාගැනීම් ප්‍රගතිය</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>නාලිකාව/ධාවන ලැයිස්තුව</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ගොනු නම</translation>
         </message>
@@ -3683,8 +3703,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>ඉතිරි කාලය</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>අයිතමය %1</translation>
+            <source>Pending…</source>
+            <translation>බලාපොරොත්තුවෙන්…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4369,8 +4389,36 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>බාගැනීමේ ඉල්ලීම අසාර්ථක විය.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 කොටස %2 මත (නැවත උත්සාහ කළ නොහැකි)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>කොටස %1 මත නරක ඉල්ලීම (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>කොටස %1 මත සත්‍යාපනය අවශ්‍යයි (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>%1 කොටසට ප්‍රවේශය තහනම් (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>%1 කොටස සඳහා ගොනුව හමු නොවිණි (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>%1 කොටස සඳහා ක්‍රමය අවසර නැත (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>%1 කොටසේ ගොනුව තවදුරටත් නොමැත (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>%1 කොටස නීතිමය හේතු මත නොමැත (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>%2 කොටසේ HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4416,9 +4464,21 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Segment %1 failed after %2 retries</source>
             <translation>%1 කොටස %2 නැවත උත්සාහ කිරීමෙන් පසු අසාර්ථක විය</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>%1 කොටසට සේවාදායකයා සීමා පැනවීය (HTTP 429) — ඉල්ලීම් වැඩියි</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>නිෂ්ක්‍රීය විට DHT අක්‍රිය කරන්න</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ටොරන්ට් නොමැති විට DHT ස්වයංක්‍රීයව අක්‍රිය කරන්න, එවිට යෙදුම නිෂ්ක්‍රීයව ජාලයට ප්‍රකාශ කිරීම නවතී.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>බාගැනීමකට පෙරනිමි උපරිම සම්බන්ධතා:</translation>

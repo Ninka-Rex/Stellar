@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ਮੁਕੰਮਲ · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ਡਾਊਨਲੋਡ ਪੂਰਾ</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ਡਾਊਨਲੋਡ ਪੂਰਾ</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ਡਾਊਨਲੋਡ ਕੀਤਾ (%2 ਬਾਈਟ)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ਡਾਊਨਲੋਡ ਮੁਕੰਮਲ — %1 (%2 ਬਾਈਟ)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ਰੋਕੋ</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>ਰੱਦ ਕਰੋ</translation>
+            <source>Close</source>
+            <translation>ਬੰਦ ਕਰੋ</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>ਮੁਕੰਮਲ</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>ਬਾਕੀ</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>ਮੁਕੰਮਲ</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>ਕਾਰਜ</translation>
         </message>
@@ -3655,6 +3671,10 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
             <translation>ਚੈਨਲ ਡਾਊਨਲੋਡ ਪ੍ਰਗਤੀ</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ਚੈਨਲ/ਪਲੇਲਿਸਟ</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ਫਾਈਲ ਨਾਂ</translation>
         </message>
@@ -3671,8 +3691,8 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
             <translation>ਬਾਕੀ ਸਮਾਂ</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>ਆਈਟਮ %1</translation>
+            <source>Pending…</source>
+            <translation>ਬਾਕੀ…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4357,8 +4377,36 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
             <translation>ਡਾਊਨਲੋਡ ਬੇਨਤੀ ਅਸਫ਼ਲ ਰਹੀ।</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 ਸੈਗਮੈਂਟ %2 'ਤੇ (ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਯੋਗ ਨਹੀਂ)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>ਖਰਾਬ ਬੇਨਤੀ (HTTP 400) ਸੈਗਮੈਂਟ %1 'ਤੇ</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>ਪ੍ਰਮਾਣੀਕਰਨ ਲੋੜੀਂਦਾ (HTTP 401) ਸੈਗਮੈਂਟ %1 'ਤੇ</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>ਹਿੱਸੇ %1 'ਤੇ ਪਹੁੰਚ ਵਰਜਿਤ (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>ਹਿੱਸਾ %1 ਨਹੀਂ ਲੱਭਿਆ (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>ਹਿੱਸੇ %1 'ਤੇ ਢੰਗ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>ਹਿੱਸਾ %1 ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>ਕਨੂੰਨੀ ਕਾਰਨਾਂ ਕਰਕੇ ਉਪਲਬਧ ਨਹੀਂ (HTTP 451) ਹਿੱਸੇ %1 'ਤੇ</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>ਹਿੱਸੇ %2 'ਤੇ HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4404,9 +4452,21 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
             <source>Segment %1 failed after %2 retries</source>
             <translation>ਸੈਗਮੈਂਟ %1 %2 ਮੁੜ-ਕੋਸ਼ਿਸ਼ਾਂ ਬਾਅਦ ਫੇਲ੍ਹ ਹੋਇਆ</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>ਸਰਵਰ ਵੱਲੋਂ ਦਰ ਸੀਮਤ (HTTP 429) ਹਿੱਸੇ %1 'ਤੇ — ਬਹੁਤ ਸਾਰੀਆਂ ਬੇਨਤੀਆਂ</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>ਵਿਹਲੇ ਹੋਣ 'ਤੇ DHT ਬੰਦ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ਜਦੋਂ ਕੋਈ ਟੋਰੈਂਟ ਨਾ ਚੱਲ ਰਿਹਾ ਹੋਵੇ ਤਾਂ DHT ਆਪਣੇ-ਆਪ ਬੰਦ ਕਰੋ, ਤਾਂ ਜੋ ਵਿਹਲੇ ਸਮੇਂ ਐਪ ਨੈੱਟਵਰਕ 'ਤੇ ਆਪਣੀ ਮੌਜੂਦਗੀ ਦਾ ਐਲਾਨ ਨਾ ਕਰੇ।</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ਡਿਫਾਲਟ ਵੱਧ ਤੋਂ ਵੱਧ ਕੁਨੈਕਸ਼ਨ ਪ੍ਰਤੀ ਡਾਊਨਲੋਡ:</translation>

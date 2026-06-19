@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 بشپړ · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ډاونلوډ بشپړ شو</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ښکته کول بشپړ شول</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ښکته شول (%2 بایت)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ډاونلوډ بشپړ — %1 (%2 بایټونه)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>مکث</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>لغوه</translation>
+            <source>Close</source>
+            <translation>تړل</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ URL اضافه کړئ ترڅو پیل شي.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>بشپړ شو</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>ځنډېدلی</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>بشپړ شو</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1٪ ډاونلوډېږي</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>دندې</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>چینل ڈاؤنلوڈ کی پیشرفت</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>چینل/پلې لېست</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>د فایل نوم</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>پاتې وخت</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>توکی %1</translation>
+            <source>Pending…</source>
+            <translation>پاتې دی…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>د ډاونلوډ غوښتنه ناکامه شوه.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 په برخه %2 (د بیا هڅې وړ نه دی)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>په برخه %1 کې ناسمه غوښتنه (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>په برخه %1 کې تایید ته اړتیا (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>برخه %1 ته لاسرسی منع دی (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>برخه %1 کې فایل ونه موندل شو (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>برخه %1 کې میتود اجازه نلري (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>برخه %1 کې فایل نور شتون نلري (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>برخه %1 د قانوني دلایلو له مخې شتون نلري (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>برخه %2 کې HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Segment %1 failed after %2 retries</source>
             <translation>برخه %1 د %2 بیا هڅو وروسته ناکامه شوه</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>برخه %1 کې سرور لخوا محدودیت (HTTP 429) — ډیرې غوښتنې</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>بېکاره وخت کې DHT بند کړئ</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>کله چې هیڅ تورنټ فعال نه وي، DHT په اتومات ډول بند کړئ ترڅو اپلیکیشن د بېکارۍ پرمهال شبکې ته خپل ځان اعلان نه کړي.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ډیفالټ اعظمي اړیکې په هر ډاونلوډ:</translation>

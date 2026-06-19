@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 पूरा · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>डाउनलोड पूरा भयो</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>डाउनलोड सम्पन्न</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 डाउनलोड गरियो (%2 बाइट)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>डाउनलोड पूरा — %1 (%2 बाइट)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>रोकनुहोस्</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>रद्द गर्नुहोस्</translation>
+            <source>Close</source>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>पूरा भयो</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>विचाराधीन</translation>
@@ -3091,6 +3099,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>पूरा भयो</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>डाउनलोड हुँदै %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>कार्यहरू</translation>
         </message>
@@ -3652,6 +3668,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>च्यानल डाउनलोड प्रगति</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>च्यानल/प्लेलिस्ट</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>फाइल नाम</translation>
         </message>
@@ -3668,8 +3688,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>बाँकी समय</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>वस्तु %1</translation>
+            <source>Pending…</source>
+            <translation>बाँकी…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4354,8 +4374,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>डाउनलोड अनुरोध असफल भयो।</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>खण्ड %2 मा HTTP %1 (पुनः प्रयास गर्न नमिल्ने)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>खण्ड %1 मा खराब अनुरोध (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>खण्ड %1 मा प्रमाणीकरण आवश्यक (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>खण्ड %1 मा पहुँच निषेध (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>खण्ड %1 मा फाइल फेला परेन (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>खण्ड %1 मा विधि अनुमति छैन (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>खण्ड %1 मा फाइल अब उपलब्ध छैन (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>कानूनी कारणले उपलब्ध छैन (HTTP 451) खण्ड %1 मा</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>खण्ड %2 मा HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4401,9 +4449,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>खण्ड %1 %2 पटक प्रयास गर्दा असफल</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>सर्भरद्वारा दर सीमित (HTTP 429) खण्ड %1 मा — धेरै अनुरोधहरू</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>निष्क्रिय हुँदा DHT असक्षम गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>कुनै टोरेन्टहरू चलिरहेको छैन भने DHT स्वचालित रूपमा बन्द गर्नुहोस्, ताकि एप निष्क्रिय हुँदा नेटवर्कमा आफूलाई घोषणा गर्न बन्द गरोस्।</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>पूर्वनिर्धारित अधिकतम जडान प्रति डाउनलोड:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 выканана · %3 МБ</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Спампавана</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Спампоўка завершана</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Спампавана %1 (%2 байт)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Спампоўка завершана — %1 (%2 Байт)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Паўза</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Скасаваць</translation>
+            <source>Close</source>
+            <translation>Зачыніць</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Завершана</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Чакае</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Завершана</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Спампоўка %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Задачы</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Прагрэс сцягавання канала</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Канал/Плэйліст</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Назва файла</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Засталося часу</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Элемент %1</translation>
+            <source>Pending…</source>
+            <translation>Чаканне…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Запыт на спампоўванне не атрымаўся.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 на сегменце %2 (не паўтараецца)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Памылковы запыт (HTTP 400) на сегменце %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Патрабуецца аўтэнтыфікацыя (HTTP 401) на сегменце %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Доступ забаронены (HTTP 403) на сегменце %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Файл не знойдзены (HTTP 404) на сегменце %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Метад не дазволены (HTTP 405) на сегменце %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Файл больш недаступны (HTTP 410) на сегменце %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Недаступна з юрыдычных прычын (HTTP 451) на сегменце %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 на сегменце %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Сегмент %1 не атрымаўся пасля %2 спроб</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Абмежаванне хуткасці серверам (HTTP 429) на сегменце %1 — зашмат запытаў</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Адключыць DHT у бяздзеянні</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Аўтаматычна выключаць DHT, калі няма актыўных торэнтаў, каб праграма не анансавала сябе ў сетцы ў стане спакою.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Макс. злучэнняў па змаўчанні:</translation>

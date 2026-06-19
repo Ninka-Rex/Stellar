@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 wedi'i gwblhau · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Lawrlwytho'n Gyflawn</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Lawrlwythiad wedi'i gwblhau</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Lawrlwythwyd %1 (%2 Beit)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Llwytho i lawr wedi'i gwblhau — %1 (%2 Beit)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Seibio</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
+            <source>Close</source>
+            <translation>Cau</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Cliciwch  Ychwanegu URL  i ddechrau.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Wedi cwblhau</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Ar y gweill</translation>
@@ -3097,6 +3105,14 @@ Prosiect</translation>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Wedi cwblhau</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Wrthi'n llwytho %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tasgau</translation>
         </message>
@@ -3667,6 +3683,10 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Cynnydd Llwytho Sianel</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Sianel/Rhestr chwarae</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Enw Ffeil</translation>
         </message>
@@ -3683,8 +3703,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Amser ar ôl</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Eitem %1</translation>
+            <source>Pending…</source>
+            <translation>Yn aros…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4369,8 +4389,36 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Mae'r cais lawrlwytho wedi methu.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 ar segment %2 (ni ellir ailgeisio)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Cais gwael (HTTP 400) ar segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Angen dilysiad (HTTP 401) ar segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Mynediad wedi'i wahardd (HTTP 403) ar segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Ffeil heb ei darganfod (HTTP 404) ar segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Dull heb ei ganiatáu (HTTP 405) ar segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Ffeil ddim ar gael bellach (HTTP 410) ar segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Ddim ar gael am resymau cyfreithiol (HTTP 451) ar segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 ar segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4416,9 +4464,21 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Methodd segment %1 ar ôl %2 ymgais</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Cyfradd wedi'i chyfyngu gan y gweinydd (HTTP 429) ar segment %1 — gormod o geisiadau</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Analluogi DHT pan yn segur</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Diffodd DHT yn awtomatig pan nad oes torrents yn rhedeg, fel bod yr ap yn rhoi'r gorau i gyhoeddi ei hun i'r rhwydwaith tra'n segur.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Cysylltiadau diofyn fesul llwyth:</translation>

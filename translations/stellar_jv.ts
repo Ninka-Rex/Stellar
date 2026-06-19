@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 rampung · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Unduhan Rampung</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Unduhan rampung</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Diundhuh %1 (%2 Bita)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Unduhan rampung — %1 (%2 Bita)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Ngaso</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
+            <source>Close</source>
+            <translation>Tutup</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Klik Tambah URL kanggo miwiti.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Rampung</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Ditundha</translation>
@@ -3096,6 +3104,14 @@ Proyek</translation>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Rampung</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Ngundhuh %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tugas</translation>
         </message>
@@ -3666,6 +3682,10 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Progres Unduh Saluran</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Saluran/Dhaptar puter</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Jeneng Berkas</translation>
         </message>
@@ -3682,8 +3702,8 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Wektu sisa</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Item %1</translation>
+            <source>Pending…</source>
+            <translation>Nunggu…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4368,8 +4388,36 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Panjaluk unduhan gagal.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 ing segmen %2 (ora bisa dicoba manèh)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Panjalukan ala (HTTP 400) ing segmen %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Perlu otentikasi (HTTP 401) ing segmen %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Akses dilarang (HTTP 403) ing segmen %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Berkas ora ditemokake (HTTP 404) ing segmen %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Metode ora diidini (HTTP 405) ing segmen %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Berkas wis ora kasedhiya (HTTP 410) ing segmen %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Ora kasedhiya amarga alesan hukum (HTTP 451) ing segmen %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 ing segmen %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4415,9 +4463,21 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segmen %1 gagal sawise %2 nyoba maneh</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Diwatesi server (HTTP 429) ing segmen %1 — kakehan panjaluk</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Pateni DHT nalika nganggur</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Pateni DHT otomatis nalika ora ana torrent sing mlaku, supaya app mandheg ngumumake awake menyang jaringan nalika nganggur.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Sambungan maks. standar saben unduhan:</translation>

@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 bajarildi · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Yuklab olish tugadi</translation>
         </message>
@@ -894,8 +898,8 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
             <translation>Yuklash tugadi</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 yuklandi (%2 bait)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Yuklab olish yakunlandi — %1 (%2 Bayt)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
             <translation>To'xtatish</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Bekor qilish</translation>
+            <source>Close</source>
+            <translation>Yopish</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Boshlash uchun URL qo'shing.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Yakunlangan</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Kutilmoqda</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Yakunlangan</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Yuklanmoqda %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Vazifalar</translation>
         </message>
@@ -3653,6 +3669,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanallar yuklashi</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Kanal/pleylist</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Fayl nomi</translation>
         </message>
@@ -3669,8 +3689,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Qolgan vaqt</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>%1-element</translation>
+            <source>Pending…</source>
+            <translation>Kutilmoqda…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4355,8 +4375,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Yuklab olish so‘rovi amalga oshmadi.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 segment %2 da (qayta urinilmaydi)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Segmentda noto‘g‘ri so‘rov (HTTP 400) %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Segmentda autentifikatsiya talab qilinadi (HTTP 401) %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Segment %1 uchun kirish taqiqlangan (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Segment %1 topilmadi (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Segment %1 uchun ruxsat etilmagan usul (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Segment %1 endi mavjud emas (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Segment %1 qonuniy sabablarga ko‘ra mavjud emas (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>Segment %2 da HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4402,9 +4450,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>%1 segmenti %2 urinishdan keyin muvaffaqiyatsiz tugadi</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Server tomonidan cheklangan (HTTP 429) segment %1 — juda ko‘p so‘rov</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Bo‘sh vaqtda DHTni o‘chirish</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Hech qanday torrent ishlamayotganda DHTni avtomatik o‘chirish, shunda ilova tarmoqqa o‘zini e’lon qilmaydi.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Yuklab olish uchun standart maks. ulanishlar:</translation>

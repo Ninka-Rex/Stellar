@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 terminé · %3 Mo</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Téléchargement terminé</translation>
         </message>
@@ -894,8 +898,8 @@ Exécutez manuellement : flatpak override --user --talk-name=org.freedesktop.Fla
             <translation>Téléchargement terminé</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Téléchargé %1 (%2 octets)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Téléchargement terminé — %1 (%2 octets)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Exécutez manuellement : flatpak override --user --talk-name=org.freedesktop.Fla
             <translation>Pause</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Annuler</translation>
+            <source>Close</source>
+            <translation>Fermer</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Cliquez sur Ajouter une URL pour commencer.</translation>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Terminé</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>En attente</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Terminé</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Téléchargement %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Tâches</translation>
         </message>
@@ -3661,6 +3677,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Progression du téléchargement de la chaîne</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Chaîne/Playlist</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Nom</translation>
         </message>
@@ -3677,8 +3697,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Tps restant</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Élément %1</translation>
+            <source>Pending…</source>
+            <translation>En attente…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4363,8 +4383,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>La requête de téléchargement a échoué.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 sur le segment %2 (non renouvelable)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Requête incorrecte (HTTP 400) sur le segment %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Authentification requise (HTTP 401) sur le segment %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Accès interdit (HTTP 403) sur segment %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Fichier introuvable (HTTP 404) sur segment %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Méthode non autorisée (HTTP 405) sur segment %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Fichier plus disponible (HTTP 410) sur segment %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Indisponible pour raisons légales (HTTP 451) sur segment %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 sur segment %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4410,9 +4458,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Segment %1 échoué après %2 tentatives</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Limité par le serveur (HTTP 429) sur segment %1 — trop de requêtes</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Désactiver DHT inactif</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Couper DHT automatiquement sans torrents actifs, pour ne plus s’annoncer sur le réseau au repos.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Connexions max. par défaut :</translation>

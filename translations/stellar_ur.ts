@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 مکمل · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ڈاؤن لوڈ مکمل</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ڈاؤنلوڈ مکمل</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 ڈاؤنلوڈ (%2 بائٹس)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ڈاؤن لوڈ مکمل — %1 (%2 بائٹس)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>روک</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>منسوخ</translation>
+            <source>Close</source>
+            <translation>بند کریں</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>مکمل</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>زیر التوا</translation>
@@ -3090,6 +3098,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>مکمل</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% ڈاؤن لوڈ ہو رہا ہے</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>کامات</translation>
         </message>
@@ -3654,6 +3670,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Channel Download Progress</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>چینل/پلے لسٹ</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>فائل نام</translation>
         </message>
@@ -3670,8 +3690,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>باقی وقت</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>آئٹم %1</translation>
+            <source>Pending…</source>
+            <translation>زیر التوا…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4356,8 +4376,36 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>ڈاؤن لوڈ کی درخواست ناکام ہوگئی۔</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 سیگمنٹ %2 پر (دوبارہ کوشش کے قابل نہیں)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>حصہ %1 پر خراب درخواست (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>حصہ %1 پر تصدیق درکار (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>حصہ %1 پر رسائی ممنوع (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>حصہ %1 پر فائل نہیں ملی (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>حصہ %1 پر طریقہ مجاز نہیں (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>حصہ %1 پر فائل مزید دستیاب نہیں (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>حصہ %1 پر قانونی وجوہات سے غیر دستیاب (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>حصہ %2 پر HTTP %1</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4403,9 +4451,21 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Segment %1 failed after %2 retries</source>
             <translation>سیگمنٹ %1 %2 کوششوں کے بعد ناکام</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>حصہ %1 پر سرور کی شرح محدود (HTTP 429) — بہت زیادہ درخواستیں</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>بیکار ہونے پر DHT غیر فعال کریں</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>جب کوئی ٹورنٹ نہ چل رہا ہو تو DHT خودکار بند کریں، تاکہ ایپ بیکار حالت میں نیٹ ورک کو اپنی موجودگی نہ بتائے۔</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>طے شدہ زیادہ سے زیادہ کنکشن فی ڈاؤن لوڈ:</translation>

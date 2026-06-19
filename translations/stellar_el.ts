@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 ολοκληρώθηκε · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>Λήψη ολοκληρώθηκε</translation>
         </message>
@@ -894,8 +898,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Η λήψη ολοκληρώθηκε</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Ληφθέντα %1 (%2 Bytes)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>Λήψη ολοκληρώθηκε — %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1175,8 +1179,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Παύση</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>Ακύρωση</translation>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1414,6 +1418,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>Ολοκληρώθηκε</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>Εκκρεμεί</translation>
@@ -3092,6 +3100,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>Ολοκληρώθηκε</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>Λήψη %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>Εργασίες</translation>
         </message>
@@ -3662,6 +3678,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Πρόοδος λήψης καναλιού</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>Κανάλι/Λίστα</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>Όνομα αρχείου</translation>
         </message>
@@ -3678,8 +3698,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Υπολ. χρόνος</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>Στοιχείο %1</translation>
+            <source>Pending…</source>
+            <translation>Σε εκκρεμότητα…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4364,8 +4384,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Το αίτημα λήψης απέτυχε.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 στο τμήμα %2 (μη επαναλήψιμο)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>Κακό αίτημα (HTTP 400) στο τμήμα %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>Απαιτείται πιστοποίηση (HTTP 401) στο τμήμα %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>Απαγόρευση πρόσβασης (HTTP 403) στο τμήμα %1</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>Το αρχείο δεν βρέθηκε (HTTP 404) στο τμήμα %1</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>Μη επιτρεπτή μέθοδος (HTTP 405) στο τμήμα %1</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>Το αρχείο δεν είναι πλέον διαθέσιμο (HTTP 410) στο τμήμα %1</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>Μη διαθέσιμο για νομικούς λόγους (HTTP 451) στο τμήμα %1</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 στο τμήμα %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4411,9 +4459,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>Το τμήμα %1 απέτυχε μετά από %2 προσπάθειες</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>Περιορισμός ρυθμού από διακομιστή (HTTP 429) στο τμήμα %1 — υπερβολικά αιτήματα</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>Απενεργοποίηση DHT σε αδράνεια</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>Απενεργοποίηση DHT όταν δεν τρέχουν torrent, ώστε η εφαρμογή να σταματά να αναγγέλλεται στο δίκτυο ενώ είναι αδρανής.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>Προεπ. μέγ. συνδέσεις ανά λήψη:</translation>

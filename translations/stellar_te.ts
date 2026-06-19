@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 పూర్తి · %3 MB</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>డౌన్లోడ్ పూర్తయింది</translation>
         </message>
@@ -893,8 +897,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>డౌన్‌లోడ్ పూర్తయింది</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 డౌన్‌లోడ్ చేయబడింది (%2 బైట్‌లు)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>డౌన్‌లోడ్ పూర్తి — %1 (%2 బైట్లు)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1174,8 +1178,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>విరామం</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
+            <source>Close</source>
+            <translation>మూసివేయి</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1413,6 +1417,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>పూర్తయింది</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>పెండింగ్</translation>
@@ -3097,6 +3105,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>పూర్తయింది</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>%1% డౌన్‌లోడ్ అవుతోంది</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>పనులు</translation>
         </message>
@@ -3667,6 +3683,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ఛానెల్ డౌన్‌లోడ్ పురోగతి</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>ఛానెల్/ప్లేలిస్ట్</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ఫైల్ పేరు</translation>
         </message>
@@ -3683,8 +3703,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>మిగిలిన సమయం</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>అంశం %1</translation>
+            <source>Pending…</source>
+            <translation>పెండింగ్…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4369,8 +4389,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>డౌన్లోడ్ అభ్యర్థన విఫలమైంది.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>సెగ్మెంట్ %2పై HTTP %1 (తిరిగి ప్రయత్నించలేనిది)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>సెగ్మెంట్ %1పై చెడు అభ్యర్థన (HTTP 400)</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>సెగ్మెంట్ %1పై ప్రామాణీకరణ అవసరం (HTTP 401)</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>సెగ్మెంట్ %1పై ప్రవేశం నిషేధించబడింది (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>సెగ్మెంట్ %1లో ఫైల్ కనుగొనబడలేదు (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>సెగ్మెంట్ %1పై పద్ధతి అనుమతించబడలేదు (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>సెగ్మెంట్ %1లో ఫైల్ ఇక అందుబాటులో లేదు (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>చట్టపరమైన కారణాల వల్ల అందుబాటులో లేదు (HTTP 451) సెగ్మెంట్ %1లో</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 సెగ్మెంట్ %2లో</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4416,9 +4464,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>సెగ్మెంట్ %1 %2 రీట్రైల తర్వాత విఫలమైంది</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>సర్వర్ ద్వారా రేటు పరిమితం చేయబడింది (HTTP 429) సెగ్మెంట్ %1లో — చాలా ఎక్కువ అభ్యర్థనలు</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>నిష్క్రియంగా ఉన్నప్పుడు DHTని నిలిపివేయి</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>ఎటువంటి టొరెంట్లు నడుస్తున్నప్పుడు DHT ని స్వయంచాలకంగా ఆఫ్ చేయండి, తద్వారా యాప్ నిష్క్రియంగా ఉన్నప్పుడు నెట్వర్క్కు తనను తాను ప్రకటించుకోవడం ఆపివేస్తుంది.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>డిఫాల్ట్ గరిష్ట డౌన్‌లోడ్ కనెక్షన్లు:</translation>

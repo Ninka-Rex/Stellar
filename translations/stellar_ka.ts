@@ -171,6 +171,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>%1/%2 complete · %3 MB</source>
+            <translation>%1/%2 დასრულებული · %3 მბ</translation>
+        </message>
+        <message>
             <source>Download Complete</source>
             <translation>ჩამოტვირთვა დასრულდა</translation>
         </message>
@@ -899,8 +903,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ჩამოტვირთვა დასრულდა</translation>
         </message>
         <message>
-            <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>ჩამოტვირთულია %1 (%2 ბაიტი)</translation>
+            <source>Download complete — %1 (%2 Bytes)</source>
+            <translation>ჩამოტვირთვა დასრულდა — %1 (%2 ბაიტი)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1180,8 +1184,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>პაუზა</translation>
         </message>
         <message>
-            <source>Cancel</source>
-            <translation>გაუქმება</translation>
+            <source>Close</source>
+            <translation>დახურვა</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
@@ -1419,6 +1423,10 @@ Click  Add URL  to start.</source>
     </context>
     <context>
         <name>DownloadTableRow</name>
+        <message>
+            <source>Completed</source>
+            <translation>დასრულებული</translation>
+        </message>
         <message>
             <source>Pending</source>
             <translation>მოლოდინში</translation>
@@ -3101,6 +3109,14 @@ Project</source>
     <context>
         <name>Main</name>
         <message>
+            <source>Completed</source>
+            <translation>დასრულებული</translation>
+        </message>
+        <message>
+            <source>Downloading %1%</source>
+            <translation>იტვირთება %1%</translation>
+        </message>
+        <message>
             <source>Tasks</source>
             <translation>დავალებები</translation>
         </message>
@@ -3670,6 +3686,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>არხის ჩამოტვირთვის პროგრესი</translation>
         </message>
         <message>
+            <source>Channel/Playlist</source>
+            <translation>არხი/ფლეილისტი</translation>
+        </message>
+        <message>
             <source>File Name</source>
             <translation>ფაილის სახელი</translation>
         </message>
@@ -3686,8 +3706,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>დარჩ. დრო</translation>
         </message>
         <message>
-            <source>Item %1</source>
-            <translation>ელემენტი %1</translation>
+            <source>Pending…</source>
+            <translation>მოლოდინში…</translation>
         </message>
         <message>
             <source>Download Later</source>
@@ -4372,8 +4392,36 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ჩამოტვირთვის მოთხოვნა ვერ შესრულდა.</translation>
         </message>
         <message>
-            <source>HTTP %1 on segment %2 (not retriable)</source>
-            <translation>HTTP %1 სეგმენტზე %2 (გამეორება შეუძლებელია)</translation>
+            <source>Bad request (HTTP 400) on segment %1</source>
+            <translation>მცდარი მოთხოვნა (HTTP 400) სეგმენტზე %1</translation>
+        </message>
+        <message>
+            <source>Authentication required (HTTP 401) on segment %1</source>
+            <translation>ავთენტიფიკაცია საჭიროა (HTTP 401) სეგმენტზე %1</translation>
+        </message>
+        <message>
+            <source>Access forbidden (HTTP 403) on segment %1</source>
+            <translation>სეგმენტზე %1 წვდომა აკრძალულია (HTTP 403)</translation>
+        </message>
+        <message>
+            <source>File not found (HTTP 404) on segment %1</source>
+            <translation>სეგმენტზე %1 ფაილი ვერ მოიძებნა (HTTP 404)</translation>
+        </message>
+        <message>
+            <source>Method not allowed (HTTP 405) on segment %1</source>
+            <translation>სეგმენტზე %1 მეთოდი დაუშვებელია (HTTP 405)</translation>
+        </message>
+        <message>
+            <source>File no longer available (HTTP 410) on segment %1</source>
+            <translation>სეგმენტზე %1 ფაილი აღარ არის ხელმისაწვდომი (HTTP 410)</translation>
+        </message>
+        <message>
+            <source>Unavailable for legal reasons (HTTP 451) on segment %1</source>
+            <translation>სეგმენტზე %1 მიუწვდომელია იურიდიული მიზეზებით (HTTP 451)</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2</source>
+            <translation>HTTP %1 სეგმენტზე %2</translation>
         </message>
         <message>
             <source>Internal error: degenerate segment range</source>
@@ -4419,9 +4467,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Segment %1 failed after %2 retries</source>
             <translation>სეგმენტი %1 ვერ მოხერხდა %2 მცდელობის შემდეგ</translation>
         </message>
+        <message>
+            <source>Rate limited by server (HTTP 429) on segment %1 — too many requests</source>
+            <translation>სერვერის მიერ სიხშირის შეზღუდვა (HTTP 429) სეგმენტზე %1 — ზედმეტად ბევრი მოთხოვნა</translation>
+        </message>
     </context>
     <context>
         <name>SettingsDialog</name>
+        <message>
+            <source>Disable DHT when idle</source>
+            <translation>DHT-ის გამორთვა უმოქმედობისას</translation>
+        </message>
+        <message>
+            <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+            <translation>DHT-ის ავტომატურად გამორთვა, როცა ტორენტები არ მუშაობს, რათა აპმა შეწყვიტოს ქსელში თავის გამოცხადება უმოქმედობის დროს.</translation>
+        </message>
         <message>
             <source>Default max. connections per download:</source>
             <translation>ნაგულისხმევი მაქს. კავშირები ჩამოტვირთვაზე:</translation>
