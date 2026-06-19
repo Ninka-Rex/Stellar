@@ -2,6 +2,18 @@
 
 ---
 
+## Version 0.10.5 Beta - June 19, 2026
+
+### Improved
+- Polished download complete dialog
+- Tweaked icon sizes to be more consistent
+
+### Fixed
+- yt-dlp dialog quality picker dropdown not working
+- Channel downloads not working
+
+---
+
 ## Version 0.10.4 Beta - June 15, 2026
 
 ### New
