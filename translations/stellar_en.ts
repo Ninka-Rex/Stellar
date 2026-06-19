@@ -5562,6 +5562,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
 <context>
     <name>SettingsDialog</name>
     <message>
+        <source>Disable DHT when idle</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Default max. connections per download:</source>
         <translation></translation>
     </message>

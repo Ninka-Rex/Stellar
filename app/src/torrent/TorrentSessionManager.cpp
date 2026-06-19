@@ -583,6 +583,10 @@ bool TorrentSessionManager::dhtShouldRun() const {
 #if defined(STELLAR_HAS_LIBTORRENT)
     if (!m_settings || !m_settings->torrentEnableDht())
         return false;
+    // User opted out of idle auto-suspend: follow the master switch only, keep DHT
+    // running regardless of how many torrents are active.
+    if (!m_settings->torrentDhtAutoSuspend())
+        return true;
     // Auto-suspend: run DHT only while at least one torrent is *active*. A stopped
     // (paused) torrent stays in m_handles but makes no announces, so it shouldn't
     // hold the session-wide DHT overlay open — otherwise "all torrents stopped"

@@ -184,6 +184,7 @@ Window {
     property string editYtdlpDefaultCookieBrowser: ""
     property bool   editTorrentEnabled:        false
     property bool   editTorrentEnableDht:      true
+    property bool   editTorrentDhtAutoSuspend: true
     property bool   editTorrentEnableLsd:      true
     property bool   editTorrentEnableUpnp:     true
     property bool   editTorrentEnableNatPmp:   true
@@ -587,6 +588,7 @@ Window {
         editYtdlpDefaultCookieBrowser  !== App.settings.ytdlpDefaultCookieBrowser  ||
         editTorrentEnabled        !== App.settings.torrentEnabled        ||
         editTorrentEnableDht      !== App.settings.torrentEnableDht      ||
+        editTorrentDhtAutoSuspend !== App.settings.torrentDhtAutoSuspend ||
         editTorrentEnableLsd      !== App.settings.torrentEnableLsd      ||
         editTorrentEnableUpnp     !== App.settings.torrentEnableUpnp     ||
         editTorrentEnableNatPmp   !== App.settings.torrentEnableNatPmp   ||
@@ -1002,6 +1004,7 @@ Window {
         App.settings.ytdlpDefaultCookieBrowser   = editYtdlpDefaultCookieBrowser
         App.settings.torrentEnabled         = editTorrentEnabled
         App.settings.torrentEnableDht       = editTorrentEnableDht
+        App.settings.torrentDhtAutoSuspend  = editTorrentDhtAutoSuspend
         App.settings.torrentEnableLsd       = editTorrentEnableLsd
         App.settings.torrentEnableUpnp      = editTorrentEnableUpnp
         App.settings.torrentEnableNatPmp    = editTorrentEnableNatPmp
@@ -1121,6 +1124,7 @@ Window {
         editYtdlpDefaultCookieBrowser  = App.settings.ytdlpDefaultCookieBrowser
         editTorrentEnabled        = App.settings.torrentEnabled
         editTorrentEnableDht      = App.settings.torrentEnableDht
+        editTorrentDhtAutoSuspend = App.settings.torrentDhtAutoSuspend
         editTorrentEnableLsd      = App.settings.torrentEnableLsd
         editTorrentEnableUpnp     = App.settings.torrentEnableUpnp
         editTorrentEnableNatPmp   = App.settings.torrentEnableNatPmp
@@ -3683,6 +3687,13 @@ Window {
                             description: qsTr("Find peers without a tracker using a distributed hash table.")
                             cbChecked: root.editTorrentEnableDht
                             onToggled: (v) => root.editTorrentEnableDht = v
+                        }
+                        NetCheckRow {
+                            label: qsTr("Disable DHT when idle")
+                            description: qsTr("Turn DHT off automatically when no torrents are running, so the app stops announcing itself to the network while idle.")
+                            rowEnabled: root.editTorrentEnableDht
+                            cbChecked: root.editTorrentDhtAutoSuspend
+                            onToggled: (v) => root.editTorrentDhtAutoSuspend = v
                         }
                         NetCheckRow {
                             label: "LSD"

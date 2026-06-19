@@ -151,6 +151,7 @@
     X(QString, const QString &, torrentBlockedPeerUserAgents, TorrentBlockedPeerUserAgents, QString(), "torrentBlockedPeerUserAgents", T) \
     X(QStringList, const QStringList &, torrentBlockedPeerCountries, TorrentBlockedPeerCountries, QStringList(), "torrentBlockedPeerCountries", T) \
     X(bool, bool, torrentEnableDht, TorrentEnableDht, true, "torrentEnableDht", T) \
+    X(bool, bool, torrentDhtAutoSuspend, TorrentDhtAutoSuspend, true, "torrentDhtAutoSuspend", T) \
     X(bool, bool, torrentEnableLsd, TorrentEnableLsd, true, "torrentEnableLsd", T) \
     X(bool, bool, torrentEnableUpnp, TorrentEnableUpnp, true, "torrentEnableUpnp", T) \
     X(bool, bool, torrentEnableNatPmp, TorrentEnableNatPmp, true, "torrentEnableNatPmp", T) \
