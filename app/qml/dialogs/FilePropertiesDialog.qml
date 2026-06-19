@@ -438,25 +438,57 @@ Window {
         property alias trkColOrderJson:  root.trkColOrderJson
         property alias fileColOrderJson: root.fileColOrderJson
         property alias swarmStatsStoreJson: root.swarmStatsStoreJson
+        property alias savedTorrentWidth: root.savedTorrentWidth
+        property alias savedTorrentHeight: root.savedTorrentHeight
     }
 
     // ?? Window sizing ????????????????????????????????????????????????????????
+    // Torrent variant remembers the user's last size (persisted via the Settings
+    // block below); the non-torrent variant stays fixed. _sizeSaveReady gates the
+    // resize-save handlers so our own programmatic sizing here doesn't echo back.
+    property int savedTorrentWidth: 800
+    property int savedTorrentHeight: 500
+    property bool _sizeSaveReady: false
+
     function _applySize() {
         var torrent = !!(root.item && root.item.isTorrent)
+        _sizeSaveReady = false
         minimumWidth  = 0
         minimumHeight = 0
+        // Reset caps each time so a torrent's max doesn't leak onto a non-torrent
+        // item when the same window is reused for a different download.
+        maximumWidth  = 16777215
+        maximumHeight = 16777215
         if (torrent) {
-            minimumWidth  = 800
-            minimumHeight = 500
-            width  = 800
-            height = 500
+            minimumWidth  = 630
+            minimumHeight = 420
+            maximumWidth  = 800
+            maximumHeight = 500
+            width  = Math.min(maximumWidth,  Math.max(minimumWidth,  root.savedTorrentWidth))
+            height = Math.min(maximumHeight, Math.max(minimumHeight, root.savedTorrentHeight))
         } else {
             minimumWidth  = 470
             minimumHeight = 420
             width  = 470
             height = 420
         }
+        // Re-arm saving only after our own width/height writes have settled, so the
+        // onWidthChanged/onHeightChanged they trigger aren't mistaken for a user drag.
+        Qt.callLater(function() { root._sizeSaveReady = true })
     }
+
+    Timer {
+        id: sizeSaveTimer
+        interval: 400; repeat: false
+        onTriggered: {
+            if (!root._sizeSaveReady || !root.visible) return
+            if (!(root.item && root.item.isTorrent)) return   // only the torrent variant persists
+            root.savedTorrentWidth  = root.width
+            root.savedTorrentHeight = root.height
+        }
+    }
+    onWidthChanged:  if (_sizeSaveReady && visible) sizeSaveTimer.restart()
+    onHeightChanged: if (_sizeSaveReady && visible) sizeSaveTimer.restart()
 
     // Per-window cascade so stacked properties windows don't perfectly overlap.
     property int cascadeOffset: 0
@@ -2887,8 +2919,11 @@ Window {
                                         width: 16; height: parent.height
                                         Text {
                                             visible: fd.isFolder; anchors.centerIn: parent
-                                            text: fd.expanded ? "▼" : "▶"
-                                            color: "#888"; font.pixelSize: 11 * App.fontScale
+                                            // Matched small-triangle pair: ▼ (U+25BC) and ▶ (U+25B6)
+                                            // render at very different glyph sizes; ▾ (U+25BE) / ▸ (U+25B8)
+                                            // are a visually consistent pair (same as DownloadTableRow).
+                                            text: fd.expanded ? "▾" : "▸"
+                                            color: "#888"; font.pixelSize: 13 * App.fontScale
                                         }
                                         MouseArea {
                                             visible: fd.isFolder; anchors.fill: parent
@@ -2940,7 +2975,7 @@ Window {
                                     // checkbox (22), icon (16) + gap (4), outer margins (6+8).
                                     Text {
                                         width: root.fileColName - Math.max(0, fd.depth) * 14 - 16 - 22 - 16
-                                        rightPadding: 8
+                                        rightPadding: 14
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: safeStr(fd.name)
                                         color: !fd.wanted ? ColorPalette.textDisabled : (fd.isFolder ? ColorPalette.textPrimary : ColorPalette.textPrimary)
@@ -2954,7 +2989,7 @@ Window {
 
                                         Text {
                                             id: progPctLbl
-                                            anchors { left: parent.left; leftMargin: 6; verticalCenter: parent.verticalCenter }
+                                            anchors { left: parent.left; leftMargin: 0; verticalCenter: parent.verticalCenter }
                                             text: Math.round(root.clampPct(fd.progress) * 100) + "%"
                                             color: fd.wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                             font.pixelSize: 11 * App.fontScale
@@ -2972,24 +3007,26 @@ Window {
                                             Rectangle {
                                                 width: Math.max(0, parent.width * root.clampPct(fd.progress))
                                                 height: parent.height; radius: parent.radius
-                                                color: fd.wanted ? "#33bb44" : ColorPalette.textDisabled
+                                                color: fd.wanted ? ColorPalette.progressDownloading : ColorPalette.textDisabled
                                             }
                                         }
                                     }
 
-                                    // Size — leftPadding:6 matches the header cell's leftMargin:6
+                                    // Size — the delegate Row's leftMargin:6 already supplies the
+                                    // 6px the header cell adds via its own leftMargin:6, so no extra pad.
                                     Text {
                                         width: root.fileColSize; anchors.verticalCenter: parent.verticalCenter
-                                        leftPadding: 6
+                                        leftPadding: 0
                                         text: root.compactBytes(fd.size)
                                         color: fd.wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                         font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
                                     }
 
-                                    // Priority — leftPadding:6 matches the header cell's leftMargin:6
+                                    // Priority — the delegate Row's leftMargin:6 already supplies the
+                                    // 6px the header cell adds via its own leftMargin:6, so no extra pad.
                                     Text {
                                         width: root.fileColPriority; anchors.verticalCenter: parent.verticalCenter
-                                        leftPadding: 6
+                                        leftPadding: 0
                                         text: fd.wanted ? root.priorityLabel(fd.priority) : "—"
                                         color: fd.wanted ? root.priorityColor(fd.priority) : ColorPalette.textDisabled
                                         font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
