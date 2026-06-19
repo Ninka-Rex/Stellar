@@ -135,7 +135,7 @@ Rectangle {
                         acceptedButtons: Qt.LeftButton
                         gesturePolicy: TapHandler.ReleaseWithinBounds
                         onTapped: if (rowRect.item)
-                            App.downloadModel.setExpanded(rowRect.item.id, !rowRect.item.treeExpanded)
+                            table.toggleExpandPreservingScroll(rowRect.item, rowRect.rowIndex)
                     }
                 }
 
@@ -604,7 +604,7 @@ Rectangle {
             if (rowRect.item.isChannelContainer) {
                 var tp = mapToItem(twisty, mouse.x, mouse.y)
                 if (tp.x >= 0 && tp.x <= twisty.width && tp.y >= 0 && tp.y <= twisty.height) {
-                    App.downloadModel.setExpanded(rowRect.item.id, !rowRect.item.treeExpanded)
+                    table.toggleExpandPreservingScroll(rowRect.item, rowRect.rowIndex)
                     return
                 }
             }

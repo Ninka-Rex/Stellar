@@ -706,6 +706,37 @@ Rectangle {
         if (item && (item.status === "Completed" || item.status === "Seeding")) App.openFolder(item.id)
     }
 
+    // Toggle a channel container's expand state while keeping the scroll
+    // position fixed. setExpanded() rebuilds the model under a full reset (see
+    // DownloadTableModel::setExpanded — surgical insert/remove crashed under the
+    // live re-sort, so a reset is intentional), which snaps the ListView to the
+    // top. Rows are a fixed 26 px, so we compute the compensated contentY and
+    // assign it BOTH synchronously (kills the one-frame flash at the top that
+    // Qt.callLater alone leaves) and again on the next tick (re-asserts after the
+    // reset's deferred re-layout settles contentHeight). Compensate only when the
+    // toggled child block sits above the viewport top.
+    function toggleExpandPreservingScroll(item, rowIndex) {
+        if (!item) return
+        var rh = 26
+        var willExpand = !item.treeExpanded
+        var block = item.childCount * rh
+        var y0 = tableView.contentY
+        var aboveViewport = (rowIndex >= 0 && rowIndex * rh < y0)
+        var target = y0 + (aboveViewport ? (willExpand ? block : -block) : 0)
+        // Clamp against the PREDICTED content height — synchronously after the
+        // reset contentHeight still lags by ±block, so derive it ourselves.
+        function clampAndSet() {
+            var predicted = tableView.contentHeight
+            var max = Math.max(0, predicted - tableView.height)
+            tableView.contentY = Math.max(0, Math.min(target, max))
+        }
+        App.downloadModel.setExpanded(item.id, willExpand)   // synchronous reset
+        // Synchronous clamp uses the just-updated contentHeight when available;
+        // the next-tick pass corrects it once layout settles.
+        clampAndSet()
+        Qt.callLater(clampAndSet)
+    }
+
     function itemMatchesActiveFilter(item) {
         return filterText.length === 0
             || _itemMatchesFind(item, filterText, filterName, filterDesc,
