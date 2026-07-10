@@ -34,6 +34,10 @@ Window {
     property bool   overwriteExisting: false
 
     signal openSettingsRequested(int page)
+    // Emitted when the probe found the URL resolves to a plain static file that
+    // yt-dlp cannot handle (e.g. a reddit gif post). Main.qml routes it to the
+    // regular HTTP download flow; this dialog closes itself.
+    signal directDownloadRequested(string directUrl)
     signal downloadRequested(string url, string formatId,
                              string containerFormat, string savePath, string category,
                              bool uniqueFilename, string videoTitle,
@@ -186,6 +190,10 @@ Window {
             raise(); requestActivate()
             if (pendingUrl.length > 0) _startProbe()
         } else {
+            // Abort any running or parked probe — otherwise it keeps running
+            // (or fires later from the cold-start availability check) with
+            // nobody listening for its probeId.
+            if (_probeId.length > 0) App.cancelYtdlpInfo(_probeId)
             _reset()
         }
     }
@@ -314,6 +322,12 @@ Window {
         function onYtdlpInfoFailed(probeId, url, reason) {
             if (probeId !== root._probeId) return
             root._probing=false; root._probeError=reason
+        }
+        function onYtdlpProbeDiverted(probeId, url, directUrl) {
+            if (probeId !== root._probeId) return
+            root._probing = false
+            root.directDownloadRequested(directUrl)
+            root.close()
         }
     }
 
@@ -485,11 +499,13 @@ Window {
         Item {
             id: bodyItem
             Layout.fillWidth: true
-            // When probing/error, give a fixed height for the centered states.
+            // When probing, give a fixed height for the centered spinner. The error
+            // state sizes to its content (help boxes and long messages can make it
+            // far taller than 160 — a fixed height spills into header and footer).
             // When showing content, implicitHeight tracks the inner ColumnLayout.
-            implicitHeight: root._probing || root._probeError.length > 0
-                            ? 160
-                            : bodyContent.implicitHeight
+            implicitHeight: root._probing ? 160
+                          : root._probeError.length > 0 ? errorCol.implicitHeight + 32
+                          : bodyContent.implicitHeight
 
             // Loading
             ColumnLayout {
@@ -502,6 +518,7 @@ Window {
 
             // Error
             ColumnLayout {
+                id: errorCol
                 anchors.centerIn: parent
                 width: Math.min(parent.width - 48, 480)
                 spacing: 12
@@ -513,7 +530,7 @@ Window {
                 Text {
                     Layout.fillWidth: true
                     text: root._probeError.replace(/(\r?\n)+null\s*$/g, "").trim()
-                    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; wrapMode: Text.Wrap; horizontalAlignment: Text.AlignHCenter
+                    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WrapAtWordBoundaryOrAnywhere; horizontalAlignment: Text.AlignHCenter
                 }
 
                 // n-challenge specific help box - shown when yt-dlp reports JS runtime missing

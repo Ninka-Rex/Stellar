@@ -1078,6 +1078,7 @@ void AppController::handleIpcPayload(const QByteArray &json) {
         // and torrent resume data are flushed. The IPC server socket closes when the
         // process exits, which is what the caller waits on.
         requestQuit();
+    } else if (type == QStringLiteral("cliDownload")) {
         // IDM-compatible CLI: Stellar.exe /d URL [/p path] [/f name] [/n] [/a] [/h] [/q]
         const QString url      = obj.value(QStringLiteral("url")).toString();
         const QString savePath = obj.value(QStringLiteral("savePath")).toString().trimmed();
@@ -8009,16 +8010,153 @@ bool AppController::isLikelyYtdlpUrl(const QString &urlStr) const {
     return false;
 }
 
+// Extract a direct static-file URL from yt-dlp's "Unsupported URL: <url>" error
+// text. Unwraps the reddit.com/media?url=<percent-encoded> indirection that the
+// Reddit extractor emits for gif/image posts. Returns an empty QUrl when the
+// error does not identify a plain downloadable media file.
+static QUrl directFileUrlFromYtdlpError(const QString &errText) {
+    static const QRegularExpression kUnsupportedRe(
+        QStringLiteral(R"(Unsupported URL: (https?://\S+))"));
+    const QRegularExpressionMatch m = kUnsupportedRe.match(errText);
+    if (!m.hasMatch())
+        return {};
+    QUrl u(m.captured(1));
+    if (u.host().endsWith(QLatin1String("reddit.com"))
+        && u.path() == QLatin1String("/media")) {
+        u = QUrl(QUrlQuery(u).queryItemValue(QStringLiteral("url"), QUrl::FullyDecoded));
+    }
+    if (!u.isValid()
+        || (u.scheme() != QLatin1String("http") && u.scheme() != QLatin1String("https"))
+        || u.host().isEmpty())
+        return {};
+    // Only divert unambiguous static media files; anything else is a genuine
+    // yt-dlp failure the user should see.
+    static const QStringList kMediaExts = {
+        QStringLiteral(".gif"), QStringLiteral(".jpg"), QStringLiteral(".jpeg"),
+        QStringLiteral(".png"), QStringLiteral(".webp"), QStringLiteral(".avif"),
+        QStringLiteral(".bmp"), QStringLiteral(".mp4"), QStringLiteral(".webm"),
+        QStringLiteral(".mp3"), QStringLiteral(".m4a"), QStringLiteral(".ogg"),
+        QStringLiteral(".wav")
+    };
+    const QString path = u.path().toLower();
+    for (const QString &ext : kMediaExts)
+        if (path.endsWith(ext))
+            return u;
+    return {};
+}
+
+bool AppController::maybeDivertYtdlpProbeToDirectFile(const QString &probeId,
+                                                      const QString &url,
+                                                      const QString &probeStderr,
+                                                      const QString &failureReason) {
+    // Fast path: a cookie-less probe already names the unsupported target in its
+    // own error output.
+    const QUrl direct = directFileUrlFromYtdlpError(probeStderr);
+    if (!direct.isEmpty()) {
+        m_pendingReferrers[direct.toString()] = url;
+        emit ytdlpProbeDiverted(probeId, url, direct.toString());
+        return true;
+    }
+
+    // With browser cookies the generic extractor fetches the media-redirect page
+    // itself and dies on reddit's 403 without naming the target. Re-resolve with
+    // the generic extractor disabled, which forces yt-dlp to stop at the final
+    // "Unsupported URL: <direct file>". Only worth a second process for reddit
+    // post URLs; the extra probe is one cookie-less JSON API request.
+    static const QRegularExpression kRedditPostRe(
+        QStringLiteral(R"(^https?://(?:[\w-]+\.)?reddit\.com/(?:r|user)/[^/]+/comments/)"),
+        QRegularExpression::CaseInsensitiveOption);
+    if (!kRedditPostRe.match(url).hasMatch())
+        return false;
+
+    auto *resolver = new QProcess(this);
+    resolver->setProgram(m_ytdlpManager->binaryPath());
+    QStringList args = {
+        QStringLiteral("--ignore-config"),
+        QStringLiteral("--dump-single-json"),
+        QStringLiteral("--no-warnings"),
+        QStringLiteral("--no-playlist"),
+        QStringLiteral("--use-extractors"), QStringLiteral("all,-generic"),
+    };
+    const QString proxyUrl = buildYtdlpProxyUrl(m_settings, QUrl::fromUserInput(url));
+    if (!proxyUrl.isEmpty())
+        args << QStringLiteral("--proxy") << proxyUrl;
+    args << url;
+    resolver->setArguments(args);
+    resolver->setProcessChannelMode(QProcess::SeparateChannels);
+
+    connect(resolver, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this, [this, probeId, url, failureReason, resolver](int, QProcess::ExitStatus) {
+#ifdef Q_OS_WIN
+        const QString errText = QString::fromLocal8Bit(resolver->readAllStandardError());
+#else
+        const QString errText = QString::fromUtf8(resolver->readAllStandardError());
+#endif
+        resolver->deleteLater();
+        const QUrl resolved = directFileUrlFromYtdlpError(errText);
+        if (!resolved.isEmpty()) {
+            m_pendingReferrers[resolved.toString()] = url;
+            emit ytdlpProbeDiverted(probeId, url, resolved.toString());
+        } else {
+            // Nothing to divert to — surface the original probe failure.
+            emit ytdlpInfoFailed(probeId, url, failureReason);
+        }
+    });
+    connect(resolver, &QProcess::errorOccurred, this,
+            [this, probeId, url, failureReason, resolver](QProcess::ProcessError err) {
+        // Crashes still reach finished(); only FailedToStart never does.
+        if (err != QProcess::FailedToStart)
+            return;
+        resolver->deleteLater();
+        emit ytdlpInfoFailed(probeId, url, failureReason);
+    });
+    resolver->start();
+    return true;
+}
+
 QString AppController::beginYtdlpInfo(const QString &url, const QString &cookiesBrowser) {
+    const QString probeId = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    static const QString kNotInstalledMsg = QStringLiteral(
+        "yt-dlp is not installed. Please download it in Settings → Video Downloader.");
+
     if (!m_ytdlpManager->available()) {
-        const QString probeId = QUuid::createUuid().toString(QUuid::WithoutBraces);
-        emit ytdlpInfoFailed(probeId, url,
-            QStringLiteral("yt-dlp is not installed. Please download it in Settings → Video Downloader."));
+        if (!m_ytdlpManager->hasCompletedCheck()) {
+            // Cold start: the async "yt-dlp --version" availability check (kicked
+            // off in deferredInit) has not finished yet, so "not available" only
+            // means "not checked yet". Park the probe and start it once the check
+            // completes. The placeholder map entry keeps cancelYtdlpInfo() working
+            // while parked (closing the dialog removes it, aborting the probe).
+            m_ytdlpProbes[probeId] = { nullptr, url, QByteArray(), QByteArray() };
+            auto conn = std::make_shared<QMetaObject::Connection>();
+            *conn = connect(m_ytdlpManager, &YtdlpManager::checkComplete, this,
+                            [this, conn, probeId, url, cookiesBrowser]() {
+                disconnect(*conn);
+                auto it = m_ytdlpProbes.find(probeId);
+                if (it == m_ytdlpProbes.end())
+                    return;  // cancelled while waiting for the availability check
+                m_ytdlpProbes.erase(it);
+                if (m_ytdlpManager->available())
+                    startYtdlpProbe(probeId, url, cookiesBrowser);
+                else
+                    emit ytdlpInfoFailed(probeId, url, kNotInstalledMsg);
+            });
+            return probeId;
+        }
+        // Must be delivered asynchronously: a synchronous emit fires before the
+        // caller has stored the returned probeId, so QML would drop the signal
+        // as a probeId mismatch and leave the dialog spinning forever.
+        QTimer::singleShot(0, this, [this, probeId, url]() {
+            emit ytdlpInfoFailed(probeId, url, kNotInstalledMsg);
+        });
         return probeId;
     }
 
-    const QString probeId = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    startYtdlpProbe(probeId, url, cookiesBrowser);
+    return probeId;
+}
 
+void AppController::startYtdlpProbe(const QString &probeId, const QString &url,
+                                    const QString &cookiesBrowser) {
     // Run yt-dlp metadata probe without downloading media.
     // For channel/playlist URLs, only inspect the first entry so probing remains fast.
     const bool isPlaylistLike = isLikelyPlaylistOrChannelUrl(url);
@@ -8145,10 +8283,15 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
             qDebug() << "[YtdlpProbe] error:" << errOutput;
 #endif
             proc->deleteLater();
-            emit ytdlpInfoFailed(probeId, url,
-                errOutput.isEmpty()
-                    ? QStringLiteral("yt-dlp exited with code %1").arg(exitCode)
-                    : errOutput);
+            const QString failureReason = errOutput.isEmpty()
+                ? QStringLiteral("yt-dlp exited with code %1").arg(exitCode)
+                : errOutput;
+            // Static-file posts (reddit gifs/images) are not a yt-dlp use case at
+            // all — try rerouting them to the regular HTTP engine before surfacing
+            // an error the user can do nothing about.
+            if (maybeDivertYtdlpProbeToDirectFile(probeId, url, errOutput, failureReason))
+                return;
+            emit ytdlpInfoFailed(probeId, url, failureReason);
             return;
         }
 
@@ -8345,7 +8488,6 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
     });
 
     proc->start();
-    return probeId;
 }
 
 void AppController::cancelYtdlpInfo(const QString &probeId) {

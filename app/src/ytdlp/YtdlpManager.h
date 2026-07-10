@@ -53,6 +53,10 @@ public:
 
     // ── Accessors ────────────────────────────────────────────────────────────────
     bool    available()        const { return m_available; }
+    // False until the first checkAvailability() run has finished. While false,
+    // available() == false only means "not checked yet", not "not installed" —
+    // callers that need yt-dlp early in startup should wait for checkComplete().
+    bool    hasCompletedCheck() const { return m_checkedOnce; }
     QString version()          const { return m_version; }
     bool    downloading()      const { return m_downloading; }
     int     downloadProgress() const { return m_downloadProgress; }
@@ -128,6 +132,7 @@ private:
     QNetworkAccessManager *m_nam{nullptr};
     QString                m_customPath;
     bool                   m_available{false};
+    bool                   m_checkedOnce{false};
     QString                m_version;
     bool                   m_downloading{false};
     bool                   m_ffmpegAvailable{false};

@@ -606,6 +606,12 @@ signals:
                         const QString &title, const QVariantList &formats);
     // Emitted when a --dump-json probe fails or yt-dlp is not available.
     void ytdlpInfoFailed(const QString &probeId, const QString &url, const QString &reason);
+    // Emitted instead of ytdlpInfoFailed when a failed probe turns out to point at
+    // a plain static file yt-dlp cannot handle (e.g. a reddit gif/image post, which
+    // the Reddit extractor resolves to an unsupported reddit.com/media redirect).
+    // directUrl is the resolved file URL; the UI should close the format picker
+    // and route it through the regular HTTP download flow instead.
+    void ytdlpProbeDiverted(const QString &probeId, const QString &url, const QString &directUrl);
     // Emitted when a clipboard URL looks like a yt-dlp site (no file extension needed).
     void ytdlpClipboardUrlDetected(const QString &url);
     void ytdlpCookieRetryRequested(const QString &downloadId, const QString &reason,
@@ -626,6 +632,17 @@ signals:
 
 private:
     QString generateId() const;
+    // Spawn the actual yt-dlp --dump-single-json probe process for beginYtdlpInfo().
+    // Registers the process in m_ytdlpProbes under probeId.
+    void startYtdlpProbe(const QString &probeId, const QString &url,
+                         const QString &cookiesBrowser);
+    // After a failed probe: if the URL turns out to resolve to a plain static file
+    // yt-dlp cannot handle (reddit gif/image posts), emit ytdlpProbeDiverted so the
+    // UI reroutes it to the regular HTTP engine. Returns true when a diversion was
+    // started or completed; false means the caller should report failureReason.
+    bool maybeDivertYtdlpProbeToDirectFile(const QString &probeId, const QString &url,
+                                           const QString &probeStderr,
+                                           const QString &failureReason);
     // Bring the libtorrent session's suspended/active state in line with
     // whether the configured torrent bind interface is currently available.
     // Idempotent — safe to call from a timer and from settings-change handlers.

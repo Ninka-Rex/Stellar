@@ -1649,6 +1649,10 @@ ApplicationWindow {
         }
         onClosing: root._ytdlpOverwriteExistingId = ""  // cancelled — keep existing entry
         onOpenSettingsRequested: (page) => showSettingsPage(page)
+        // Probe resolved to a plain static file yt-dlp can't handle (reddit
+        // gif/image posts) — hand it to the regular HTTP download flow. The
+        // backend already stashed the post URL as the pending referrer.
+        onDirectDownloadRequested: (directUrl) => _showFileInfoDialog(directUrl, "")
     }
 
     Window {

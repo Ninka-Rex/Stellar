@@ -380,6 +380,7 @@ void YtdlpManager::onVersionProcessFinished(int exitCode, QProcess::ExitStatus e
         }
         setStatusText(QStringLiteral("yt-dlp not found. Click \"Download yt-dlp\" to install it."));
     }
+    m_checkedOnce = true;
     emit checkComplete();
 }
 
@@ -391,6 +392,7 @@ void YtdlpManager::onVersionProcessError(QProcess::ProcessError err) {
     setAvailable(false);
     setVersion(QString());
     setStatusText(QStringLiteral("yt-dlp not found. Click \"Download yt-dlp\" to install it."));
+    m_checkedOnce = true;
     emit checkComplete();
 }
 
