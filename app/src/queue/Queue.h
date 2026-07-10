@@ -17,7 +17,6 @@
 #pragma once
 #include <QObject>
 #include <QString>
-#include <QStringList>
 #include <QDateTime>
 #include <QTime>
 
@@ -25,21 +24,18 @@ class Queue : public QObject {
     Q_OBJECT
     Q_PROPERTY(QString id              READ id              CONSTANT)
     Q_PROPERTY(QString name            READ name            WRITE setName        NOTIFY nameChanged)
-    Q_PROPERTY(bool isDownloadQueue    READ isDownloadQueue WRITE setIsDownloadQueue NOTIFY typeChanged)
-    Q_PROPERTY(bool startOnIDMStartup  READ startOnIDMStartup WRITE setStartOnIDMStartup NOTIFY startOnIDMStartupChanged)
-    Q_PROPERTY(bool hasStartTime       READ hasStartTime    WRITE setHasStartTime NOTIFY startTimeChanged)
-    Q_PROPERTY(QString startTime       READ startTime       WRITE setStartTime   NOTIFY startTimeChanged)
-    Q_PROPERTY(bool startOnce          READ startOnce       WRITE setStartOnce   NOTIFY scheduleTypeChanged)
-    Q_PROPERTY(bool startDaily         READ startDaily      WRITE setStartDaily  NOTIFY scheduleTypeChanged)
-    Q_PROPERTY(QStringList startDays   READ startDays       WRITE setStartDays   NOTIFY startDaysChanged)
-    Q_PROPERTY(bool hasStartAgainEvery READ hasStartAgainEvery WRITE setHasStartAgainEvery NOTIFY periodChanged)
-    Q_PROPERTY(int startAgainEveryHours READ startAgainEveryHours WRITE setStartAgainEveryHours NOTIFY periodChanged)
-    Q_PROPERTY(int startAgainEveryMins  READ startAgainEveryMins  WRITE setStartAgainEveryMins  NOTIFY periodChanged)
-    Q_PROPERTY(bool hasStopTime        READ hasStopTime     WRITE setHasStopTime NOTIFY stopTimeChanged)
-    Q_PROPERTY(QString stopTime        READ stopTime        WRITE setStopTime    NOTIFY stopTimeChanged)
+    Q_PROPERTY(bool startOnAppStartup  READ startOnAppStartup WRITE setStartOnAppStartup NOTIFY startOnAppStartupChanged)
+    Q_PROPERTY(int scheduleMode        READ scheduleMode    WRITE setScheduleMode NOTIFY scheduleChanged)
+    Q_PROPERTY(int startTimeMinutes    READ startTimeMinutes WRITE setStartTimeMinutes NOTIFY scheduleChanged)
+    Q_PROPERTY(int scheduleDaysMask    READ scheduleDaysMask WRITE setScheduleDaysMask NOTIFY scheduleChanged)
+    Q_PROPERTY(int intervalHours       READ intervalHours   WRITE setIntervalHours NOTIFY scheduleChanged)
+    Q_PROPERTY(int intervalMinutes     READ intervalMinutes WRITE setIntervalMinutes NOTIFY scheduleChanged)
+    Q_PROPERTY(bool hasStopTime        READ hasStopTime     WRITE setHasStopTime NOTIFY scheduleChanged)
+    Q_PROPERTY(int stopTimeMinutes     READ stopTimeMinutes WRITE setStopTimeMinutes NOTIFY scheduleChanged)
     Q_PROPERTY(bool hasMaxRetries      READ hasMaxRetries   WRITE setHasMaxRetries NOTIFY maxRetriesChanged)
     Q_PROPERTY(int maxRetries          READ maxRetries      WRITE setMaxRetries  NOTIFY maxRetriesChanged)
     Q_PROPERTY(int maxConcurrentDownloads READ maxConcurrentDownloads WRITE setMaxConcurrentDownloads NOTIFY maxConcurrentChanged)
+    Q_PROPERTY(int maxConcurrentTorrents READ maxConcurrentTorrents WRITE setMaxConcurrentTorrents NOTIFY maxConcurrentChanged)
     Q_PROPERTY(bool openFileWhenDone   READ openFileWhenDone WRITE setOpenFileWhenDone NOTIFY postActionChanged)
     Q_PROPERTY(QString openFilePath    READ openFilePath    WRITE setOpenFilePath NOTIFY postActionChanged)
     Q_PROPERTY(bool exitIDMWhenDone    READ exitIDMWhenDone WRITE setExitIDMWhenDone NOTIFY postActionChanged)
@@ -51,6 +47,16 @@ class Queue : public QObject {
     Q_PROPERTY(bool warnBeforeStopping READ warnBeforeStopping WRITE setWarnBeforeStopping NOTIFY downloadLimitsChanged)
 
 public:
+    // How (and whether) the queue starts on its own. Once fires at the next
+    // occurrence of startTimeMinutes and then reverts itself to NoSchedule.
+    enum ScheduleMode {
+        NoSchedule = 0,
+        Once       = 1,
+        Daily      = 2,
+        Interval   = 3,
+    };
+    Q_ENUM(ScheduleMode)
+
     explicit Queue(const QString &id, QObject *parent = nullptr);
 
     // Core properties
@@ -58,42 +64,28 @@ public:
     QString name() const { return m_name; }
     void setName(const QString &v) { if (m_name != v) { m_name = v; emit nameChanged(); } }
 
-    // Queue type
-    bool isDownloadQueue() const { return m_isDownloadQueue; }
-    void setIsDownloadQueue(bool v) { if (m_isDownloadQueue != v) { m_isDownloadQueue = v; emit typeChanged(); } }
-
     // Startup
-    bool startOnIDMStartup() const { return m_startOnIDMStartup; }
-    void setStartOnIDMStartup(bool v) { if (m_startOnIDMStartup != v) { m_startOnIDMStartup = v; emit startOnIDMStartupChanged(); } }
+    bool startOnAppStartup() const { return m_startOnAppStartup; }
+    void setStartOnAppStartup(bool v) { if (m_startOnAppStartup != v) { m_startOnAppStartup = v; emit startOnAppStartupChanged(); } }
 
-    // Start time controls
-    bool hasStartTime() const { return m_hasStartTime; }
-    void setHasStartTime(bool v) { if (m_hasStartTime != v) { m_hasStartTime = v; emit startTimeChanged(); } }
-    QString startTime() const { return m_startTime; }
-    void setStartTime(const QString &v) { if (m_startTime != v) { m_startTime = v; emit startTimeChanged(); } }
-
-    // Schedule type
-    bool startOnce() const { return m_startOnce; }
-    void setStartOnce(bool v) { if (m_startOnce != v) { m_startOnce = v; if (v) m_startDaily = false; emit scheduleTypeChanged(); } }
-    bool startDaily() const { return m_startDaily; }
-    void setStartDaily(bool v) { if (m_startDaily != v) { m_startDaily = v; if (v) m_startOnce = false; emit scheduleTypeChanged(); } }
-
-    QStringList startDays() const { return m_startDays; }
-    void setStartDays(const QStringList &v) { if (m_startDays != v) { m_startDays = v; emit startDaysChanged(); } }
-
-    // Periodic sync (synchronization queue only)
-    bool hasStartAgainEvery() const { return m_hasStartAgainEvery; }
-    void setHasStartAgainEvery(bool v) { if (m_hasStartAgainEvery != v) { m_hasStartAgainEvery = v; emit periodChanged(); } }
-    int startAgainEveryHours() const { return m_startAgainEveryHours; }
-    void setStartAgainEveryHours(int v) { if (m_startAgainEveryHours != v) { m_startAgainEveryHours = v; emit periodChanged(); } }
-    int startAgainEveryMins() const { return m_startAgainEveryMins; }
-    void setStartAgainEveryMins(int v) { if (m_startAgainEveryMins != v) { m_startAgainEveryMins = v; emit periodChanged(); } }
+    // Schedule
+    int scheduleMode() const { return m_scheduleMode; }
+    void setScheduleMode(int v) { if (m_scheduleMode != v) { m_scheduleMode = v; emit scheduleChanged(); } }
+    int startTimeMinutes() const { return m_startTimeMinutes; }
+    void setStartTimeMinutes(int v) { v = qBound(0, v, 24 * 60 - 1); if (m_startTimeMinutes != v) { m_startTimeMinutes = v; emit scheduleChanged(); } }
+    // Bit (Qt::DayOfWeek - 1): bit 0 = Monday ... bit 6 = Sunday
+    int scheduleDaysMask() const { return m_scheduleDaysMask; }
+    void setScheduleDaysMask(int v) { v &= 0x7F; if (m_scheduleDaysMask != v) { m_scheduleDaysMask = v; emit scheduleChanged(); } }
+    int intervalHours() const { return m_intervalHours; }
+    void setIntervalHours(int v) { v = qMax(0, v); if (m_intervalHours != v) { m_intervalHours = v; emit scheduleChanged(); } }
+    int intervalMinutes() const { return m_intervalMinutes; }
+    void setIntervalMinutes(int v) { v = qBound(0, v, 59); if (m_intervalMinutes != v) { m_intervalMinutes = v; emit scheduleChanged(); } }
 
     // Stop time
     bool hasStopTime() const { return m_hasStopTime; }
-    void setHasStopTime(bool v) { if (m_hasStopTime != v) { m_hasStopTime = v; emit stopTimeChanged(); } }
-    QString stopTime() const { return m_stopTime; }
-    void setStopTime(const QString &v) { if (m_stopTime != v) { m_stopTime = v; emit stopTimeChanged(); } }
+    void setHasStopTime(bool v) { if (m_hasStopTime != v) { m_hasStopTime = v; emit scheduleChanged(); } }
+    int stopTimeMinutes() const { return m_stopTimeMinutes; }
+    void setStopTimeMinutes(int v) { v = qBound(0, v, 24 * 60 - 1); if (m_stopTimeMinutes != v) { m_stopTimeMinutes = v; emit scheduleChanged(); } }
 
     // Retry
     bool hasMaxRetries() const { return m_hasMaxRetries; }
@@ -103,7 +95,9 @@ public:
 
     // Concurrency
     int maxConcurrentDownloads() const { return m_maxConcurrentDownloads; }
-    void setMaxConcurrentDownloads(int v) { if (m_maxConcurrentDownloads != v) { m_maxConcurrentDownloads = v; emit maxConcurrentChanged(); } }
+    void setMaxConcurrentDownloads(int v) { v = qMax(1, v); if (m_maxConcurrentDownloads != v) { m_maxConcurrentDownloads = v; emit maxConcurrentChanged(); } }
+    int maxConcurrentTorrents() const { return m_maxConcurrentTorrents; }
+    void setMaxConcurrentTorrents(int v) { v = qMax(1, v); if (m_maxConcurrentTorrents != v) { m_maxConcurrentTorrents = v; emit maxConcurrentChanged(); } }
 
     // Post-completion actions
     bool openFileWhenDone() const { return m_openFileWhenDone; }
@@ -136,13 +130,8 @@ public:
 
 signals:
     void nameChanged();
-    void typeChanged();
-    void startOnIDMStartupChanged();
-    void startTimeChanged();
-    void scheduleTypeChanged();
-    void startDaysChanged();
-    void periodChanged();
-    void stopTimeChanged();
+    void startOnAppStartupChanged();
+    void scheduleChanged();
     void maxRetriesChanged();
     void maxConcurrentChanged();
     void postActionChanged();
@@ -151,27 +140,22 @@ signals:
 private:
     QString m_id;
     QString m_name = "Untitled Queue";
-    bool m_isDownloadQueue = true;
-    bool m_startOnIDMStartup = false;
+    bool m_startOnAppStartup = false;
 
-    bool m_hasStartTime = false;
-    QString m_startTime = "11:00:00 PM";
-
-    bool m_startOnce = true;
-    bool m_startDaily = false;
-    QStringList m_startDays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-
-    bool m_hasStartAgainEvery = false;
-    int m_startAgainEveryHours = 2;
-    int m_startAgainEveryMins = 0;
+    int m_scheduleMode = NoSchedule;
+    int m_startTimeMinutes = 23 * 60;      // 11:00 PM
+    int m_scheduleDaysMask = 0x7F;         // all days
+    int m_intervalHours = 2;
+    int m_intervalMinutes = 0;
 
     bool m_hasStopTime = false;
-    QString m_stopTime = "7:30:00 AM";
+    int m_stopTimeMinutes = 7 * 60 + 30;   // 7:30 AM
 
     bool m_hasMaxRetries = false;
     int m_maxRetries = 10;
 
-    int m_maxConcurrentDownloads = 1;
+    int m_maxConcurrentDownloads = 3;
+    int m_maxConcurrentTorrents = 2;
 
     bool m_openFileWhenDone = false;
     QString m_openFilePath;

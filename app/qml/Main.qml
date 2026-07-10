@@ -1074,6 +1074,7 @@ ApplicationWindow {
     Connections {
         target: App
         function onQueueDownloadLimitExceeded(queueId, queueName, usedMB, limitMB, limitHours, windowStart, resumeAt) {
+            downloadLimitsExceededDialog.isGlobal    = queueId === ""
             downloadLimitsExceededDialog.queueName   = queueName
             downloadLimitsExceededDialog.usedMB      = usedMB
             downloadLimitsExceededDialog.limitMB     = limitMB
@@ -3160,8 +3161,30 @@ ApplicationWindow {
         }
     }
 
-    // ── Scheduler Dialog ─────────────────────────────────────────────────
-    SchedulerDialog { id: schedulerDialog; transientParent: root }
+    // ── Queues window ────────────────────────────────────────────────────
+    QueuesWindow {
+        id: schedulerDialog
+        transientParent: root
+        onOpenPropertiesRequested: (item) => {
+            if (!item) return
+            if (item.isChannelContainer) {
+                App.showYtdlpBatchForItem(item.id)
+                ytdlpBatchWindow.show()
+                ytdlpBatchWindow.raise()
+                ytdlpBatchWindow.requestActivate()
+                return
+            }
+            if (item.isYtdlp) {
+                root.showDownloadProgressForItem(item)
+                return
+            }
+            if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
+                root.showDownloadProgressForItem(item)
+                return
+            }
+            root.showPropertiesForItem(item)
+        }
+    }
 
     // ── Batch Download Dialogs ───────────────────────────────────────────
     BatchDownloadDialog {
@@ -3776,7 +3799,7 @@ ApplicationWindow {
             CompactMenuItem { text: qsTr("Find…"); shortcutDisplay: "Ctrl+F"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
             CompactMenuItem { text: qsTr("Find Next"); shortcutDisplay: "F3"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: downloadTable.findNextFiltered() }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Scheduler"); iconSrc: "icons/scheduler.svg"; onTriggered: schedulerDialog.show() }
+            CompactMenuItem { text: qsTr("Queues"); iconSrc: "icons/scheduler.svg"; onTriggered: { schedulerDialog.show(); schedulerDialog.raise(); schedulerDialog.requestActivate() } }
             CompactMenuItem {
                 id: _startQueueItem
                 text: qsTr("Start Queue") + "  ▶"
@@ -3792,7 +3815,7 @@ ApplicationWindow {
                     Repeater {
                         model: App.queueModel
                         delegate: CompactMenuItem {
-                            visible: queueId !== "download-limits"; height: visible ? 22 : 0
+                            height: 22
                             text: queueName || ""; onTriggered: { App.startQueue(queueId); _downloadsMenu.dismiss() }
                         }
                     }
@@ -3814,7 +3837,7 @@ ApplicationWindow {
                     Repeater {
                         model: App.queueModel
                         delegate: CompactMenuItem {
-                            visible: queueId !== "download-limits"; height: visible ? 22 : 0
+                            height: 22
                             text: queueName || ""; onTriggered: { App.stopQueue(queueId); _downloadsMenu.dismiss() }
                         }
                     }
@@ -4035,7 +4058,7 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Preferences…"); shortcutDisplay: "Ctrl+,"; iconSrc: "icons/gear.svg";      onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
-            CompactMenuItem { text: qsTr("Scheduler");    iconSrc: "icons/scheduler.svg"; onTriggered: schedulerDialog.show() }
+            CompactMenuItem { text: qsTr("Queues");    iconSrc: "icons/scheduler.svg"; onTriggered: { schedulerDialog.show(); schedulerDialog.raise(); schedulerDialog.requestActivate() } }
             CompactMenuItem {
                 id: _speedLimiterItem2
                 iconSrc: "icons/snail.svg"
@@ -4223,7 +4246,7 @@ ApplicationWindow {
             onDeleteClicked:          downloadTable.deleteSelected()
             onDeleteCompletedClicked: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() }
             onOptionsClicked:         root.showSettingsPage(root.settingsPageGeneral)
-            onSchedulerClicked:       schedulerDialog.show()
+            onSchedulerClicked:       { schedulerDialog.show(); schedulerDialog.raise(); schedulerDialog.requestActivate() }
             onStartQueueRequested:    (queueId) => App.startQueue(queueId)
             onStopQueueRequested:     (queueId) => App.stopQueue(queueId)
             onGrabberClicked: {

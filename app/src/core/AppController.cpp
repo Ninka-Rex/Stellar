@@ -66,6 +66,7 @@
 #include "GrabberResultModel.h"
 #include "QueueDatabase.h"
 #include "QueueModel.h"
+#include "QueueScheduler.h"
 #include "YtdlpManager.h"
 #include "TorrentFileModel.h"
 #include "YtdlpTransfer.h"
@@ -1132,10 +1133,8 @@ void AppController::handleIpcPayload(const QByteArray &json) {
         // We start every queue that is currently waiting; this matches IDM's
         // documented behaviour of "starting the queue in scheduler".
         const QStringList ids = m_queueModel->queueIds();
-        for (const QString &id : ids) {
-            if (id != QStringLiteral("download-limits"))
-                startQueue(id);
-        }
+        for (const QString &id : ids)
+            startQueue(id);
     }
 }
 
@@ -1478,6 +1477,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_recentErrorTimer->setInterval(30000);
     connect(m_recentErrorTimer, &QTimer::timeout, this, &AppController::pruneRecentErrorDownloads);
     m_recentErrorTimer->start();
+    // Live scheduler tick: evaluates queue start/stop times, periodic runs,
+    // download-limit auto-resume, and refreshes the status-bar countdown.
+    m_schedulerTimer = new QTimer(this);
+    m_schedulerTimer->setInterval(30000);
+    connect(m_schedulerTimer, &QTimer::timeout, this, &AppController::onSchedulerTick);
+    m_schedulerTimer->start();
     m_grabberPersistTimer = new QTimer(this);
     m_grabberPersistTimer->setSingleShot(true);
     m_grabberPersistTimer->setInterval(400);
@@ -1672,28 +1677,38 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     if (m_queueDb->open()) {
         const auto queues = m_queueDb->loadAll(this);
         for (Queue *q : queues) m_queueModel->addQueue(q);
+        // One-shot migration: loadAll() strips the legacy "download-limits"
+        // pseudo-queue and hands its fields back so the global limits move
+        // into AppSettings. The file is rewritten without the entry, so this
+        // can only fire once.
+        const QVariantMap legacyLimits = m_queueDb->takenGlobalLimits();
+        if (!legacyLimits.isEmpty()) {
+            m_settings->setGlobalDownloadLimitEnabled(
+                legacyLimits.value(QStringLiteral("hasDownloadLimits"), false).toBool());
+            m_settings->setGlobalDownloadLimitMBytes(
+                legacyLimits.value(QStringLiteral("downloadLimitMBytes"), 200).toInt());
+            m_settings->setGlobalDownloadLimitHours(
+                legacyLimits.value(QStringLiteral("downloadLimitHours"), 5).toInt());
+            m_settings->setGlobalDownloadLimitWarn(
+                legacyLimits.value(QStringLiteral("warnBeforeStopping"), true).toBool());
+        }
     }
-    
+
+    // The IDM-style "Synchronization queue" concept was dropped with the queue
+    // redesign — one queue type, any queue can have a schedule. Remove the
+    // legacy built-in; its downloads are folded into the main queue when the
+    // download list restores (see finalizeRestore).
+    if (m_queueModel->queueById("main-sync") != nullptr) {
+        m_queueDb->remove("main-sync");
+        m_queueModel->removeQueue("main-sync");
+        m_migratedMainSync = true;
+    }
+
     if (m_queueModel->queueById("main-download") == nullptr) {
         Queue *mainQueue = new Queue("main-download", this);
         mainQueue->setName("Main download queue");
-        mainQueue->setIsDownloadQueue(true);
         m_queueModel->addQueue(mainQueue);
         m_queueDb->save(mainQueue);
-    }
-    if (m_queueModel->queueById("main-sync") == nullptr) {
-        Queue *syncQueue = new Queue("main-sync", this);
-        syncQueue->setName("Synchronization queue");
-        syncQueue->setIsDownloadQueue(false);
-        m_queueModel->addQueue(syncQueue);
-        m_queueDb->save(syncQueue);
-    }
-    if (m_queueModel->queueById("download-limits") == nullptr) {
-        Queue *limitsQueue = new Queue("download-limits", this);
-        limitsQueue->setName("Download Limits");
-        limitsQueue->setIsDownloadQueue(false);
-        m_queueModel->addQueue(limitsQueue);
-        m_queueDb->save(limitsQueue);
     }
 
     // ── 4. Connections ──────────────────────────────────────────────────────────
@@ -1707,9 +1722,33 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // perHostConnectionLimit control.
     m_queue->setDefaultConnLimit(m_settings->segmentsPerDownload());
     m_queue->setPerServerConnLimits(m_settings->perServerConnLimitsJson());
-    m_queue->setCanStartPredicate([this](DownloadItem *item) {
-        return canStartDownloadItem(item);
+
+    // ── Unified scheduler: one authority for HTTP/FTP, torrents and yt-dlp ──
+    m_scheduler = new QueueScheduler(m_queueModel, m_queue, m_settings, this);
+    m_scheduler->setStartTorrentCallback([this](DownloadItem *item) {
+        // Optimistically occupy the slot: libtorrent reports real state on the
+        // next alert tick (~1 s); without this the item would stay Queued and
+        // the next pass could start torrents past the cap.
+        item->setStatus(DownloadItem::Status::Checking);
+        resumeDownload(item->id());
     });
+    m_scheduler->setStartYtdlpCallback([this](DownloadItem *item) {
+        startYtdlpItem(item);
+    });
+    m_scheduler->setWindowUsageCallback([this](const QString &queueId, int hours) {
+        return queueTransferredBytesInWindow(queueId, hours);
+    });
+    connect(m_queue, &DownloadQueue::scheduleRequested,
+            m_scheduler, &QueueScheduler::schedule);
+    connect(m_scheduler, &QueueScheduler::queueDrained,
+            this, &AppController::handleQueueDrained);
+    // Global caps live in settings and are read by the scheduler on every pass;
+    // a change only needs to trigger a new pass (fixes the previously-orphaned
+    // "max simultaneous downloads" setting).
+    connect(m_settings, &AppSettings::maxConcurrentChanged,
+            m_scheduler, &QueueScheduler::schedule);
+    connect(m_settings, &AppSettings::maxConcurrentTorrentsChanged,
+            m_scheduler, &QueueScheduler::schedule);
     connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this]() {
         m_queue->setSpeedLimitKBps(m_settings->globalSpeedLimitKBps());
     });
@@ -1810,8 +1849,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_torrentSession->applySettings(m_settings);
     });
     connect(m_torrentSession, &TorrentSessionManager::torrentShareLimitReached, this, [this](const QString &id, int action) {
-        auto *item = m_downloadModel->itemById(id);
-        const QString queueId = item ? item->queueId() : QString();
         if (action == 0 || action == 1) {
             pauseDownload(id);
         } else if (action == 2) {
@@ -1819,7 +1856,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         } else if (action == 3) {
             deleteDownload(id, 1);
         }
-        scheduleNextTorrentInQueue(queueId);
+        m_scheduler->schedule();
     });
     connect(m_torrentSession, &TorrentSessionManager::bannedPeersChanged,
             this, &AppController::torrentBannedPeersChanged);
@@ -1851,8 +1888,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             }
             emit downloadCompleted(item);
         }
-        // Advance the queue: start the next queued torrent in the same queue.
-        scheduleNextTorrentInQueue(item->queueId());
+        // A torrent moving to Seeding frees its slot — advance the queues.
+        m_scheduler->schedule();
         emit activeDownloadsChanged();
     });
     connect(m_torrentSession, &TorrentSessionManager::torrentErrored, this, [this](const QString &id, const QString &reason) {
@@ -1866,11 +1903,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         auto *item = m_downloadModel->itemById(id);
         if (!item)
             return;
-        const QString queueId = item->queueId();
         item->setStatus(DownloadItem::Status::Error);
         item->setErrorString(reason);
         scheduleSave(id);
-        scheduleNextTorrentInQueue(queueId);
+        // Same retry policy as HTTP failures (queue maxRetries / global setting).
+        if (!m_restoring)
+            maybeScheduleRetry(item);
+        m_scheduler->schedule();
         emit activeDownloadsChanged();
     });
 
@@ -2001,6 +2040,16 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     });
     connect(m_queue, &DownloadQueue::itemAdded, this, [this](DownloadItem *item) {
         m_downloadModel->addItem(item);
+        // New arrivals join the back of their queue. Restored items keep the
+        // order loaded from downloads.json (normalized in finalizeRestore).
+        if (!m_restoring && !item->queueId().isEmpty() && item->queueOrder() < 0) {
+            int maxOrder = -1;
+            for (DownloadItem *other : m_queue->items()) {
+                if (other != item && other->queueId() == item->queueId())
+                    maxOrder = qMax(maxOrder, other->queueOrder());
+            }
+            item->setQueueOrder(maxOrder + 1);
+        }
         if (!m_restoring) { m_db->save(item); watchItem(item); }
     });
     connect(m_queue, &DownloadQueue::itemRemoved, this, [this](const QString &id) {
@@ -2027,41 +2076,15 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_queueRetryCounts.remove(item->id());
         m_completedCount++;
         emit completedDownloadsChanged();
-        if (item && !item->queueId().isEmpty()) {
+        if (item) {
+            // Empty queueId records into the global window so unqueued items
+            // count toward the global download limit too.
             recordQueueTransferSample(item->queueId(), item->doneBytes());
             enforceQueueDownloadLimits(item->queueId());
-            Queue *queue = m_queueModel ? m_queueModel->queueById(item->queueId()) : nullptr;
-            if (queue) {
-                bool queueFinished = true;
-                for (DownloadItem *candidate : m_queue->items()) {
-                    if (!candidate || candidate->queueId() != item->queueId())
-                        continue;
-                    if (candidate->statusEnum() == DownloadItem::Status::Queued
-                        || candidate->statusEnum() == DownloadItem::Status::Downloading
-                        || candidate->statusEnum() == DownloadItem::Status::Assembling) {
-                        queueFinished = false;
-                        break;
-                    }
-                }
-                if (queueFinished) {
-                    if (queue->openFileWhenDone() && !queue->openFilePath().isEmpty())
-                        openLocalPath(queue->openFilePath());
-                    if (queue->turnOffComputerWhenDone()) {
-#if defined(Q_OS_WIN)
-                        if (queue->forceProcessesToTerminate())
-                            QProcess::startDetached(QStringLiteral("shutdown"),
-                                                    { QStringLiteral("/s"), QStringLiteral("/f"), QStringLiteral("/t"), QStringLiteral("0") });
-                        else
-                            shutdownComputer();
-#else
-                        shutdownComputer();
-#endif
-                    }
-                    if (queue->exitIDMWhenDone())
-                        QCoreApplication::quit();
-                }
-            }
         }
+        // Post-queue actions (open file / shutdown / exit) fire from
+        // handleQueueDrained() via QueueScheduler::queueDrained — which, unlike
+        // this HTTP-only completion hook, also covers torrent and yt-dlp queues.
         if (!isIpToCityUpdateItem
             && !isFfmpegUpdateItem
             && !isAppUpdateItem
@@ -2264,34 +2287,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         emit recentErrorDownloadsChanged();
         m_db->save(item);
         m_dirtyIds.remove(item->id());
-        Queue *queue = (!item->queueId().isEmpty() && m_queueModel)
-            ? m_queueModel->queueById(item->queueId())
-            : nullptr;
-        // Determine retry limit: queue-specific if available, else global setting.
-        int maxRetries = 0;
-        if (queue && queue->hasMaxRetries())
-            maxRetries = queue->maxRetries();
-        else if (m_settings->maxRetries() > 0)
-            maxRetries = m_settings->maxRetries();
-
-        const int retries = m_queueRetryCounts.value(item->id(), 0);
-        if (maxRetries > 0 && retries < maxRetries) {
-            m_queueRetryCounts[item->id()] = retries + 1;
-            // Exponential backoff: 2s, 4s, 8s, 16s, ... capped at 60s
-            int delayMs = (std::min)(2000 * (1 << retries), 60000);
-            QTimer::singleShot(delayMs, this, [this, id = item->id()]() {
-                DownloadItem *retryItem = m_downloadModel->itemById(id);
-                if (!retryItem || retryItem->statusEnum() != DownloadItem::Status::Error)
-                    return;
-                retryItem->setStatus(DownloadItem::Status::Queued);
-                retryItem->setErrorString({});
-                scheduleSave(id);
-                m_queue->scheduleNext();
-            });
+        if (maybeScheduleRetry(item))
             return;
-        }
-        m_queueRetryCounts.remove(item->id());
-        if (!item->queueId().isEmpty() && item->doneBytes() > 0) {
+        if (item->doneBytes() > 0) {
             recordQueueTransferSample(item->queueId(), item->doneBytes());
             enforceQueueDownloadLimits(item->queueId());
         }
@@ -2402,6 +2400,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 void AppController::restoreDownloads() {
     if (m_db->open()) {
         m_restoring = true;
+        // Per-item status changes during restore would otherwise fire a
+        // scheduling pass each; resumed in finalizeRestore.
+        m_scheduler->setSuspended(true);
         const auto items = m_db->loadAll();
         // Each restored item is queued onto the event loop with a zero-delay
         // singleShot. This gives Qt the chance to interleave paint events,
@@ -2463,10 +2464,26 @@ void AppController::restoreDownloads() {
                   if (item->statusEnum() == DownloadItem::Status::Completed)
                       m_completedCount++;
               emit completedDownloadsChanged();
+              // Fold downloads of the removed "Synchronization queue" into the
+              // main queue (one-shot, paired with the queue removal in the ctor).
+              if (m_migratedMainSync) {
+                  for (auto *item : m_downloadModel->allItems()) {
+                      if (item && item->queueId() == QStringLiteral("main-sync")) {
+                          item->setQueueId(QStringLiteral("main-download"));
+                          item->setQueueOrder(-1);
+                          scheduleSave(item->id());
+                      }
+                  }
+              }
+              // Give pre-queueOrder records a stable per-queue position (their
+              // current list order), then let the scheduler take over.
+              for (const QString &qid : m_queueModel->queueIds())
+                  normalizeQueueOrders(qid);
+              m_scheduler->setSuspended(false);
               checkQueueSchedules();
               for (int i = 0; i < m_queueModel->rowCount(); ++i) {
                   Queue *queue = m_queueModel->queueAt(i);
-                  if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
+                  if (queue && queue->startOnAppStartup())
                       startQueue(queue->id());
               }
               cleanupTemporaryDirectory();
@@ -2562,7 +2579,7 @@ void AppController::restoreDownloads() {
         checkQueueSchedules();
         for (int i = 0; i < m_queueModel->rowCount(); ++i) {
             Queue *queue = m_queueModel->queueAt(i);
-            if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
+            if (queue && queue->startOnAppStartup())
                 startQueue(queue->id());
         }
         if (m_settings->speedLimiterOnStartup() && !m_settings->speedLimiterEnabled()) {
@@ -4771,24 +4788,10 @@ void AppController::resumeDownload(const QString &id) {
     }
 
     if (item && item->isYtdlp()) {
-        // A paused yt-dlp item is resumed by creating a new YtdlpTransfer with
-        // resume=true, which passes --continue so yt-dlp picks up the partial file.
-        if (item->statusEnum() == DownloadItem::Status::Paused) {
-            // ytdlpFormatId stores "<formatId>|<container>|<outputTemplate>"
-            // The output template may itself contain '|' in yt-dlp selectors,
-            // so split on the FIRST two '|' only.
-            const QString stored    = item->ytdlpFormatId();
-            const int p1            = stored.indexOf(QLatin1Char('|'));
-            const int p2            = p1 >= 0 ? stored.indexOf(QLatin1Char('|'), p1 + 1) : -1;
-            const QString formatId  = p1 >= 0 ? stored.left(p1) : stored;
-            const QString container = (p1 >= 0 && p2 > p1)
-                                      ? stored.mid(p1 + 1, p2 - p1 - 1)
-                                      : (p1 >= 0 ? stored.mid(p1 + 1) : QStringLiteral("mp4"));
-            const QString tmpl      = p2 >= 0 ? stored.mid(p2 + 1) : QString();
-            const YtdlpOptions resumeOpts = YtdlpOptions::fromJson(item->ytdlpExtraOptions());
-            startYtdlpWorker(item, formatId, container, /*resume=*/true, tmpl,
-                             item->ytdlpPlaylistMode(), resumeOpts.maxItems, resumeOpts);
-        }
+        // A paused/queued yt-dlp item is resumed by creating a new YtdlpTransfer
+        // with resume=true, which passes --continue so yt-dlp picks up the
+        // partial file. Shared with the QueueScheduler start path.
+        startYtdlpItem(item);
         return;
     }
 
@@ -6457,25 +6460,11 @@ int AppController::recentErrorDownloads() const {
 }
 
 QStringList AppController::queueIds() const {
-    QStringList ids;
-    if (!m_queueModel) return ids;
-    for (int i = 0; i < m_queueModel->rowCount(); ++i) {
-        Queue *q = m_queueModel->queueAt(i);
-        if (q && q->id() != QStringLiteral("download-limits"))
-            ids.append(q->id());
-    }
-    return ids;
+    return m_queueModel ? m_queueModel->queueIds() : QStringList{};
 }
 
 QStringList AppController::queueNames() const {
-    QStringList names;
-    if (!m_queueModel) return names;
-    for (int i = 0; i < m_queueModel->rowCount(); ++i) {
-        Queue *q = m_queueModel->queueAt(i);
-        if (q && q->id() != QStringLiteral("download-limits"))
-            names.append(q->name());
-    }
-    return names;
+    return m_queueModel ? m_queueModel->queueNames() : QStringList{};
 }
 
 void AppController::setDownloadCategory(const QString &downloadId, const QString &categoryId) {
@@ -6487,17 +6476,86 @@ void AppController::setDownloadCategory(const QString &downloadId, const QString
 
 void AppController::setDownloadQueue(const QString &downloadId, const QString &queueId) {
     auto *item = m_downloadModel->itemById(downloadId);
-    if (!item) return;
+    if (!item || item->queueId() == queueId) return;
     item->setQueueId(queueId);
+    // Join the back of the target queue.
+    int maxOrder = -1;
+    for (DownloadItem *other : m_queue->items()) {
+        if (other != item && other->queueId() == queueId)
+            maxOrder = qMax(maxOrder, other->queueOrder());
+    }
+    item->setQueueOrder(queueId.isEmpty() ? -1 : maxOrder + 1);
     scheduleSave(downloadId);
 }
 
+// Items of one queue sorted by queueOrder, list position as tiebreaker (covers
+// pre-queueOrder records that all sit at -1).
+QList<DownloadItem *> AppController::itemsInQueueOrder(const QString &queueId) const {
+    QList<DownloadItem *> result;
+    for (DownloadItem *item : m_queue->items()) {
+        if (item && item->queueId() == queueId)
+            result.append(item);
+    }
+    std::stable_sort(result.begin(), result.end(),
+                     [](const DownloadItem *a, const DownloadItem *b) {
+                         return a->queueOrder() < b->queueOrder();
+                     });
+    return result;
+}
+
+void AppController::normalizeQueueOrders(const QString &queueId) {
+    if (queueId.isEmpty())
+        return;
+    const QList<DownloadItem *> ordered = itemsInQueueOrder(queueId);
+    for (int i = 0; i < ordered.size(); ++i) {
+        if (ordered[i]->queueOrder() != i) {
+            ordered[i]->setQueueOrder(i);
+            scheduleSave(ordered[i]->id());
+        }
+    }
+}
+
 void AppController::moveUpInQueue(const QString &downloadId) {
-    m_queue->moveUp(downloadId);
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item || item->queueId().isEmpty()) return;
+    normalizeQueueOrders(item->queueId());
+    const QList<DownloadItem *> ordered = itemsInQueueOrder(item->queueId());
+    const int idx = ordered.indexOf(item);
+    if (idx <= 0) return;
+    ordered[idx - 1]->setQueueOrder(idx);
+    item->setQueueOrder(idx - 1);
+    scheduleSave(ordered[idx - 1]->id());
+    scheduleSave(downloadId);
 }
 
 void AppController::moveDownInQueue(const QString &downloadId) {
-    m_queue->moveDown(downloadId);
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item || item->queueId().isEmpty()) return;
+    normalizeQueueOrders(item->queueId());
+    const QList<DownloadItem *> ordered = itemsInQueueOrder(item->queueId());
+    const int idx = ordered.indexOf(item);
+    if (idx < 0 || idx >= ordered.size() - 1) return;
+    ordered[idx + 1]->setQueueOrder(idx);
+    item->setQueueOrder(idx + 1);
+    scheduleSave(ordered[idx + 1]->id());
+    scheduleSave(downloadId);
+}
+
+void AppController::moveToQueuePosition(const QString &downloadId, int newIndex) {
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item || item->queueId().isEmpty()) return;
+    normalizeQueueOrders(item->queueId());
+    QList<DownloadItem *> ordered = itemsInQueueOrder(item->queueId());
+    const int oldIndex = ordered.indexOf(item);
+    newIndex = qBound(0, newIndex, ordered.size() - 1);
+    if (oldIndex < 0 || oldIndex == newIndex) return;
+    ordered.move(oldIndex, newIndex);
+    for (int i = 0; i < ordered.size(); ++i) {
+        if (ordered[i]->queueOrder() != i) {
+            ordered[i]->setQueueOrder(i);
+            scheduleSave(ordered[i]->id());
+        }
+    }
 }
 
 void AppController::moveFileToDesktop(const QString &id) {
@@ -6587,7 +6645,7 @@ void AppController::watchItem(DownloadItem *item) {
     // a 2-minute cadence — see the timer setup in the constructor.
     connect(item, &DownloadItem::doneBytesChanged, this, [this, item]() {
         if (item)
-            enforceQueueDownloadLimits(item->queueId()); // also checks global "download-limits"
+            enforceQueueDownloadLimits(item->queueId()); // also checks the global limit
     });
     connect(item, &DownloadItem::doneBytesChanged, this, [this, item, id]() {
         if (!item)
@@ -6926,78 +6984,77 @@ void AppController::cleanupTemporaryDirectory()
     }
 }
 
-bool AppController::canStartDownloadItem(DownloadItem *item) const
+void AppController::startYtdlpItem(DownloadItem *item)
+{
+    if (!item || !item->isYtdlp())
+        return;
+    if (item->statusEnum() != DownloadItem::Status::Paused
+        && item->statusEnum() != DownloadItem::Status::Queued)
+        return;
+    if (m_ytdlpWorkers.contains(item->id()))
+        return;
+    // ytdlpFormatId stores "<formatId>|<container>|<outputTemplate>"
+    // The output template may itself contain '|' in yt-dlp selectors,
+    // so split on the FIRST two '|' only.
+    const QString stored = item->ytdlpFormatId();
+    if (stored.isEmpty()) {
+        // A queued-later item that never went through the format picker cannot
+        // be started; fail it visibly instead of crashing in the worker.
+        item->setStatus(DownloadItem::Status::Error);
+        item->setErrorString(tr("No media format was selected for this download."));
+        scheduleSave(item->id());
+        return;
+    }
+    const int p1            = stored.indexOf(QLatin1Char('|'));
+    const int p2            = p1 >= 0 ? stored.indexOf(QLatin1Char('|'), p1 + 1) : -1;
+    const QString formatId  = p1 >= 0 ? stored.left(p1) : stored;
+    const QString container = (p1 >= 0 && p2 > p1)
+                              ? stored.mid(p1 + 1, p2 - p1 - 1)
+                              : (p1 >= 0 ? stored.mid(p1 + 1) : QStringLiteral("mp4"));
+    const QString tmpl      = p2 >= 0 ? stored.mid(p2 + 1) : QString();
+    const YtdlpOptions resumeOpts = YtdlpOptions::fromJson(item->ytdlpExtraOptions());
+    // resume=true passes --continue; harmless for a fresh file, resumes a partial one.
+    startYtdlpWorker(item, formatId, container, /*resume=*/true, tmpl,
+                     item->ytdlpPlaylistMode(), resumeOpts.maxItems, resumeOpts);
+}
+
+bool AppController::maybeScheduleRetry(DownloadItem *item)
 {
     if (!item)
         return false;
+    Queue *queue = (!item->queueId().isEmpty() && m_queueModel)
+        ? m_queueModel->queueById(item->queueId())
+        : nullptr;
+    // Determine retry limit: queue-specific if available, else global setting.
+    int maxRetries = 0;
+    if (queue && queue->hasMaxRetries())
+        maxRetries = queue->maxRetries();
+    else if (m_settings->maxRetries() > 0)
+        maxRetries = m_settings->maxRetries();
 
-    const QString queueId = item->queueId();
-    if (queueId.isEmpty())
-        return true;
-
-    Queue *queue = m_queueModel ? m_queueModel->queueById(queueId) : nullptr;
-    if (!queue || queue->id() == QStringLiteral("download-limits"))
-        return true;
-
-    int activeForQueue = 0;
-    for (DownloadItem *candidate : m_queue->items()) {
-        if (!candidate || candidate->queueId() != queueId)
-            continue;
-        if (candidate->statusEnum() == DownloadItem::Status::Downloading
-            || candidate->statusEnum() == DownloadItem::Status::Assembling) {
-            ++activeForQueue;
-        }
-    }
-    if (queue->maxConcurrentDownloads() > 0 && activeForQueue >= queue->maxConcurrentDownloads())
+    const int retries = m_queueRetryCounts.value(item->id(), 0);
+    if (maxRetries <= 0 || retries >= maxRetries) {
+        m_queueRetryCounts.remove(item->id());
         return false;
-
-    if (queue->hasDownloadLimits()) {
-        const qint64 limitBytes = static_cast<qint64>(queue->downloadLimitMBytes()) * 1024 * 1024;
-        if (limitBytes > 0 && queueTransferredBytesInWindow(queueId, queue->downloadLimitHours()) >= limitBytes)
-            return false;
     }
-
+    m_queueRetryCounts[item->id()] = retries + 1;
+    // Exponential backoff: 2s, 4s, 8s, 16s, ... capped at 60s
+    const int delayMs = (std::min)(2000 * (1 << retries), 60000);
+    QTimer::singleShot(delayMs, this, [this, id = item->id()]() {
+        DownloadItem *retryItem = m_downloadModel->itemById(id);
+        if (!retryItem || retryItem->statusEnum() != DownloadItem::Status::Error)
+            return;
+        retryItem->setStatus(DownloadItem::Status::Queued);
+        retryItem->setErrorString({});
+        scheduleSave(id);
+        m_scheduler->schedule();
+    });
     return true;
-}
-
-void AppController::scheduleNextTorrentInQueue(const QString &queueId)
-{
-    if (queueId.isEmpty())
-        return;
-    Queue *queue = m_queueModel ? m_queueModel->queueById(queueId) : nullptr;
-    if (!queue || queue->id() == QStringLiteral("download-limits"))
-        return;
-
-    const int maxConcurrent = queue->maxConcurrentDownloads() > 0
-        ? queue->maxConcurrentDownloads()
-        : INT_MAX;
-
-    // Count torrents in this queue that are actively downloading
-    int activeTorrents = 0;
-    for (DownloadItem *candidate : m_queue->items()) {
-        if (!candidate || candidate->queueId() != queueId || !candidate->isTorrent())
-            continue;
-        const auto s = candidate->statusEnum();
-        if (s == DownloadItem::Status::Downloading || s == DownloadItem::Status::Checking)
-            ++activeTorrents;
-    }
-
-    // Start queued torrents up to the concurrency limit
-    for (DownloadItem *item : m_queue->items()) {
-        if (activeTorrents >= maxConcurrent)
-            break;
-        if (!item || item->queueId() != queueId || !item->isTorrent())
-            continue;
-        if (item->statusEnum() != DownloadItem::Status::Queued)
-            continue;
-        resumeDownload(item->id());
-        ++activeTorrents;
-    }
 }
 
 void AppController::pruneQueueTransferHistory(const QString &queueId, int hours) const
 {
-    if (queueId.isEmpty() || hours <= 0 || !m_queueTransferHistory.contains(queueId))
+    if (hours <= 0 || !m_queueTransferHistory.contains(queueId))
         return;
 
     const QDateTime cutoff = QDateTime::currentDateTime().addSecs(-hours * 3600);
@@ -7008,11 +7065,11 @@ void AppController::pruneQueueTransferHistory(const QString &queueId, int hours)
 
 qint64 AppController::queueTransferredBytesInWindow(const QString &queueId, int hours) const
 {
-    if (queueId.isEmpty() || hours <= 0)
+    if (hours <= 0)
         return 0;
 
-    // "download-limits" is the global limit — sums across ALL queues and unqueued items.
-    const bool isGlobal = (queueId == QStringLiteral("download-limits"));
+    // Empty queueId is the global limit — sums across ALL queues and unqueued items.
+    const bool isGlobal = queueId.isEmpty();
 
     if (isGlobal) {
         // Sum history from all queues
@@ -7056,9 +7113,11 @@ qint64 AppController::queueTransferredBytesInWindow(const QString &queueId, int 
 
 void AppController::recordQueueTransferSample(const QString &queueId, qint64 bytes)
 {
-    if (queueId.isEmpty() || bytes <= 0)
+    if (bytes <= 0)
         return;
 
+    // Unqueued items record under the empty key so they still count toward
+    // the global rolling window.
     m_queueTransferHistory[queueId].append(qMakePair(QDateTime::currentDateTime(), bytes));
 }
 
@@ -7067,57 +7126,68 @@ void AppController::enforceQueueDownloadLimits(const QString &queueId)
     if (!m_queueModel)
         return;
 
-    // Helper lambda: check one queue's limit and stop if exceeded.
+    // Helper lambda: check one limit (empty id = the global limit from
+    // settings) and stop the affected downloads when exceeded.
     auto checkOne = [this](const QString &id) {
-        Queue *queue = m_queueModel->queueById(id);
-        if (!queue || !queue->hasDownloadLimits() || queue->downloadLimitHours() <= 0) {
-            m_queueLimitNotifications.remove(id);
+        bool enabled; int limitMBytes; int limitHours; bool warn; QString name;
+        if (id.isEmpty()) {
+            enabled     = m_settings->globalDownloadLimitEnabled();
+            limitMBytes = m_settings->globalDownloadLimitMBytes();
+            limitHours  = m_settings->globalDownloadLimitHours();
+            warn        = m_settings->globalDownloadLimitWarn();
+            name        = tr("All downloads");
+        } else {
+            Queue *queue = m_queueModel->queueById(id);
+            if (!queue) { m_limitStoppedQueues.remove(id); return; }
+            enabled     = queue->hasDownloadLimits();
+            limitMBytes = queue->downloadLimitMBytes();
+            limitHours  = queue->downloadLimitHours();
+            warn        = queue->warnBeforeStopping();
+            name        = queue->name();
+        }
+        const qint64 limitBytes = static_cast<qint64>(limitMBytes) * 1024 * 1024;
+        if (!enabled || limitHours <= 0 || limitBytes <= 0) {
+            m_limitStoppedQueues.remove(id);
             return;
         }
-        const qint64 limitBytes = static_cast<qint64>(queue->downloadLimitMBytes()) * 1024 * 1024;
-        if (limitBytes <= 0) {
-            m_queueLimitNotifications.remove(id);
-            return;
-        }
-        const qint64 usedBytes = queueTransferredBytesInWindow(id, queue->downloadLimitHours());
-        if (usedBytes < limitBytes) {
-            m_queueLimitNotifications.remove(id);
-            return;
-        }
-        // Stop: for global ("download-limits"), pause every active/queued item;
-        // for a specific queue, stop only that queue.
-        if (id == QStringLiteral("download-limits")) {
+        const qint64 usedBytes = queueTransferredBytesInWindow(id, limitHours);
+        if (usedBytes < limitBytes)
+            return;   // resume handling happens on the scheduler tick
+        // Stop: for the global limit pause every active/queued item (recording
+        // which ones so auto-resume never touches user-paused downloads); for
+        // a specific queue stop only that queue.
+        if (id.isEmpty()) {
             for (DownloadItem *item : m_queue->items()) {
                 if (!item) continue;
                 const QString st = item->status();
                 if (st == QStringLiteral("Downloading") || st == QStringLiteral("Queued")
                         || st == QStringLiteral("Checking") || st == QStringLiteral("Moving")
-                        || st == QStringLiteral("Seeding"))
+                        || st == QStringLiteral("Seeding")) {
+                    m_limitPausedItems.insert(item->id());
                     pauseDownload(item->id());
+                }
             }
         } else {
             stopQueue(id);
         }
-        if (!m_queueLimitNotifications.contains(id)) {
-            m_queueLimitNotifications.insert(id);
+        if (!m_limitStoppedQueues.contains(id)) {
+            m_limitStoppedQueues.insert(id);
             const qint64 usedMB  = (usedBytes + 512 * 1024) / (1024 * 1024);
-            const qint64 limitMB = queue->downloadLimitMBytes();
-            const QDateTime windowStart = QDateTime::currentDateTime().addSecs(-queue->downloadLimitHours() * 3600LL);
-            const QDateTime resumeAt    = QDateTime::currentDateTime().addSecs(queue->downloadLimitHours() * 3600LL);
-            qInfo() << "[QueueLimit]" << queue->name() << "reached" << usedMB << "MB /" << limitMB << "MB limit."
+            const QDateTime windowStart = QDateTime::currentDateTime().addSecs(-limitHours * 3600LL);
+            const QDateTime resumeAt    = QDateTime::currentDateTime().addSecs(limitHours * 3600LL);
+            qInfo() << "[QueueLimit]" << name << "reached" << usedMB << "MB /" << limitMBytes << "MB limit."
                     << "Resumes at" << resumeAt.toString();
-            if (queue->warnBeforeStopping())
-                emit queueDownloadLimitExceeded(id, queue->name(), usedMB, limitMB,
-                                                queue->downloadLimitHours(), windowStart, resumeAt);
+            if (warn)
+                emit queueDownloadLimitExceeded(id, name, usedMB, limitMBytes,
+                                                limitHours, windowStart, resumeAt);
         }
     };
 
-    // Check the specific queue (if non-empty and not the global pseudo-queue).
-    if (!queueId.isEmpty() && queueId != QStringLiteral("download-limits"))
+    if (!queueId.isEmpty())
         checkOne(queueId);
 
-    // Always check global limits from the "download-limits" pseudo-queue.
-    checkOne(QStringLiteral("download-limits"));
+    // Always check the global limit.
+    checkOne(QString());
 }
 
 QVariantMap AppController::grabberProjectData(const QString &projectId) const
@@ -7438,7 +7508,6 @@ void AppController::createQueue(const QString &name)
     QString queueId = QStringLiteral("queue-") + QString::number(QDateTime::currentMSecsSinceEpoch());
     Queue *q = new Queue(queueId, this);
     q->setName(name);
-    q->setIsDownloadQueue(true);
     m_queueModel->addQueue(q);
     m_queueDb->save(q);
 }
@@ -7468,52 +7537,26 @@ void AppController::saveQueues()
 void AppController::startQueue(const QString &queueId)
 {
     Queue *q = m_queueModel->queueById(queueId);
-    if (!q || queueId == QStringLiteral("download-limits")) return;
+    if (!q) return;
 
     // Mark as recently run for periodic schedules
     m_lastQueueRun[queueId] = QDateTime::currentDateTime();
 
-    // Resume torrent items explicitly via TorrentSessionManager up to maxConcurrent;
-    // excess queued torrents get Status::Queued so the UI shows their waiting state.
-    // Non-torrent items are moved to Queued and started by DownloadQueue::scheduleNext().
-    const int maxConcurrent = q->maxConcurrentDownloads() > 0 ? q->maxConcurrentDownloads() : INT_MAX;
-    int activeTorrents = 0;
-    // Count already-active torrents in this queue (e.g. from a prior partial start)
-    for (DownloadItem *item : m_queue->items()) {
-        if (!item || item->queueId() != queueId || !item->isTorrent())
-            continue;
-        const auto s = item->statusEnum();
-        if (s == DownloadItem::Status::Downloading || s == DownloadItem::Status::Checking)
-            ++activeTorrents;
-    }
-
+    // Flip everything startable to Queued — the unified scheduler decides
+    // which items (of any engine type) actually start, in queueOrder, under
+    // the per-queue and global caps.
     int queuedCount = 0;
     for (DownloadItem *item : m_queue->items()) {
         if (!item || item->queueId() != queueId)
             continue;
-        const bool pausedOrQueued = item->status() == QStringLiteral("Paused")
-            || item->status() == QStringLiteral("Queued");
-        if (!pausedOrQueued)
+        if (item->statusEnum() != DownloadItem::Status::Paused
+            && item->statusEnum() != DownloadItem::Status::Queued)
             continue;
-
-        if (item->isTorrent()) {
-            if (activeTorrents < maxConcurrent && canStartDownloadItem(item)) {
-                resumeDownload(item->id());
-                ++activeTorrents;
-            } else {
-                // Mark as Queued so status bar and SchedulerDialog show correct state
-                item->setStatus(DownloadItem::Status::Queued);
-            }
-            continue;
-        }
-
-        if (item->status() != QStringLiteral("Queued"))
+        if (item->statusEnum() != DownloadItem::Status::Queued)
             item->setStatus(DownloadItem::Status::Queued);
         ++queuedCount;
     }
-
-    // Now trigger scheduleNext to start up to maxConcurrent downloads
-    m_queue->scheduleNext();
+    m_scheduler->schedule();
 
     qInfo() << "Starting queue" << queueId << q->name() << "- queued" << queuedCount << "downloads";
 }
@@ -7540,7 +7583,7 @@ void AppController::setDownloadsTrayToolTip(const QString &tip) {
 void AppController::stopQueue(const QString &queueId)
 {
     Queue *q = m_queueModel->queueById(queueId);
-    if (!q || queueId == QStringLiteral("download-limits")) return;
+    if (!q) return;
 
     // Pause all active/queued items in this queue through the unified pause path.
     // For torrents this is required so libtorrent is paused as well.
@@ -7587,117 +7630,59 @@ int AppController::minutesUntilNextQueue() const
     return calculateMinutesUntilNextQueue();
 }
 
+// Next scheduled start for one queue, or invalid when it has none.
+QDateTime AppController::nextQueueRunTime(const Queue *q, const QDateTime &now) const
+{
+    const QTime startTime = QTime(q->startTimeMinutes() / 60, q->startTimeMinutes() % 60);
+    switch (q->scheduleMode()) {
+    case Queue::Once: {
+        // Next occurrence: today if still ahead, else tomorrow.
+        QDateTime next(now.date(), startTime);
+        if (next <= now)
+            next = next.addDays(1);
+        return next;
+    }
+    case Queue::Daily: {
+        if ((q->scheduleDaysMask() & 0x7F) == 0)
+            return {};
+        for (int d = 0; d <= 7; ++d) {
+            const QDateTime candidate(now.date().addDays(d), startTime);
+            if (candidate <= now)
+                continue;
+            const int bit = candidate.date().dayOfWeek() - 1;  // Qt: Monday=1
+            if (q->scheduleDaysMask() & (1 << bit))
+                return candidate;
+        }
+        return {};
+    }
+    case Queue::Interval: {
+        const qint64 intervalSecs = q->intervalHours() * 3600LL + q->intervalMinutes() * 60LL;
+        if (intervalSecs <= 0)
+            return {};
+        // Never run yet → due immediately.
+        const QDateTime lastRun = m_lastQueueRun.value(q->id(), now.addSecs(-intervalSecs));
+        return lastRun.addSecs(intervalSecs);
+    }
+    default:
+        return {};
+    }
+}
+
 int AppController::calculateMinutesUntilNextQueue() const
 {
     int minutesMin = 999999;
+    const QDateTime now = QDateTime::currentDateTime();
 
     for (int i = 0; i < m_queueModel->rowCount(); ++i) {
         Queue *q = m_queueModel->queueAt(i);
-        if (!q || q->id() == QStringLiteral("download-limits"))
+        if (!q)
             continue;
-
-        // Check if this queue has a start time configured
-        if (!q->hasStartTime())
+        const QDateTime nextRun = nextQueueRunTime(q, now);
+        if (!nextRun.isValid())
             continue;
-
-        // Try both HH:mm and HH:mm:ss AM/PM formats
-        QTime scheduleTime = QTime::fromString(q->startTime(), QStringLiteral("HH:mm:ss AP"));
-        if (!scheduleTime.isValid()) {
-            scheduleTime = QTime::fromString(q->startTime(), QStringLiteral("HH:mm"));
-        }
-        if (!scheduleTime.isValid()) {
-            continue;
-        }
-
-        QDateTime now = QDateTime::currentDateTime();
-        QDateTime nextRun;
-
-        if (q->startOnce()) {
-            // One-time schedule: next run is today at the specified time
-            nextRun = QDateTime(now.date(), scheduleTime);
-            if (nextRun <= now) {
-                // Time has passed today, no more runs for this queue
-                continue;
-            }
-        } else if (q->startDaily()) {
-            // Daily schedule: check if today is in the startDays list
-            QStringList days = q->startDays();
-            QString todayName = now.toString(QStringLiteral("dddd")).toLower();
-            QString dayAbbrev = todayName.left(3).toLower();  // "mon", "tue", etc.
-
-            bool shouldRunToday = false;
-            for (const QString &day : days) {
-                if (day.toLower().startsWith(dayAbbrev)) {
-                    shouldRunToday = true;
-                    break;
-                }
-            }
-
-            if (shouldRunToday) {
-                nextRun = QDateTime(now.date(), scheduleTime);
-                if (nextRun <= now) {
-                    // Time has passed today, check tomorrow
-                    nextRun = nextRun.addDays(1);
-                    // Check if tomorrow is in the schedule
-                    QString tomorrowName = nextRun.toString(QStringLiteral("dddd")).toLower();
-                    QString tomorrowAbbrev = tomorrowName.left(3).toLower();
-                    bool tomorrowIsScheduled = false;
-                    for (const QString &day : days) {
-                        if (day.toLower().startsWith(tomorrowAbbrev)) {
-                            tomorrowIsScheduled = true;
-                            break;
-                        }
-                    }
-                    if (!tomorrowIsScheduled)
-                        continue;
-                }
-            } else {
-                // Today is not a scheduled day, find next scheduled day
-                for (int d = 1; d <= 7; ++d) {
-                    QDateTime candidate = now.addDays(d);
-                    QString dayName = candidate.toString(QStringLiteral("dddd")).toLower();
-                    QString dayAbb = dayName.left(3).toLower();
-                    bool isScheduled = false;
-                    for (const QString &day : days) {
-                        if (day.toLower().startsWith(dayAbb)) {
-                            isScheduled = true;
-                            break;
-                        }
-                    }
-                    if (isScheduled) {
-                        nextRun = QDateTime(candidate.date(), scheduleTime);
-                        break;
-                    }
-                }
-                if (!nextRun.isValid())
-                    continue;
-            }
-        } else {
-            // Periodic schedule (synchronization queue)
-            if (!q->hasStartAgainEvery())
-                continue;
-
-            int intervalSecs = q->startAgainEveryHours() * 3600 + q->startAgainEveryMins() * 60;
-            if (intervalSecs <= 0)
-                continue;
-
-            // Get last run time or use now if never run
-            QDateTime lastRun = m_lastQueueRun.value(q->id(), now.addSecs(-intervalSecs));
-            nextRun = lastRun.addSecs(intervalSecs);
-
-            if (nextRun <= now) {
-                // Time to run this periodic queue now
-                minutesMin = 0;
-                continue;
-            }
-        }
-
-        // Calculate minutes until this queue should run
-        if (nextRun.isValid()) {
-            int mins = now.secsTo(nextRun) / 60;
-            if (mins >= 0 && mins < minutesMin)
-                minutesMin = mins;
-        }
+        const int mins = qMax(0, static_cast<int>(now.secsTo(nextRun) / 60));
+        if (mins < minutesMin)
+            minutesMin = mins;
     }
 
     return minutesMin == 999999 ? 0 : minutesMin;
@@ -7705,88 +7690,47 @@ int AppController::calculateMinutesUntilNextQueue() const
 
 void AppController::checkQueueSchedules()
 {
-    int prevMinutes = calculateMinutesUntilNextQueue();
-
-    QDateTime now = QDateTime::currentDateTime();
+    const QDateTime now = QDateTime::currentDateTime();
+    // Edge-triggered: an event fires when its time falls inside
+    // (m_lastScheduleTick, now]. First evaluation (startup) uses a short
+    // lookback so a start moment isn't missed between launch and first tick,
+    // without replaying hours-old schedules.
+    const QDateTime windowStart = m_lastScheduleTick.isValid()
+        ? m_lastScheduleTick
+        : now.addSecs(-60);
+    m_lastScheduleTick = now;
 
     for (int i = 0; i < m_queueModel->rowCount(); ++i) {
         Queue *q = m_queueModel->queueAt(i);
-        if (!q || q->id() == QStringLiteral("download-limits"))
+        if (!q)
             continue;
 
-        if (!q->hasStartTime())
-            continue;
-
-        // Try both HH:mm:ss AM/PM and HH:mm formats
-        QTime scheduleTime = QTime::fromString(q->startTime(), QStringLiteral("HH:mm:ss AP"));
-        if (!scheduleTime.isValid()) {
-            scheduleTime = QTime::fromString(q->startTime(), QStringLiteral("HH:mm"));
-        }
-        if (!scheduleTime.isValid())
-            continue;
-
-        bool shouldStart = false;
-
-        if (q->startOnce()) {
-            // One-time schedule
-            QDateTime nextRun = QDateTime(now.date(), scheduleTime);
-            // Allow a 5-minute window (2.5 before and after)
-            if (nextRun >= now.addSecs(-300) && nextRun <= now.addSecs(300)) {
-                shouldStart = true;
-            }
-        } else if (q->startDaily()) {
-            // Daily schedule: check if today is in the list
-            QStringList days = q->startDays();
-            QString todayName = now.toString(QStringLiteral("dddd")).toLower();
-            QString dayAbbrev = todayName.left(3).toLower();
-
-            bool isDayMatch = false;
-            for (const QString &day : days) {
-                if (day.toLower().startsWith(dayAbbrev)) {
-                    isDayMatch = true;
-                    break;
+        if (q->scheduleMode() != Queue::NoSchedule) {
+            // nextQueueRunTime() looks forward from `now`; for edge detection
+            // evaluate from the window start instead. Interval queues fire on
+            // any due-or-overdue time (a missed interval — app closed, laptop
+            // asleep — runs on the next tick; firing stamps m_lastQueueRun so
+            // it cannot repeat).
+            const QDateTime due = nextQueueRunTime(q, windowStart);
+            const bool fire = due.isValid() && due <= now
+                && (q->scheduleMode() == Queue::Interval || due > windowStart);
+            if (fire) {
+                startQueue(q->id());
+                if (q->scheduleMode() == Queue::Once) {
+                    // One-shot fired — disarm so it doesn't ghost-fire daily.
+                    q->setScheduleMode(Queue::NoSchedule);
+                    m_queueDb->save(q);
                 }
             }
-
-            if (isDayMatch) {
-                int nowMins = now.time().hour() * 60 + now.time().minute();
-                int scheduleMins = scheduleTime.hour() * 60 + scheduleTime.minute();
-                // Start if within 5 minutes of scheduled time (wider tolerance for missed checks)
-                if (qAbs(nowMins - scheduleMins) <= 2) {
-                    shouldStart = true;
-                }
-            }
-        } else {
-            // Periodic (synchronization queue)
-            if (!q->hasStartAgainEvery())
-                continue;
-
-            int intervalSecs = q->startAgainEveryHours() * 3600 + q->startAgainEveryMins() * 60;
-            if (intervalSecs <= 0)
-                continue;
-
-            QDateTime lastRun = m_lastQueueRun.value(q->id(), now.addSecs(-intervalSecs - 300));
-            QDateTime nextRun = lastRun.addSecs(intervalSecs);
-
-            if (nextRun <= now && now.secsTo(nextRun) > -300) {
-                shouldStart = true;
-            }
         }
 
-        if (shouldStart) {
-            startQueue(q->id());
-        }
-
-        // Check if queue should stop
         if (q->hasStopTime()) {
-            QTime stopTime = QTime::fromString(q->stopTime(), QStringLiteral("HH:mm"));
-            if (stopTime.isValid()) {
-                int nowMins = now.time().hour() * 60 + now.time().minute();
-                int stopMins = stopTime.hour() * 60 + stopTime.minute();
-                if (qAbs(nowMins - stopMins) <= 2) {
-                    stopQueue(q->id());
-                }
-            }
+            const QTime stopTime(q->stopTimeMinutes() / 60, q->stopTimeMinutes() % 60);
+            QDateTime stopAt(now.date(), stopTime);
+            if (stopAt > now)
+                stopAt = stopAt.addDays(-1);
+            if (stopAt > windowStart && stopAt <= now)
+                stopQueue(q->id());
         }
     }
 
@@ -7861,9 +7805,100 @@ void AppController::checkQueueSchedules()
         }
     }
 
-    int currentMinutes = calculateMinutesUntilNextQueue();
-    if (currentMinutes != prevMinutes) {
-        emit minutesUntilNextQueueChanged();
+    // Countdown recomputes every tick; the QML side binds through this signal.
+    emit minutesUntilNextQueueChanged();
+}
+
+void AppController::handleQueueDrained(const QString &queueId)
+{
+    Queue *queue = m_queueModel ? m_queueModel->queueById(queueId) : nullptr;
+    if (!queue || m_restoring)
+        return;
+    // Only act when the queue actually processed something this session —
+    // drained also fires for queues stopped by the user or a download limit.
+    if (!m_lastQueueRun.contains(queueId))
+        return;
+    bool anyCompleted = false;
+    for (DownloadItem *item : m_queue->items()) {
+        if (!item || item->queueId() != queueId)
+            continue;
+        const auto s = item->statusEnum();
+        if (s == DownloadItem::Status::Completed || s == DownloadItem::Status::Seeding) {
+            anyCompleted = true;
+            break;
+        }
+    }
+    if (!anyCompleted)
+        return;
+
+    if (queue->openFileWhenDone() && !queue->openFilePath().isEmpty())
+        openLocalPath(queue->openFilePath());
+    if (queue->turnOffComputerWhenDone()) {
+#if defined(Q_OS_WIN)
+        if (queue->forceProcessesToTerminate())
+            QProcess::startDetached(QStringLiteral("shutdown"),
+                                    { QStringLiteral("/s"), QStringLiteral("/f"), QStringLiteral("/t"), QStringLiteral("0") });
+        else
+            shutdownComputer();
+#else
+        shutdownComputer();
+#endif
+    }
+    if (queue->exitIDMWhenDone())
+        QCoreApplication::quit();
+}
+
+void AppController::onSchedulerTick()
+{
+    if (m_restoring)
+        return;
+    checkQueueSchedules();
+
+    // Auto-resume downloads stopped by a rolling-window limit once enough of
+    // the window has slid past for usage to drop back under the cap.
+    const QSet<QString> stopped = m_limitStoppedQueues;
+    for (const QString &id : stopped) {
+        qint64 limitBytes = 0;
+        int hours = 0;
+        if (id.isEmpty()) {
+            if (!m_settings->globalDownloadLimitEnabled()) {
+                m_limitStoppedQueues.remove(id);
+                m_limitPausedItems.clear();
+                continue;
+            }
+            limitBytes = qint64(m_settings->globalDownloadLimitMBytes()) * 1024 * 1024;
+            hours = m_settings->globalDownloadLimitHours();
+        } else {
+            Queue *q = m_queueModel->queueById(id);
+            if (!q || !q->hasDownloadLimits()) {
+                m_limitStoppedQueues.remove(id);
+                continue;
+            }
+            limitBytes = qint64(q->downloadLimitMBytes()) * 1024 * 1024;
+            hours = q->downloadLimitHours();
+        }
+        if (hours <= 0 || limitBytes <= 0
+            || queueTransferredBytesInWindow(id, hours) >= limitBytes)
+            continue;
+
+        m_limitStoppedQueues.remove(id);
+        if (id.isEmpty()) {
+            // Re-queue only the items the enforcement paused — never the
+            // user's own pauses.
+            const QSet<QString> paused = std::exchange(m_limitPausedItems, {});
+            for (const QString &itemId : paused) {
+                DownloadItem *item = m_downloadModel->itemById(itemId);
+                // Back to Queued (not a direct resume) so the scheduler
+                // re-admits them under the concurrency caps.
+                if (item && item->statusEnum() == DownloadItem::Status::Paused)
+                    item->setStatus(DownloadItem::Status::Queued);
+            }
+            m_scheduler->schedule();
+            qInfo() << "[QueueLimit] Global download limit window slid — resuming.";
+        } else {
+            startQueue(id);
+            qInfo() << "[QueueLimit] Queue" << id << "limit window slid — resuming.";
+        }
     }
 }
 

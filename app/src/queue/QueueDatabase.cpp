@@ -47,15 +47,34 @@ QList<Queue *> QueueDatabase::loadAll(QObject *parentForQueues)
     if (!doc.isArray()) return result;
 
     const QJsonArray arr = doc.array();
+    bool migrated = false;
     for (const QJsonValue &val : arr) {
         const QJsonObject obj = val.toObject();
         const QString id = obj[QLatin1String("id")].toString();
         if (id.isEmpty()) continue;
 
-        Queue *queue = Queue::fromVariantMap(id, obj.toVariantMap(), parentForQueues);
-        m_entries[id] = obj.toVariantMap();
+        const QVariantMap entry = obj.toVariantMap();
+
+        // Legacy "download-limits" pseudo-queue held the global download
+        // limits. Extract its fields for AppController to move into
+        // AppSettings and drop the entry from the file.
+        if (id == QLatin1String("download-limits")) {
+            m_takenGlobalLimits = entry;
+            migrated = true;
+            continue;
+        }
+
+        Queue *queue = Queue::fromVariantMap(id, entry, parentForQueues);
+        if (entry.value(QStringLiteral("version"), 1).toInt() < 2) {
+            migrated = true;
+            m_entries[id] = queue->toVariantMap();
+        } else {
+            m_entries[id] = entry;
+        }
         result.append(queue);
     }
+    if (migrated)
+        writeToDisk();
     return result;
 }
 

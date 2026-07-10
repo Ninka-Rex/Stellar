@@ -452,6 +452,16 @@
         <source>Checking for updates</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="7117"/>
+        <source>All downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="6983"/>
+        <source>No media format was selected for this download.</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>BatchDownloadDialog</name>
@@ -4704,6 +4714,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <source>Import Downloads</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="3164"/>
+        <source>Queues</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>QueueSelectionDialog</name>
@@ -5158,237 +5173,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <message>
         <location filename="../app/qml/rss/RssWindow.qml" line="367"/>
         <source>Edit Subscription</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>SchedulerDialog</name>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="181"/>
-        <source>Queues</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="256"/>
-        <source>New queue</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="262"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1003"/>
-        <source>Delete</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="304"/>
-        <source>Schedule</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="304"/>
-        <source>Files in the queue</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="353"/>
-        <source>One-time downloading</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="360"/>
-        <source>Periodic synchronization</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="370"/>
-        <source>Start download on Stellar startup</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="389"/>
-        <source>Start download at</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="465"/>
-        <source>Once at</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="473"/>
-        <source>Daily</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="523"/>
-        <source>Start again every</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="546"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1069"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1140"/>
-        <source>hours</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="564"/>
-        <source>min</source>
-        <translation type="unfinished">min</translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="612"/>
-        <source>Stop download at</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="686"/>
-        <source>Number of retries for each file if downloading failed :</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="721"/>
-        <source>Open the following file when done:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="757"/>
-        <source>Exit Stellar when done</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="770"/>
-        <source>Turn off computer when done</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="778"/>
-        <source>Force processes to terminate</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="802"/>
-        <source>Download</source>
-        <translation type="unfinished">Download</translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="818"/>
-        <source>files at the same time</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="847"/>
-        <source>File Name</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="848"/>
-        <source>Size</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="849"/>
-        <source>Status</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="850"/>
-        <source>Time Left</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="948"/>
-        <source>No queue selected</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="956"/>
-        <source>No files in queue</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1027"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1098"/>
-        <source>Download limits</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1040"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1111"/>
-        <source>Download no more than</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1054"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1125"/>
-        <source>MBytes</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1055"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1126"/>
-        <source>every</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1075"/>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1146"/>
-        <source>Show warning before stopping downloads</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1166"/>
-        <source>Start now</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1174"/>
-        <source>Stop</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1185"/>
-        <source>Apply</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1198"/>
-        <source>Close</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1277"/>
-        <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1300"/>
-        <source>Queue name</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1312"/>
-        <source>OK</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1317"/>
-        <source>Cancel</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="26"/>
-        <source>Scheduler</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1254"/>
-        <source>New Queue</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/SchedulerDialog.qml" line="1328"/>
-        <source>Select file to open when done</source>
         <translation></translation>
     </message>
 </context>
@@ -7339,6 +7123,41 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <source>A restart is required for appearance changes to take effect. Restart now?</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1267"/>
+        <source>Maximum simultaneous torrents:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1286"/>
+        <source>Global download limit</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1292"/>
+        <source>Pause all downloads after a data limit is reached</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1301"/>
+        <source>Download no more than</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1303"/>
+        <source>MB every</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1305"/>
+        <source>hours</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1311"/>
+        <source>Show a warning when the limit pauses downloads</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>Sidebar</name>
@@ -9180,6 +8999,303 @@ and audio streams merged by ffmpeg after download.</source>
     <message>
         <location filename="../app/qml/dialogs/DownloadLimitsExceededDialog.qml" line="150"/>
         <source>OK</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/DownloadLimitsExceededDialog.qml" line="117"/>
+        <source>From %1 to %2 you downloaded %3 MB. All downloads have been stopped because you exceeded the global download limit of %4 MB every %5.</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>TimeField</name>
+    <message>
+        <location filename="../app/qml/components/TimeField.qml" line="21"/>
+        <source>AM</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/components/TimeField.qml" line="21"/>
+        <source>PM</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>QueuesWindow</name>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="31"/>
+        <source>Queues</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="206"/>
+        <source>New queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="258"/>
+        <source>Click to rename</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="263"/>
+        <source>Start</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="269"/>
+        <source>Stop</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="287"/>
+        <source>Schedule</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="290"/>
+        <source>Start this queue on a schedule</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="313"/>
+        <source>One time</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="313"/>
+        <source>Daily</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="313"/>
+        <source>Repeat every…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="323"/>
+        <source>at</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="363"/>
+        <source>hours</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="373"/>
+        <source>minutes</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="384"/>
+        <source>Stop the queue at</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="406"/>
+        <source>Start this queue when Stellar starts</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="415"/>
+        <source>Limits</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="420"/>
+        <source>Run at the same time:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="430"/>
+        <source>downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="440"/>
+        <source>torrents</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="450"/>
+        <source>Pause the queue after</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="470"/>
+        <source>MB every</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="494"/>
+        <source>When all downloads finish</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="502"/>
+        <source>Retry failed downloads up to</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="521"/>
+        <source>times</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="531"/>
+        <source>Open</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="564"/>
+        <source>Browse…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="572"/>
+        <source>Exit Stellar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="582"/>
+        <source>Shut down the computer</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="593"/>
+        <source>Force programs to close</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="605"/>
+        <source>Show a warning when the limit pauses downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="625"/>
+        <source>Files in this queue (%1)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="637"/>
+        <source>Move up in the queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="649"/>
+        <source>Move down in the queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="652"/>
+        <source>Remove from queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="700"/>
+        <source>File Name</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="707"/>
+        <source>Size</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="714"/>
+        <source>Status</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="721"/>
+        <source>Time left</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="865"/>
+        <source>No files in this queue.
+Drag downloads here or use “Move to Queue” in the download list.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="882"/>
+        <source>Select a queue on the left, or create a new one.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="939"/>
+        <source>Start queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="944"/>
+        <source>Stop queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="950"/>
+        <source>Rename</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="956"/>
+        <source>Delete queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="972"/>
+        <source>Properties</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="977"/>
+        <source>Open File</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="982"/>
+        <source>Open Folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="988"/>
+        <source>Copy Filename</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="993"/>
+        <source>Copy Magnet Link</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="993"/>
+        <source>Copy URL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="1003"/>
+        <source>Resume</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="1014"/>
+        <source>Remove from Queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="1019"/>
+        <source>Redownload</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="1024"/>
+        <source>Delete</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/QueuesWindow.qml" line="1057"/>
+        <source>Select file to open when done</source>
         <translation></translation>
     </message>
 </context>

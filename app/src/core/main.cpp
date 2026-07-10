@@ -46,6 +46,7 @@
 #include "FileDragDropHelper.h"
 #include "FileIconImageProvider.h"
 #include "StellarPaths.h"
+#include "QueueItemsProxyModel.h"
 #include "RssArticleModel.h"
 #include "NetworkInfo.h"
 #include "RssFeedModel.h"
@@ -1056,6 +1057,7 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<RssArticleModel>("com.stellar.app", 1, 0, "RssArticleModel",
         QStringLiteral("Use App.rssManager.articleModel"));
     qmlRegisterType<FileDragDropHelper>("com.stellar.app", 1, 0, "FileDragDropHelper");
+    qmlRegisterType<QueueItemsProxyModel>("com.stellar.app", 1, 0, "QueueItemsModel");
     qmlRegisterUncreatableType<NetworkInfo>("com.stellar.app", 1, 0, "NetworkInfo",
         QStringLiteral("Use App.networkInfo"));
 

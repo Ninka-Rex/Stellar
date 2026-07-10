@@ -131,6 +131,11 @@ Window {
     // Plain var properties - no live binding to App.settings so that
     // settingsChanged can detect when the user has made changes.
     property int    editMaxConcurrent:         0
+    property int    editMaxConcurrentTorrents: 0
+    property bool   editGlobalDownloadLimitEnabled: false
+    property int    editGlobalDownloadLimitMBytes: 200
+    property int    editGlobalDownloadLimitHours: 5
+    property bool   editGlobalDownloadLimitWarn: true
     property int    editSegmentsPerDownload:   0
     property string editPerServerConnLimitsJson: "[]"
     property string editDefaultSavePath:       ""
@@ -539,6 +544,11 @@ Window {
     // Track whether anything has been changed
     readonly property bool settingsChanged:
         editMaxConcurrent         !== App.settings.maxConcurrent        ||
+        editMaxConcurrentTorrents !== App.settings.maxConcurrentTorrents ||
+        editGlobalDownloadLimitEnabled !== App.settings.globalDownloadLimitEnabled ||
+        editGlobalDownloadLimitMBytes  !== App.settings.globalDownloadLimitMBytes  ||
+        editGlobalDownloadLimitHours   !== App.settings.globalDownloadLimitHours   ||
+        editGlobalDownloadLimitWarn    !== App.settings.globalDownloadLimitWarn    ||
         editSegmentsPerDownload   !== App.settings.segmentsPerDownload  ||
         editPerServerConnLimitsJson !== App.settings.perServerConnLimitsJson ||
         editDefaultSavePath       !== App.settings.defaultSavePath      ||
@@ -947,6 +957,11 @@ Window {
         }
 
         App.settings.maxConcurrent         = editMaxConcurrent
+        App.settings.maxConcurrentTorrents = editMaxConcurrentTorrents
+        App.settings.globalDownloadLimitEnabled = editGlobalDownloadLimitEnabled
+        App.settings.globalDownloadLimitMBytes  = editGlobalDownloadLimitMBytes
+        App.settings.globalDownloadLimitHours   = editGlobalDownloadLimitHours
+        App.settings.globalDownloadLimitWarn    = editGlobalDownloadLimitWarn
         App.settings.segmentsPerDownload   = editSegmentsPerDownload
         App.settings.perServerConnLimitsJson = editPerServerConnLimitsJson
         App.settings.defaultSavePath       = editDefaultSavePath
@@ -1066,6 +1081,11 @@ Window {
     function resetEdits() {
         refreshTorrentNetworkAdapters()
         editMaxConcurrent         = App.settings.maxConcurrent
+        editMaxConcurrentTorrents = App.settings.maxConcurrentTorrents
+        editGlobalDownloadLimitEnabled = App.settings.globalDownloadLimitEnabled
+        editGlobalDownloadLimitMBytes  = App.settings.globalDownloadLimitMBytes
+        editGlobalDownloadLimitHours   = App.settings.globalDownloadLimitHours
+        editGlobalDownloadLimitWarn    = App.settings.globalDownloadLimitWarn
         editSegmentsPerDownload   = App.settings.segmentsPerDownload
         editPerServerConnLimitsJson = App.settings.perServerConnLimitsJson || "[]"
         reloadServerConnModel()
@@ -1244,6 +1264,10 @@ Window {
                             ThemedSpin { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value }
                             Item {}
 
+                            Text { text: qsTr("Maximum simultaneous torrents:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
+                            ThemedSpin { from: 1; to: 50; value: root.editMaxConcurrentTorrents; onValueModified: root.editMaxConcurrentTorrents = value }
+                            Item {}
+
                             Text { text: qsTr("Default max. connections per download:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ThemedSpin { from: 1; to: 32; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value }
                             Item {}
@@ -1255,6 +1279,38 @@ Window {
                             Text { text: qsTr("Retry failed downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ThemedSpin { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value }
                             Text { text: qsTr("times"); color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
+
+                        // ── Global download limit (rolling window across all queues) ──
+                        Text {
+                            text: qsTr("Global download limit")
+                            color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true
+                        }
+                        StyledCheckBox {
+                            text: qsTr("Pause all downloads after a data limit is reached")
+                            checked: root.editGlobalDownloadLimitEnabled
+                            onToggled: root.editGlobalDownloadLimitEnabled = checked
+                        }
+                        RowLayout {
+                            Layout.leftMargin: 24
+                            spacing: 8
+                            enabled: root.editGlobalDownloadLimitEnabled
+                            opacity: enabled ? 1.0 : 0.5
+                            Text { text: qsTr("Download no more than"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            ThemedSpin { from: 1; to: 9999999; value: root.editGlobalDownloadLimitMBytes; onValueModified: root.editGlobalDownloadLimitMBytes = value }
+                            Text { text: qsTr("MB every"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            ThemedSpin { from: 1; to: 720; value: root.editGlobalDownloadLimitHours; onValueModified: root.editGlobalDownloadLimitHours = value }
+                            Text { text: qsTr("hours"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            Item { Layout.fillWidth: true }
+                        }
+                        StyledCheckBox {
+                            Layout.leftMargin: 24
+                            enabled: root.editGlobalDownloadLimitEnabled
+                            text: qsTr("Show a warning when the limit pauses downloads")
+                            checked: root.editGlobalDownloadLimitWarn
+                            onToggled: root.editGlobalDownloadLimitWarn = checked
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }

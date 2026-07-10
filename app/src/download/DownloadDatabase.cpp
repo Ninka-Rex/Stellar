@@ -114,6 +114,7 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
             const QString queueId = obj[QLatin1String("queueId")].toString();
             if (!queueId.isEmpty()) item->setQueueId(queueId);
         }
+        item->setQueueOrder(obj[QLatin1String("queueOrder")].toInt(-1));
         {
             const QString addedStr = obj[QLatin1String("addedAt")].toString();
             if (!addedStr.isEmpty()) item->setAddedAt(QDateTime::fromString(addedStr, Qt::ISODate));
@@ -220,6 +221,7 @@ void DownloadDatabase::save(DownloadItem *item) {
     if (!item->password().isEmpty())
         m[QStringLiteral("password")] = obfuscateCred(item->password());
     m[QStringLiteral("queueId")]        = item->queueId();
+    m[QStringLiteral("queueOrder")]     = item->queueOrder();
     if (item->lastTryAt().isValid())
         m[QStringLiteral("lastTryAt")] = item->lastTryAt().toString(Qt::ISODate);
     // yt-dlp items need their engine flag and format selector preserved across restarts

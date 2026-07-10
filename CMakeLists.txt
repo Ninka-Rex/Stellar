@@ -145,6 +145,8 @@ set(BACKEND_SOURCES
     app/src/queue/Queue.cpp
     app/src/queue/QueueDatabase.cpp
     app/src/queue/QueueModel.cpp
+    app/src/queue/QueueScheduler.cpp
+    app/src/queue/QueueItemsProxyModel.cpp
     app/src/grabber/GrabberCrawler.cpp
     app/src/grabber/GrabberProjectModel.cpp
     app/src/grabber/GrabberResultModel.cpp
@@ -186,6 +188,8 @@ set(BACKEND_HEADERS
     app/src/queue/Queue.h
     app/src/queue/QueueDatabase.h
     app/src/queue/QueueModel.h
+    app/src/queue/QueueScheduler.h
+    app/src/queue/QueueItemsProxyModel.h
     app/src/grabber/GrabberCrawler.h
     app/src/grabber/GrabberProjectModel.h
     app/src/grabber/GrabberResultModel.h
@@ -238,6 +242,8 @@ qt_add_qml_module(Stellar
         app/qml/components/SidebarItemDragHandler.qml
         app/qml/components/SidebarSectionDragHandler.qml
         app/qml/components/TorrentProgressBar.qml
+        app/qml/components/TimeField.qml
+        app/qml/components/DayOfWeekSelector.qml
         # singletons/
         app/qml/singletons/ColorPalette.qml
         app/qml/singletons/LanguageList.qml
@@ -254,7 +260,7 @@ qt_add_qml_module(Stellar
         app/qml/dialogs/ExportDialog.qml
         app/qml/dialogs/AddExceptionDialog.qml
         app/qml/dialogs/BrowserIntegrationDialog.qml
-        app/qml/dialogs/SchedulerDialog.qml
+        app/qml/dialogs/QueuesWindow.qml
         app/qml/dialogs/FilePropertiesDialog.qml
         app/qml/dialogs/FindDialog.qml
         app/qml/dialogs/ColumnsDialog.qml

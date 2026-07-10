@@ -645,8 +645,7 @@ Rectangle {
                         Repeater {
                             model: root.queuesExpanded ? App.queueModel : 0
                             delegate: Rectangle {
-                                visible: queueId !== "download-limits"
-                                width: mainScroll.width; height: visible ? 26 : 0
+                                width: mainScroll.width; height: 26
                                 color: root.selectedIndex === -100 - index ? ColorPalette.selectionBg
                                      : (qMa.containsMouse ? ColorPalette.hoverBg : (qDrop.containsDrag ? ColorPalette.hoverBg : "transparent"))
                                 border.color: root.selectedIndex === -100 - index ? "#4488dd" : "transparent"; border.width: 1
@@ -656,8 +655,7 @@ Rectangle {
                                     Image {
                                         width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit
                                         source: queueId === "main-download" ? "../icons/main_queue.svg"
-                                              : queueId === "main-sync"     ? "../icons/synch_queue.svg"
-                                              :                               "../icons/custom_queue.svg"
+                                                                            : "../icons/custom_queue.svg"
                                     }
                                     Text { text: queueName || ""; color: root.selectedIndex === -100 - index ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 }

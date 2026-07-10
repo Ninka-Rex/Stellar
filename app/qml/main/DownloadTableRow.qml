@@ -72,7 +72,6 @@ Rectangle {
                 source: {
                     const q = rowRect.item ? rowRect.item.queueId : ""
                     if (q === "main-download") return "../icons/main_queue.svg"
-                    if (q === "main-sync")     return "../icons/synch_queue.svg"
                     return "../icons/custom_queue.svg"
                 }
                 width: 14; height: 14
@@ -84,9 +83,8 @@ Rectangle {
                         const qid = rowRect.item ? rowRect.item.queueId : ""
                         if (!qid) return ""
                         for (var i = 0; i < App.queueModel.rowCount(); i++) {
-                            var queueId = App.queueModel.data(App.queueModel.index(i, 0), 34)
-                            if (queueId === qid)
-                                return App.queueModel.data(App.queueModel.index(i, 0), 35) || qid
+                            if (App.queueModel.queueIdAt(i) === qid)
+                                return App.queueModel.queueNameAt(i) || qid
                         }
                         return qid
                     }

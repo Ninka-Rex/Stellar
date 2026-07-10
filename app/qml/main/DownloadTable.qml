@@ -451,8 +451,7 @@ Rectangle {
                 Repeater {
                     model: App.queueModel
                     delegate: CtxMenuItem {
-                        visible: queueId !== "download-limits"
-                        height: visible ? 22 : 0
+                        height: 22
                         text: queueName || ""
                         onTriggered: { if (root._ctxItem) App.setDownloadQueue(root._ctxItem.id, queueId) }
                     }

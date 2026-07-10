@@ -39,6 +39,11 @@
 #define APP_SETTINGS(X) \
     /* ── Download engine ── */ \
     X(int, int, maxConcurrent, MaxConcurrent, 3, "maxConcurrent", N) \
+    X(int, int, maxConcurrentTorrents, MaxConcurrentTorrents, 5, "maxConcurrentTorrents", N) \
+    X(bool, bool, globalDownloadLimitEnabled, GlobalDownloadLimitEnabled, false, "globalDownloadLimitEnabled", N) \
+    X(int, int, globalDownloadLimitMBytes, GlobalDownloadLimitMBytes, 200, "globalDownloadLimitMBytes", N) \
+    X(int, int, globalDownloadLimitHours, GlobalDownloadLimitHours, 5, "globalDownloadLimitHours", N) \
+    X(bool, bool, globalDownloadLimitWarn, GlobalDownloadLimitWarn, true, "globalDownloadLimitWarn", N) \
     X(int, int, segmentsPerDownload, SegmentsPerDownload, 8, "segmentsPerDownload", N) \
     X(int, int, globalSpeedLimitKBps, GlobalSpeedLimitKBps, 0, "globalSpeedLimitKBps", N) \
     X(bool, bool, speedLimiterEnabled, SpeedLimiterEnabled, false, "speedLimiterEnabled", N) \

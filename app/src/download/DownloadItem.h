@@ -50,6 +50,7 @@ class DownloadItem : public QObject {
     Q_PROPERTY(int      speedLimitKBps READ speedLimitKBps WRITE setSpeedLimitKBps NOTIFY speedLimitKBpsChanged)
     Q_PROPERTY(QString  errorString    READ errorString    NOTIFY errorStringChanged)
     Q_PROPERTY(QString  queueId        READ queueId        WRITE setQueueId NOTIFY queueIdChanged)
+    Q_PROPERTY(int      queueOrder     READ queueOrder     WRITE setQueueOrder NOTIFY queueOrderChanged)
     Q_PROPERTY(QString  referrer       READ referrer       NOTIFY referrerChanged)
     Q_PROPERTY(QString  parentUrl      READ parentUrl      NOTIFY parentUrlChanged)
     Q_PROPERTY(QString  username       READ username       NOTIFY usernameChanged)
@@ -187,6 +188,9 @@ public:
     void setErrorString(const QString &v) { if (m_errorString != v) { m_errorString = v; emit errorStringChanged(); } }
     QString queueId() const { return m_queueId; }
     void setQueueId(const QString &v) { if (m_queueId != v) { m_queueId = v; emit queueIdChanged(); } }
+    // Position within its queue; -1 = not yet assigned (pre-queueOrder records)
+    int queueOrder() const { return m_queueOrder; }
+    void setQueueOrder(int v) { if (m_queueOrder != v) { m_queueOrder = v; emit queueOrderChanged(); } }
     void setCookies(const QString &v) { m_cookies = v; } // no signal — internal, not observed by QML
     QString cookies() const { return m_cookies; }
     void setReferrer(const QString &v)  { if (m_referrer  != v) { m_referrer  = v; emit referrerChanged();  } }
@@ -335,6 +339,7 @@ signals:
     void speedLimitKBpsChanged(int newLimit);
     void errorStringChanged();
     void queueIdChanged();
+    void queueOrderChanged();
     void referrerChanged();
     void parentUrlChanged();
     void usernameChanged();
@@ -380,6 +385,7 @@ private:
     int          m_speedLimitKBps{0};
     QString      m_errorString;
     QString      m_queueId;
+    int          m_queueOrder{-1};
     QString      m_cookies;
     QString      m_referrer;
     QString      m_parentUrl;

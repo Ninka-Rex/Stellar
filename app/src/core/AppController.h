@@ -415,6 +415,7 @@ public:
     Q_INVOKABLE QStringList queueNames() const;
     Q_INVOKABLE void moveUpInQueue(const QString &downloadId);
     Q_INVOKABLE void moveDownInQueue(const QString &downloadId);
+    Q_INVOKABLE void moveToQueuePosition(const QString &downloadId, int newIndex);
     Q_INVOKABLE QObject *findDuplicateUrl(const QString &url) const;
     Q_INVOKABLE QObject *findDownloadByInfoHash(const QString &infoHash) const;
     Q_INVOKABLE void     mergeTrackersInto(const QString &downloadId, const QStringList &trackers);
@@ -642,6 +643,7 @@ private:
     DownloadDatabase       *m_db{nullptr};
     class QueueDatabase    *m_queueDb{nullptr};
     class QueueModel       *m_queueModel{nullptr};
+    class QueueScheduler   *m_scheduler{nullptr};
     QTimer                 *m_saveTimer{nullptr};
     QTimer                 *m_torrentStatsFlushTimer{nullptr};
     QTimer                 *m_tooltipTimer{nullptr};
@@ -716,12 +718,24 @@ private:
     void scheduleSave(const QString &id);
     void flushDirty();
     void flushTorrentStats();
-    bool canStartDownloadItem(DownloadItem *item) const;
-    void scheduleNextTorrentInQueue(const QString &queueId);
+    // Empty queueId = the global (all-downloads) rolling window.
     qint64 queueTransferredBytesInWindow(const QString &queueId, int hours) const;
     void recordQueueTransferSample(const QString &queueId, qint64 bytes);
     void pruneQueueTransferHistory(const QString &queueId, int hours) const;
     void enforceQueueDownloadLimits(const QString &queueId);
+    // Starts a Queued/Paused yt-dlp item (extracted from resumeDownload so the
+    // scheduler can start queued yt-dlp items too).
+    void startYtdlpItem(DownloadItem *item);
+    // Retry-with-backoff for a failed item; returns true when a retry was
+    // scheduled (shared by the HTTP itemFailed handler and torrentErrored).
+    bool maybeScheduleRetry(DownloadItem *item);
+    // Renumbers queueOrder 0..n-1 for the queue, preserving current order
+    // (items with order -1 keep their list position).
+    void normalizeQueueOrders(const QString &queueId);
+    QList<DownloadItem *> itemsInQueueOrder(const QString &queueId) const;
+    // Post-queue actions (open file, shutdown, exit) on queue drain.
+    void handleQueueDrained(const QString &queueId);
+    void onSchedulerTick();
     void cleanupTemporaryDirectory();
     // Builds a time-of-day greeting (mixed with a random fun phrase) and shows it
     // transiently in the status bar; auto-hides after a few seconds.
@@ -739,6 +753,7 @@ private:
     // both the dispatch-complete handler and each torrentAddFinalized tick.
     void maybeCompleteRestore();
     void checkQueueSchedules();
+    QDateTime nextQueueRunTime(const class Queue *q, const QDateTime &now) const;
     int calculateMinutesUntilNextQueue() const;
     void scheduleGrabberResultsPersist();
     void persistActiveGrabberResults();
@@ -781,8 +796,19 @@ private:
     QTimer                 *m_schedulerTimer{nullptr};
     QTimer                 *m_grabberPersistTimer{nullptr};
     QMap<QString, QDateTime> m_lastQueueRun;
+    // Upper edge of the last schedule evaluation — schedules fire when their
+    // next-run time falls inside (m_lastScheduleTick, now].
+    QDateTime               m_lastScheduleTick;
     mutable QMap<QString, QList<QPair<QDateTime, qint64>>> m_queueTransferHistory;
-    QSet<QString>           m_queueLimitNotifications;
+    // Queues (empty id = global) currently stopped by a download limit; used
+    // both to de-dup the warning and to auto-resume when the window slides.
+    QSet<QString>           m_limitStoppedQueues;
+    // Items the GLOBAL limit enforcement paused — only these auto-resume, so a
+    // user's own pauses are never resurrected.
+    QSet<QString>           m_limitPausedItems;
+    // Set when the legacy "main-sync" queue was removed this launch; its items
+    // are reassigned to main-download once the download list has restored.
+    bool                    m_migratedMainSync{false};
     // CLI /q tracking: URLs that should quit the app when their download completes.
     QSet<QString>           m_cliQuitAfterUrls;
     QMap<QString, int>      m_queueRetryCounts;

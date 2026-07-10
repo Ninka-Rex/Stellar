@@ -41,7 +41,7 @@ Item {
 
         for (var row = 0; row < root.queueModel.rowCount(); ++row) {
             var queue = root.queueModel.queueAt(row)
-            if (!queue || queue.id === "download-limits")
+            if (!queue)
                 continue
             queues.push({
                 queueId: queue.id,

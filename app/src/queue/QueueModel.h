@@ -37,6 +37,8 @@ public:
     void addQueue(Queue *queue);
     void removeQueue(const QString &queueId);
     Q_INVOKABLE Queue *queueAt(int row) const;
+    Q_INVOKABLE QString queueIdAt(int row) const;
+    Q_INVOKABLE QString queueNameAt(int row) const;
     Queue *queueById(const QString &id) const;
     Queue *queueByName(const QString &name) const;
     int indexOfQueue(const QString &queueId) const;

@@ -35,10 +35,16 @@ public:
     void remove(const QString &queueId);
     void flush();
 
+    // Fields of the legacy "download-limits" pseudo-queue removed by
+    // loadAll(); empty if the file was already migrated.
+    QVariantMap takenGlobalLimits() const { return m_takenGlobalLimits; }
+
 private:
     void writeToDisk();
     QString m_filePath;
 
     // In-memory mirror of every queue, keyed by id
     QMap<QString, QVariantMap> m_entries;
+
+    QVariantMap m_takenGlobalLimits;
 };

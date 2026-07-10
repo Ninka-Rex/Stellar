@@ -25,14 +25,6 @@
 
 DownloadQueue::DownloadQueue(QObject *parent) : QObject(parent) {}
 
-void DownloadQueue::setMaxConcurrent(int v) {
-    if (m_maxConcurrent != v) {
-        m_maxConcurrent = v;
-        emit maxConcurrentChanged();
-        scheduleNext();
-    }
-}
-
 void DownloadQueue::setSegmentsPerDownload(int v) {
     if (m_segmentsPerDownload != v) {
         m_segmentsPerDownload = v;
@@ -132,10 +124,6 @@ int DownloadQueue::resolveConnLimitForUrl(const QUrl &url) const {
             return rule.conns;
     }
     return m_defaultConnLimit;
-}
-
-void DownloadQueue::setCanStartPredicate(std::function<bool(DownloadItem *)> predicate) {
-    m_canStartPredicate = std::move(predicate);
 }
 
 void DownloadQueue::setDownloadSpeedLimit(const QString &id, int kbps) {
@@ -276,87 +264,61 @@ void DownloadQueue::cancel(const QString &id) {
     }
 }
 
-void DownloadQueue::moveUp(const QString &id) {
-    for (int i = 1; i < m_items.size(); ++i) {
-        if (m_items[i]->id() == id) {
-            m_items.swapItemsAt(i, i - 1);
-            emit queueChanged();
-            return;
-        }
-    }
-}
-
-void DownloadQueue::moveDown(const QString &id) {
-    for (int i = 0; i < m_items.size() - 1; ++i) {
-        if (m_items[i]->id() == id) {
-            m_items.swapItemsAt(i, i + 1);
-            emit queueChanged();
-            return;
-        }
-    }
-}
-
 void DownloadQueue::scheduleNext() {
-    if (!m_nam) {
-        emit activeCountChanged();
-        return;
-    }
+    emit activeCountChanged();
+    emit scheduleRequested();
+}
 
-    int current = activeCount();
+void DownloadQueue::startItem(DownloadItem *item) {
+    if (!m_nam || !item) return;
+    if (item->statusEnum() != DownloadItem::Status::Queued) return;
+    // Alternate backends are managed outside DownloadQueue.
+    if (item->isYtdlp() || item->isTorrent()) return;
+    if (m_workers.contains(item->id())) return;
 
-    for (auto *item : m_items) {
-        if (current >= m_maxConcurrent) break;
-        if (item->statusEnum() != DownloadItem::Status::Queued) continue;
-        // Alternate backends are managed outside DownloadQueue.
-        if (item->isYtdlp() || item->isTorrent()) continue;
-        if (m_canStartPredicate && !m_canStartPredicate(item)) continue;
+    // Only DownloadQueue may call setStatus(Downloading)
+    item->setStatus(DownloadItem::Status::Downloading);
 
-        // Only DownloadQueue may call setStatus(Downloading)
-        item->setStatus(DownloadItem::Status::Downloading);
+    // Pick the engine by URL scheme: FTP/FTPS use the raw-socket FtpTransfer,
+    // everything else (http/https and schemeless) uses the QNAM-based engine.
+    const QString scheme = item->url().scheme().toLower();
+    // Effective connection count: per-server exception or the global default,
+    // resolved once here (never in the hot read/tick path).
+    const int conns = resolveConnLimitForUrl(item->url());
+    Transfer *worker =
+        (scheme == QLatin1String("ftp") || scheme == QLatin1String("ftps"))
+            ? static_cast<Transfer*>(new FtpTransfer(item, conns, this))
+            : static_cast<Transfer*>(new SegmentedTransfer(item, m_nam, conns, this));
+    // Use per-download limit if set, otherwise use global limit
+    int speedLimit = item->speedLimitKBps() > 0 ? item->speedLimitKBps() : m_speedLimitKBps;
+    worker->setSpeedLimitKBps(speedLimit);
+    worker->setCustomUserAgentEnabled(m_useCustomUserAgent);
+    worker->setCustomUserAgent(m_customUserAgent);
+    worker->setTemporaryDirectory(m_temporaryDirectory);
+    worker->setMaxConnectionsPerHost(conns);
+    m_workers[item->id()] = worker;
 
-        // Pick the engine by URL scheme: FTP/FTPS use the raw-socket FtpTransfer,
-        // everything else (http/https and schemeless) uses the QNAM-based engine.
-        const QString scheme = item->url().scheme().toLower();
-        // Effective connection count: per-server exception or the global default,
-        // resolved once here (never in the hot read/tick path).
-        const int conns = resolveConnLimitForUrl(item->url());
-        Transfer *worker =
-            (scheme == QLatin1String("ftp") || scheme == QLatin1String("ftps"))
-                ? static_cast<Transfer*>(new FtpTransfer(item, conns, this))
-                : static_cast<Transfer*>(new SegmentedTransfer(item, m_nam, conns, this));
-        // Use per-download limit if set, otherwise use global limit
-        int speedLimit = item->speedLimitKBps() > 0 ? item->speedLimitKBps() : m_speedLimitKBps;
-        worker->setSpeedLimitKBps(speedLimit);
-        worker->setCustomUserAgentEnabled(m_useCustomUserAgent);
-        worker->setCustomUserAgent(m_customUserAgent);
-        worker->setTemporaryDirectory(m_temporaryDirectory);
-        worker->setMaxConnectionsPerHost(conns);
-        m_workers[item->id()] = worker;
-
-        const QString id = item->id();
-        connect(worker, &Transfer::finished, this, [this, id]() {
-            onWorkerFinished(id);
-        });
-        connect(worker, &Transfer::failed, this, [this, id](const QString &reason) {
-            onWorkerFailed(id, reason);
-        });
-        connect(worker, &Transfer::fileDeletedWarning, this, [this, id]() {
-            auto *w = m_workers.take(id);
-            if (w) w->deleteLater();
-            for (auto *itm : m_items) {
-                if (itm->id() == id) {
-                    emit itemFileDeleted(itm);
-                    break;
-                }
+    const QString id = item->id();
+    connect(worker, &Transfer::finished, this, [this, id]() {
+        onWorkerFinished(id);
+    });
+    connect(worker, &Transfer::failed, this, [this, id](const QString &reason) {
+        onWorkerFailed(id, reason);
+    });
+    connect(worker, &Transfer::fileDeletedWarning, this, [this, id]() {
+        auto *w = m_workers.take(id);
+        if (w) w->deleteLater();
+        for (auto *itm : m_items) {
+            if (itm->id() == id) {
+                emit itemFileDeleted(itm);
+                break;
             }
-            emit activeCountChanged();
-            scheduleNext();
-        });
+        }
+        emit activeCountChanged();
+        scheduleNext();
+    });
 
-        worker->start();
-        ++current;
-    }
-
+    worker->start();
     emit activeCountChanged();
 }
 

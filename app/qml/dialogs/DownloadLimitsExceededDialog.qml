@@ -24,6 +24,8 @@ Window {
     id: root
 
     property string queueName:  ""
+    // True when the GLOBAL limit (Settings → Downloads) fired, not a queue's.
+    property bool   isGlobal:   false
     property int    usedMB:     0
     property int    limitMB:    0
     property int    limitHours: 1
@@ -108,15 +110,23 @@ Window {
             text: {
                 // Force re-evaluation when countdownDummy changes.
                 var _tick = countdownDummy.value
+                var period = root.limitHours === 1
+                           ? qsTr("1 hour")
+                           : qsTr("%1 hours").arg(root.limitHours)
+                if (root.isGlobal)
+                    return qsTr("From %1 to %2 you downloaded %3 MB. All downloads have been stopped because you exceeded the global download limit of %4 MB every %5.")
+                        .arg(root._fmt12(root.windowStart))
+                        .arg(root._fmt12(new Date()))
+                        .arg(root.usedMB)
+                        .arg(root.limitMB)
+                        .arg(period)
                 return qsTr("From %1 to %2 you downloaded %3 MB. All downloads in \"%4\" have been stopped because you exceeded the download limit of %5 MB every %6.")
                     .arg(root._fmt12(root.windowStart))
                     .arg(root._fmt12(new Date()))
                     .arg(root.usedMB)
                     .arg(root.queueName)
                     .arg(root.limitMB)
-                    .arg(root.limitHours === 1
-                         ? qsTr("1 hour")
-                         : qsTr("%1 hours").arg(root.limitHours))
+                    .arg(period)
             }
         }
 

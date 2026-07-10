@@ -59,6 +59,12 @@ void QueueModel::addQueue(Queue *queue)
     beginInsertRows({}, m_queues.size(), m_queues.size());
     m_queues.append(queue);
     endInsertRows();
+    // Keep NameRole bindings (sidebar rows, menus) live across renames.
+    connect(queue, &Queue::nameChanged, this, [this, queue] {
+        const int row = m_queues.indexOf(queue);
+        if (row >= 0)
+            emit dataChanged(index(row), index(row), {Qt::DisplayRole, NameRole});
+    });
 }
 
 void QueueModel::removeQueue(const QString &queueId)
@@ -77,6 +83,18 @@ Queue *QueueModel::queueAt(int row) const
 {
     if (row < 0 || row >= m_queues.size()) return nullptr;
     return m_queues.at(row);
+}
+
+QString QueueModel::queueIdAt(int row) const
+{
+    Queue *q = queueAt(row);
+    return q ? q->id() : QString();
+}
+
+QString QueueModel::queueNameAt(int row) const
+{
+    Queue *q = queueAt(row);
+    return q ? q->name() : QString();
 }
 
 Queue *QueueModel::queueById(const QString &id) const

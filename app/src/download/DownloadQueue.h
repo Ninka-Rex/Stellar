@@ -29,15 +29,11 @@ class Transfer;
 
 class DownloadQueue : public QObject {
     Q_OBJECT
-    Q_PROPERTY(int maxConcurrent READ maxConcurrent WRITE setMaxConcurrent NOTIFY maxConcurrentChanged)
     Q_PROPERTY(int activeCount   READ activeCount   NOTIFY activeCountChanged)
     Q_PROPERTY(int segmentsPerDownload READ segmentsPerDownload WRITE setSegmentsPerDownload NOTIFY segmentsPerDownloadChanged)
 
 public:
     explicit DownloadQueue(QObject *parent = nullptr);
-
-    int  maxConcurrent() const { return m_maxConcurrent; }
-    void setMaxConcurrent(int v);
 
     int  segmentsPerDownload() const { return m_segmentsPerDownload; }
     void setSegmentsPerDownload(int v);
@@ -55,7 +51,6 @@ public:
     // of connections for a download is resolved from its URL at start time.
     void setDefaultConnLimit(int v);
     void setPerServerConnLimits(const QString &json);
-    void setCanStartPredicate(std::function<bool(DownloadItem *)> predicate);
     Q_INVOKABLE void setDownloadSpeedLimit(const QString &id, int kbps);
     Q_INVOKABLE bool relocateDownload(const QString &id, const QString &newSavePath, const QString &newFilename);
 
@@ -66,9 +61,14 @@ public:
     Q_INVOKABLE void pause(const QString &id);
     Q_INVOKABLE void resume(const QString &id);
     Q_INVOKABLE void cancel(const QString &id);
-    Q_INVOKABLE void moveUp(const QString &id);
-    Q_INVOKABLE void moveDown(const QString &id);
-    Q_INVOKABLE void scheduleNext();  // Manually trigger scheduling (used by queue controller)
+    // Requests a scheduling pass from QueueScheduler (via scheduleRequested).
+    // Kept as a method so the many internal call sites after status changes
+    // and worker completions stay unchanged.
+    Q_INVOKABLE void scheduleNext();
+    // Spawns a transfer worker for a Queued HTTP/FTP item. Eligibility (caps,
+    // queue limits, ordering) is decided by QueueScheduler — this only manages
+    // the worker lifecycle.
+    void startItem(DownloadItem *item);
 
     const QList<DownloadItem *> &items() const { return m_items; }
     DownloadItem *itemById(const QString &id) const {
@@ -77,7 +77,7 @@ public:
     }
 
 signals:
-    void maxConcurrentChanged();
+    void scheduleRequested();
     void activeCountChanged();
     void segmentsPerDownloadChanged();
     void itemAdded(DownloadItem *item);
@@ -105,12 +105,10 @@ private:
     QList<DownloadItem *>             m_items;
     QHash<QString, Transfer*> m_workers;
     QNetworkAccessManager             *m_nam{nullptr};
-    int m_maxConcurrent{3};
     int m_segmentsPerDownload{8};
     int m_speedLimitKBps{0};
     bool m_useCustomUserAgent{false};
     QString m_customUserAgent;
     QString m_temporaryDirectory;
     int m_maxConnectionsPerHost{8};
-    std::function<bool(DownloadItem *)> m_canStartPredicate;
 };
