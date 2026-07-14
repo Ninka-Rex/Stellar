@@ -2410,9 +2410,9 @@ Window {
                                         var d = root.item.perTorrentDownLimitKBps | 0
                                         var u = root.item.perTorrentUpLimitKBps   | 0
                                         var parts = []
-                                        if (d > 0) parts.push("? " + d + " KB/s")
-                                        if (u > 0) parts.push("? " + u + " KB/s")
-                                        return parts.join("  ?  ")
+                                        if (d > 0) parts.push("↓ " + d + " KB/s")
+                                        if (u > 0) parts.push("↑ " + u + " KB/s")
+                                        return parts.join("   ")
                                     }
                                     color: "#d09040"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                     visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
