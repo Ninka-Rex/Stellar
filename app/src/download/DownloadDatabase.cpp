@@ -23,6 +23,7 @@
 #include <QJsonObject>
 #include <QSaveFile>
 #include <QDebug>
+#include <QtConcurrent>
 
 // Simple obfuscation (NOT encryption) for stored HTTP credentials.
 // Goal: prevent casual exposure via cloud backups, log grepping, or shoulder
@@ -62,6 +63,7 @@ DownloadDatabase::DownloadDatabase(QObject *parent) : QObject(parent) {
     m_writeTimer.setSingleShot(true);
     m_writeTimer.setInterval(150);   // coalesce rapid save/remove calls
     connect(&m_writeTimer, &QTimer::timeout, this, &DownloadDatabase::commitToDisk);
+    m_ioPool.setMaxThreadCount(1);
 }
 
 bool DownloadDatabase::open() {
@@ -284,7 +286,8 @@ void DownloadDatabase::remove(const QString &id) {
 
 void DownloadDatabase::flush() {
     m_writeTimer.stop();
-    commitToDisk();
+    commitToDisk();          // queue one final write with the current snapshot
+    m_ioPool.waitForDone();  // block until it (and any earlier queued write) lands
 }
 
 void DownloadDatabase::scheduleDiskWrite() {
@@ -295,15 +298,23 @@ void DownloadDatabase::scheduleDiskWrite() {
 }
 
 void DownloadDatabase::commitToDisk() {
-    QJsonArray arr;
-    for (auto it = m_entries.constBegin(); it != m_entries.constEnd(); ++it)
-        arr.append(QJsonObject::fromVariantMap(it.value()));
+    // Snapshot is a cheap copy-on-write copy; the worker below serializes and
+    // writes it without touching m_entries again, so main-thread mutations
+    // (save/remove) can safely detach the original while the write is in
+    // flight. Single-thread pool keeps writes in schedule order.
+    const QMap<QString, QVariantMap> entries = m_entries;
+    const QString path = m_filePath;
+    m_ioPool.start([entries, path]() {
+        QJsonArray arr;
+        for (auto it = entries.constBegin(); it != entries.constEnd(); ++it)
+            arr.append(QJsonObject::fromVariantMap(it.value()));
 
-    QSaveFile f(m_filePath);
-    if (!f.open(QIODevice::WriteOnly)) {
-        qWarning() << "DownloadDatabase: cannot write" << m_filePath;
-        return;
-    }
-    if (f.write(QJsonDocument(arr).toJson(QJsonDocument::Compact)) < 0 || !f.commit())
-        qWarning() << "DownloadDatabase: cannot commit" << m_filePath;
+        QSaveFile f(path);
+        if (!f.open(QIODevice::WriteOnly)) {
+            qWarning() << "DownloadDatabase: cannot write" << path;
+            return;
+        }
+        if (f.write(QJsonDocument(arr).toJson(QJsonDocument::Compact)) < 0 || !f.commit())
+            qWarning() << "DownloadDatabase: cannot commit" << path;
+    });
 }

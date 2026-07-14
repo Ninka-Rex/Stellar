@@ -29,6 +29,7 @@
 #include <QVariantList>
 #include <QDateTime>
 #include <QElapsedTimer>
+#include <QThreadPool>
 #include <QTranslator>
 #include <QAbstractNativeEventFilter>
 #include <functional>
@@ -665,6 +666,9 @@ private:
     QTimer                 *m_torrentStatsFlushTimer{nullptr};
     QTimer                 *m_tooltipTimer{nullptr};
     QTimer                 *m_speedTimer{nullptr};
+    // Serializes .resume blob writes off the main thread (one worker thread ⇒
+    // FIFO order ⇒ per-file "last write wins" without extra bookkeeping).
+    QThreadPool             m_resumeIoPool;
     qint64                  m_totalDownSpeed{0};
     qint64                  m_totalUpSpeed{0};
     int                     m_seedingCount{0};

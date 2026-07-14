@@ -20,6 +20,7 @@
 #include <QMap>
 #include <QString>
 #include <QTimer>
+#include <QThreadPool>
 #include "DownloadItem.h"
 
 // Shared XOR-obfuscation helpers — used by DownloadDatabase and AppSettings.
@@ -48,6 +49,10 @@ private:
 
     QString m_filePath;
     QTimer  m_writeTimer;
+    // Serializes the JSON serialize+write off the UI thread. Single worker
+    // thread so writes land in schedule order (no in-flight/overlap logic
+    // needed) — the debounce timer above already coalesces rapid bursts.
+    QThreadPool m_ioPool;
 
     // In-memory mirror of every item we're tracking, keyed by id.
     // Kept as QVariantMap so we don't need to find the live DownloadItem

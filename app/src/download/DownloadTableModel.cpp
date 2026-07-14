@@ -17,6 +17,7 @@
 #include "DownloadTableModel.h"
 #include <algorithm>
 #include <QSet>
+#include <QPair>
 
 // ─── Live re-sort invariant ───────────────────────────────────────────────────
 //
@@ -118,6 +119,7 @@ void DownloadTableModel::setExpanded(const QString &containerId, bool expanded) 
         return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
     });
 
+    invalidateUiSnapshot();
     beginResetModel();
     m_visible = rebuilt;
     rebuildVisibleSet();
@@ -210,6 +212,7 @@ void DownloadTableModel::addItem(DownloadItem *item) {
                 break;
             }
         }
+        invalidateUiSnapshot();
         beginInsertRows({}, insertPos, insertPos);
         m_visible.insert(insertPos, item);
         m_visibleSet.insert(item);
@@ -229,6 +232,7 @@ void DownloadTableModel::removeItem(const QString &id) {
             m_itemsById.remove(id);
             int visRow = m_visible.indexOf(item);
             if (visRow >= 0) {
+                invalidateUiSnapshot();
                 if (m_bulkRemoving) {
                     // Deferred — model will be reset in endBulkRemove()
                     m_visible.removeAt(visRow);
@@ -246,6 +250,7 @@ void DownloadTableModel::removeItem(const QString &id) {
 
 void DownloadTableModel::beginBulkRemove() {
     m_bulkRemoving = true;
+    invalidateUiSnapshot();
     beginResetModel();
 }
 
@@ -275,6 +280,7 @@ void DownloadTableModel::endBulkAdd() {
             return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
         });
     rebuildVisibleSet();
+    invalidateUiSnapshot();
 
     beginResetModel();
     endResetModel();
@@ -325,6 +331,7 @@ void DownloadTableModel::setFilterCategory(const QString &filter) {
 
     if (newVisible == m_visible) return;
 
+    invalidateUiSnapshot();
     beginResetModel();
     m_visible = newVisible;
     rebuildVisibleSet();
@@ -348,6 +355,7 @@ void DownloadTableModel::setFilterQueue(const QString &filter) {
 
     if (newVisible == m_visible) return;
 
+    invalidateUiSnapshot();
     beginResetModel();
     m_visible = newVisible;
     rebuildVisibleSet();
@@ -359,6 +367,7 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
     m_sortAscending = ascending;
     if (m_visible.isEmpty()) return;
 
+    invalidateUiSnapshot();
     // Sort the visible list with the hierarchy-aware comparator so channel
     // children stay grouped under their container regardless of sort column.
     // (treeCompare delegates per-column logic to compareItems — single source.)
@@ -434,6 +443,7 @@ void DownloadTableModel::rebuildVisible() {
     });
 
     if (m_visible != newVisible) {
+        invalidateUiSnapshot();
         m_visible = newVisible;
         rebuildVisibleSet();
         emit layoutChanged();
@@ -469,11 +479,13 @@ void DownloadTableModel::onItemChanged() {
                 if (m_visibleSet.contains(m_items[i])) ++insertPos;
             }
         }
+        invalidateUiSnapshot();
         beginInsertRows({}, insertPos, insertPos);
         m_visible.insert(insertPos, item);
         m_visibleSet.insert(item);
         endInsertRows();
     } else if (!shouldBeVisible && visRow >= 0) {
+        invalidateUiSnapshot();
         beginRemoveRows({}, visRow, visRow);
         m_visible.removeAt(visRow);
         m_visibleSet.remove(item);
@@ -492,6 +504,7 @@ void DownloadTableModel::onItemChanged() {
                 emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
                 return;
             }
+            invalidateUiSnapshot();
             int lo = 0;
             while (lo < before.size() && before[lo] == m_visible[lo]) ++lo;
             int hi = before.size() - 1;
@@ -520,6 +533,7 @@ void DownloadTableModel::onItemChanged() {
             // row count from the view and crash inside Qt. Bail to a safe dataChanged.
             if (beginMoveRows(QModelIndex(), visRow, visRow,
                               QModelIndex(), destinationChild)) {
+                invalidateUiSnapshot();
                 DownloadItem *moved = m_visible.takeAt(visRow);
                 m_visible.insert(targetRow, moved);
                 endMoveRows();
@@ -648,36 +662,87 @@ void DownloadTableModel::flushVolatileSort() {
     if (!m_uiActive)
         return;
 
-    // Only the rows in [lo, hi] changed identity; re-anchoring just those
-    // delegates (and only the ItemRole, the only role the delegate consumes)
-    // rebinds them to the correctly-positioned DownloadItem* without resetting
-    // the model or destroying delegates.
+    emitReanchorDiff(before);
+}
+
+void DownloadTableModel::emitReanchorDiff(const QList<DownloadItem *> &before) {
     int lo = 0;
     while (lo < before.size() && before[lo] == m_visible[lo])
         ++lo;
+    if (lo == before.size())
+        return;  // identical
     int hi = before.size() - 1;
     while (hi > lo && before[hi] == m_visible[hi])
         --hi;
-    emit dataChanged(index(lo, 0), index(hi, ColCount - 1), {ItemRole});
+
+    // Collect contiguous runs of changed rows inside [lo, hi]. Emitting one
+    // dataChanged per run (instead of one span covering all of [lo, hi]) means
+    // two distant rows swapping repaints just those 2 rows, not everything
+    // between them.
+    QList<QPair<int, int>> runs;
+    int i = lo;
+    while (i <= hi && runs.size() <= kMaxReanchorRuns) {
+        while (i <= hi && before[i] == m_visible[i])
+            ++i;
+        if (i > hi)
+            break;
+        const int start = i;
+        while (i <= hi && before[i] != m_visible[i])
+            ++i;
+        runs.append({start, i - 1});
+    }
+
+    if (runs.size() > kMaxReanchorRuns) {
+        // Too fragmented for per-run emits to pay off — one span is cheaper.
+        emit dataChanged(index(lo, 0), index(hi, ColCount - 1), {ItemRole});
+        return;
+    }
+    for (const auto &run : runs)
+        emit dataChanged(index(run.first, 0), index(run.second, ColCount - 1), {ItemRole});
+}
+
+void DownloadTableModel::invalidateUiSnapshot() {
+    if (!m_uiActive)
+        m_orderSnapshotValid = false;
 }
 
 void DownloadTableModel::setUiActive(bool active) {
     if (m_uiActive == active) return;
     m_uiActive = active;
-    if (!active || m_visible.isEmpty()) return;
+
+    if (!active) {
+        // Remember the order the view last actually saw, so reactivation can
+        // repaint only the rows that changed identity instead of the whole
+        // table. Cheap: QList<T*> is implicitly shared, so this is O(1) until
+        // either list is mutated.
+        m_orderAtDeactivate = m_visible;
+        m_orderSnapshotValid = true;
+        return;
+    }
+
+    if (m_visible.isEmpty()) return;
 
     // Becoming visible again: the visible list was kept sorted while hidden but
-    // no dataChanged was emitted. Re-sort once (volatile values changed under us)
-    // and repaint the whole table in a single pass.
+    // no dataChanged was emitted. Re-sort once (volatile values changed under us).
     std::stable_sort(m_visible.begin(), m_visible.end(),
         [this](DownloadItem *a, DownloadItem *b) {
             return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
         });
     m_volatileDirty.clear();
-    // Single catch-up repaint of the whole table — values genuinely went stale
-    // while hidden. Restrict to ItemRole (the only role the delegate reads) so
-    // re-binding each row's item pointer cascades through its property bindings.
-    emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1), {ItemRole});
+
+    // Cell values update through the delegates' direct bindings to DownloadItem
+    // properties regardless of visibility, so only rows whose IDENTITY (which
+    // item sits at which row) changed while hidden need re-anchoring. If the
+    // snapshot from setUiActive(false) is still valid and the same size (no
+    // insert/remove/reset happened while hidden — those invalidate it via
+    // invalidateUiSnapshot()), diff against it instead of repainting everything.
+    if (m_orderSnapshotValid && m_orderAtDeactivate.size() == m_visible.size()) {
+        emitReanchorDiff(m_orderAtDeactivate);
+    } else {
+        emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1), {ItemRole});
+    }
+    m_orderAtDeactivate.clear();
+    m_orderSnapshotValid = false;
 }
 
 int DownloadTableModel::statusSortKey(const QString &status) {

@@ -101,6 +101,20 @@ private:
     // True when the item is a child whose container is collapsed (so it must hide).
     bool hiddenByCollapse(DownloadItem *item) const;
     static int statusSortKey(const QString &status);
+    // Emits dataChanged({ItemRole}) for each contiguous run of rows whose item
+    // differs between `before` and the current m_visible, instead of one span
+    // covering everything between the first and last changed row. Two distant
+    // rows swapping (common with a volatile sort column) then repaints just
+    // those 2 rows rather than every row between them. Falls back to a single
+    // [lo, hi] span when the runs are too fragmented for that to pay off.
+    // Precondition: before.size() == m_visible.size().
+    void emitReanchorDiff(const QList<DownloadItem *> &before);
+    // Marks the pre-hide row order snapshot (see m_orderAtDeactivate) stale.
+    // Called at every structural change site so setUiActive(true) falls back
+    // to a full-table repaint instead of diffing against an order the view
+    // never actually saw (rows since inserted/removed/reset invalidate it).
+    void invalidateUiSnapshot();
+    static constexpr int kMaxReanchorRuns = 8;
 
     QList<DownloadItem *> m_items;
     QList<DownloadItem *> m_visible;
@@ -120,6 +134,13 @@ private:
     bool                  m_bulkAdding{false};
     bool                  m_uiActive{true};
     QSet<DownloadItem *>  m_volatileDirty;
+    // Snapshot of m_visible's order at the moment the window was hidden, used
+    // by setUiActive(true) to repaint only the rows whose identity actually
+    // changed while hidden instead of the whole table. Invalidated by any
+    // structural change (insert/remove/move/reset) while hidden, since those
+    // already update the view's row mapping directly.
+    QList<DownloadItem *> m_orderAtDeactivate;
+    bool                  m_orderSnapshotValid{false};
     static QString formatSize(qint64 bytes);
     static QString formatSpeed(qint64 bps);
 };

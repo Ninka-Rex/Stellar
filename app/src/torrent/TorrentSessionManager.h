@@ -297,6 +297,11 @@ private:
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;
     QHash<QString, QDateTime> m_lastResumeSaveRequest;
+    // Per-alert-tick budget for periodic save_resume_data requests, so a
+    // pile-up of overdue 60-second deadlines (e.g. many torrents added
+    // together) can never burst into one tick's worth of main-thread I/O.
+    int m_resumeSavesThisTick = 0;
+    static constexpr int kMaxResumeSavesPerTick = 4;
     QHash<QString, qint64> m_lastDhtReannounceMs;
     QHash<QString, QHash<QString, QDateTime>> m_trackerReannounceUntil;
     QHash<QString, QHash<QString, TrackerAlertSnapshot>> m_trackerAlertSnapshots;

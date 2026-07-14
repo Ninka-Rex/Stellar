@@ -1901,6 +1901,7 @@ void TorrentSessionManager::drainPendingFinalize() {
 void TorrentSessionManager::processAlerts() {
     if (!m_session)
         return;
+    m_resumeSavesThisTick = 0;
     std::vector<libtorrent::alert *> alerts;
     m_session->pop_alerts(&alerts);
     for (libtorrent::alert *alert : alerts) {
@@ -3017,6 +3018,13 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     const QDateTime lastSave = m_lastResumeSaveRequest.value(id);
     if ((!lastSave.isValid() || lastSave.secsTo(now) >= 60)
         && item->statusEnum() != DownloadItem::Status::Error) {
+        // Cap periodic resume-data requests per tick so a pile-up of overdue
+        // deadlines (e.g. 70 torrents added around the same time) can't burst
+        // into one tick's worth of save_resume_data_alert blobs. Skipped
+        // torrents are NOT stamped, so they retry (and drain) on the next tick.
+        if (m_resumeSavesThisTick >= kMaxResumeSavesPerTick)
+            return;
+        ++m_resumeSavesThisTick;
         handle.save_resume_data(libtorrent::torrent_handle::save_info_dict);
         m_lastResumeSaveRequest[id] = now;
     }

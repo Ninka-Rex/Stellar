@@ -46,13 +46,16 @@ Rectangle {
     readonly property string addedDateStr:   item ? item.addedDateStr   : ""
     readonly property string lastTryDateStr: item ? item.lastTryDateStr : ""
 
-    readonly property bool _sel: { table._selectionVersion; return table.isRowSelected(rowIndex) }
+    // Id-keyed (not _selectionVersion/rowIndex-keyed): reads table._selectedIds
+    // directly so re-anchoring (rowItem changing identity on a live re-sort) or
+    // a selection change both invalidate it correctly, without needing the
+    // model to broadcast a table-wide dataChanged whenever selection changes.
+    readonly property bool _sel: item ? !!table._selectedIds[item.id] : false
 
     ListView.onReused: rowMouse.dragActive = false
 
     color: {
-        table._selectionVersion
-        if (table.isRowSelected(rowIndex)) return ColorPalette.selectionBg
+        if (_sel)                          return ColorPalette.selectionBg
         if (rowMouse.containsMouse)        return ColorPalette.hoverBg
         return rowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
     }

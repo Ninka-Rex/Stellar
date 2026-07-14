@@ -1359,6 +1359,8 @@ AppController::~AppController() {
         const qint64 secs = m_sessionTimer.elapsed() / 1000;
         m_settings->accumulateUptimeSecs(secs);
     }
+    // Let any in-flight .resume blob writes land before the process exits.
+    m_resumeIoPool.waitForDone();
     // Flush any pending debounced DB write before the object is destroyed.
     if (m_db) m_db->flush();
 #ifdef Q_OS_WIN
@@ -1495,6 +1497,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // so "Stop All" never grayed out when all downloads finished.
     connect(m_queue, &DownloadQueue::activeCountChanged,
             this,    &AppController::activeDownloadsChanged);
+
+    // .resume blob writes go through a single worker thread: one thread keeps
+    // writes for the same file in FIFO/schedule order (no extra locking needed
+    // for "last write wins"), while still getting them off the UI thread.
+    m_resumeIoPool.setMaxThreadCount(1);
 
     // Update aggregate speeds and seeding count at 1-second cadence so the
     // status bar feels live. Kept separate from the tooltip timer because the
@@ -6622,7 +6629,7 @@ void AppController::watchItem(DownloadItem *item) {
     // flushDirty — both of those call TorrentSessionManager::saveResumeData()
     // which would request a new blob from libtorrent, causing a feedback loop
     // that writes to disk every second.
-    connect(item, &DownloadItem::torrentResumeDataChanged, this, [item]() {
+    connect(item, &DownloadItem::torrentResumeDataChanged, this, [this, item]() {
         if (!item)
             return;
         const QByteArray blob = item->torrentResumeData();
@@ -6631,11 +6638,22 @@ void AppController::watchItem(DownloadItem *item) {
         // Resume blob is now stored as raw bytes — see the matching writer in
         // TorrentSessionManager::processAlerts(save_resume_data_alert) where
         // the redundant Base64 round-trip was removed.
-        QSaveFile f(StellarPaths::resumeFile(item->id()));
-        if (f.open(QIODevice::WriteOnly)) {
-            f.write(blob);
-            f.commit();
-        }
+        //
+        // The actual file write happens on m_resumeIoPool (single worker
+        // thread) so a burst of blobs from many seeding torrents never stalls
+        // the UI thread. The path/blob are copied onto the worker's stack;
+        // QByteArray is implicitly shared so the copy here is O(1). A queued
+        // write racing DownloadDatabase::remove()'s file deletion for the
+        // same id is a benign, harmless leftover file — restoreTorrent() only
+        // reads .resume files for ids still present in downloads.json.
+        const QString path = StellarPaths::resumeFile(item->id());
+        m_resumeIoPool.start([path, blob]() {
+            QSaveFile f(path);
+            if (f.open(QIODevice::WriteOnly)) {
+                f.write(blob);
+                f.commit();
+            }
+        });
     });
 
     // torrentStatsChanged fires every libtorrent alert tick (~1 s) for active

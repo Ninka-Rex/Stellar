@@ -473,19 +473,6 @@ Rectangle {
         CtxMenuItem { text: qsTr("Delete");     iconSrc: "delete.svg"; onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
     }
 
-    Connections {
-        target: App.downloadModel
-        function onDataChanged(topLeft, bottomRight, roles) {
-            const lo = topLeft.row, hi = bottomRight.row
-            for (var r = lo; r <= hi; r++) {
-                if (root.isRowSelected(r)) {
-                    root._selectionVersion++
-                    return
-                }
-            }
-        }
-    }
-
     // ── Column definitions ───────────────────────────────────────────────
     readonly property var _defaultColumnDefs: [
         { title: "Q",              key: "queue",      widthPx: 31,  visible: true  },
