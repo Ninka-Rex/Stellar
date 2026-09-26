@@ -231,7 +231,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/rss.svg")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/toolbar/rss.svg")
         _refreshCategoryModel()
         _refreshQueueModel()
         load()

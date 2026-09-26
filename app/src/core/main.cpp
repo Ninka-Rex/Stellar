@@ -915,7 +915,7 @@ int main(int argc, char *argv[])
     // desktopFileName lets KDE/Wayland compositors resolve the window icon from
     // the installed .desktop file instead of relying on the in-process icon.
     app.setDesktopFileName(QStringLiteral("io.github.stellar.Stellar"));
-    const QIcon appIcon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png"));
+    const QIcon appIcon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/app/stellar.png"));
     app.setWindowIcon(appIcon);
 
     // Qt writes several caches under QStandardPaths::CacheLocation, which

@@ -658,7 +658,7 @@ Window {
         if (!name)
             return ""
         if (name.indexOf("stellar") !== -1)
-            return "../icons/milky-way.png"
+            return "../icons/app/stellar.png"
         if (name.indexOf("qbittorrent") !== -1 || name.indexOf("qbittorrent enhanced") !== -1)
             return "../icons/torrent-client-logos/qbittorrent.png"
         if (name.indexOf("transmission") !== -1)
@@ -3104,7 +3104,7 @@ Window {
                                     Image {
                                         Layout.preferredWidth: 16
                                         Layout.preferredHeight: 16
-                                        source: "../icons/rename.svg"
+                                        source: "../icons/actions/edit-rename.svg"
                                         sourceSize: Qt.size(16, 16)
                                         fillMode: Image.PreserveAspectFit
                                         asynchronous: true
@@ -3230,7 +3230,7 @@ Window {
                             MenuSeparator {}
                             FileCtxMenuItem {
                                 text: qsTr("Rename...")
-                                iconSrc: "rename.svg"
+                                iconSrc: "actions/edit-rename.svg"
                                 onTriggered: renameDialog.openForRename(fileCtxMenu._path, fileCtxMenu._name, fileCtxMenu._fileIndex, fileCtxMenu._isFolder)
                             }
                         }
@@ -3738,7 +3738,7 @@ Window {
                                                     Image {
                                                         id: mapImage
                                                         anchors.fill: parent
-                                                        source: ColorPalette.dark ? "../icons/world-map.svg" : "../icons/world-map-light.svg"
+                                                        source: ColorPalette.dark ? "../icons/images/world-map-dark.svg" : "../icons/images/world-map-light.svg"
                                                         fillMode: Image.Stretch
                                                         smooth: true
                                                         sourceSize.width: 1200
@@ -4318,7 +4318,7 @@ Window {
                                         Image {
                                             id: worldMapImage
                                             anchors.fill: parent
-                                            source: ColorPalette.dark ? "../icons/world-map.svg" : "../icons/world-map-light.svg"
+                                            source: ColorPalette.dark ? "../icons/images/world-map-dark.svg" : "../icons/images/world-map-light.svg"
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true
                                             sourceSize.width: 2400
@@ -4819,7 +4819,7 @@ Window {
                                                 // tooltip matches what the swarm actually sees.
                                                 visible: !!root.torrentPeerModel && root.torrentPeerModel.localClientName.length > 0
                                                 Image {
-                                                    source: "../icons/milky-way.png"
+                                                    source: "../icons/app/stellar.png"
                                                     width: 14; height: 14
                                                     fillMode: Image.PreserveAspectFit
                                                     smooth: true

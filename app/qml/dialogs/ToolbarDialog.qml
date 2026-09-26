@@ -56,19 +56,19 @@ Window {
 
     function _defaultDefs() {
         return [
-            {key:"add",          label: qsTr("Add URL"),        iconSrc:"../icons/link.svg",           enabled:true},
-            {key:"resume",       label: qsTr("Resume"),         iconSrc:"../icons/resume.svg",         enabled:true},
-            {key:"stop",         label: qsTr("Stop"),           iconSrc:"../icons/pause.svg",          enabled:true},
-            {key:"stop_all",     label: qsTr("Stop All"),       iconSrc:"../icons/stop_all.svg",       enabled:true},
-            {key:"delete",       label: qsTr("Delete"),         iconSrc:"../icons/wastebasket.svg",    enabled:true},
-            {key:"delete_done",  label: qsTr("Delete Done"),    iconSrc:"../icons/delete_done.svg",    enabled:true},
-            {key:"options",      label: qsTr("Options"),        iconSrc:"../icons/tools.svg",          enabled:true},
-            {key:"scheduler",    label: qsTr("Scheduler"),      iconSrc:"../icons/scheduler.svg",      enabled:true},
-            {key:"start_queue",  label: qsTr("Start Queue"),    iconSrc:"../icons/start_queue.svg",    enabled:true},
-            {key:"stop_queue",   label: qsTr("Stop Queue"),     iconSrc:"../icons/stop_queue.svg",     enabled:true},
-            {key:"grabber",      label: qsTr("Grabber"),        iconSrc:"../icons/grabber.svg",        enabled:true},
-            {key:"search_engine",label: qsTr("Search Engine"),  iconSrc:"../icons/magnifying_glass.svg",enabled:true},
-            {key:"rss",          label: qsTr("RSS"),            iconSrc:"../icons/rss.svg",            enabled:true}
+            {key:"add",          label: qsTr("Add URL"),        iconSrc:"../icons/toolbar/add-url.svg",           enabled:true},
+            {key:"resume",       label: qsTr("Resume"),         iconSrc:"../icons/toolbar/resume.svg",         enabled:true},
+            {key:"stop",         label: qsTr("Stop"),           iconSrc:"../icons/toolbar/stop.svg",          enabled:true},
+            {key:"stop_all",     label: qsTr("Stop All"),       iconSrc:"../icons/toolbar/stop-all.svg",       enabled:true},
+            {key:"delete",       label: qsTr("Delete"),         iconSrc:"../icons/toolbar/delete.svg",    enabled:true},
+            {key:"delete_done",  label: qsTr("Delete Done"),    iconSrc:"../icons/toolbar/delete-completed.svg",    enabled:true},
+            {key:"options",      label: qsTr("Options"),        iconSrc:"../icons/toolbar/options.svg",          enabled:true},
+            {key:"scheduler",    label: qsTr("Scheduler"),      iconSrc:"../icons/toolbar/scheduler.svg",      enabled:true},
+            {key:"start_queue",  label: qsTr("Start Queue"),    iconSrc:"../icons/toolbar/start-queue.svg",    enabled:true},
+            {key:"stop_queue",   label: qsTr("Stop Queue"),     iconSrc:"../icons/toolbar/stop-queue.svg",     enabled:true},
+            {key:"grabber",      label: qsTr("Grabber"),        iconSrc:"../icons/toolbar/grabber.svg",        enabled:true},
+            {key:"search_engine",label: qsTr("Search Engine"),  iconSrc:"../icons/toolbar/search-engine.svg",enabled:true},
+            {key:"rss",          label: qsTr("RSS"),            iconSrc:"../icons/toolbar/rss.svg",            enabled:true}
         ]
     }
 

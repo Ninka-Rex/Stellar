@@ -53,7 +53,7 @@ static QString psQuoted(const QString &value)
 }
 
 static QIcon createDownloadsTrayIcon() {
-    const QIcon icon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/arrow_down.svg"));
+    const QIcon icon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/actions/go-down.svg"));
     if (!icon.isNull())
         return icon;
     // Fallback: simple down-arrow drawn pixmap
@@ -75,14 +75,14 @@ static QIcon trayIconForStyle(int style) {
 #if defined(Q_OS_LINUX)
     // Linux panels scale the pixmap to fill the whole tray slot, so the
     // edge-to-edge app icon looks oversized next to other tray icons. The
-    // tray/ set is padded to the usual template geometry (frame inset 2px,
+    // app/tray/ set is padded to the usual template geometry (frame inset 2px,
     // ~3.3px corner radius at 22px) and comes in 1x/2x/3x so the panel
     // downsamples from a close size.
     QString base;
     switch (style) {
-    case 1:  base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/tray/tray-milky-way-white"); break;
-    case 2:  base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/tray/tray-milky-way-black"); break;
-    default: base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/tray/tray-milky-way");       break;
+    case 1:  base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/app/tray/stellar-tray-white"); break;
+    case 2:  base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/app/tray/stellar-tray-black"); break;
+    default: base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/app/tray/stellar-tray");       break;
     }
     QIcon icon;
     icon.addFile(base + QStringLiteral(".png"),    QSize(22, 22));
@@ -91,9 +91,9 @@ static QIcon trayIconForStyle(int style) {
 #else
     QString path;
     switch (style) {
-    case 1:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way-white.png"); break;
-    case 2:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way-black.png"); break;
-    default: path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png");       break;
+    case 1:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/app/stellar-mono-white.png"); break;
+    case 2:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/app/stellar-mono-black.png"); break;
+    default: path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/app/stellar.png");       break;
     }
     const QIcon icon(path);
 #endif
@@ -153,24 +153,24 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     openAction->setFont([&]{ QFont f; f.setBold(true); return f; }());
     connect(openAction, &QAction::triggered, this, &SystemTrayIcon::showRequested);
 
-    auto *addUrlAction = m_menu->addAction(trayIcon("add_url.svg"), tr("Add URL…"), this, &SystemTrayIcon::addUrlRequested);
+    auto *addUrlAction = m_menu->addAction(trayIcon("toolbar/add-url.svg"), tr("Add URL…"), this, &SystemTrayIcon::addUrlRequested);
     Q_UNUSED(addUrlAction)
     m_menu->addSeparator();
-    m_menu->addAction(trayIcon("globe.svg"),       tr("GitHub"),        this, &SystemTrayIcon::githubRequested);
-    m_menu->addAction(trayIcon("about.svg"),        tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
+    m_menu->addAction(trayIcon("places/globe.svg"),       tr("GitHub"),        this, &SystemTrayIcon::githubRequested);
+    m_menu->addAction(trayIcon("actions/help-about.svg"),        tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
     m_menu->addSeparator();
 
-    m_speedLimiterAction = m_menu->addAction(trayIcon("snail.svg"), tr("Speed Limiter"), this, [this] {
+    m_speedLimiterAction = m_menu->addAction(trayIcon("actions/speed-limiter.svg"), tr("Speed Limiter"), this, [this] {
         if (m_speedLimiterAction->isChecked())
             emit disableSpeedLimiterRequested();
         else
             emit enableSpeedLimiterRequested();
     });
     m_speedLimiterAction->setCheckable(true);
-    m_menu->addAction(trayIcon("gear.svg"), tr("Speed Limiter Settings…"), this, &SystemTrayIcon::speedLimiterSettingsRequested);
+    m_menu->addAction(trayIcon("actions/preferences-system.svg"), tr("Speed Limiter Settings…"), this, &SystemTrayIcon::speedLimiterSettingsRequested);
     m_menu->addSeparator();
 
-    m_pauseSessionAction = m_menu->addAction(trayIcon("pause.svg"), tr("Pause Session"), this, [this] {
+    m_pauseSessionAction = m_menu->addAction(trayIcon("actions/media-playback-pause.svg"), tr("Pause Session"), this, [this] {
         if (m_pauseSessionAction->isChecked())
             emit pauseSessionRequested();
         else
@@ -179,7 +179,7 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     m_pauseSessionAction->setCheckable(true);
 
     m_menu->addSeparator();
-    m_menu->addAction(trayIcon("exit.svg"), tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
+    m_menu->addAction(trayIcon("actions/application-exit.svg"), tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
 
     m_tray->setContextMenu(m_menu);
 #endif

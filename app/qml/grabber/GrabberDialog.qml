@@ -467,7 +467,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/grabber.svg")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/toolbar/grabber.svg")
         refreshRecentProjects()
         loadProject(root.projectId.length > 0
             ? App.grabberProjectData(root.projectId)
@@ -663,10 +663,10 @@ Window {
                     title: qsTr("Project")
                     delegate: CompactMenuItem
                     implicitWidth: 240; padding: 0
-                    CompactMenuItem { text: qsTr("New");  icon.source: "../icons/new_file.svg"; onTriggered: { root.projectId = ""; loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true }) } }
-                    CompactMenuItem { text: qsTr("Load"); icon.source: "../icons/folder.svg"; onTriggered: { projectPickerDialog.selectedProjectId = ""; projectPickerDialog.show(); projectPickerDialog.raise() } }
-                    CompactMenuItem { text: qsTr("Save"); icon.source: "../icons/floppy_disk.svg"; onTriggered: saveProjectOnly() }
-                    CompactMenuItem { text: qsTr("Save current settings as a template"); icon.source: "../icons/copy.svg"; onTriggered: saveTemplatePopup.open() }
+                    CompactMenuItem { text: qsTr("New");  icon.source: "../icons/actions/document-new.svg"; onTriggered: { root.projectId = ""; loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true }) } }
+                    CompactMenuItem { text: qsTr("Load"); icon.source: "../icons/places/folder.svg"; onTriggered: { projectPickerDialog.selectedProjectId = ""; projectPickerDialog.show(); projectPickerDialog.raise() } }
+                    CompactMenuItem { text: qsTr("Save"); icon.source: "../icons/actions/document-save.svg"; onTriggered: saveProjectOnly() }
+                    CompactMenuItem { text: qsTr("Save current settings as a template"); icon.source: "../icons/actions/edit-copy.svg"; onTriggered: saveTemplatePopup.open() }
                     MenuSeparator {}
                     CompactMenuItem {
                         id: _recentProjectsItem
@@ -700,13 +700,13 @@ Window {
                         Timer { id: _recentProjectsCloseTimer; interval: 300; onTriggered: { if (!_recentProjectsMenu.activeFocus) _recentProjectsMenu.close() } }
                     }
                     MenuSeparator {}
-                    CompactMenuItem { text: qsTr("Close"); icon.source: "../icons/exit.svg"; onTriggered: root.close() }
+                    CompactMenuItem { text: qsTr("Close"); icon.source: "../icons/actions/application-exit.svg"; onTriggered: root.close() }
                 }
                 Menu {
                     title: qsTr("Options")
                     delegate: CompactMenuItem
                     implicitWidth: 200; padding: 0
-                    CompactMenuItem { text: qsTr("Grabber settings"); icon.source: "../icons/gear.svg"; onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() } }
+                    CompactMenuItem { text: qsTr("Grabber settings"); icon.source: "../icons/actions/preferences-system.svg"; onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() } }
                 }
 
             }
@@ -728,7 +728,7 @@ Window {
                     spacing: 10
 
                     Image {
-                        source: "../icons/grabber.svg"
+                        source: "../icons/toolbar/grabber.svg"
                         width: 20; height: 20
                         sourceSize: Qt.size(20, 20)
                         fillMode: Image.PreserveAspectFit

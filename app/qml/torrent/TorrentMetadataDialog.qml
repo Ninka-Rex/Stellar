@@ -274,7 +274,7 @@ Window {
 
     onVisibleChanged: {
         if (visible) {
-            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")
+            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/app/stellar.png")
             root.metadataArrived = !!(root.item && root.item.torrentHasMetadata)
             _applyMetaSize()
             if (item) {
@@ -419,10 +419,10 @@ Window {
                     Image {
                         Layout.preferredWidth: 22; Layout.preferredHeight: 22
                         source: {
-                            if (!root.item) return "../icons/magnet.svg"
+                            if (!root.item) return "../icons/actions/copy-magnet-link.svg"
                             var p = String(root.item.savePath || "").replace(/\\/g, "/")
                             var f = String(root.item.filename || "")
-                            return (p && f) ? ("image://fileicon/" + p + "/" + f) : "../icons/magnet.svg"
+                            return (p && f) ? ("image://fileicon/" + p + "/" + f) : "../icons/actions/copy-magnet-link.svg"
                         }
                         sourceSize: Qt.size(22, 22)
                         fillMode: Image.PreserveAspectFit
@@ -1192,7 +1192,7 @@ Window {
                         Image {
                             Layout.preferredWidth: 16
                             Layout.preferredHeight: 16
-                            source: "../icons/rename.svg"
+                            source: "../icons/actions/edit-rename.svg"
                             sourceSize: Qt.size(16, 16)
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
@@ -1309,7 +1309,7 @@ Window {
                 MenuSeparator {}
                 MetaCtxMenuItem {
                     text: qsTr("Rename...")
-                    iconSrc: "rename.svg"
+                    iconSrc: "actions/edit-rename.svg"
                     onTriggered: metaRenameDialog.openForRename(metaFileCtxMenu._path, metaFileCtxMenu._name, metaFileCtxMenu._fileIndex, metaFileCtxMenu._isFolder)
                 }
             }

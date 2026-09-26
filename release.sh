@@ -597,9 +597,9 @@ stage_app() {
         "$pkg_root/usr/share/applications/io.github.stellar.Stellar.desktop"
     cp "$ROOT/packaging/linux/io.github.stellar.Stellar.metainfo.xml" \
         "$pkg_root/usr/share/metainfo/io.github.stellar.Stellar.metainfo.xml"
-    cp "$ROOT/app/qml/icons/milky-way.png" \
+    cp "$ROOT/app/qml/icons/app/stellar.png" \
         "$pkg_root/usr/share/icons/hicolor/256x256/apps/io.github.stellar.Stellar.png"
-    cp "$ROOT/app/qml/icons/milky-way.png" \
+    cp "$ROOT/app/qml/icons/app/stellar.png" \
         "$pkg_root/usr/share/icons/hicolor/128x128/apps/io.github.stellar.Stellar.png"
 
     write_launcher "$pkg_root/usr/bin/stellar" "/opt/stellar"

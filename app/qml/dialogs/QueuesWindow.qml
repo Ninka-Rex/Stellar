@@ -152,7 +152,7 @@ Window {
                                 fillMode: Image.PreserveAspectFit
                                 anchors.verticalCenter: parent.verticalCenter
                                 source: model.queueId === "main-download"
-                                      ? "../icons/main_queue.svg" : "../icons/custom_queue.svg"
+                                      ? "../icons/queues/queue-main.svg" : "../icons/queues/queue-custom.svg"
                             }
 
                             Text {
@@ -941,24 +941,24 @@ Window {
         topPadding: 0; bottomPadding: 0
         CtxMenuItem {
             text: qsTr("Start queue")
-            iconSrc: "start_queue.svg"
+            iconSrc: "toolbar/start-queue.svg"
             onTriggered: if (root.selectedQueue) App.startQueue(root.selectedQueue.id)
         }
         CtxMenuItem {
             text: qsTr("Stop queue")
-            iconSrc: "stop_queue.svg"
+            iconSrc: "toolbar/stop-queue.svg"
             onTriggered: if (root.selectedQueue) App.stopQueue(root.selectedQueue.id)
         }
         MenuSeparator {}
         CtxMenuItem {
             text: qsTr("Rename")
-            iconSrc: "rename.svg"
+            iconSrc: "actions/edit-rename.svg"
             onTriggered: { nameField.forceActiveFocus(); nameField.selectAll() }
         }
         MenuSeparator {}
         CtxMenuItem {
             text: qsTr("Delete queue")
-            iconSrc: "delete.svg"
+            iconSrc: "actions/edit-delete.svg"
             enabled: root.selectedQueue !== null && root.selectedQueue.id !== "main-download"
             onTriggered: {
                 if (!root.selectedQueue) return
@@ -974,28 +974,28 @@ Window {
         topPadding: 0; bottomPadding: 0
         CtxMenuItem {
             text: qsTr("Properties")
-            iconSrc: "properties.svg"
+            iconSrc: "actions/document-properties.svg"
             onTriggered: { if (root._fileCtxItem) root.openPropertiesRequested(root._fileCtxItem) }
         }
         CtxMenuItem {
             text: qsTr("Open File")
-            iconSrc: "page.svg"
+            iconSrc: "actions/document-open.svg"
             onTriggered: { if (root._fileCtxItem) App.openFile(root._fileCtxItem.id) }
         }
         CtxMenuItem {
             text: qsTr("Open Folder")
-            iconSrc: "folder_view.svg"
+            iconSrc: "actions/folder-open.svg"
             onTriggered: { if (root._fileCtxItem) App.openFolderSelectFile(root._fileCtxItem.id) }
         }
         MenuSeparator {}
         CtxMenuItem {
             text: qsTr("Copy Filename")
-            iconSrc: "copy.svg"
+            iconSrc: "actions/edit-copy.svg"
             onTriggered: { if (root._fileCtxItem) App.copyDownloadFilename(root._fileCtxItem.id) }
         }
         CtxMenuItem {
             text: root._fileCtxItem && root._fileCtxItem.isTorrent ? qsTr("Copy Magnet Link") : qsTr("Copy URL")
-            iconSrc: root._fileCtxItem && root._fileCtxItem.isTorrent ? "magnet.svg" : "link.svg"
+            iconSrc: root._fileCtxItem && root._fileCtxItem.isTorrent ? "actions/copy-magnet-link.svg" : "actions/copy-link.svg"
             onTriggered: {
                 if (!root._fileCtxItem) return
                 var link = App.downloadShareLink(root._fileCtxItem.id)
@@ -1005,12 +1005,12 @@ Window {
         MenuSeparator {}
         CtxMenuItem {
             text: qsTr("Resume")
-            iconSrc: "resume.svg"
+            iconSrc: "actions/media-playback-start.svg"
             onTriggered: { if (root._fileCtxItem) App.resumeDownload(root._fileCtxItem.id) }
         }
         CtxMenuItem {
             text: qsTr("Stop")
-            iconSrc: "pause.svg"
+            iconSrc: "actions/media-playback-pause.svg"
             onTriggered: { if (root._fileCtxItem) App.pauseDownload(root._fileCtxItem.id) }
         }
         MenuSeparator {}
@@ -1021,12 +1021,12 @@ Window {
         MenuSeparator {}
         CtxMenuItem {
             text: qsTr("Redownload")
-            iconSrc: "update.svg"
+            iconSrc: "actions/download-redo.svg"
             onTriggered: { if (root._fileCtxItem) App.redownload(root._fileCtxItem.id) }
         }
         CtxMenuItem {
             text: qsTr("Delete")
-            iconSrc: "delete.svg"
+            iconSrc: "actions/edit-delete.svg"
             onTriggered: {
                 if (!root._fileCtxItem) return
                 deleteDialog.downloadId = root._fileCtxItem.id

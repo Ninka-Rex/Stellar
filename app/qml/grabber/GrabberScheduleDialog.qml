@@ -290,7 +290,7 @@ Window {
         Row {
             spacing: 10
             Image {
-                source: "../icons/milky-way.png"
+                source: "../icons/app/stellar.png"
                 width: 40; height: 40
                 sourceSize.width: 64; sourceSize.height: 64
                 fillMode: Image.PreserveAspectFit

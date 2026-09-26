@@ -394,31 +394,31 @@ Rectangle {
         topPadding: 0; bottomPadding: 0
         CtxMenuItem {
             text: qsTr("Properties")
-            iconSrc: "properties.svg"
+            iconSrc: "actions/document-properties.svg"
             onTriggered: { if (root._ctxItem) root.openPropertiesRequested(root._ctxItem) }
         }
-        CtxMenuItem { text: qsTr("Open File");   iconSrc: "page.svg";        onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
-        CtxMenuItem { text: qsTr("Open Folder"); iconSrc: "folder_view.svg"; onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Open File");   iconSrc: "actions/document-open.svg";        onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Open Folder"); iconSrc: "actions/folder-open.svg"; onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
         MenuSeparator {}
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: CtxMenuItem {
                 text: qsTr("Rename...")
-                iconSrc: "rename.svg"
+                iconSrc: "actions/edit-rename.svg"
                 onTriggered: { if (root._ctxItem) renameTorrentRootDialog.openFor(root._ctxItem) }
             }
         }
-        CtxMenuItem { text: qsTr("Copy Filename"); iconSrc: "copy.svg";   onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Copy Filename"); iconSrc: "actions/edit-copy.svg";   onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
         CtxMenuItem {
             text: root._ctxItem && root._ctxItem.isTorrent ? qsTr("Copy Magnet Link") : qsTr("Copy URL")
-            iconSrc: root._ctxItem && root._ctxItem.isTorrent ? "magnet.svg" : "link.svg"
+            iconSrc: root._ctxItem && root._ctxItem.isTorrent ? "actions/copy-magnet-link.svg" : "actions/copy-link.svg"
             onTriggered: root.copySelectedShareLinks()
         }
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: CtxMenuItem {
                 text: qsTr("Export .torrent...")
-                iconSrc: "export_torrent.svg"
+                iconSrc: "actions/document-export-torrent.svg"
                 enabled: root.anyTorrentSelected
                 onTriggered: root.requestExportSelectedTorrents()
             }
@@ -427,14 +427,14 @@ Rectangle {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: CtxMenuItem {
                 text: qsTr("Verify Local Data")
-                iconSrc: "torrent-categories/checking.svg"
+                iconSrc: "actions/torrent-verify.svg"
                 enabled: root._ctxItem && root._ctxItem.status !== "Checking" && root._ctxItem.status !== "Moving"
                 onTriggered: { if (root._ctxItem) App.forceRecheckTorrent(root._ctxItem.id) }
             }
         }
         MenuSeparator {}
-        CtxMenuItem { text: qsTr("Resume"); iconSrc: "resume.svg"; onTriggered: root.resumeSelected() }
-        CtxMenuItem { text: qsTr("Stop");   iconSrc: "pause.svg";  onTriggered: root.stopSelected()   }
+        CtxMenuItem { text: qsTr("Resume"); iconSrc: "actions/media-playback-start.svg"; onTriggered: root.resumeSelected() }
+        CtxMenuItem { text: qsTr("Stop");   iconSrc: "actions/media-playback-pause.svg";  onTriggered: root.stopSelected()   }
         MenuSeparator {}
         CtxMenuItem {
             id: _moveToQueueItem
@@ -469,8 +469,8 @@ Rectangle {
             }
         }
         MenuSeparator {}
-        CtxMenuItem { text: qsTr("Redownload"); iconSrc: "update.svg"; onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
-        CtxMenuItem { text: qsTr("Delete");     iconSrc: "delete.svg"; onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
+        CtxMenuItem { text: qsTr("Redownload"); iconSrc: "actions/download-redo.svg"; onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Delete");     iconSrc: "actions/edit-delete.svg"; onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
     }
 
     // ── Column definitions ───────────────────────────────────────────────

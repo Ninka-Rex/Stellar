@@ -408,7 +408,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/grabber.svg")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/toolbar/grabber.svg")
     }
 
     onClosing: (close) => {
@@ -545,14 +545,14 @@ Window {
                     title: qsTr("Project")
                     delegate: CompactMenuItem
                     implicitWidth: 220; padding: 0
-                    CompactMenuItem { text: qsTr("Edit current project"); icon.source: "../icons/wand.svg"; onTriggered: root.editProjectRequested(root.projectId) }
-                    CompactMenuItem { text: qsTr("Close"); icon.source: "../icons/exit.svg"; onTriggered: root.close() }
+                    CompactMenuItem { text: qsTr("Edit current project"); icon.source: "../icons/actions/magic-wand.svg"; onTriggered: root.editProjectRequested(root.projectId) }
+                    CompactMenuItem { text: qsTr("Close"); icon.source: "../icons/actions/application-exit.svg"; onTriggered: root.close() }
                 }
                 Menu {
                     title: qsTr("Options")
                     delegate: CompactMenuItem
                     implicitWidth: 200; padding: 0
-                    CompactMenuItem { text: qsTr("Grabber settings"); icon.source: "../icons/gear.svg"; onTriggered: root.openGrabberSettings() }
+                    CompactMenuItem { text: qsTr("Grabber settings"); icon.source: "../icons/actions/preferences-system.svg"; onTriggered: root.openGrabberSettings() }
                 }
             }
 
@@ -703,13 +703,13 @@ Window {
                         spacing: 1
                         Repeater {
                             model: [
-                                { label: qsTr("Start Exploring"),   action: "start",         icon: "resume.svg",                       btnWidth: 130 },
-                                { label: qsTr("Stop Exploring"),    action: "stop",          icon: "pause.svg",                        btnWidth: 130 },
-                                { label: qsTr("Start Downloading"), action: "download",      icon: "down_arrow.svg",                   btnWidth: 146 },
-                                { label: qsTr("Stop Downloads"),    action: "stopDownloads", icon: "stop_all.svg",                     btnWidth: 134 },
-                                { label: qsTr("Update All"),        action: "update",        icon: "clockwise_vertical_arrows.svg",    btnWidth: 116 },
-                                { label: qsTr("Schedule Project"),  action: "schedule",      icon: "scheduler.svg",                    btnWidth: 138 },
-                                { label: qsTr("Statistics"),        action: "stats",         icon: "bar_chart.svg",                    btnWidth: 116 }
+                                { label: qsTr("Start Exploring"),   action: "start",         icon: "actions/media-playback-start.svg",                       btnWidth: 130 },
+                                { label: qsTr("Stop Exploring"),    action: "stop",          icon: "actions/media-playback-pause.svg",                        btnWidth: 130 },
+                                { label: qsTr("Start Downloading"), action: "download",      icon: "actions/download.svg",                   btnWidth: 146 },
+                                { label: qsTr("Stop Downloads"),    action: "stopDownloads", icon: "toolbar/stop-all.svg",                     btnWidth: 134 },
+                                { label: qsTr("Update All"),        action: "update",        icon: "actions/view-refresh.svg",    btnWidth: 116 },
+                                { label: qsTr("Schedule Project"),  action: "schedule",      icon: "toolbar/scheduler.svg",                    btnWidth: 138 },
+                                { label: qsTr("Statistics"),        action: "stats",         icon: "actions/view-statistics.svg",                    btnWidth: 116 }
                             ]
                             delegate: ToolbarBtn {
                                 label: modelData.label
@@ -813,7 +813,7 @@ Window {
                                         spacing: 5
 
                                         Image {
-                                            source: "../icons/categories/all_downloads.svg"
+                                            source: "../icons/categories/all-downloads.svg"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -851,7 +851,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
-                                            source: "../icons/cloud_copylink.svg"
+                                            source: "../icons/actions/cloud-link.svg"
                                             width: 16; height: 16
                                             sourceSize.width: 16; sourceSize.height: 16
                                             fillMode: Image.PreserveAspectFit
@@ -903,7 +903,7 @@ Window {
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
-                                                source: modelData.isDomain ? "../icons/globe.svg" : "../icons/page.svg"
+                                                source: modelData.isDomain ? "../icons/places/globe.svg" : "../icons/actions/document-open.svg"
                                                 width: 14; height: 14
                                                 sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit
@@ -953,7 +953,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
-                                            source: "../icons/folder_view.svg"
+                                            source: "../icons/actions/folder-open.svg"
                                             width: 16; height: 16
                                             sourceSize.width: 16; sourceSize.height: 16
                                             fillMode: Image.PreserveAspectFit
@@ -1005,7 +1005,7 @@ Window {
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
-                                                source: "../icons/folder.svg"
+                                                source: "../icons/places/folder.svg"
                                                 width: 14; height: 14
                                                 sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit

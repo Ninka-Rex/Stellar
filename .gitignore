@@ -31,3 +31,4 @@ app/data/*.mmdb
 *.zip
 CLAUDE.original.md
 .env
+app/qml/icons/README.md

@@ -25,7 +25,7 @@ Stellar — clean-room IDM reimplementation. C++/Qt 6 backend + QML frontend, to
 ## Orientation
 
 - Backend `app/src/` grouped by subsystem: `core/ download/ queue/ grabber/ ytdlp/ rss/ torrent/`. Includes are **bare** (`#include "DownloadItem.h"`) — every subdir is on the include path. New CMake `BACKEND_SOURCES`/`HEADERS`/`QML_FILES` entries use the subfolder path.
-- QML `app/qml/` mirrors it. **`Main.qml` stays at the qml root** (qrc path hardcoded in `core/main.cpp`). `icons/`, `flags/`, `app/style/` do **not** move (hardcoded qrc / relative paths).
+- QML `app/qml/` mirrors it. **`Main.qml` stays at the qml root** (qrc path hardcoded in `core/main.cpp`). `icons/`, `flags/`, `app/style/` do **not** move (hardcoded qrc / relative paths). Icon folder layout + naming rules: `app/qml/icons/README.md`; every icon file must be listed in CMake `RESOURCES`.
 - **All writable paths via the `StellarPaths` namespace** (`core/StellarPaths.{h,cpp}`) — never `QStandardPaths` directly. Single root: `%LOCALAPPDATA%\Stellar\` / `$XDG_DATA_HOME/Stellar/`.
 - Settings: `QSettings(StellarPaths::settingsFile(), QSettings::IniFormat)`, never registry/`QStandardPaths`. (Read code in `core/AppSettings.{h,cpp}` for the field list.)
 

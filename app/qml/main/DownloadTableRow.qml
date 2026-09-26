@@ -74,8 +74,8 @@ Rectangle {
                 anchors.centerIn: parent
                 source: {
                     const q = rowRect.item ? rowRect.item.queueId : ""
-                    if (q === "main-download") return "../icons/main_queue.svg"
-                    return "../icons/custom_queue.svg"
+                    if (q === "main-download") return "../icons/queues/queue-main.svg"
+                    return "../icons/queues/queue-custom.svg"
                 }
                 width: 14; height: 14
                 sourceSize: Qt.size(14, 14)

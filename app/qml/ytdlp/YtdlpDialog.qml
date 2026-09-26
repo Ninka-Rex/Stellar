@@ -185,7 +185,7 @@ Window {
     onVisibleChanged: {
         if (visible) {
             _centerOnOwner()
-            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.svg")
+            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/actions/magic-wand.svg")
             App.setWindowDarkTitleBar(root, App.settings.darkMode)
             raise(); requestActivate()
             if (pendingUrl.length > 0) _startProbe()
@@ -457,7 +457,7 @@ Window {
                 Image {
                     id: headerIcon
                     anchors { left: parent.left; verticalCenter: parent.verticalCenter }
-                    source: "../icons/wand.svg"
+                    source: "../icons/actions/magic-wand.svg"
                     sourceSize: Qt.size(22, 22)
                     width: 22; height: 22
                     fillMode: Image.PreserveAspectFit

@@ -12,7 +12,7 @@
 #define AppExeName   "Stellar.exe"
 ; Path relative to this .iss file (packaging/windows/)
 #define BuildDir     "..\..\build\windows-release"
-#define IconFile     "..\..\app\qml\icons\milky-way.ico"
+#define IconFile     "..\..\app\qml\icons\app\stellar.ico"
 #ifndef OutputDirOverride
   #define OutputDirOverride "output"
 #endif

@@ -2599,7 +2599,7 @@ ApplicationWindow {
                 spacing: 12
 
                 Image {
-                    source: "icons/file_no_longer_available.svg"
+                    source: "icons/status/file-missing.svg"
                     width: 24; height: 24
                     sourceSize.width: 24; sourceSize.height: 24
                     fillMode: Image.PreserveAspectFit
@@ -3641,12 +3641,12 @@ ApplicationWindow {
             title: qsTr("Tasks")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
-            CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
-            CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/torrent_file.svg";   onTriggered: addTorrentFileDialog.open() }
-            CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
+            CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/toolbar/add-url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
+            CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/mimetypes/application-x-bittorrent.svg";   onTriggered: addTorrentFileDialog.open() }
+            CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/actions/list-add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             CompactMenuItem {
                 text: qsTr("Add Batch URLs from Clipboard…")
-                iconSrc: "icons/clipboard.svg"
+                iconSrc: "icons/actions/edit-paste.svg"
                 onTriggered: {
                     var urls = App.clipboardUrls()
                     if (!urls || urls.length === 0)
@@ -3721,7 +3721,7 @@ ApplicationWindow {
                 Timer { id: _importCloseTimer; interval: 300; onTriggered: { if (!_importMenu.activeFocus) _importMenu.close() } }
             }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Exit"); shortcutDisplay: "Ctrl+Q"; iconSrc: "icons/exit.svg"; onTriggered: root.quitApp() }
+            CompactMenuItem { text: qsTr("Exit"); shortcutDisplay: "Ctrl+Q"; iconSrc: "icons/actions/application-exit.svg"; onTriggered: root.quitApp() }
         }
         Menu {
             title: qsTr("File")
@@ -3730,14 +3730,14 @@ ApplicationWindow {
             CompactMenuItem {
                 text: qsTr("Open Folder")
                 shortcutDisplay: "Ctrl+Enter"
-                iconSrc: "icons/folder_view.svg"
+                iconSrc: "icons/actions/folder-open.svg"
                 enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Completed" || root.selectedDownloadItem.status === "Seeding")
                 onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Completed" || item.status === "Seeding")) App.openFolder(item.id) }
             }
             CompactMenuItem {
                 text: qsTr("Open File")
                 shortcutDisplay: "Enter"
-                iconSrc: "icons/page.svg"
+                iconSrc: "icons/actions/document-open.svg"
                 enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Completed" || root.selectedDownloadItem.status === "Seeding")
                 onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Completed" || item.status === "Seeding")) App.openFile(item.id) }
             }
@@ -3745,34 +3745,34 @@ ApplicationWindow {
             CompactMenuItem {
                 text: qsTr("Download Now")
                 shortcutDisplay: "Ctrl+S"
-                iconSrc: "icons/resume.svg"
+                iconSrc: "icons/actions/media-playback-start.svg"
                 enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Paused"
                 onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Paused") App.resumeDownload(item.id) }
             }
             CompactMenuItem {
                 text: qsTr("Stop Download")
                 shortcutDisplay: "Ctrl+P"
-                iconSrc: "icons/pause.svg"
+                iconSrc: "icons/actions/media-playback-pause.svg"
                 enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Downloading" || root.selectedDownloadItem.status === "Queued" || root.selectedDownloadItem.status === "Seeding")
                 onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued" || item.status === "Seeding")) App.pauseDownload(item.id) }
             }
             CompactMenuItem {
                 text: qsTr("Remove")
                 shortcutDisplay: "Del"
-                iconSrc: "icons/delete.svg"
+                iconSrc: "icons/actions/edit-delete.svg"
                 enabled: root.selectedDownloadItem !== null
                 onTriggered: root.selectedDownloadItem ? downloadTable.deleteSelected() : null
             }
             CompactMenuItem {
                 text: qsTr("Redownload")
                 shortcutDisplay: "Ctrl+R"
-                iconSrc: "icons/update.svg"
+                iconSrc: "icons/actions/download-redo.svg"
                 enabled: root.selectedDownloadItem !== null
                 onTriggered: { var item = root.selectedDownloadItem; if (item) App.redownload(item.id) }
             }
             CompactMenuItem {
                 text: qsTr("Export .torrent…")
-                iconSrc: "icons/export_torrent.svg"
+                iconSrc: "icons/actions/document-export-torrent.svg"
                 enabled: root.selectedTorrentCount > 0
                 onTriggered: {
                     root.pendingTorrentExportIds = downloadTable.selectedTorrentIds()
@@ -3783,7 +3783,7 @@ ApplicationWindow {
             CompactMenuItem {
                 text: qsTr("Create Torrent…")
                 shortcutDisplay: "Ctrl+Shift+C"
-                iconSrc: "icons/new_file.svg"
+                iconSrc: "icons/actions/document-new.svg"
                 onTriggered: {
                     torrentCreatorDialog.show()
                     torrentCreatorDialog.raise()
@@ -3796,14 +3796,14 @@ ApplicationWindow {
             title: qsTr("Downloads")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
-            CompactMenuItem { text: qsTr("Stop all"); shortcutDisplay: "Ctrl+K"; iconSrc: "icons/stop_all.svg";  onTriggered: downloadTable.pauseAll() }
+            CompactMenuItem { text: qsTr("Stop all"); shortcutDisplay: "Ctrl+K"; iconSrc: "icons/toolbar/stop-all.svg";  onTriggered: downloadTable.pauseAll() }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Delete all completed"); shortcutDisplay: "Ctrl+Shift+W"; iconSrc: "icons/delete.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
+            CompactMenuItem { text: qsTr("Delete all completed"); shortcutDisplay: "Ctrl+Shift+W"; iconSrc: "icons/actions/edit-delete.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Find…"); shortcutDisplay: "Ctrl+F"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
-            CompactMenuItem { text: qsTr("Find Next"); shortcutDisplay: "F3"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: downloadTable.findNextFiltered() }
+            CompactMenuItem { text: qsTr("Find…"); shortcutDisplay: "Ctrl+F"; iconSrc: "icons/actions/edit-find.svg"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
+            CompactMenuItem { text: qsTr("Find Next"); shortcutDisplay: "F3"; iconSrc: "icons/actions/edit-find.svg"; onTriggered: downloadTable.findNextFiltered() }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Queues"); iconSrc: "icons/scheduler.svg"; onTriggered: { schedulerDialog.show(); schedulerDialog.raise(); schedulerDialog.requestActivate() } }
+            CompactMenuItem { text: qsTr("Queues"); iconSrc: "icons/toolbar/scheduler.svg"; onTriggered: { schedulerDialog.show(); schedulerDialog.raise(); schedulerDialog.requestActivate() } }
             CompactMenuItem {
                 id: _startQueueItem
                 text: qsTr("Start Queue") + "  ▶"
@@ -3851,7 +3851,7 @@ ApplicationWindow {
             CompactSep {}
             CompactMenuItem {
                 id: _speedLimiterItem1
-                iconSrc: "icons/snail.svg"
+                iconSrc: "icons/actions/speed-limiter.svg"
                 text: qsTr("Speed Limiter") + "  ▶"
                 shortcutDisplay: "Ctrl+Shift+L"
                 onTriggered: _speedLimiterMenu1.popup(_speedLimiterItem1.width, 0)
@@ -3871,7 +3871,7 @@ ApplicationWindow {
                 Timer { id: _sl1CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu1.activeFocus) _speedLimiterMenu1.close() } }
             }
             CompactMenuItem {
-                iconSrc: "icons/pause.svg"
+                iconSrc: "icons/actions/media-playback-pause.svg"
                 text: qsTr("Pause Session")
                 shortcutDisplay: "Ctrl+Shift+P"
                 checkable: true
@@ -3879,7 +3879,7 @@ ApplicationWindow {
                 onTriggered: App.sessionPaused ? App.resumeSession() : App.pauseSession()
             }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Options…"); shortcutDisplay: "Alt+O"; iconSrc: "icons/gear.svg"; onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
+            CompactMenuItem { text: qsTr("Options…"); shortcutDisplay: "Alt+O"; iconSrc: "icons/actions/preferences-system.svg"; onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
         }
         Menu {
             id: _viewMenu
@@ -3888,18 +3888,18 @@ ApplicationWindow {
             implicitWidth: 260; padding: 0
             CompactMenuItem {
                 text: (sidebar && sidebar.visible) ? qsTr("Hide Categories") : qsTr("Show Categories")
-                iconSrc: "icons/categories.svg"
+                iconSrc: "icons/actions/view-categories.svg"
                 onTriggered: if (sidebar) sidebar.visible = !sidebar.visible
             }
             CompactMenuItem {
                 text: App.settings.showStatusBar ? qsTr("Hide Status Bar") : qsTr("Show Status Bar")
-                iconSrc: "icons/statusbar.svg"
+                iconSrc: "icons/actions/view-statusbar.svg"
                 onTriggered: Qt.callLater(function() { App.settings.showStatusBar = !App.settings.showStatusBar })
             }
             CompactMenuItem {
                 id: _trayIconStyleItem
                 text: qsTr("SDM Tray Icon") + "  ▶"
-                iconSrc: "icons/milky-way.png"
+                iconSrc: "icons/app/stellar.png"
                 onTriggered: _trayIconStyleMenu.popup(_trayIconStyleItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) _trayIconStyleMenu.popup(_trayIconStyleItem.width, 0)
@@ -3927,7 +3927,7 @@ ApplicationWindow {
             CompactSep {}
             CompactMenuItem {
                 text: App.settings.darkMode ? qsTr("Switch to Light Mode") : qsTr("Switch to Dark Mode")
-                iconSrc: App.settings.darkMode ? "icons/lightmode.svg" : "icons/darkmode.svg"
+                iconSrc: App.settings.darkMode ? "icons/actions/theme-light.svg" : "icons/actions/theme-dark.svg"
                 onTriggered: { App.settings.darkMode = !App.settings.darkMode; _viewMenu.dismiss() }
             }
             CompactSep {}
@@ -3946,7 +3946,7 @@ ApplicationWindow {
             CompactMenuItem {
                 text: qsTr("Statistics…")
                 shortcutDisplay: "Ctrl+I"
-                iconSrc: "icons/bar_chart.svg"
+                iconSrc: "icons/actions/view-statistics.svg"
                 onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() }
             }
             CompactSep {}
@@ -3977,14 +3977,14 @@ ApplicationWindow {
                 Timer { id: _arrangeFilesCloseTimer; interval: 300; onTriggered: { if (!_arrangeFilesMenu.activeFocus) _arrangeFilesMenu.close() } }
             }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Columns…"); iconSrc: "icons/columns.svg"; onTriggered: {
+            CompactMenuItem { text: qsTr("Columns…"); iconSrc: "icons/actions/view-columns.svg"; onTriggered: {
                 columnsDialog.columnDefs = downloadTable.columnDefs.slice()
                 columnsDialog.show()
                 columnsDialog.raise()
             }}
             CompactMenuItem {
                 id: _toolbarItem
-                iconSrc: "icons/toolbar.svg"
+                iconSrc: "icons/actions/view-toolbar.svg"
                 text: qsTr("Toolbar") + "  ▶"
                 onTriggered: _toolbarMenu.popup(_toolbarItem.width, 0)
                 onHoveredChanged: {
@@ -4021,7 +4021,7 @@ ApplicationWindow {
             CompactSep {}
             CompactMenuItem {
                 id: _languageItem
-                iconSrc: "icons/language.svg"
+                iconSrc: "icons/actions/preferences-desktop-locale.svg"
                 text: qsTr("Language") + "  ▶"
                 onTriggered: _languageMenu.popup(_languageItem.width, 0)
                 onHoveredChanged: {
@@ -4061,11 +4061,11 @@ ApplicationWindow {
             title: qsTr("Options")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
-            CompactMenuItem { text: qsTr("Preferences…"); shortcutDisplay: "Ctrl+,"; iconSrc: "icons/gear.svg";      onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
-            CompactMenuItem { text: qsTr("Queues");    iconSrc: "icons/scheduler.svg"; onTriggered: { schedulerDialog.show(); schedulerDialog.raise(); schedulerDialog.requestActivate() } }
+            CompactMenuItem { text: qsTr("Preferences…"); shortcutDisplay: "Ctrl+,"; iconSrc: "icons/actions/preferences-system.svg";      onTriggered: root.showSettingsPage(root.settingsPageGeneral) }
+            CompactMenuItem { text: qsTr("Queues");    iconSrc: "icons/toolbar/scheduler.svg"; onTriggered: { schedulerDialog.show(); schedulerDialog.raise(); schedulerDialog.requestActivate() } }
             CompactMenuItem {
                 id: _speedLimiterItem2
-                iconSrc: "icons/snail.svg"
+                iconSrc: "icons/actions/speed-limiter.svg"
                 text: qsTr("Speed Limiter") + "  ▶"
                 shortcutDisplay: "Ctrl+Shift+L"
                 onTriggered: _speedLimiterMenu2.popup(_speedLimiterItem2.width, 0)
@@ -4095,9 +4095,9 @@ ApplicationWindow {
             title: qsTr("RSS")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
-            CompactMenuItem { text: qsTr("Open RSS Reader");      iconSrc: "icons/rss.svg";    onTriggered: root.showRssWindow() }
-            CompactMenuItem { text: qsTr("Refresh All Feeds");    iconSrc: "icons/update.svg"; onTriggered: App.rssManager.refreshAll() }
-            CompactMenuItem { text: qsTr("Mark All Items Read");  iconSrc: "icons/checkmark.svg"; onTriggered: App.rssManager.markAllRead() }
+            CompactMenuItem { text: qsTr("Open RSS Reader");      iconSrc: "icons/toolbar/rss.svg";    onTriggered: root.showRssWindow() }
+            CompactMenuItem { text: qsTr("Refresh All Feeds");    iconSrc: "icons/actions/feed-refresh.svg"; onTriggered: App.rssManager.refreshAll() }
+            CompactMenuItem { text: qsTr("Mark All Items Read");  iconSrc: "icons/actions/mail-mark-read.svg"; onTriggered: App.rssManager.markAllRead() }
 
             // Track membership ourselves so we know whether to add or remove.
             property bool _inMenuBar: true
@@ -4125,10 +4125,10 @@ ApplicationWindow {
             title: qsTr("Help")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
-            CompactMenuItem { text: qsTr("Check for Updates"); iconSrc: "icons/satellite_antenna.svg"; onTriggered: App.checkForUpdates(true) }
+            CompactMenuItem { text: qsTr("Check for Updates"); iconSrc: "icons/actions/check-for-updates.svg"; onTriggered: App.checkForUpdates(true) }
             // CompactMenuItem { text: qsTr("Debug: Simulate Update Available"); onTriggered: App.simulateUpdateAvailable() }
             CompactSep {}
-            CompactMenuItem { text: qsTr("About Stellar"); shortcutDisplay: "Ctrl+/"; iconSrc: "icons/information.svg"; onTriggered: root.showSettingsPage(root.settingsPageAbout) }
+            CompactMenuItem { text: qsTr("About Stellar"); shortcutDisplay: "Ctrl+/"; iconSrc: "icons/status/dialog-information.svg"; onTriggered: root.showSettingsPage(root.settingsPageAbout) }
             CompactSep {}
             CompactMenuItem {
                 id: _browserIntItem
