@@ -59,7 +59,9 @@ public:
     bool available() const;
     bool isTorrentUri(const QString &value) const;
     void applySettings(const AppSettings *settings);
-    bool addMagnet(DownloadItem *item, bool startPaused, bool deferModels = false);
+    // metadataOnly: staged add for the metadata dialog — fetch metadata but never
+    // request pieces until resume() (see addTorrentInternal).
+    bool addMagnet(DownloadItem *item, bool startPaused, bool deferModels = false, bool metadataOnly = false);
     bool addTorrentFile(DownloadItem *item, const QString &torrentFilePath, bool startPaused, bool deferModels = false);
     bool restoreTorrent(DownloadItem *item, bool deferModels = false);
     void pause(const QString &downloadId);
@@ -84,7 +86,9 @@ public:
     QStringList trackerUrls(const QString &downloadId) const;
     void setPerTorrentDownloadLimit(const QString &downloadId, int kbps);
     void setPerTorrentUploadLimit(const QString &downloadId, int kbps);
-    bool moveStorage(const QString &downloadId, const QString &newSavePath);
+    // keepExistingFiles: files already at the destination win over the torrent's
+    // own (libtorrent dont_replace) — callers must recheck to pick them up.
+    bool moveStorage(const QString &downloadId, const QString &newSavePath, bool keepExistingFiles = false);
     bool renameTorrentFile(const QString &downloadId, int fileIndex, const QString &newName);
     bool renameTorrentPath(const QString &downloadId, const QString &currentPath, const QString &newName);
     // Returns the current on-disk root name (top-level folder or single file name)
@@ -236,7 +240,8 @@ private:
     bool applyFilePriorities(const QString &downloadId);
     void requestIpFilterRebuild(); // coalesced via m_ipFilterRebuildPending
     void flushIpFilterRebuild();
-    bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels);
+    bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels,
+                            bool metadataOnly);
     // Post-add registration (handle bookkeeping, flags, trackers, web seeds,
     // model creation). Runs synchronously for interactive adds and from the
     // add_torrent_alert handler for the async restore path.
@@ -345,7 +350,7 @@ private:
 // When libtorrent is absent the .cpp stubs may be in a stale cached obj.
 // Provide inline fallbacks here so callers always resolve these symbols.
 #if !defined(STELLAR_HAS_LIBTORRENT)
-inline bool TorrentSessionManager::moveStorage(const QString &, const QString &) { return false; }
+inline bool TorrentSessionManager::moveStorage(const QString &, const QString &, bool) { return false; }
 inline bool TorrentSessionManager::renameTorrentFile(const QString &, int, const QString &) { return false; }
 inline QString TorrentSessionManager::torrentCurrentRootName(const QString &) const { return {}; }
 inline bool TorrentSessionManager::setFileWantedByFileIndex(const QString &, int, bool) { return false; }

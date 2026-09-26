@@ -22,7 +22,10 @@ import QtQuick.Layouts
 // peer discovery and download mode. Lives as a "Settings" tab inside the
 // torrent properties / metadata dialogs (replaces the old standalone
 // TorrentSpeedLimitDialog window). Host passes the DownloadItem via
-// `torrentItem`; an "Apply" bar at the bottom commits all four groups.
+// `torrentItem`; the Apply button commits all four groups.
+//
+// Visual language matches the properties General tab: SectionHeader groups,
+// muted keys, 26px fields, the shared StyledCheckBox / StyledComboBox.
 Item {
     id: root
 
@@ -69,6 +72,8 @@ Item {
         )
     readonly property bool dirty: _speedDirty || _shareDirty || _flagsDirty || _modeDirty
 
+    readonly property bool _isPrivate: !!torrentItem && torrentItem.torrentIsPrivate
+
     function _modeFromItem(v, type) {
         if (v < -1.5) return 1
         if (v < 0)    return 0
@@ -93,8 +98,8 @@ Item {
         if (!torrentItem) return
         _editDown = torrentItem.perTorrentDownLimitKBps | 0
         _editUp   = torrentItem.perTorrentUpLimitKBps   | 0
-        downInput.text = String(_editDown)
-        upInput.text   = String(_editUp)
+        downField.text = String(_editDown)
+        upField.text   = String(_editUp)
         _ratioMode    = _modeFromItem(torrentItem.torrentShareRatioLimit, "ratio")
         _ratioText    = _textFromItem(torrentItem.torrentShareRatioLimit, "ratio")
         _seedMode     = _modeFromItem(torrentItem.torrentSeedingTimeLimitMins, "seed")
@@ -106,385 +111,274 @@ Item {
         _editDisableLsd      = !!torrentItem.torrentDisableLsd
         _editSequential      = !!torrentItem.torrentSequential
         _editFirstLastPieces = !!torrentItem.torrentFirstLastPieces
-        if (ratioInput)    ratioInput.text    = _ratioText
-        if (seedInput)     seedInput.text     = _seedText
-        if (inactiveInput) inactiveInput.text = _inactiveText
+        // Typing replaces a field's text binding, so re-seed the text directly.
+        ratioRow.fieldText    = _ratioText
+        seedRow.fieldText     = _seedText
+        inactiveRow.fieldText = _inactiveText
     }
 
-    // Self-contained checkbox row: box + label sit tight together. Built from
-    // a Row + box Rectangle (NOT StyledCheckBox) so there's no Material content
-    // spacing flinging the label across the panel.
-    component InlineCheck: Item {
-        id: chkRoot
-        property bool checked: false
-        property bool enabled: true
-        property string label: ""
-        property string subtext: ""
-        signal toggled()
-        implicitHeight: chkRow.implicitHeight
+    component Unit: Text {
+        color: ColorPalette.textMuted
+        font.pixelSize: 12 * App.fontScale
+        Layout.alignment: Qt.AlignVCenter
+    }
 
-        Row {
-            id: chkRow
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 7
-
-            Rectangle {
-                width: 14; height: 14; radius: 2
-                anchors.verticalCenter: parent.verticalCenter
-                color: chkRoot.checked ? "#4488dd" : ColorPalette.inputBg
-                border.color: chkRoot.checked ? "#4488dd" : (chkRoot.enabled ? ColorPalette.border : "#2a2a2a")
-                opacity: chkRoot.enabled ? 1.0 : 0.5
-                Text {
-                    visible: chkRoot.checked
-                    anchors.centerIn: parent
-                    text: "✓"; color: "#fff"; font.pixelSize: 9 * App.fontScale; font.bold: true
-                }
-            }
-            Column {
-                anchors.verticalCenter: parent.verticalCenter
-                spacing: 0
-                Text { text: chkRoot.label; color: chkRoot.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
-                Text {
-                    visible: chkRoot.subtext.length > 0
-                    text: chkRoot.subtext; color: "#7a8a9a"; font.pixelSize: 10 * App.fontScale
-                }
-            }
-        }
-
-        // Parent owns the state: emit toggled with the would-be new value via
-        // the `checked` arg pattern used by callers (onToggled reads `checked`,
-        // which is still the OLD value here, matching the old StyledCheckBox
-        // semantics where callers do `= !checked`).
-        MouseArea {
-            anchors.fill: parent
-            enabled: chkRoot.enabled
-            cursorShape: Qt.PointingHandCursor
-            onClicked: chkRoot.toggled()
+    // 26px numeric field (same height and border as the General tab fields).
+    // `edited` only fires for user input, never for _reset()'s writes.
+    component NumField: Rectangle {
+        id: nf
+        property alias text: nfInput.text
+        property alias validator: nfInput.validator
+        signal edited(string text)
+        implicitWidth: 80
+        implicitHeight: 26
+        radius: 2
+        color: ColorPalette.inputBg
+        border.color: nfInput.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
+        opacity: enabled ? 1.0 : 0.5
+        TextInput {
+            id: nfInput
+            anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+            verticalAlignment: TextInput.AlignVCenter
+            color: nf.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
+            font.pixelSize: 12 * App.fontScale
+            selectByMouse: true
+            clip: true
+            onTextEdited: nf.edited(text)
         }
     }
 
-    // Apply bar anchored to bottom so it is never clipped.
-    Rectangle {
-        id: buttonBar
-        anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-        height: 42
-        color: ColorPalette.cardBg
-
-        Rectangle {
-            anchors { left: parent.left; right: parent.right; top: parent.top }
-            height: 1; color: ColorPalette.dividerBg
-        }
-
-        RowLayout {
-            anchors { fill: parent; leftMargin: 12; rightMargin: 12; topMargin: 8; bottomMargin: 8 }
-            spacing: 8
-            Item { Layout.fillWidth: true }
-            DlgButton {
-                text: qsTr("Apply")
-                primary: true
-                enabled: root.dirty
-                onClicked: {
-                    if (!root.torrentItem) return
-                    App.setTorrentSpeedLimits(root.torrentItem.id,
-                                              Math.max(0, root._editDown),
-                                              Math.max(0, root._editUp))
-                    var ratio     = root._ratioMode === 0 ? -1.0
-                                  : root._ratioMode === 1 ? -2.0
-                                  : Math.max(0, parseFloat(root._ratioText) || 0.0)
-                    var seedMins  = root._seedMode === 0 ? -1
-                                  : root._seedMode === 1 ? -2
-                                  : Math.max(0, parseInt(root._seedText, 10) || 0)
-                    var inactMins = root._inactiveMode === 0 ? -1
-                                  : root._inactiveMode === 1 ? -2
-                                  : Math.max(0, parseInt(root._inactiveText, 10) || 0)
-                    App.setTorrentShareLimits(root.torrentItem.id, ratio, seedMins, inactMins, -1)
-                    App.setTorrentFlags(root.torrentItem.id,
-                                        root._editDisableDht,
-                                        root._editDisablePex,
-                                        root._editDisableLsd)
-                    App.setTorrentDownloadMode(root.torrentItem.id,
-                                               root._editSequential,
-                                               root._editFirstLastPieces)
-                }
-            }
-        }
-    }
-
-    // Content sits above the Apply bar. No ScrollView — everything fits in the
-    // tab height; sections size to content and the last row absorbs slack so
-    // there's no dead whitespace and nothing to scroll.
-    RowLayout {
-        anchors { left: parent.left; right: parent.right; top: parent.top; bottom: buttonBar.top; margins: 8 }
+    // One share-limit row: key, Default / Unlimited / Set to, and the value
+    // field (only editable for "Set to"; kept in place otherwise so the rows
+    // don't reflow when the mode changes).
+    component LimitRow: RowLayout {
+        id: lr
+        property string label
+        property int mode
+        property string unit
+        property alias fieldText: lrField.text
+        property alias validator: lrField.validator
+        signal modePicked(int mode)
+        signal valueEdited(string text)
+        Layout.fillWidth: true
         spacing: 8
 
-            // Left column: bandwidth + share limits.
-            ColumnLayout {
-                Layout.fillWidth: true
-                Layout.preferredWidth: 1
-                Layout.alignment: Qt.AlignTop
-                spacing: 6
-
-                // Bandwidth limits
-                Rectangle {
-                    Layout.fillWidth: true
-                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
-                    implicitHeight: bwCol.implicitHeight + 12
-
-                    ColumnLayout {
-                        id: bwCol
-                        anchors { fill: parent; margins: 6 }
-                        spacing: 6
-
-                        Text { text: qsTr("BANDWIDTH LIMITS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
-
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 8
-                            Text { text: qsTr("Download:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 66 }
-                            Rectangle {
-                                Layout.preferredWidth: 86; height: 22; radius: 2
-                                color: ColorPalette.inputBg; border.color: downInput.activeFocus ? "#4488dd" : ColorPalette.border
-                                TextInput {
-                                    id: downInput
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    verticalAlignment: TextInput.AlignVCenter
-                                    validator: IntValidator { bottom: 0; top: 1048576 }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
-                                    onTextChanged: { var n = parseInt(text, 10); root._editDown = isNaN(n) ? 0 : Math.max(0, n) }
-                                }
-                            }
-                            Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 * App.fontScale }
-                            Item { Layout.fillWidth: true }
-                        }
-
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 8
-                            Text { text: qsTr("Upload:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 66 }
-                            Rectangle {
-                                Layout.preferredWidth: 86; height: 22; radius: 2
-                                color: ColorPalette.inputBg; border.color: upInput.activeFocus ? "#4488dd" : ColorPalette.border
-                                TextInput {
-                                    id: upInput
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    verticalAlignment: TextInput.AlignVCenter
-                                    validator: IntValidator { bottom: 0; top: 1048576 }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
-                                    onTextChanged: { var n = parseInt(text, 10); root._editUp = isNaN(n) ? 0 : Math.max(0, n) }
-                                }
-                            }
-                            Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 * App.fontScale }
-                            Item { Layout.fillWidth: true }
-                        }
-                    }
-                }
-
-                // Share limits
-                Rectangle {
-                    Layout.fillWidth: true
-                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
-                    implicitHeight: shareCol.implicitHeight + 12
-
-                    ColumnLayout {
-                        id: shareCol
-                        anchors { fill: parent; margins: 6 }
-                        spacing: 5
-
-                        Text { text: qsTr("SHARE LIMITS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
-
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Ratio:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 82 }
-                            Repeater {
-                                model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
-                                delegate: Rectangle {
-                                    required property int index; required property string modelData
-                                    height: 21; implicitWidth: rl.implicitWidth + 12; radius: 2
-                                    color: root._ratioMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
-                                    border.color: root._ratioMode === index ? "#4488dd" : ColorPalette.border
-                                    Text { id: rl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
-                                           color: root._ratioMode === index ? "#88aaee" : ColorPalette.textMuted }
-                                    MouseArea { anchors.fill: parent; onClicked: root._ratioMode = index }
-                                }
-                            }
-                            Rectangle {
-                                visible: root._ratioMode === 2
-                                Layout.preferredWidth: 64; height: 21; radius: 2
-                                color: ColorPalette.inputBg; border.color: ratioInput.activeFocus ? "#4488dd" : ColorPalette.border
-                                TextInput {
-                                    id: ratioInput
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    verticalAlignment: TextInput.AlignVCenter
-                                    text: root._ratioText
-                                    validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
-                                    onTextChanged: root._ratioText = text
-                                }
-                            }
-                            Item { Layout.fillWidth: true }
-                        }
-
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Seeding time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 82 }
-                            Repeater {
-                                model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
-                                delegate: Rectangle {
-                                    required property int index; required property string modelData
-                                    height: 21; implicitWidth: sl.implicitWidth + 12; radius: 2
-                                    color: root._seedMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
-                                    border.color: root._seedMode === index ? "#4488dd" : ColorPalette.border
-                                    Text { id: sl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
-                                           color: root._seedMode === index ? "#88aaee" : ColorPalette.textMuted }
-                                    MouseArea { anchors.fill: parent; onClicked: root._seedMode = index }
-                                }
-                            }
-                            Rectangle {
-                                visible: root._seedMode === 2
-                                Layout.preferredWidth: 64; height: 21; radius: 2
-                                color: ColorPalette.inputBg; border.color: seedInput.activeFocus ? "#4488dd" : ColorPalette.border
-                                TextInput {
-                                    id: seedInput
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    verticalAlignment: TextInput.AlignVCenter; text: root._seedText
-                                    validator: IntValidator { bottom: 0; top: 999999 }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
-                                    onTextChanged: root._seedText = text
-                                }
-                            }
-                            Text { visible: root._seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
-                            Item { Layout.fillWidth: true }
-                        }
-
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Inactive time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 82 }
-                            Repeater {
-                                model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
-                                delegate: Rectangle {
-                                    required property int index; required property string modelData
-                                    height: 21; implicitWidth: il.implicitWidth + 12; radius: 2
-                                    color: root._inactiveMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
-                                    border.color: root._inactiveMode === index ? "#4488dd" : ColorPalette.border
-                                    Text { id: il; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
-                                           color: root._inactiveMode === index ? "#88aaee" : ColorPalette.textMuted }
-                                    MouseArea { anchors.fill: parent; onClicked: root._inactiveMode = index }
-                                }
-                            }
-                            Rectangle {
-                                visible: root._inactiveMode === 2
-                                Layout.preferredWidth: 64; height: 21; radius: 2
-                                color: ColorPalette.inputBg; border.color: inactiveInput.activeFocus ? "#4488dd" : ColorPalette.border
-                                TextInput {
-                                    id: inactiveInput
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    verticalAlignment: TextInput.AlignVCenter; text: root._inactiveText
-                                    validator: IntValidator { bottom: 0; top: 999999 }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
-                                    onTextChanged: root._inactiveText = text
-                                }
-                            }
-                            Text { visible: root._inactiveMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
-                            Item { Layout.fillWidth: true }
-                        }
-                    }
-                }
-
-                // Absorb leftover vertical space so left-column sections stay
-                // top-packed (no gaps stretched between them) in tall dialogs.
-                Item { Layout.fillWidth: true; Layout.fillHeight: true }
-            }
-
-            // Right column: peer discovery + download mode, stacked vertically.
-            ColumnLayout {
-                Layout.fillWidth: true
-                Layout.preferredWidth: 1
-                Layout.alignment: Qt.AlignTop
-                spacing: 6
-
-                // Peer discovery
-                Rectangle {
-                    Layout.fillWidth: true
-                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
-                    implicitHeight: pdCol.implicitHeight + 12
-
-                    ColumnLayout {
-                        id: pdCol
-                        anchors { fill: parent; margins: 6 }
-                        spacing: 5
-
-                        Text { text: qsTr("PEER DISCOVERY"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
-
-                        InlineCheck {
-                            Layout.fillWidth: true
-                            label: qsTr("DHT"); subtext: qsTr("Distributed Hash Table")
-                            checked: !root._editDisableDht
-                            enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
-                            onToggled: root._editDisableDht = !root._editDisableDht
-                        }
-                        InlineCheck {
-                            Layout.fillWidth: true
-                            label: qsTr("PeX"); subtext: qsTr("Peer Exchange")
-                            checked: !root._editDisablePex
-                            enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
-                            onToggled: root._editDisablePex = !root._editDisablePex
-                        }
-                        InlineCheck {
-                            Layout.fillWidth: true
-                            label: qsTr("LSD"); subtext: qsTr("Local Service Discovery")
-                            checked: !root._editDisableLsd
-                            onToggled: root._editDisableLsd = !root._editDisableLsd
-                        }
-
-                        Rectangle {
-                            Layout.fillWidth: true
-                            visible: !!root.torrentItem && root.torrentItem.torrentIsPrivate
-                            color: "#1a1208"; border.color: "#6a4a00"; radius: 3
-                            implicitHeight: pvtNote.implicitHeight + 10
-                            ColumnLayout {
-                                id: pvtNote
-                                anchors { fill: parent; margins: 6 }
-                                spacing: 2
-                                Text { text: qsTr("⚠ Private torrent"); color: "#cc9955"; font.pixelSize: 11 * App.fontScale; font.bold: true }
-                                Text {
-                                    Layout.fillWidth: true
-                                    text: qsTr("DHT and PeX disabled by libtorrent.")
-                                    color: "#a08040"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Download mode
-                Rectangle {
-                    Layout.fillWidth: true
-                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
-                    implicitHeight: dmCol.implicitHeight + 12
-
-                    ColumnLayout {
-                        id: dmCol
-                        anchors { fill: parent; margins: 6 }
-                        spacing: 5
-
-                        Text { text: qsTr("DOWNLOAD MODE"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
-
-                        InlineCheck {
-                            Layout.fillWidth: true
-                            label: qsTr("Sequential download")
-                            subtext: qsTr("Pieces downloaded in order (piece 0 → last)")
-                            checked: root._editSequential
-                            onToggled: root._editSequential = !root._editSequential
-                        }
-                        InlineCheck {
-                            Layout.fillWidth: true
-                            label: qsTr("Prioritize first & last pieces")
-                            subtext: qsTr("Front-loads header/footer for early playback")
-                            checked: root._editFirstLastPieces
-                            onToggled: root._editFirstLastPieces = !root._editFirstLastPieces
-                        }
-                    }
-                }
-
-                Item { Layout.fillWidth: true; Layout.fillHeight: true }
+        SheetKey { text: lr.label }
+        StyledComboBox {
+            id: lrCombo
+            Layout.preferredWidth: 104 * App.fontScale
+            implicitHeight: 26
+            font.pixelSize: 12 * App.fontScale
+            model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
+            currentIndex: lr.mode
+            onActivated: function(index) {
+                lr.modePicked(index)
+                // Selecting replaced the binding; hand control back to `mode`
+                // so a later _reset() still moves the combo.
+                currentIndex = Qt.binding(function() { return lr.mode })
             }
         }
+        NumField {
+            id: lrField
+            implicitWidth: 64
+            enabled: lr.mode === 2
+            onEdited: function(text) { lr.valueEdited(text) }
+        }
+        Unit { text: lr.unit; visible: lr.unit.length > 0 }
+        Item { Layout.fillWidth: true }
+    }
+
+    // Checkbox with a one-line muted explanation under its label. The parent
+    // owns the state: `checked` is re-bound after each click so _reset() keeps
+    // driving it.
+    component OptionCheck: ColumnLayout {
+        id: oc
+        property alias text: ocBox.text
+        property string description
+        property bool value
+        signal picked(bool value)
+        Layout.fillWidth: true
+        spacing: 0
+
+        StyledCheckBox {
+            id: ocBox
+            Layout.fillWidth: true
+            checked: oc.value
+            onToggled: {
+                oc.picked(checked)
+                checked = Qt.binding(function() { return oc.value })
+            }
+        }
+        Text {
+            Layout.fillWidth: true
+            Layout.leftMargin: ocBox.leftPadding + ocBox.indicator.width + 6
+            visible: oc.description.length > 0
+            text: oc.description
+            color: ColorPalette.textMuted
+            font.pixelSize: 11 * App.fontScale
+            wrapMode: Text.WordWrap
+            opacity: ocBox.enabled ? 1.0 : 0.6
+        }
+    }
+
+    RowLayout {
+        id: columns
+        anchors { left: parent.left; right: parent.right; top: parent.top
+                  leftMargin: 14; rightMargin: 14; topMargin: 8 }
+        spacing: 24
+
+        // Left: bandwidth + share limits.
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.preferredWidth: 1
+            Layout.alignment: Qt.AlignTop
+            spacing: 4
+
+            SectionHeader { text: qsTr("Speed limits") }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+                SheetKey { id: downKey; text: qsTr("Download") }
+                NumField {
+                    id: downField
+                    validator: IntValidator { bottom: 0; top: 1048576 }
+                    onEdited: function(text) { var n = parseInt(text, 10); root._editDown = isNaN(n) ? 0 : Math.max(0, n) }
+                }
+                Unit { text: "KB/s" }
+                Item { Layout.fillWidth: true }
+            }
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+                SheetKey { text: qsTr("Upload") }
+                NumField {
+                    id: upField
+                    validator: IntValidator { bottom: 0; top: 1048576 }
+                    onEdited: function(text) { var n = parseInt(text, 10); root._editUp = isNaN(n) ? 0 : Math.max(0, n) }
+                }
+                Unit { text: "KB/s" }
+                Item { Layout.fillWidth: true }
+            }
+            Text {
+                Layout.leftMargin: downKey.width + 8
+                text: qsTr("0 = unlimited")
+                color: ColorPalette.textMuted
+                font.pixelSize: 11 * App.fontScale
+            }
+
+            SectionHeader { text: qsTr("Share limits"); Layout.topMargin: 7 }
+
+            LimitRow {
+                id: ratioRow
+                label: qsTr("Ratio")
+                mode: root._ratioMode
+                validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
+                onModePicked: function(m) { root._ratioMode = m }
+                onValueEdited: function(t) { root._ratioText = t }
+            }
+            LimitRow {
+                id: seedRow
+                label: qsTr("Seeding time")
+                unit: qsTr("min")
+                mode: root._seedMode
+                validator: IntValidator { bottom: 0; top: 999999 }
+                onModePicked: function(m) { root._seedMode = m }
+                onValueEdited: function(t) { root._seedText = t }
+            }
+            LimitRow {
+                id: inactiveRow
+                label: qsTr("Inactive time")
+                unit: qsTr("min")
+                mode: root._inactiveMode
+                validator: IntValidator { bottom: 0; top: 999999 }
+                onModePicked: function(m) { root._inactiveMode = m }
+                onValueEdited: function(t) { root._inactiveText = t }
+            }
+        }
+
+        // Right: peer discovery + download mode.
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.preferredWidth: 1
+            Layout.alignment: Qt.AlignTop
+            spacing: 4
+
+            SectionHeader { text: qsTr("Peer discovery") }
+
+            OptionCheck {
+                text: qsTr("DHT")
+                description: qsTr("Distributed Hash Table")
+                value: !root._editDisableDht
+                enabled: !root._isPrivate
+                onPicked: function(v) { root._editDisableDht = !v }
+            }
+            OptionCheck {
+                text: qsTr("PeX")
+                description: qsTr("Peer Exchange")
+                value: !root._editDisablePex
+                enabled: !root._isPrivate
+                onPicked: function(v) { root._editDisablePex = !v }
+            }
+            OptionCheck {
+                text: qsTr("LSD")
+                description: qsTr("Local Service Discovery")
+                value: !root._editDisableLsd
+                onPicked: function(v) { root._editDisableLsd = !v }
+            }
+            Text {
+                Layout.fillWidth: true
+                visible: root._isPrivate
+                text: qsTr("Private torrent: DHT and PeX are turned off.")
+                color: ColorPalette.textMuted
+                font.pixelSize: 11 * App.fontScale
+                wrapMode: Text.WordWrap
+            }
+
+            SectionHeader { text: qsTr("Download mode"); Layout.topMargin: 7 }
+
+            OptionCheck {
+                text: qsTr("Sequential download")
+                description: qsTr("Pieces downloaded in order (piece 0 → last)")
+                value: root._editSequential
+                onPicked: function(v) { root._editSequential = v }
+            }
+            OptionCheck {
+                text: qsTr("Prioritize first & last pieces")
+                description: qsTr("Front-loads header/footer for early playback")
+                value: root._editFirstLastPieces
+                onPicked: function(v) { root._editFirstLastPieces = v }
+            }
+        }
+    }
+
+    DlgButton {
+        anchors { right: parent.right; bottom: parent.bottom; rightMargin: 14; bottomMargin: 10 }
+        text: qsTr("Apply")
+        primary: true
+        enabled: root.dirty
+        onClicked: {
+            if (!root.torrentItem) return
+            App.setTorrentSpeedLimits(root.torrentItem.id,
+                                      Math.max(0, root._editDown),
+                                      Math.max(0, root._editUp))
+            var ratio     = root._ratioMode === 0 ? -1.0
+                          : root._ratioMode === 1 ? -2.0
+                          : Math.max(0, parseFloat(root._ratioText) || 0.0)
+            var seedMins  = root._seedMode === 0 ? -1
+                          : root._seedMode === 1 ? -2
+                          : Math.max(0, parseInt(root._seedText, 10) || 0)
+            var inactMins = root._inactiveMode === 0 ? -1
+                          : root._inactiveMode === 1 ? -2
+                          : Math.max(0, parseInt(root._inactiveText, 10) || 0)
+            App.setTorrentShareLimits(root.torrentItem.id, ratio, seedMins, inactMins, -1)
+            App.setTorrentFlags(root.torrentItem.id,
+                                root._editDisableDht,
+                                root._editDisablePex,
+                                root._editDisableLsd)
+            App.setTorrentDownloadMode(root.torrentItem.id,
+                                       root._editSequential,
+                                       root._editFirstLastPieces)
+        }
+    }
 }

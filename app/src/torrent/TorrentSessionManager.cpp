@@ -635,20 +635,21 @@ bool TorrentSessionManager::shouldReannounceDht(const QString &downloadId) {
     return true;
 }
 
-bool TorrentSessionManager::addMagnet(DownloadItem *item, bool startPaused, bool deferModels) {
+bool TorrentSessionManager::addMagnet(DownloadItem *item, bool startPaused, bool deferModels, bool metadataOnly) {
 #if defined(STELLAR_HAS_LIBTORRENT)
-    return addTorrentInternal(item, startPaused, QString(), deferModels);
+    return addTorrentInternal(item, startPaused, QString(), deferModels, metadataOnly);
 #else
     Q_UNUSED(item);
     Q_UNUSED(startPaused);
     Q_UNUSED(deferModels);
+    Q_UNUSED(metadataOnly);
     return false;
 #endif
 }
 
 bool TorrentSessionManager::addTorrentFile(DownloadItem *item, const QString &torrentFilePath, bool startPaused, bool deferModels) {
 #if defined(STELLAR_HAS_LIBTORRENT)
-    return addTorrentInternal(item, startPaused, torrentFilePath, deferModels);
+    return addTorrentInternal(item, startPaused, torrentFilePath, deferModels, /*metadataOnly=*/false);
 #else
     Q_UNUSED(item);
     Q_UNUSED(torrentFilePath);
@@ -769,7 +770,10 @@ void TorrentSessionManager::resume(DownloadItem *item) {
     if (!handle.is_valid())
         return;
     m_pausedIds.remove(item->id());
-    handle.unset_flags(libtorrent::torrent_flags::auto_managed);
+    // upload_mode: set on staged metadata-only adds, or by libtorrent after a disk
+    // error — either way a user resume means "download again".
+    handle.unset_flags(libtorrent::torrent_flags::auto_managed
+                       | libtorrent::torrent_flags::upload_mode);
     handle.resume();
     // Resuming a torrent while all others were stopped re-activates DHT.
     reconcileDhtState();
@@ -1641,7 +1645,8 @@ QString TorrentSessionManager::idForHandle(const libtorrent::torrent_handle &han
     return m_handleToId.value(handle);
 }
 
-bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels) {
+bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels,
+                                               bool metadataOnly) {
     if (!item)
         return false;
 
@@ -1720,6 +1725,16 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
             return false;
         }
     }
+
+    // A staged magnet only needs its metadata while the add dialog is open. Upload
+    // mode stops piece requests (ut_metadata is unaffected), so nothing reaches
+    // disk: with pre-allocation on, one early block creates the full-size file and
+    // every later check has to hash all of it. Every other add clears the flag,
+    // because resume data saved while staged carries it.
+    if (metadataOnly)
+        params.flags |= libtorrent::torrent_flags::upload_mode;
+    else
+        params.flags &= ~libtorrent::torrent_flags::upload_mode;
 
     // Restore path: add asynchronously. The synchronous add_torrent() is a
     // session-thread round-trip per torrent — restoring dozens at startup
@@ -3042,7 +3057,7 @@ void TorrentSessionManager::setPerTorrentUploadLimit(const QString &downloadId, 
         handle.set_upload_limit(kbps > 0 ? kbps * 1024 : -1);
 }
 
-bool TorrentSessionManager::moveStorage(const QString &downloadId, const QString &newSavePath) {
+bool TorrentSessionManager::moveStorage(const QString &downloadId, const QString &newSavePath, bool keepExistingFiles) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.value(downloadId);
     if (!handle.is_valid() || newSavePath.trimmed().isEmpty())
@@ -3050,10 +3065,12 @@ bool TorrentSessionManager::moveStorage(const QString &downloadId, const QString
     m_movingIds.insert(downloadId);
     if (auto *item = m_items.value(downloadId, nullptr).data())
         item->setStatus(DownloadItem::Status::Moving);
-    handle.move_storage(newSavePath.trimmed().toStdString());
+    handle.move_storage(newSavePath.trimmed().toStdString(),
+                        keepExistingFiles ? libtorrent::move_flags_t::dont_replace
+                                          : libtorrent::move_flags_t::always_replace_files);
     return true;
 #else
-    Q_UNUSED(downloadId); Q_UNUSED(newSavePath);
+    Q_UNUSED(downloadId); Q_UNUSED(newSavePath); Q_UNUSED(keepExistingFiles);
     return false;
 #endif
 }

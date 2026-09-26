@@ -2754,6 +2754,56 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <source>Waiting to announce</source>
         <translation>Waiting to announce</translation>
     </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="32"/>
+        <source>%1 Properties</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2253"/>
+        <source>Unlimited</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2328"/>
+        <source>Torrent</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2359"/>
+        <source>Added</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2366"/>
+        <source>Private</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2367"/>
+        <source>Yes</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2367"/>
+        <source>No</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2368"/>
+        <source>Metadata</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2369"/>
+        <source>Available</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2373"/>
+        <source>Comment</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>FindDialog</name>
@@ -8488,6 +8538,61 @@ Click to open Statistics</source>
     <message>
         <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="446"/>
         <source>Front-loads header/footer for early playback</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="237"/>
+        <source>Speed limits</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="242"/>
+        <source>Download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="254"/>
+        <source>Upload</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="265"/>
+        <source>0 = unlimited</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="270"/>
+        <source>Share limits</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="274"/>
+        <source>Ratio</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="282"/>
+        <source>Seeding time</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="291"/>
+        <source>Inactive time</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="307"/>
+        <source>Peer discovery</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="332"/>
+        <source>Private torrent: DHT and PeX are turned off.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="338"/>
+        <source>Download mode</source>
         <translation></translation>
     </message>
 </context>

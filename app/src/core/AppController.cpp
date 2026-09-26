@@ -3333,7 +3333,7 @@ QString AppController::addMagnetLink(const QString &uri, const QString &savePath
     auto *item = createTorrentItem(normalized, savePath, category, description, true, queueId, false, true);
     if (!item)
         return {};
-    if (!m_torrentSession->addMagnet(item, false)) {
+    if (!m_torrentSession->addMagnet(item, false, false, /*metadataOnly=*/true)) {
         discardTorrentDownload(item->id());
         emit errorOccurred(QStringLiteral("Failed to add magnet link."));
         return {};
@@ -3549,12 +3549,15 @@ bool AppController::confirmTorrentDownload(const QString &downloadId, const QStr
     m_db->save(item);
 
     const QString effectiveSavePath = item->savePath().trimmed();
-    if (m_torrentSession && !effectiveSavePath.isEmpty()
-        && QDir::cleanPath(previousSavePath) != QDir::cleanPath(effectiveSavePath)) {
+    const bool savePathChanged = !effectiveSavePath.isEmpty()
+        && QDir::cleanPath(previousSavePath) != QDir::cleanPath(effectiveSavePath);
+    if (m_torrentSession && savePathChanged) {
         // The torrent handle already exists while this item is staged. If the user
         // changed save directory in the metadata dialog we must move storage on the
         // live handle as well, otherwise libtorrent keeps writing to the old path.
-        m_torrentSession->moveStorage(downloadId, effectiveSavePath);
+        // Files already in the new folder are kept, not overwritten by the staged
+        // torrent's, so the recheck below can pick them up.
+        m_torrentSession->moveStorage(downloadId, effectiveSavePath, /*keepExistingFiles=*/true);
     }
 
     if (!startNow && item->torrentHasMetadata()) {
@@ -3562,22 +3565,14 @@ bool AppController::confirmTorrentDownload(const QString &downloadId, const QStr
         item->setStatus(DownloadItem::Status::Paused);
         m_torrentSession->saveResumeData(downloadId);
     } else {
-        // Always force a hash recheck on confirmation so pre-existing data in the
-        // chosen save directory is discovered before piece download continues.
-        m_torrentSession->forceRecheck(downloadId);
+        // libtorrent already looked for existing data at the staged save path when
+        // the metadata arrived (and does so itself for a magnet whose metadata is
+        // still pending), so only a new destination can hold files it hasn't seen.
+        // An unconditional recheck here hashed every byte of a pre-allocated file.
+        if (savePathChanged && item->torrentHasMetadata())
+            m_torrentSession->forceRecheck(downloadId);
         m_torrentSession->resume(item);
         applyPerTorrentSpeedLimits(m_torrentSession, item);
-        if (!item->torrentHasMetadata()) {
-            QPointer<DownloadItem> guardedItem(item);
-            connect(item, &DownloadItem::torrentChanged, this, [this, guardedItem, downloadId]() {
-                if (!guardedItem || !guardedItem->torrentHasMetadata())
-                    return;
-                if (m_torrentSession) {
-                    m_torrentSession->forceRecheck(downloadId);
-                    m_torrentSession->resume(guardedItem);
-                }
-            }, Qt::SingleShotConnection);
-        }
     }
 
     emit downloadAdded(item);

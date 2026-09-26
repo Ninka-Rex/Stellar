@@ -244,6 +244,8 @@ qt_add_qml_module(Stellar
         app/qml/components/TorrentProgressBar.qml
         app/qml/components/TimeField.qml
         app/qml/components/DayOfWeekSelector.qml
+        app/qml/components/SectionHeader.qml
+        app/qml/components/SheetKey.qml
         # singletons/
         app/qml/singletons/ColorPalette.qml
         app/qml/singletons/LanguageList.qml

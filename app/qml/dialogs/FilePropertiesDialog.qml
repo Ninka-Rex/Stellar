@@ -24,7 +24,13 @@ import QtCore
 
 Window {
     id: root
-    title: _isTorrent ? qsTr("Torrent Properties") : qsTr("File Properties")
+    // Torrent windows are titled after the torrent so several open properties
+    // windows can be told apart in the taskbar.
+    title: {
+        if (!_isTorrent) return qsTr("File Properties")
+        var name = safeStr(item.filename)
+        return name.length > 0 ? qsTr("%1 Properties").arg(name) : qsTr("Torrent Properties")
+    }
     // Sizes are enforced via onItemChanged/onVisibleChanged so the window
     // always fits the content type, even when the user switches items.
     color: ColorPalette.cardBg
@@ -139,6 +145,8 @@ Window {
     readonly property var activeTrackerMapModel: (peerMapActive && peerMapShowTrackers) ? torrentTrackerModel : null
     readonly property string _torrentStatusText: item ? safeStr(item.status) : ""
     readonly property bool _torrentIsMoving: _torrentStatusText === "Moving"
+    readonly property bool _torrentHasSpeedLimit: !!item && ((item.perTorrentDownLimitKBps | 0) > 0 || (item.perTorrentUpLimitKBps | 0) > 0)
+    readonly property string _torrentComment: item ? safeStr(item.torrentComment).trim() : ""
 
     function fileUrlFromPath(path) {
         var p = String(path || "").trim().replace(/\\/g, "/")
@@ -1738,7 +1746,25 @@ Window {
         }
     }
 
-    // ?? File chooser ?????????????????????????????????????????????????????????
+    // General-tab property sheet value (keys are the shared SheetKey). Plain
+    // text because torrent metadata is untrusted, so never rich text; elides
+    // instead of pushing the grid wider.
+    component PropValue: Text {
+        color: ColorPalette.textPrimary
+        font.pixelSize: 12 * App.fontScale
+        textFormat: Text.PlainText
+        elide: Text.ElideRight
+        Layout.fillWidth: true
+        // Equal preferred widths make the fill columns split evenly.
+        Layout.preferredWidth: 100
+    }
+    // Field-height button for the action beside a ReadOnlyField (Move, Copy).
+    component SheetButton: DlgButton {
+        implicitHeight: 26
+        Layout.preferredWidth: 84 * App.fontScale
+    }
+
+        // ?? File chooser ?????????????????????????????????????????????????????????
     FileDialog {
         id: moveFileDialog
         title: _isTorrent ? qsTr("Move Torrent Data To...") : qsTr("Move File To...")
@@ -2159,78 +2185,103 @@ Window {
                 Item {
                     ScrollView {
                         id: generalScrollView
-                        anchors { fill: parent; topMargin: 2; bottomMargin: 2; leftMargin: 12; rightMargin: 12 }
+                        anchors { fill: parent; topMargin: 8; bottomMargin: 4; leftMargin: 14; rightMargin: 14 }
                         clip: true
                         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                         ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
+                        // Plain property sheet: three titled groups, muted keys,
+                        // primary values, no tinted values or boxed cards. Every
+                        // key is a SheetKey so the value columns line up across
+                        // the groups.
                         ColumnLayout {
                             width: generalScrollView.availableWidth
-                            spacing: 0
+                            spacing: 4
 
-                            // ?? Info + Save (merged, compact) ?????????????????
-                            // 2-col grid: label | content-row (field + optional actions).
-                            // Action buttons live inside the content row so each row
-                            // controls its own action area independently - no off-center
-                            // buttons or stretched fields.
+                            SectionHeader { text: qsTr("Transfer") }
+
                             GridLayout {
-                                id: infoGrid
                                 Layout.fillWidth: true
-                                Layout.topMargin: 2
-                                columns: 2
-                                columnSpacing: 8
-                                rowSpacing: 5
-                                property real lw: 68
+                                columns: 6; columnSpacing: 10; rowSpacing: 2
 
-                                // Source
-                                Text { text: qsTr("Source"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
-                                ReadOnlyField {
-                                    Layout.fillWidth: true
-                                    fieldText: root.item ? safeStr(root.item.torrentSource) : ""
-                                    textColor: ColorPalette.textPrimary
-                                }
+                                SheetKey   { text: qsTr("Downloaded") }
+                                PropValue { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "-" }
+                                SheetKey   { text: qsTr("Uploaded") }
+                                PropValue { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "-" }
+                                SheetKey   { text: qsTr("Share ratio") }
+                                PropValue { text: root.item ? root.ratioText(root.item.torrentRatio) : "-" }
 
-                                // Info hash - sized to fit a SHA1/SHA256 hash; badge + Copy follow inline.
-                                Text { text: qsTr("Info hash"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
-                                RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 8
-                                    ReadOnlyField {
-                                        Layout.preferredWidth: 360
-                                        Layout.maximumWidth: 360
-                                        fieldText: root.item ? safeStr(root.item.torrentInfoHash) : ""
-                                    }
-                                    Item { Layout.fillWidth: true }
-                                    DlgButton {
-                                        text: qsTr("Copy")
-                                        enabled: !!root.item && safeStr(root.item.torrentInfoHash).length > 0
-                                        onClicked: { var h = safeStr(root.item.torrentInfoHash); if (h.length > 0) App.copyToClipboard(h) }
+                                SheetKey   { text: qsTr("Pieces") }
+                                PropValue {
+                                    text: {
+                                        if (!root.item) return "-"
+                                        var done = root.item.torrentPiecesDone | 0
+                                        var total = root.item.torrentPiecesTotal | 0
+                                        if (total <= 0) return done > 0 ? String(done) : "-"
+                                        return done + " / " + total + " (" + Math.round(done / total * 100) + "%)"
                                     }
                                 }
-
-                                // Save to
-                                Text { text: qsTr("Save to"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
-                                RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 8
-                                    ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.savePath) : "" }
-                                    DlgButton {
-                                        text: qsTr("Move...")
-                                        enabled: !!root.item && !root._torrentIsMoving
-                                        onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() }
-                                    }
+                                SheetKey   { text: qsTr("Availability") }
+                                PropValue {
+                                    text: { if (!root.item) return "-"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "-" }
+                                }
+                                SheetKey   { text: qsTr("Wasted") }
+                                PropValue {
+                                    text: { if (!root.item) return "-"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "-" }
                                 }
 
-                                // Category
-                                Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                SheetKey   { text: qsTr("Connections") }
+                                PropValue { text: root.item ? String(root.item.torrentConnections | 0) : "-" }
+                                SheetKey   { text: qsTr("Active time") }
+                                PropValue { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "-" }
+                                SheetKey   { text: qsTr("Seed time") }
+                                PropValue { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "-" }
+
+                                // Only present when a per-torrent cap is set, so an
+                                // unlimited torrent has no row of "Unlimited".
+                                SheetKey {
+                                    text: qsTr("Speed limit")
+                                    visible: root._torrentHasSpeedLimit
+                                }
+                                PropValue {
+                                    Layout.columnSpan: 5
+                                    visible: root._torrentHasSpeedLimit
+                                    text: {
+                                        if (!root.item) return ""
+                                        var d = root.item.perTorrentDownLimitKBps | 0
+                                        var u = root.item.perTorrentUpLimitKBps   | 0
+                                        return "↓ " + (d > 0 ? d + " KB/s" : qsTr("Unlimited"))
+                                             + "    ↑ " + (u > 0 ? u + " KB/s" : qsTr("Unlimited"))
+                                    }
+                                }
+                            }
+
+                            SectionHeader { text: qsTr("Location"); Layout.topMargin: 7 }
+
+                            RowLayout {
+                                Layout.fillWidth: true
+                                spacing: 10
+                                SheetKey { text: qsTr("Save to") }
+                                ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.savePath) : "" }
+                                SheetButton {
+                                    text: qsTr("Move...")
+                                    enabled: !!root.item && !root._torrentIsMoving
+                                    onClicked: moveTorrentDialog.open()
+                                }
+                            }
+
+                            RowLayout {
+                                Layout.fillWidth: true
+                                spacing: 10
+                                SheetKey { text: qsTr("Category") }
                                 StyledComboBox {
                                     id: categoryCombo
                                     Layout.preferredWidth: 180
-                                    Layout.fillWidth: false
+                                    implicitHeight: 26
                                     model: App.categoryModel
                                     textRole: "categoryLabel"
                                     valueRole: "categoryId"
-                                    font.pixelSize: 11 * App.fontScale
+                                    font.pixelSize: 12 * App.fontScale
                                     property bool _syncing: false
                                     function _syncFromItem() {
                                         if (!root.item) return
@@ -2256,169 +2307,81 @@ Window {
                                         if (newId !== root.item.category)
                                             App.setDownloadCategory(root.item.id, newId)
                                     }
-
-                                    // Themed look — default Qt ComboBox uses the
-                                    // system palette, giving white-on-white popup
-                                    // items in this dialog. Theme content, field
-                                    // and popup explicitly via ColorPalette.
-                                    contentItem: Text {
-                                        leftPadding: 8
-                                        text: categoryCombo.displayText
-                                        font: categoryCombo.font
-                                        color: ColorPalette.textPrimary
-                                        verticalAlignment: Text.AlignVCenter
-                                        elide: Text.ElideRight
-                                    }
-                                    background: Rectangle {
-                                        color: ColorPalette.cardBg
-                                        border.color: categoryCombo.activeFocus ? "#4488dd" : ColorPalette.border
-                                        radius: 2
-                                    }
-                                    delegate: ItemDelegate {
-                                        width: categoryCombo.width
-                                        height: 24
-                                        highlighted: categoryCombo.highlightedIndex === index
-                                        contentItem: Text {
-                                            text: model.categoryLabel
-                                            font.pixelSize: 11 * App.fontScale
-                                            color: ColorPalette.textPrimary
-                                            verticalAlignment: Text.AlignVCenter
-                                            elide: Text.ElideRight
-                                        }
-                                        background: Rectangle {
-                                            color: parent.highlighted ? ColorPalette.toolbarHoverBg : "transparent"
-                                        }
-                                    }
-                                    popup: Popup {
-                                        y: categoryCombo.height
-                                        width: categoryCombo.width
-                                        implicitHeight: Math.min(contentItem.implicitHeight, 240)
-                                        padding: 1
-                                        contentItem: ListView {
-                                            clip: true
-                                            implicitHeight: contentHeight
-                                            model: categoryCombo.popup.visible ? categoryCombo.delegateModel : null
-                                            currentIndex: categoryCombo.highlightedIndex
-                                            ScrollIndicator.vertical: ScrollIndicator {}
-                                        }
-                                        background: Rectangle {
-                                            color: ColorPalette.cardBg
-                                            border.color: ColorPalette.border
-                                            radius: 2
-                                        }
-                                    }
                                 }
-
-                                // Note
-                                Text { text: qsTr("Note"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text {
+                                    Layout.leftMargin: 8
+                                    text: qsTr("Note")
+                                    color: ColorPalette.textSecond
+                                    font.pixelSize: 12 * App.fontScale
+                                }
                                 TextField {
                                     Layout.fillWidth: true
                                     implicitHeight: 26
                                     text: root.item ? safeStr(root.item.description) : ""
-                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
-                                    background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2 }
-                                    leftPadding: 7; topPadding: 0; bottomPadding: 0
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
+                                    background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? ColorPalette.borderFocus : ColorPalette.border; radius: 2 }
+                                    leftPadding: 6; topPadding: 0; bottomPadding: 0
                                     onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
                                 }
                             }
 
-                            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.topMargin: 8; Layout.bottomMargin: 0 }
+                            SectionHeader { text: qsTr("Torrent"); Layout.topMargin: 7 }
 
-                            // ?? Transfer Stats section ?????????????????????????
-                            GridLayout {
+                            RowLayout {
                                 Layout.fillWidth: true
-                                Layout.topMargin: 7
-                                columns: 6; columnSpacing: 8; rowSpacing: 5
-                                property real lw: 80
-                                // Equal value-column width so the three label/value pairs
-                                // stay evenly spaced regardless of content length.
-                                property real vw: 120
-
-                                Text { text: qsTr("Downloaded");  color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
-                                Text { text: qsTr("Uploaded");    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
-                                Text { text: qsTr("Wasted");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text {
-                                    text: { if (!root.item) return "-"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "-" }
-                                    color: (root.item && root.item.torrentWastedBytes > 0) ? "#b8924a" : ColorPalette.textPrimary
-                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw
-                                }
-
-                                Text { text: qsTr("Share ratio"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text {
-                                    text: root.item ? root.ratioText(root.item.torrentRatio) : "-"
-                                    color: root.item ? root.ratioColor(Number(root.item.torrentRatio)) : ColorPalette.textPrimary
-                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw
-                                }
-                                Text { text: qsTr("Seed time");   color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
-                                Text { text: qsTr("Connections"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
-
-                                // Pieces + Availability on their own row - piece text can be long
-                                Text { text: qsTr("Pieces");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.columnSpan: 1 }
-                                Text {
-                                    text: {
-                                        if (!root.item) return "-"
-                                        var done = root.item.torrentPiecesDone | 0
-                                        var total = root.item.torrentPiecesTotal | 0
-                                        if (total <= 0) return done > 0 ? String(done) : "-"
-                                        return done + " / " + total + " (" + Math.round(done / total * 100) + "%)"
-                                    }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw; Layout.columnSpan: 1
-                                }
-                                Text { text: qsTr("Availability"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text {
-                                    text: { if (!root.item) return "-"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "-" }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw
-                                }
-                                // Pad remaining 2 cols so Metadata row label/value don't shift sides.
-                                Text { text: qsTr("Metadata"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text {
-                                    text: (!!root.item && root.item.torrentHasMetadata) ? qsTr("Available") : qsTr("Fetching…")
-                                    color: ColorPalette.textPrimary
-                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
-
-                                Text { text: qsTr("Active time"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
-                                // Fill remaining 4 cols so following metadata rows start at column 0.
-                                Item { Layout.columnSpan: 4; Layout.fillWidth: true }
-
-                                // Each metadata field gets its own full row (label + 5-col value)
-                                Text { text: qsTr("Description"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
-                                    visible: !!root.item && safeStr(root.item.torrentComment).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentComment) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
-                                    visible: !!root.item && safeStr(root.item.torrentComment).length > 0 }
-
-                                Text { text: qsTr("Created by"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
-                                    visible: !!root.item && safeStr(root.item.torrentCreator).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentCreator) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
-                                    visible: !!root.item && safeStr(root.item.torrentCreator).length > 0 }
-
-                                Text { text: qsTr("Created on"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
-                                    visible: !!root.item && safeStr(root.item.torrentCreatedOn).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentCreatedOn) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5
-                                    visible: !!root.item && safeStr(root.item.torrentCreatedOn).length > 0 }
-                                Text {
-                                    text: qsTr("Speed limit"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw
-                                    visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
-                                }
-                                Text {
-                                    text: {
-                                        if (!root.item) return ""
-                                        var d = root.item.perTorrentDownLimitKBps | 0
-                                        var u = root.item.perTorrentUpLimitKBps   | 0
-                                        var parts = []
-                                        if (d > 0) parts.push("↓ " + d + " KB/s")
-                                        if (u > 0) parts.push("↑ " + u + " KB/s")
-                                        return parts.join("   ")
-                                    }
-                                    color: "#d09040"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
-                                    visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
+                                spacing: 10
+                                SheetKey { text: qsTr("Info hash") }
+                                ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.torrentInfoHash) : "" }
+                                SheetButton {
+                                    text: qsTr("Copy")
+                                    enabled: !!root.item && safeStr(root.item.torrentInfoHash).length > 0
+                                    onClicked: App.copyToClipboard(safeStr(root.item.torrentInfoHash))
                                 }
                             }
 
+                            RowLayout {
+                                Layout.fillWidth: true
+                                spacing: 10
+                                SheetKey { text: qsTr("Source") }
+                                ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.torrentSource) : "" }
+                                SheetButton {
+                                    text: qsTr("Copy")
+                                    enabled: !!root.item && safeStr(root.item.torrentSource).length > 0
+                                    onClicked: App.copyToClipboard(safeStr(root.item.torrentSource))
+                                }
+                            }
+
+                            GridLayout {
+                                Layout.fillWidth: true
+                                columns: 6; columnSpacing: 10; rowSpacing: 2
+
+                                SheetKey   { text: qsTr("Added") }
+                                PropValue { text: root.item ? (safeStr(root.item.addedDateStr) || "-") : "-" }
+                                SheetKey   { text: qsTr("Created on") }
+                                PropValue { text: root.item ? (safeStr(root.item.torrentCreatedOn) || "-") : "-" }
+                                SheetKey   { text: qsTr("Created by") }
+                                PropValue { text: root.item ? (safeStr(root.item.torrentCreator) || "-") : "-" }
+
+                                SheetKey   { text: qsTr("Private") }
+                                PropValue { text: (!!root.item && root.item.torrentIsPrivate) ? qsTr("Yes") : qsTr("No") }
+                                SheetKey   { text: qsTr("Metadata") }
+                                PropValue { text: (!!root.item && root.item.torrentHasMetadata) ? qsTr("Available") : qsTr("Fetching…") }
+                                Item { Layout.columnSpan: 2 }
+
+                                SheetKey {
+                                    text: qsTr("Comment")
+                                    visible: root._torrentComment.length > 0
+                                    Layout.alignment: Qt.AlignTop
+                                }
+                                PropValue {
+                                    Layout.columnSpan: 5
+                                    visible: root._torrentComment.length > 0
+                                    text: root._torrentComment
+                                    elide: Text.ElideNone
+                                    wrapMode: Text.Wrap
+                                    maximumLineCount: 4
+                                }
+                            }
                         }
                     }
                 }
