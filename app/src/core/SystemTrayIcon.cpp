@@ -72,6 +72,23 @@ static QIcon createDownloadsTrayIcon() {
 }
 
 static QIcon trayIconForStyle(int style) {
+#if defined(Q_OS_LINUX)
+    // Linux panels scale the pixmap to fill the whole tray slot, so the
+    // edge-to-edge app icon looks oversized next to other tray icons. The
+    // tray/ set is padded to the usual template geometry (frame inset 2px,
+    // ~3.3px corner radius at 22px) and comes in 1x/2x/3x so the panel
+    // downsamples from a close size.
+    QString base;
+    switch (style) {
+    case 1:  base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/tray/tray-milky-way-white"); break;
+    case 2:  base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/tray/tray-milky-way-black"); break;
+    default: base = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/tray/tray-milky-way");       break;
+    }
+    QIcon icon;
+    icon.addFile(base + QStringLiteral(".png"),    QSize(22, 22));
+    icon.addFile(base + QStringLiteral("@2x.png"), QSize(44, 44));
+    icon.addFile(base + QStringLiteral("@3x.png"), QSize(66, 66));
+#else
     QString path;
     switch (style) {
     case 1:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way-white.png"); break;
@@ -79,6 +96,7 @@ static QIcon trayIconForStyle(int style) {
     default: path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png");       break;
     }
     const QIcon icon(path);
+#endif
     return icon.isNull() ? createDefaultIcon() : icon;
 }
 

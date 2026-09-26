@@ -335,6 +335,15 @@ qt_add_qml_module(Stellar
         app/qml/icons/milky-way.png
         app/qml/icons/milky-way-white.png
         app/qml/icons/milky-way-black.png
+        app/qml/icons/tray/tray-milky-way.png
+        app/qml/icons/tray/tray-milky-way@2x.png
+        app/qml/icons/tray/tray-milky-way@3x.png
+        app/qml/icons/tray/tray-milky-way-white.png
+        app/qml/icons/tray/tray-milky-way-white@2x.png
+        app/qml/icons/tray/tray-milky-way-white@3x.png
+        app/qml/icons/tray/tray-milky-way-black.png
+        app/qml/icons/tray/tray-milky-way-black@2x.png
+        app/qml/icons/tray/tray-milky-way-black@3x.png
         app/qml/icons/milky-way.ico
         app/qml/icons/milky-way.gif
         app/qml/icons/magnet.svg
