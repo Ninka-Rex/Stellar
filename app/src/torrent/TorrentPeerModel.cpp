@@ -21,6 +21,7 @@
 #include <QRegularExpression>
 
 #include <algorithm>
+#include <cmath>
 
 TorrentPeerModel::TorrentPeerModel(QObject *parent)
     : QAbstractListModel(parent) {
@@ -122,7 +123,40 @@ QVector<int> changedRolesFor(const TorrentPeerModel::Entry &a, const TorrentPeer
     if (!qFuzzyCompare(a.latitude + 1.0, b.latitude + 1.0)) changed << TorrentPeerModel::LatitudeRole;
     if (!qFuzzyCompare(a.longitude + 1.0, b.longitude + 1.0)) changed << TorrentPeerModel::LongitudeRole;
     if (a.source    != b.source)    changed << TorrentPeerModel::SourceRole;
+    if (a.stackIndex != b.stackIndex) changed << TorrentPeerModel::StackIndexRole;
+    if (a.stackSize  != b.stackSize)  changed << TorrentPeerModel::StackSizeRole;
     return changed;
+}
+
+// Group peers that geolocate to the same ~1 km cell (GeoIP often returns one
+// point for a whole city, and for many IPv6 ranges only the country centroid)
+// and number them within the group. Ordered by peer key so a peer keeps its slot
+// whatever column the list is sorted by.
+void assignStackSlots(QVector<TorrentPeerModel::Entry> &entries) {
+    QHash<QString, QVector<int>> groups;
+    for (int i = 0; i < entries.size(); ++i) {
+        TorrentPeerModel::Entry &e = entries[i];
+        e.stackIndex = 0;
+        e.stackSize = 1;
+        if (!std::isfinite(e.latitude) || !std::isfinite(e.longitude)
+            || (e.latitude == 0.0 && e.longitude == 0.0))
+            continue;
+        const QString cell = QStringLiteral("%1,%2")
+            .arg(qRound(e.latitude * 100.0)).arg(qRound(e.longitude * 100.0));
+        groups[cell].push_back(i);
+    }
+    for (auto it = groups.begin(); it != groups.end(); ++it) {
+        QVector<int> &members = it.value();
+        if (members.size() < 2)
+            continue;
+        std::sort(members.begin(), members.end(), [&](int a, int b) {
+            return peerKey(entries.at(a)) < peerKey(entries.at(b));
+        });
+        for (int slot = 0; slot < members.size(); ++slot) {
+            entries[members.at(slot)].stackIndex = slot;
+            entries[members.at(slot)].stackSize = int(members.size());
+        }
+    }
 }
 }
 
@@ -155,6 +189,8 @@ QVariant TorrentPeerModel::data(const QModelIndex &index, int role) const {
     case RttRole: return entry.rtt;
     case SourceRole: return entry.source;
     case FlagsRole: return entry.flags;
+    case StackIndexRole: return entry.stackIndex;
+    case StackSizeRole: return entry.stackSize;
     default: return {};
     }
 }
@@ -179,7 +215,9 @@ QHash<int, QByteArray> TorrentPeerModel::roleNames() const {
         { LongitudeRole, "longitude" },
         { RttRole, "rtt" },
         { SourceRole, "source" },
-        { FlagsRole, "flags" }
+        { FlagsRole, "flags" },
+        { StackIndexRole, "stackIndex" },
+        { StackSizeRole, "stackSize" }
     };
 }
 
@@ -253,6 +291,10 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
             it = m_missingPeerStreaks.erase(it);
         }
     }
+
+    // Over the final set (including peers kept for their grace ticks), so every
+    // update path below copies entries that already carry their stack slot.
+    assignStackSlots(sorted);
 
     // Build a lookup of incoming data by key for in-place updates.
     QHash<QString, Entry> sortedByKey;
@@ -404,6 +446,18 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
 
         emit liveReorderHappened();
     }
+}
+
+QVariantMap TorrentPeerModel::peerByKey(const QString &key) const {
+    const int row = indexOfPeerKey(key);
+    if (row < 0)
+        return {};
+    QVariantMap out;
+    const QModelIndex idx = index(row, 0);
+    const QHash<int, QByteArray> roles = roleNames();
+    for (auto it = roles.cbegin(); it != roles.cend(); ++it)
+        out.insert(QString::fromLatin1(it.value()), data(idx, it.key()));
+    return out;
 }
 
 void TorrentPeerModel::sortBy(const QString &key, bool ascending) {

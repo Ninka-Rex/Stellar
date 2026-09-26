@@ -194,6 +194,8 @@ Window {
     property bool   editTorrentEnableUpnp:     true
     property bool   editTorrentEnableNatPmp:   true
     property bool   editTorrentEnablePex:      true
+    property bool   editTorrentAnnounceToAllTiers:    true
+    property bool   editTorrentAnnounceToAllTrackers: false
     property int    editTorrentListenPort:     6881
     property int    editTorrentConnectionsLimit: 200
     property int    editTorrentConnectionsLimitPerTorrent: 0
@@ -603,6 +605,8 @@ Window {
         editTorrentEnableUpnp     !== App.settings.torrentEnableUpnp     ||
         editTorrentEnableNatPmp   !== App.settings.torrentEnableNatPmp   ||
         editTorrentEnablePex      !== App.settings.torrentEnablePex      ||
+        editTorrentAnnounceToAllTiers    !== App.settings.torrentAnnounceToAllTiers    ||
+        editTorrentAnnounceToAllTrackers !== App.settings.torrentAnnounceToAllTrackers ||
         editTorrentListenPort     !== App.settings.torrentListenPort     ||
         editTorrentConnectionsLimit !== App.settings.torrentConnectionsLimit ||
         editTorrentConnectionsLimitPerTorrent !== App.settings.torrentConnectionsLimitPerTorrent ||
@@ -1024,6 +1028,8 @@ Window {
         App.settings.torrentEnableUpnp      = editTorrentEnableUpnp
         App.settings.torrentEnableNatPmp    = editTorrentEnableNatPmp
         App.settings.torrentEnablePex       = editTorrentEnablePex
+        App.settings.torrentAnnounceToAllTiers    = editTorrentAnnounceToAllTiers
+        App.settings.torrentAnnounceToAllTrackers = editTorrentAnnounceToAllTrackers
         App.settings.torrentListenPort      = editTorrentListenPort
         App.settings.torrentConnectionsLimit = editTorrentConnectionsLimit
         App.settings.torrentConnectionsLimitPerTorrent = editTorrentConnectionsLimitPerTorrent
@@ -1149,6 +1155,8 @@ Window {
         editTorrentEnableUpnp     = App.settings.torrentEnableUpnp
         editTorrentEnableNatPmp   = App.settings.torrentEnableNatPmp
         editTorrentEnablePex      = App.settings.torrentEnablePex
+        editTorrentAnnounceToAllTiers    = App.settings.torrentAnnounceToAllTiers
+        editTorrentAnnounceToAllTrackers = App.settings.torrentAnnounceToAllTrackers
         editTorrentListenPort     = App.settings.torrentListenPort
         editTorrentConnectionsLimit = App.settings.torrentConnectionsLimit
         editTorrentConnectionsLimitPerTorrent = App.settings.torrentConnectionsLimitPerTorrent
@@ -3783,6 +3791,18 @@ Window {
                             description: qsTr("Share peer lists between connected peers so you find more sources without hitting the tracker.")
                             cbChecked: root.editTorrentEnablePex
                             onToggled: (v) => root.editTorrentEnablePex = v
+                        }
+                        NetCheckRow {
+                            label: qsTr("Announce to all tiers")
+                            description: qsTr("Contact every tracker tier instead of stopping at the first one that answers. Magnet links put each tracker in its own tier.")
+                            cbChecked: root.editTorrentAnnounceToAllTiers
+                            onToggled: (v) => root.editTorrentAnnounceToAllTiers = v
+                        }
+                        NetCheckRow {
+                            label: qsTr("Announce to all trackers in a tier")
+                            description: qsTr("Contact every tracker within a tier, not just the first working one. More peers, more tracker traffic.")
+                            cbChecked: root.editTorrentAnnounceToAllTrackers
+                            onToggled: (v) => root.editTorrentAnnounceToAllTrackers = v
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }

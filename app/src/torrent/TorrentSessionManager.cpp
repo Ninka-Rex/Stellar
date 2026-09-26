@@ -325,7 +325,15 @@ QString reportedTorrentUserAgent(const AppSettings *settings) {
 }
 
 QString normalizePeerEndpoint(const QString &endpoint) {
-    return QHostAddress(endpoint.trimmed()).toString();
+    const QHostAddress addr(endpoint.trimmed());
+    if (addr.isNull())
+        return {};
+    // Dual-stack sockets report IPv4 peers as ::ffff:a.b.c.d. Collapse that to
+    // the plain IPv4 form so a peer has one identity (ban list, peer-model key)
+    // whichever socket it arrived on, and GeoIP resolves it via the IPv4 table.
+    bool isV4 = false;
+    const quint32 v4 = addr.toIPv4Address(&isV4);
+    return isV4 ? QHostAddress(v4).toString() : addr.toString();
 }
 
 QStringList normalizedLines(const QString &text) {
@@ -1227,6 +1235,14 @@ void TorrentSessionManager::rebuildIpFilter() {
         if (ec)
             continue;
         filter.add_rule(addr, addr, libtorrent::ip_filter::blocked);
+        // ip_filter keeps separate IPv4 and IPv6 tables and doesn't unmap
+        // ::ffff:a.b.c.d, so a banned IPv4 peer reaching a dual-stack socket
+        // would slip past the IPv4 rule alone.
+        if (addr.is_v4()) {
+            const libtorrent::address mapped =
+                boost::asio::ip::make_address_v6(boost::asio::ip::v4_mapped, addr.to_v4());
+            filter.add_rule(mapped, mapped, libtorrent::ip_filter::blocked);
+        }
     }
     m_session->set_ip_filter(std::move(filter));
 }
@@ -1552,6 +1568,14 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
         pack.set_int(libtorrent::settings_pack::allowed_enc_level,
                      libtorrent::settings_pack::pe_both);
     }
+
+    // Tracker announce fan-out. libtorrent's default announces tier by tier and
+    // stops at the first tier that answers; magnet links put every tr= in its
+    // own tier, so only one tracker was ever contacted (and shown as Working).
+    pack.set_bool(libtorrent::settings_pack::announce_to_all_tiers,
+                  settings->torrentAnnounceToAllTiers());
+    pack.set_bool(libtorrent::settings_pack::announce_to_all_trackers,
+                  settings->torrentAnnounceToAllTrackers());
 
     // Storage / disk I/O settings (libtorrent 2.0+)
     pack.set_bool(libtorrent::settings_pack::piece_extent_affinity,
@@ -2361,7 +2385,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
         bool anyBanChanged = false;
         for (const auto &peer : peerInfos) {
             TorrentPeerModel::Entry entry;
-            entry.endpoint = QString::fromStdString(peer.ip.address().to_string());
+            entry.endpoint = normalizePeerEndpoint(QString::fromStdString(peer.ip.address().to_string()));
             entry.port = peer.ip.port();
             entry.client = QString::fromStdString(peer.client).left(200);
             entry.progress = peer.progress;
@@ -2437,7 +2461,6 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                                    &entry.cityName, &entry.latitude, &entry.longitude);
             }
 
-            entry.endpoint = normalizePeerEndpoint(entry.endpoint);
             const QString normalizedCountry = entry.countryCode.trimmed().toUpper();
             entry.countryCode = normalizedCountry;
 
@@ -2687,7 +2710,15 @@ tracker_refresh:
                                 for (int i = 0; i < toRemove && it != m_trackerIpCache.end(); ++i)
                                     it = m_trackerIpCache.erase(it);
                             }
-                            m_trackerIpCache[hostname] = info.addresses().first().toString();
+                            // Prefer IPv4 when the host has both: IPv6 GeoIP entries
+                            // are often only country-level, which piles trackers
+                            // onto one country centroid.
+                            const QList<QHostAddress> addrs = info.addresses();
+                            const auto v4 = std::find_if(addrs.cbegin(), addrs.cend(), [](const QHostAddress &a) {
+                                return a.protocol() == QAbstractSocket::IPv4Protocol;
+                            });
+                            m_trackerIpCache[hostname] =
+                                normalizePeerEndpoint((v4 != addrs.cend() ? *v4 : addrs.first()).toString());
                         }
                     });
                 }
@@ -3467,8 +3498,14 @@ int TorrentSessionManager::listenPort() const {
 
 void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress) {
 #if defined(STELLAR_HAS_LIBTORRENT)
-    const QString ip = QHostAddress(ipAddress.trimmed()).toString();
+    const QString ip = normalizePeerEndpoint(ipAddress);
     if (ip.isEmpty() || ip == m_externalAddress)
+        return;
+    // external_ip_alert fires once per address family. Letting each overwrite
+    // the other made "You" jump between two geolocations; IPv4 wins because
+    // IPv6 GeoIP is frequently only a country centroid.
+    if (QHostAddress(ip).protocol() == QAbstractSocket::IPv6Protocol
+        && QHostAddress(m_externalAddress).protocol() == QAbstractSocket::IPv4Protocol)
         return;
 
     m_externalAddress = ip;

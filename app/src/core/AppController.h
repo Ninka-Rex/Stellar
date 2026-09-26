@@ -399,7 +399,9 @@ public:
     Q_INVOKABLE QString downloadShareLink(const QString &id) const;
     Q_INVOKABLE bool exportTorrentFilesToDirectory(const QStringList &downloadIds, const QString &directoryPath);
     Q_INVOKABLE QString      torrentCurrentRootName(const QString &downloadId) const;
-    Q_INVOKABLE QVariantList torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds = 0, int maxPoints = 0) const;
+    // Speed history for the last spanSeconds as `buckets` epoch-aligned, time-
+    // weighted averages (see the .cpp for the returned map's keys).
+    Q_INVOKABLE QVariantMap torrentSpeedSeries(const QString &downloadId, int spanSeconds, int buckets) const;
     Q_INVOKABLE QVariantList torrentPieceMap(const QString &downloadId) const;
     Q_INVOKABLE void clearTorrentSpeedHistory(const QString &downloadId);
     Q_INVOKABLE QVariantMap torrentAllTimeStats() const;

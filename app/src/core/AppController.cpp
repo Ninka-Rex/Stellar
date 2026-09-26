@@ -5287,66 +5287,94 @@ void AppController::copyDownloadFilename(const QString &id) {
     copyToClipboard(item->filename());
 }
 
-QVariantList AppController::torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds, int maxPoints) const {
+QVariantMap AppController::torrentSpeedSeries(const QString &downloadId, int spanSeconds, int buckets) const {
+    // The recorder stores a sample only when the speed changes (plus a 10 s
+    // heartbeat), so samples are unevenly spaced. Averaging them per bucket by
+    // count would let a busy minute outweigh a steady hour; instead each sample
+    // is treated as holding its value until the next one, and buckets average
+    // that step function by time.
+    //
+    // Returned keys:
+    //   startMs, bucketMs, nowMs  bucket i covers [startMs + i*bucketMs, +bucketMs)
+    //   down, up                  per-bucket averages in B/s; -1 = no data
+    //   downAvg, upAvg            time-weighted averages over the covered span
+    //   downPeak, upPeak          highest recorded speed in the span
+    //   downBytes, upBytes        bytes transferred in the span
+    spanSeconds = std::clamp(spanSeconds, 10, int(kTorrentSpeedHistoryRetentionMs / 1000));
+    const qint64 spanMs = qint64(spanSeconds) * 1000;
+    // The recorder samples once a second; finer buckets would only repeat values.
+    buckets = std::clamp(buckets, 1, std::max(1, spanSeconds));
+    const qint64 bucketMs = std::max<qint64>(1000, spanMs / buckets);
+    const qint64 nowMs = QDateTime::currentMSecsSinceEpoch();
+    // Epoch-aligned edges: completed buckets keep their values between refreshes
+    // and only the rightmost (live) one changes, so the chart scrolls instead of
+    // re-shaping on every update.
+    const qint64 endMs = (nowMs / bucketMs + 1) * bucketMs;
+    const qint64 startMs = endMs - bucketMs * buckets;
+
+    QVector<double> sumDown(buckets, 0.0), sumUp(buckets, 0.0);
+    QVector<qint64> covered(buckets, 0);
+    double downBytes = 0.0, upBytes = 0.0;
+    qint64 downPeak = 0, upPeak = 0, coveredTotal = 0;
+
     const auto it = m_torrentSpeedHistory.constFind(downloadId);
-    if (it == m_torrentSpeedHistory.constEnd())
-        return {};
-
-    const qint64 nowMs  = QDateTime::currentMSecsSinceEpoch();
-    const qint64 cutoff = maxAgeSeconds > 0 ? (nowMs - static_cast<qint64>(maxAgeSeconds) * 1000LL) : 0;
-    const auto  &series = it.value();
-
-    // Collect the window of samples that fall within the requested age.
-    // Avoid materializing a temporary vector when no decimation is needed.
-    int firstIdx = 0;
-    if (cutoff > 0) {
-        while (firstIdx < series.size() && series[firstIdx].timestampMs < cutoff)
-            ++firstIdx;
-    }
-    const int count = series.size() - firstIdx;
-    if (count <= 0)
-        return {};
-
-    // When maxPoints is 0 or the series already fits, return every sample.
-    if (maxPoints <= 0 || count <= maxPoints) {
-        QVariantList out;
-        out.reserve(count);
-        for (int i = firstIdx; i < series.size(); ++i) {
-            const TorrentSpeedSample &s = series[i];
-            QVariantMap row;
-            row.insert(QStringLiteral("t"),    s.timestampMs);
-            row.insert(QStringLiteral("down"), s.downBps);
-            row.insert(QStringLiteral("up"),   s.upBps);
-            out.push_back(std::move(row));
+    if (it != m_torrentSpeedHistory.constEnd() && !it->isEmpty()) {
+        const auto &series = it.value();
+        // A sample never holds longer than the heartbeat plus slack: a longer
+        // silence means the app wasn't sampling (suspend, sleep), which is a gap,
+        // not a stretch at the last known speed.
+        constexpr qint64 kMaxHoldMs = 15000;
+        // First sample whose hold could reach into the window.
+        auto first = std::lower_bound(series.cbegin(), series.cend(), startMs - kMaxHoldMs,
+            [](const TorrentSpeedSample &s, qint64 t) { return s.timestampMs < t; });
+        for (auto s = first; s != series.cend(); ++s) {
+            const auto next = s + 1;
+            qint64 segStart = s->timestampMs;
+            qint64 segEnd = std::min(segStart + kMaxHoldMs,
+                                     next != series.cend() ? next->timestampMs : nowMs);
+            segStart = std::max(segStart, startMs);
+            segEnd = std::min(segEnd, nowMs);
+            if (segEnd <= segStart)
+                continue;
+            downPeak = std::max<qint64>(downPeak, s->downBps);
+            upPeak = std::max<qint64>(upPeak, s->upBps);
+            coveredTotal += segEnd - segStart;
+            downBytes += double(s->downBps) * double(segEnd - segStart) / 1000.0;
+            upBytes += double(s->upBps) * double(segEnd - segStart) / 1000.0;
+            for (qint64 b = (segStart - startMs) / bucketMs; b < buckets; ++b) {
+                const qint64 bStart = startMs + b * bucketMs;
+                if (bStart >= segEnd)
+                    break;
+                const qint64 overlap = std::min(segEnd, bStart + bucketMs) - std::max(segStart, bStart);
+                if (overlap <= 0)
+                    continue;
+                sumDown[b] += double(s->downBps) * double(overlap);
+                sumUp[b] += double(s->upBps) * double(overlap);
+                covered[b] += overlap;
+            }
         }
-        return out;
     }
 
-    // Pre-decimate to maxPoints buckets using per-bucket averages.
-    // Averaging preserves the real throughput shape — peak-only decimation
-    // exaggerates spikes and produces a misleadingly jagged curve.
-    QVariantList out;
-    out.reserve(maxPoints);
-    const double step = static_cast<double>(count) / maxPoints;
-    for (int bi = 0; bi < maxPoints; ++bi) {
-        const int lo  = firstIdx + static_cast<int>(bi * step);
-        const int hi  = firstIdx + std::min(count - 1, static_cast<int>((bi + 1) * step) - 1);
-        qint64 sumDown = 0, sumUp = 0;
-        int n = 0;
-        for (int j = lo; j <= hi; ++j) {
-            sumDown += series[j].downBps;
-            sumUp   += series[j].upBps;
-            ++n;
-        }
-        if (n == 0) continue;
-        // Use the midpoint timestamp of the bucket for accurate time positioning.
-        const qint64 midT = series[(lo + hi) / 2].timestampMs;
-        QVariantMap row;
-        row.insert(QStringLiteral("t"),    midT);
-        row.insert(QStringLiteral("down"), static_cast<int>(sumDown / n));
-        row.insert(QStringLiteral("up"),   static_cast<int>(sumUp   / n));
-        out.push_back(std::move(row));
+    QVariantList down, up;
+    down.reserve(buckets);
+    up.reserve(buckets);
+    for (int b = 0; b < buckets; ++b) {
+        down.push_back(covered[b] > 0 ? sumDown[b] / double(covered[b]) : -1.0);
+        up.push_back(covered[b] > 0 ? sumUp[b] / double(covered[b]) : -1.0);
     }
+
+    QVariantMap out;
+    out.insert(QStringLiteral("startMs"), startMs);
+    out.insert(QStringLiteral("bucketMs"), bucketMs);
+    out.insert(QStringLiteral("nowMs"), nowMs);
+    out.insert(QStringLiteral("down"), down);
+    out.insert(QStringLiteral("up"), up);
+    out.insert(QStringLiteral("downAvg"), coveredTotal > 0 ? downBytes * 1000.0 / double(coveredTotal) : 0.0);
+    out.insert(QStringLiteral("upAvg"), coveredTotal > 0 ? upBytes * 1000.0 / double(coveredTotal) : 0.0);
+    out.insert(QStringLiteral("downPeak"), downPeak);
+    out.insert(QStringLiteral("upPeak"), upPeak);
+    out.insert(QStringLiteral("downBytes"), downBytes);
+    out.insert(QStringLiteral("upBytes"), upBytes);
     return out;
 }
 

@@ -399,25 +399,31 @@ Window {
     property bool showTrackerAdd:  false
     property bool showWebSeedAdd:  false
 
-    // Speed history state (torrent Speed tab)
+    // Speed history state (torrent Speed tab). `tick` is the x-axis label step.
     readonly property var speedSpanOptions: [
-        { label: "30 sec", value: 30 },
-        { label: "1 min", value: 60 },
-        { label: "3 min", value: 180 },
-        { label: "5 min", value: 300 },
-        { label: "10 min", value: 600 },
-        { label: "1 hour", value: 3600 },
-        { label: "3 hours", value: 10800 },
-        { label: "6 hours", value: 21600 },
-        { label: "1 day", value: 86400 }
+        { label: qsTr("1m"),  value: 60,    tick: 15 },
+        { label: qsTr("5m"),  value: 300,   tick: 60 },
+        { label: qsTr("15m"), value: 900,   tick: 180 },
+        { label: qsTr("1h"),  value: 3600,  tick: 900 },
+        { label: qsTr("6h"),  value: 21600, tick: 3600 },
+        { label: qsTr("24h"), value: 86400, tick: 14400 }
     ]
-    property int speedSpanIndex: 5
-    readonly property int speedSpanSeconds: speedSpanOptions[Math.max(0, Math.min(speedSpanIndex, speedSpanOptions.length - 1))].value
-    property var speedSamples: []
-    property bool speedHoverActive: false
-    property real speedHoverX: 0
-    property int speedSampleIntervalMs: 2000
+    property int speedSpanIndex: 2
+    readonly property var _speedSpan: speedSpanOptions[Math.max(0, Math.min(speedSpanIndex, speedSpanOptions.length - 1))]
+    readonly property int speedSpanSeconds: _speedSpan.value
+    // Latest AppController::torrentSpeedSeries() result (null = nothing yet).
+    property var speedSeries: null
+    // Y ceiling; only changes when the data outgrows it or shrinks well below
+    // it, so the scale holds still between refreshes.
+    property real _speedAxisTop: 0
+    // Bucket under the mouse, -1 when not hovering the plot.
+    property int speedHoverBucket: -1
     property var speedGraphCanvasRef: null
+    // Plot insets inside the graph frame, shared by painting and hover mapping.
+    readonly property real _speedPlotLeft: 64
+    readonly property real _speedPlotRight: 12
+    readonly property real _speedPlotTop: 10
+    readonly property real _speedPlotBottom: 22
 
     Settings {
         category: "FilePropertiesDialog"
@@ -448,6 +454,7 @@ Window {
         property alias swarmStatsStoreJson: root.swarmStatsStoreJson
         property alias savedTorrentWidth: root.savedTorrentWidth
         property alias savedTorrentHeight: root.savedTorrentHeight
+        property alias speedSpanIndex: root.speedSpanIndex
     }
 
     // ?? Window sizing ????????????????????????????????????????????????????????
@@ -539,9 +546,9 @@ Window {
         currentTab = 0
         showTrackerAdd = false
         showWebSeedAdd = false
-        speedSamples = []
-        _speedAxisTop = 1
-        speedHoverActive = false
+        speedSeries = null
+        _speedAxisTop = 0
+        speedHoverBucket = -1
         editPerTorrentDownLimitKBps = (root.item && root.item.isTorrent) ? (root.item.perTorrentDownLimitKBps | 0) : 0
         editPerTorrentUpLimitKBps = (root.item && root.item.isTorrent) ? (root.item.perTorrentUpLimitKBps | 0) : 0
         if (torrentPeerModel) torrentPeerModel.sortBy(peerSortKey, peerSortAscending)
@@ -598,11 +605,18 @@ Window {
         if (root.currentTab === 5 && root.swarmClientPieRef) root.swarmClientPieRef.requestPaint()
         if (root.currentTab === 5 && root.swarmCountryPieRef) root.swarmCountryPieRef.requestPaint()
     }
-    // onSpeedSpanIndexChanged ? onSpeedSpanSecondsChanged ? _rebuildDecimatedCache ? requestPaint()
+    onSpeedSpanSecondsChanged: {
+        // A new span is a different scale; don't carry the old ceiling over.
+        _speedAxisTop = 0
+        speedHoverBucket = -1
+        refreshSpeedHistory()
+    }
 
     Timer {
         id: speedHistoryTimer
-        interval: root.speedSampleIntervalMs
+        // Torrent speeds are published on the 2 s alert tick; polling faster
+        // would only redraw the same values.
+        interval: 2000
         repeat: true
         running: root.visible && root._isTorrent && root.currentTab === 1
         onTriggered: root.refreshSpeedHistory()
@@ -747,11 +761,6 @@ Window {
         if (!isFinite(v) || v <= 0) return "0 B/s"
         return compactBytes(v) + "/s"
     }
-    function speedAxisLabel(bps) {
-        var v = Number(bps)
-        if (!isFinite(v) || v <= 0) return "0 B/s"
-        return compactSpeed(v)
-    }
     function baseClientName(clientName) {
         var name = safeStr(clientName).trim()
         if (!name)
@@ -773,167 +782,100 @@ Window {
             return "--:--:--"
         return d.toLocaleTimeString(Qt.locale(), "h:mm:ss AP")
     }
-    function formatAgoNatural(seconds) {
-        var s = Math.max(0, seconds | 0)
-        var h = Math.floor(s / 3600)
-        var m = Math.floor((s % 3600) / 60)
-        var sec = s % 60
-        if (h > 0)
-            return h + " hr " + m + " min ago"
-        if (m > 0)
-            return m + " min " + sec + " sec ago"
-        return sec + " sec ago"
-    }
-    // Stable time anchor for the graph's right edge.  Set once per data refresh
-    // and reused by every paint and hover-position calculation so the x-axis
-    // doesn't shift between repaints (which caused the jitter).
-    property real _speedNowMs: 0
-
     function refreshSpeedHistory() {
         if (!_isTorrent || !item) {
-            speedSamples = []
-            _speedNowMs = Date.now()
+            speedSeries = null
             return
         }
-        _speedNowMs = Date.now()
-        speedSamples = App.torrentSpeedHistory(item.id, speedSpanSeconds, 1000)
-        // requestPaint() is called by _rebuildDecimatedCache (via Qt.callLater)
-        // after the smoothed cache and stable axis ceiling are both ready.
-    }
-    // Reduce pts to at most maxPts by averaging each bucket.
-    // Averaging preserves the real throughput shape - peak-only decimation
-    // exaggerates spikes and produces a misleadingly jagged curve on long spans.
-    // Time-aligned bucket decimation.  Bucket boundaries are snapped to multiples
-    // of bucketMs from the Unix epoch, so they are identical across every refresh
-    // call.  Only the rightmost (current) bucket changes as new samples arrive;
-    // all completed buckets are frozen - the line stays still and scrolls left.
-    function decimateSamples(pts, maxPts) {
-        if (pts.length === 0) return pts
-        var spanMs   = root.speedSpanSeconds * 1000
-        var bucketMs = spanMs / maxPts
-        // Snap right edge of grid to the nearest completed bucket boundary at or
-        // before nowMs.  This keeps all bucket edges fixed to absolute time so
-        // completed buckets never shift when new samples arrive.
-        var nowMs      = root._speedNowMs || Date.now()
-        var gridOrigin = Math.floor(nowMs / bucketMs) * bucketMs
-        // gridOrigin is the last bucket boundary <= nowMs; the grid covers
-        // [gridOrigin - spanMs, gridOrigin).  Samples between gridOrigin and
-        // nowMs land in the last (open) bucket which shifts - that's intentional,
-        // only the live bucket changes.
-        var startMs    = gridOrigin - spanMs
-        var out = []
-        // maxPts fixed buckets + 1 live (partial) bucket covering [gridOrigin, nowMs)
-        for (var bi = 0; bi <= maxPts; ++bi) {
-            var bucketStart = startMs + bi * bucketMs
-            var bucketEnd   = (bi < maxPts) ? (bucketStart + bucketMs) : (nowMs + 1)
-            var sumDown = 0, sumUp = 0, n = 0
-            for (var pi = 0; pi < pts.length; ++pi) {
-                var t = pts[pi].t
-                if (t >= bucketStart && t < bucketEnd) {
-                    sumDown += Number(pts[pi].down) || 0
-                    sumUp   += Number(pts[pi].up)   || 0
-                    n++
-                }
-            }
-            if (n > 0)
-                out.push({ t: bucketStart + (bucketEnd - bucketStart) * 0.5, down: sumDown / n, up: sumUp / n })
-        }
-        return out.length > 0 ? out : pts
-    }
-
-    // Cached decimated sample array and stable Y-axis ceiling - rebuilt only
-    // when the raw data or the selected time span changes, NOT on every mouse
-    // move or canvas repaint.  Keeping axisTop stable prevents the Y-axis from
-    // jumping every tick; the canvas and hover tooltip both read from these.
-    property var  _speedDecimated: []
-    property real _speedAxisTop: 1        // stable Y ceiling, pixels don't shift on hover
-    function _rebuildDecimatedCache() {
-        var rows = speedVisibleSamples()
-        var span = speedSpanSeconds
-
-        // Step 1 - decimate to a target point count that scales inversely with
-        // the span.  Shorter spans keep more detail; longer spans merge more
-        // raw samples per bucket so individual spikes are averaged away.
-        // At 1 hour with ~1000 raw points each bucket covers ~13 raw samples
-        // (?26 s of data), which collapses narrow spikes into their true average.
-        var canvasW   = speedGraphCanvasRef ? speedGraphCanvasRef.width : 600
-        var plotW     = Math.max(60, canvasW - 62)
-        // Base density: 1 pt per 3 px, then halve for each span tier above 10 min.
-        var basePts   = Math.ceil(plotW / 3)
-        var spanScale = span < 600 ? 1.0 : span < 1800 ? 0.6 : span < 3600 ? 0.4 : span < 10800 ? 0.25 : 0.15
-        var targetPts = Math.max(40, Math.ceil(basePts * spanScale))
-        rows = decimateSamples(rows, targetPts)
-
-        _speedDecimated = rows
-
-        // Compute and cache the stable Y-axis ceiling from the smoothed data.
-        // Using the previous _speedAxisTop as a floor prevents the axis from
-        // shrinking on every minor dip - it only grows immediately, then
-        // gently decays toward the true max so the scale stays readable.
-        var maxV = 1
-        for (var si = 0; si < rows.length; ++si)
-            maxV = Math.max(maxV, Number(rows[si].down) || 0, Number(rows[si].up) || 0)
-        // Fixed human-friendly speed ladder (bytes/s).  Pick the smallest step
-        // that fits maxV with at least one grid interval of headroom.
-        var speedSteps = [
-            102400,   204800,   512000,             // 100, 200, 500 KB/s
-            1048576,  2097152,  5242880,             // 1, 2, 5 MB/s
-            10485760, 20971520, 52428800,            // 10, 20, 50 MB/s
-            104857600, 209715200, 524288000,         // 100, 200, 500 MB/s
-            1073741824                               // 1 GB/s
-        ]
-        var newTop = speedSteps[speedSteps.length - 1]
-        for (var li = 0; li < speedSteps.length; ++li) {
-            if (speedSteps[li] >= maxV) { newTop = speedSteps[li]; break }
-        }
-        // Allow axis to grow immediately to the next step, but decay slowly so
-        // a brief spike doesn't permanently lock the scale at a high tier.
-        // toward the true ceiling per refresh so axis doesn't thrash up/down.
-        var prev = _speedAxisTop
-        if (newTop >= prev) {
-            _speedAxisTop = newTop
-        } else {
-            // Decay: move 20% of the gap per sample refresh (~2 s interval)
-            _speedAxisTop = Math.max(newTop, prev - (prev - newTop) * 0.20)
-        }
-
-        // Repaint now that both the smoothed data and stable axis ceiling are ready.
-        if (currentTab === 1 && speedGraphCanvasRef)
+        var plotW = speedGraphCanvasRef
+            ? speedGraphCanvasRef.width - _speedPlotLeft - _speedPlotRight : 600
+        // About 3 px per bucket: dense enough to follow the curve, coarse enough
+        // that every point is an average of real samples.
+        var buckets = Math.max(20, Math.min(600, Math.floor(plotW / 3)))
+        var series = App.torrentSpeedSeries(item.id, speedSpanSeconds, buckets)
+        var peak = 0
+        for (var i = 0; i < series.down.length; ++i)
+            peak = Math.max(peak, series.down[i], series.up[i])
+        // Grow at once so nothing is clipped; shrink only once the data uses
+        // under 40 % of the height, so small wobbles don't rescale the plot.
+        if (peak > _speedAxisTop * 0.95 || peak < _speedAxisTop * 0.4)
+            _speedAxisTop = speedAxisCeiling(peak)
+        if (speedHoverBucket >= series.down.length)
+            speedHoverBucket = -1
+        speedSeries = series
+        if (speedGraphCanvasRef)
             speedGraphCanvasRef.requestPaint()
     }
-    onSpeedSamplesChanged:     Qt.callLater(_rebuildDecimatedCache)
-    onSpeedSpanSecondsChanged: Qt.callLater(_rebuildDecimatedCache)
-
-    function speedVisibleSamples() {
-        var now = Date.now()
-        var start = now - (speedSpanSeconds * 1000)
-        var rows = []
-        for (var i = 0; i < speedSamples.length; ++i) {
-            var s = speedSamples[i]
-            if (s.t >= start)
-                rows.push(s)
+    // Smallest round ceiling above bps whose quarters are round too (four grid
+    // bands), in the unit the axis labels will use. Floor of 4 KB/s so an idle
+    // torrent still gets a readable axis.
+    function speedAxisCeiling(bps) {
+        var v = Math.max(Number(bps) || 0, 4096) * 1.05
+        var steps = [1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 30, 40, 50, 60, 80,
+                     100, 120, 160, 200, 300, 400, 500, 600, 800]
+        var unit = 1
+        while (unit < 1073741824 && v > 800 * unit)
+            unit *= 1024
+        for (var i = 0; i < steps.length; ++i) {
+            if (steps[i] * unit >= v)
+                return steps[i] * unit
         }
-        if (rows.length === 0) {
-            var down = item ? Math.max(0, Number(item.speed) || 0) : 0
-            var up = item ? Math.max(0, Number(item.torrentUploadSpeed) || 0) : 0
-            rows.push({ t: now, down: down, up: up })
-        }
-        return rows
+        return 1024 * unit
     }
-    function speedStats(samples, key) {
-        var k = key || "down"
-        var current = 0
-        var maxv = 0
-        var sum = 0
-        for (var i = 0; i < samples.length; ++i) {
-            var v = Math.max(0, Number(samples[i][k]) || 0)
-            if (v > maxv) maxv = v
-            sum += v
-            if (i === samples.length - 1)
-                current = v
+    // Axis label in the unit of the axis ceiling so every label on one axis
+    // shares a unit ("250 KB/s, 500 KB/s ..." rather than mixing B, KB, MB).
+    function speedAxisLabel(bps, top) {
+        var units = ["B/s", "KB/s", "MB/s", "GB/s"]
+        var u = 0
+        var scale = 1
+        while (u < units.length - 1 && top >= 1024 * scale) {
+            scale *= 1024
+            ++u
         }
-        var avg = samples.length > 0 ? (sum / samples.length) : 0
-        return { current: current, avg: avg, max: maxv }
+        return parseFloat((bps / scale).toFixed(2)) + " " + units[u]
+    }
+    function speedTickLabel(secondsAgo) {
+        if (secondsAgo <= 0) return qsTr("now")
+        if (secondsAgo % 3600 === 0) return "-" + (secondsAgo / 3600) + "h"
+        if (secondsAgo % 60 === 0) return "-" + (secondsAgo / 60) + "m"
+        return "-" + secondsAgo + "s"
+    }
+    // Centre time of a bucket; the live bucket sits at "now" rather than in the
+    // future half it hasn't reached yet.
+    function speedBucketTime(series, i) {
+        return Math.min(series.startMs + (i + 0.5) * series.bucketMs, series.nowMs)
+    }
+    // "host:port" that stays unambiguous for IPv6 ("[2001:db8::1]:51413").
+    function formatEndpoint(ip, port) {
+        var host = safeStr(ip)
+        if (host.indexOf(":") !== -1)
+            host = "[" + host + "]"
+        var p = Number(port) | 0
+        return p > 0 ? host + ":" + p : host
+    }
+    // Host part of a tracker URL, without scheme, credentials, port or path;
+    // bracketed IPv6 literals keep their brackets off and their colons intact.
+    function urlHost(url) {
+        var m = /^[a-z][a-z0-9+.-]*:\/\/(?:[^@\/]*@)?(\[[^\]]+\]|[^:\/?#]+)/i.exec(safeStr(url))
+        if (!m)
+            return safeStr(url)
+        return m[1].charAt(0) === "[" ? m[1].slice(1, -1) : m[1]
+    }
+    // Screen-pixel offset that fans out peers geolocated to the same spot
+    // (TorrentPeerModel stackIndex/stackSize): a ring for a handful, a sunflower
+    // spiral beyond that so large clusters stay readable without overlapping.
+    function peerStackOffset(index, size) {
+        if (size <= 1)
+            return { x: 0, y: 0 }
+        var angle, radius
+        if (size <= 6) {
+            angle = index / size * 2 * Math.PI - Math.PI / 2
+            radius = 8
+        } else {
+            angle = index * 2.39996
+            radius = 6 * Math.sqrt(index + 0.5)
+        }
+        return { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius }
     }
     function peerMapX(longitude, width) {
         var lon = Number(longitude) + root.peerMapLonOffset
@@ -1758,6 +1700,30 @@ Window {
         // Equal preferred widths make the fill columns split evenly.
         Layout.preferredWidth: 100
     }
+    // Speed-tab readout parts: column heading, right-aligned value, and the
+    // series name with its line-colour swatch.
+    component StatHead: Text {
+        color: ColorPalette.textMuted
+        font.pixelSize: 11 * App.fontScale
+        Layout.alignment: Qt.AlignRight
+    }
+    component StatValue: Text {
+        color: ColorPalette.textPrimary
+        font.pixelSize: 12 * App.fontScale
+        Layout.alignment: Qt.AlignRight
+        // Fixed width so the columns don't shuffle as digits change.
+        Layout.minimumWidth: 72 * App.fontScale
+        horizontalAlignment: Text.AlignRight
+    }
+    component SeriesName: RowLayout {
+        id: seriesName
+        property alias text: seriesLabel.text
+        property color swatch
+        spacing: 6
+        Rectangle { implicitWidth: 10; implicitHeight: 3; color: seriesName.swatch }
+        Text { id: seriesLabel; color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
+    }
+
     // Field-height button for the action beside a ReadOnlyField (Move, Copy).
     component SheetButton: DlgButton {
         implicitHeight: 26
@@ -2389,339 +2355,315 @@ Window {
                 // Speed
                 Item {
                     ColumnLayout {
-                        anchors { fill: parent; topMargin: 0; leftMargin: 0; rightMargin: 0; bottomMargin: 8 }
+                        anchors { fill: parent; leftMargin: 14; rightMargin: 14; topMargin: 8; bottomMargin: 8 }
                         spacing: 8
 
-                        // Graph card - edge-to-edge, no border/radius so the plot butts
-                        // up against the tab strip and the panel sides.
-                        Rectangle {
+                        // Readout + span picker. Current is the live rate; the
+                        // rest describe the selected span only.
+                        RowLayout {
                             Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            color: ColorPalette.mapCanvasBg
-                            radius: 0
-                            clip: true
+                            spacing: 12
 
-                            // Main graph canvas - only repaints when data/span changes.
-                            // The crosshair lives in a separate overlay canvas so hover
-                            // mouse moves don't trigger a full graph redraw.
-                            Canvas {
-                                id: speedGraphCanvasLoader
-                                anchors.fill: parent
-                                anchors.margins: 0
-                                antialiasing: true
-                                renderTarget: Canvas.Image
-                                Component.onCompleted: root.speedGraphCanvasRef = speedGraphCanvasLoader
-                                Component.onDestruction: {
-                                    if (root.speedGraphCanvasRef === speedGraphCanvasLoader)
-                                        root.speedGraphCanvasRef = null
-                                }
+                            GridLayout {
+                                id: speedStatsGrid
+                                columns: 5
+                                columnSpacing: 22
+                                rowSpacing: 2
 
-                                onPaint: {
-                                    var ctx = getContext("2d")
-                                    ctx.reset()
-                                    var w = width
-                                    var h = height
-                                    if (w < 40 || h < 40)
-                                        return
+                                readonly property var _s: root.speedSeries
 
-                                    var topPad    = 8
-                                    var rightPad  = 58
-                                    var bottomPad = 20
-                                    var leftPad   = 4
-                                    var plotX = leftPad
-                                    var plotY = topPad
-                                    var plotW = Math.max(10, w - leftPad - rightPad)
-                                    var plotH = Math.max(10, h - topPad - bottomPad)
+                                Item { implicitWidth: 1; implicitHeight: 1 }
+                                StatHead { text: qsTr("Current") }
+                                StatHead { text: qsTr("Average") }
+                                StatHead { text: qsTr("Peak") }
+                                StatHead { text: qsTr("Transferred") }
 
-                                    // Stable time anchor set at data-refresh time; using
-                                    // Date.now() here caused per-repaint x-position jitter.
-                                    var nowMs   = root._speedNowMs || Date.now()
-                                    var startMs = nowMs - root.speedSpanSeconds * 1000
+                                SeriesName { text: qsTr("Download"); swatch: ColorPalette.progressDownloading }
+                                StatValue { text: root.compactSpeed(root.item ? root.item.speed : 0) }
+                                StatValue { text: speedStatsGrid._s ? root.compactSpeed(speedStatsGrid._s.downAvg) : "-" }
+                                StatValue { text: speedStatsGrid._s ? root.compactSpeed(speedStatsGrid._s.downPeak) : "-" }
+                                StatValue { text: speedStatsGrid._s ? root.compactBytes(speedStatsGrid._s.downBytes) : "-" }
 
-                                    // Pre-built decimated+smoothed cache - never recomputed on hover.
-                                    var samples = root._speedDecimated
+                                SeriesName { text: qsTr("Upload"); swatch: ColorPalette.progressGreen }
+                                StatValue { text: root.compactSpeed(root.item ? root.item.torrentUploadSpeed : 0) }
+                                StatValue { text: speedStatsGrid._s ? root.compactSpeed(speedStatsGrid._s.upAvg) : "-" }
+                                StatValue { text: speedStatsGrid._s ? root.compactSpeed(speedStatsGrid._s.upPeak) : "-" }
+                                StatValue { text: speedStatsGrid._s ? root.compactBytes(speedStatsGrid._s.upBytes) : "-" }
+                            }
 
-                                    // Stable Y ceiling cached in _speedAxisTop - computed once per
-                                    // data refresh, decays slowly so the scale doesn't thrash.
-                                    var axisTop = Math.max(1, root._speedAxisTop)
+                            Item { Layout.fillWidth: true }
 
-                                    function pxForTime(t) {
-                                        return plotX + ((t - startMs) / (root.speedSpanSeconds * 1000)) * plotW
-                                    }
-                                    function pyForRate(v) {
-                                        return plotY + plotH - (Math.max(0, v) / axisTop) * plotH
-                                    }
+                            // Span picker: one click per range instead of a dropdown.
+                            Rectangle {
+                                Layout.alignment: Qt.AlignTop
+                                implicitWidth: spanRow.implicitWidth + 2
+                                implicitHeight: 24
+                                radius: 3
+                                color: "transparent"
+                                border.color: ColorPalette.border
 
-                                    // Background
-                                    ctx.fillStyle = ColorPalette.mapCanvasBg
-                                    ctx.fillRect(0, 0, w, h)
-
-                                    // Horizontal grid lines only
-                                    var gridLines = 4
-                                    ctx.lineWidth = 1
-                                    for (var gy = 0; gy <= gridLines; ++gy) {
-                                        var gy2 = Math.round(plotY + plotH * gy / gridLines) + 0.5
-                                        ctx.strokeStyle = ColorPalette.mapGrid
-                                        ctx.beginPath(); ctx.moveTo(plotX, gy2); ctx.lineTo(plotX + plotW, gy2); ctx.stroke()
-                                    }
-
-                                    // Catmull-Rom spline area+line series.
-                                    // Passes through every data point with smooth tangents derived
-                                    // from neighbours.  Control-point conversion:
-                                    //   cp1 = P[i]   + (P[i+1] - P[i-1]) / 6
-                                    //   cp2 = P[i+1] - (P[i+2] - P[i])   / 6
-                                    function drawSmoothedSeries(key, stroke, fillTop, fillBottom) {
-                                        var n = samples.length
-                                        if (n === 0) return
-
-                                        var xs = new Array(n), ys = new Array(n)
-                                        for (var pi = 0; pi < n; ++pi) {
-                                            xs[pi] = pxForTime(samples[pi].t)
-                                            ys[pi] = pyForRate(samples[pi][key])
-                                        }
-
-                                        var baseY  = plotY + plotH
-                                        var firstX = xs[0]
-
-                                        function buildSplinePath() {
-                                            ctx.moveTo(xs[0], ys[0])
-                                            if (n === 1) {
-                                                ctx.lineTo(xs[0], ys[0])
-                                            } else {
-                                                for (var ci = 0; ci < n - 1; ++ci) {
-                                                    var im1 = Math.max(0, ci - 1)
-                                                    var ip2 = Math.min(n - 1, ci + 2)
-                                                    var cp1x = xs[ci]     + (xs[ci + 1] - xs[im1]) / 6
-                                                    var cp1y = ys[ci]     + (ys[ci + 1] - ys[im1]) / 6
-                                                    var cp2x = xs[ci + 1] - (xs[ip2]    - xs[ci])  / 6
-                                                    var cp2y = ys[ci + 1] - (ys[ip2]    - ys[ci])  / 6
-                                                    // Clamp control point Y to plot bounds so Catmull-Rom
-                                                    // overshoot on steep spikes never draws below zero or
-                                                    // above the top of the plot area.
-                                                    cp1y = Math.max(plotY, Math.min(baseY, cp1y))
-                                                    cp2y = Math.max(plotY, Math.min(baseY, cp2y))
-                                                    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, xs[ci + 1], ys[ci + 1])
-                                                }
+                                Row {
+                                    id: spanRow
+                                    anchors { fill: parent; margins: 1 }
+                                    Repeater {
+                                        model: root.speedSpanOptions
+                                        delegate: Rectangle {
+                                            required property var modelData
+                                            required property int index
+                                            readonly property bool current: root.speedSpanIndex === index
+                                            width: Math.max(34, spanLabel.implicitWidth + 16)
+                                            height: parent.height
+                                            radius: 2
+                                            color: current ? ColorPalette.buttonSecondaryBg
+                                                 : spanMouse.containsMouse ? ColorPalette.hoverBg : "transparent"
+                                            Text {
+                                                id: spanLabel
+                                                anchors.centerIn: parent
+                                                text: modelData.label
+                                                color: parent.current ? ColorPalette.textPrimary : ColorPalette.textSecond
+                                                font.pixelSize: 11 * App.fontScale
+                                            }
+                                            MouseArea {
+                                                id: spanMouse
+                                                anchors.fill: parent
+                                                hoverEnabled: true
+                                                cursorShape: Qt.PointingHandCursor
+                                                onClicked: root.speedSpanIndex = index
                                             }
                                         }
-
-                                        var grad = ctx.createLinearGradient(0, plotY, 0, baseY)
-                                        grad.addColorStop(0, fillTop)
-                                        grad.addColorStop(1, fillBottom)
-                                        ctx.beginPath()
-                                        buildSplinePath()
-                                        ctx.lineTo(xs[n - 1], baseY)
-                                        ctx.lineTo(firstX, baseY)
-                                        ctx.closePath()
-                                        ctx.fillStyle = grad
-                                        ctx.fill()
-
-                                        ctx.beginPath()
-                                        buildSplinePath()
-                                        ctx.strokeStyle = stroke
-                                        ctx.lineWidth = 1.5
-                                        ctx.stroke()
-                                    }
-
-                                    // Upload behind download so download renders on top
-                                    drawSmoothedSeries("up",   "#3dba6a", "rgba(61,186,106,0.20)", "rgba(61,186,106,0.02)")
-                                    drawSmoothedSeries("down", "#4490e8", "rgba(68,144,232,0.28)", "rgba(68,144,232,0.03)")
-
-                                    // Y-axis labels - right side
-                                    ctx.fillStyle = ColorPalette.textDisabled
-                                    ctx.font = "10px sans-serif"
-                                    ctx.textAlign = "left"
-                                    ctx.textBaseline = "middle"
-                                    for (var ly = 0; ly <= gridLines; ++ly) {
-                                        var val = axisTop * (1 - ly / gridLines)
-                                        var ty = plotY + plotH * ly / gridLines
-                                        ctx.fillText(root.speedAxisLabel(val), plotX + plotW + 5, ty)
-                                    }
-
-                                    // X-axis time labels
-                                    ctx.fillStyle = ColorPalette.textDisabled
-                                    ctx.textAlign = "center"
-                                    ctx.textBaseline = "top"
-                                    for (var lx = 0; lx <= 6; ++lx) {
-                                        var secAgo = Math.round(root.speedSpanSeconds * (1 - lx / 6))
-                                        var tx = plotX + plotW * lx / 6
-                                        var timeLabel = secAgo >= 3600
-                                            ? (Math.floor(secAgo / 3600) + "h")
-                                            : (secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s"))
-                                        ctx.fillText("-" + timeLabel, tx, plotY + plotH + 3)
-                                    }
-                                }
-                            }
-
-                            // Crosshair overlay - tiny canvas that only redraws on mouse move.
-                            // Keeping this separate prevents the full graph from repainting on
-                            // every pixel of mouse movement, which was the main source of jitter.
-                            Canvas {
-                                id: speedHoverCanvas
-                                anchors.fill: speedGraphCanvasLoader
-                                antialiasing: false
-                                renderTarget: Canvas.Image
-
-                                onPaint: {
-                                    var ctx = getContext("2d")
-                                    ctx.reset()
-                                    if (!root.speedHoverActive)
-                                        return
-                                    var topPad    = 8
-                                    var rightPad  = 58
-                                    var bottomPad = 20
-                                    var leftPad   = 4
-                                    var plotX = leftPad
-                                    var plotY = topPad
-                                    var plotW = Math.max(10, width - leftPad - rightPad)
-                                    var plotH = Math.max(10, height - topPad - bottomPad)
-                                    var hx = Math.round(Math.max(plotX, Math.min(plotX + plotW, root.speedHoverX))) + 0.5
-                                    ctx.strokeStyle = "rgba(180,200,230,0.22)"
-                                    ctx.lineWidth = 1
-                                    ctx.setLineDash([3, 3])
-                                    ctx.beginPath()
-                                    ctx.moveTo(hx, plotY)
-                                    ctx.lineTo(hx, plotY + plotH)
-                                    ctx.stroke()
-                                    ctx.setLineDash([])
-                                }
-                            }
-
-                            MouseArea {
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onPositionChanged: function(mouse) {
-                                    root.speedHoverActive = true
-                                    root.speedHoverX = mouse.x - 10
-                                    speedHoverCanvas.requestPaint()
-                                }
-                                onEntered: {
-                                    root.speedHoverActive = true
-                                    speedHoverCanvas.requestPaint()
-                                }
-                                onExited: {
-                                    root.speedHoverActive = false
-                                    speedHoverCanvas.requestPaint()
-                                }
-                            }
-
-                            Rectangle {
-                                id: speedHoverTip
-                                visible: root.speedHoverActive
-                                radius: 3
-                                color: ColorPalette.mapCanvasBg
-                                border.color: ColorPalette.mapBorder
-                                anchors.top: parent.top
-                                anchors.topMargin: 14
-                                x: Math.max(10, Math.min(parent.width - width - 10, root.speedHoverX + 16))
-                                width: tipCol.implicitWidth + 12
-                                height: tipCol.implicitHeight + 10
-
-                                readonly property var _samples: root._speedDecimated
-                                readonly property real _plotLeft: 4
-                                readonly property real _plotRightPad: 58
-                                readonly property real _plotWidth: Math.max(1, speedGraphCanvasLoader.width - _plotLeft - _plotRightPad)
-                                readonly property real _ratio: Math.max(0, Math.min(1, (root.speedHoverX - _plotLeft) / _plotWidth))
-                                readonly property real _targetT: (root._speedNowMs || Date.now()) - root.speedSpanSeconds * 1000 + (_ratio * root.speedSpanSeconds * 1000)
-                                readonly property int _nearestIndex: {
-                                    if (_samples.length === 0) return -1
-                                    var best = 0
-                                    var bestDiff = Math.abs((_samples[0].t || 0) - _targetT)
-                                    for (var i = 1; i < _samples.length; ++i) {
-                                        var d = Math.abs((_samples[i].t || 0) - _targetT)
-                                        if (d < bestDiff) { best = i; bestDiff = d }
-                                    }
-                                    return best
-                                }
-                                readonly property var _point: (_nearestIndex >= 0 && _nearestIndex < _samples.length) ? _samples[_nearestIndex] : null
-                                readonly property int _ageSec: _point ? Math.max(0, Math.round((Date.now() - _point.t) / 1000)) : 0
-
-                                Column {
-                                    id: tipCol
-                                    anchors.centerIn: parent
-                                    spacing: 2
-                                    Text {
-                                        text: speedHoverTip._point ? root.formatClockTime(speedHoverTip._point.t) : ""
-                                        color: ColorPalette.textPrimary
-                                        font.pixelSize: 11 * App.fontScale
-                                        font.bold: true
-                                    }
-                                    Text {
-                                        text: speedHoverTip._point ? root.formatAgoNatural(speedHoverTip._ageSec) : ""
-                                        color: ColorPalette.textPrimary
-                                        font.pixelSize: 10 * App.fontScale
-                                    }
-                                    Text {
-                                        text: speedHoverTip._point ? ("↓ " + root.compactSpeed(speedHoverTip._point.down)) : ""
-                                        color: "#7ab8f5"
-                                        font.pixelSize: 11 * App.fontScale
-                                    }
-                                    Text {
-                                        text: speedHoverTip._point ? ("↑ " + root.compactSpeed(speedHoverTip._point.up)) : ""
-                                        color: "#82d4a0"
-                                        font.pixelSize: 11 * App.fontScale
                                     }
                                 }
                             }
                         }
 
-                        // Stats row + time span selector at the bottom
-                        RowLayout {
+                        // Plot frame. The graph canvas repaints on data/span/size
+                        // changes only; hover is drawn on a separate overlay so
+                        // moving the mouse never repaints the series.
+                        Rectangle {
+                            id: speedGraphFrame
                             Layout.fillWidth: true
-                            Layout.leftMargin: 10
-                            Layout.rightMargin: 10
-                            spacing: 0
+                            Layout.fillHeight: true
+                            color: ColorPalette.inputBg
+                            border.color: ColorPalette.border
+                            radius: 2
 
-                            // Stats grid on the left
-                            GridLayout {
-                                id: speedStatsCard
-                                columns: 6
-                                columnSpacing: 14
-                                rowSpacing: 3
+                            readonly property real plotW: width - root._speedPlotLeft - root._speedPlotRight
+                            readonly property real plotH: height - root._speedPlotTop - root._speedPlotBottom
 
-                                readonly property var _samples: root.speedVisibleSamples()
-                                readonly property var _down: root.speedStats(_samples, "down")
-                                readonly property var _up: root.speedStats(_samples, "up")
-
-                                // Legend dots
-                                Rectangle { width: 8; height: 8; radius: 4; color: "#4490e8" }
-                                Text { text: qsTr("Down"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
-                                Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 * App.fontScale }
-                                Text { text: "avg"; color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
-                                Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#4ea2ff"; font.pixelSize: 11 * App.fontScale }
-                                Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
-
-                                Rectangle { width: 8; height: 8; radius: 4; color: "#3dba6a" }
-                                Text { text: qsTr("Up"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
-                                Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#4cc87a"; font.bold: true; font.pixelSize: 12 * App.fontScale }
-                                Text { text: "avg"; color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
-                                Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#4cc87a"; font.pixelSize: 11 * App.fontScale }
-                                Text { text: "peak " + root.compactSpeed(speedStatsCard._up.max); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
+                            function xForTime(series, t) {
+                                var spanMs = root.speedSpanSeconds * 1000
+                                return root._speedPlotLeft + (t - (series.nowMs - spanMs)) / spanMs * plotW
+                            }
+                            function yForRate(v) {
+                                var top = Math.max(1, root._speedAxisTop)
+                                return root._speedPlotTop + plotH - Math.min(1, Math.max(0, v) / top) * plotH
                             }
 
-                            Item { Layout.fillWidth: true }
+                            Canvas {
+                                id: speedGraphCanvas
+                                anchors.fill: parent
+                                renderTarget: Canvas.Image
+                                Component.onCompleted: root.speedGraphCanvasRef = speedGraphCanvas
+                                Component.onDestruction: {
+                                    if (root.speedGraphCanvasRef === speedGraphCanvas)
+                                        root.speedGraphCanvasRef = null
+                                }
+                                // Bucket count follows the plot width.
+                                onWidthChanged: Qt.callLater(root.refreshSpeedHistory)
+                                onHeightChanged: requestPaint()
 
-                            // Time span selector - compact, bottom-right
-                            RowLayout {
-                                spacing: 6
-                                Text { text: qsTr("Span"); color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale }
-                                StyledComboBox {
-                                    implicitWidth: 90
-                                    model: root.speedSpanOptions.map(function(o){ return o.label })
-                                    currentIndex: root.speedSpanIndex
-                                    onActivated: root.speedSpanIndex = currentIndex
-                                    font.pixelSize: 11 * App.fontScale
-                                    contentItem: Text {
-                                        leftPadding: 8
-                                        text: parent.displayText
-                                        font: parent.font
-                                        color: ColorPalette.textPrimary
-                                        verticalAlignment: Text.AlignVCenter
+                                onPaint: {
+                                    var ctx = getContext("2d")
+                                    ctx.reset()
+                                    var frame = speedGraphFrame
+                                    var left = root._speedPlotLeft
+                                    var topY = root._speedPlotTop
+                                    var pw = frame.plotW
+                                    var ph = frame.plotH
+                                    if (pw < 40 || ph < 30)
+                                        return
+                                    var axisTop = Math.max(1, root._speedAxisTop)
+                                    ctx.font = Math.round(10 * App.fontScale) + "px sans-serif"
+
+                                    // Grid: four bands, labels share the ceiling's unit.
+                                    ctx.lineWidth = 1
+                                    ctx.textBaseline = "middle"
+                                    ctx.textAlign = "right"
+                                    for (var g = 0; g <= 4; ++g) {
+                                        var gy = Math.round(topY + ph * g / 4) + 0.5
+                                        ctx.strokeStyle = g === 4 ? ColorPalette.border : ColorPalette.dividerBg
+                                        ctx.beginPath(); ctx.moveTo(left, gy); ctx.lineTo(left + pw, gy); ctx.stroke()
+                                        ctx.fillStyle = ColorPalette.textMuted
+                                        ctx.fillText(root.speedAxisLabel(axisTop * (1 - g / 4), axisTop), left - 8, gy)
                                     }
-                                    background: Rectangle {
-                                        color: ColorPalette.cardBg
-                                        border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border
-                                        radius: 2
+
+                                    // Time ticks counted back from "now" at the span's step.
+                                    var spanSec = root.speedSpanSeconds
+                                    var tick = root._speedSpan.tick
+                                    ctx.textBaseline = "top"
+                                    for (var k = 0; k * tick <= spanSec; ++k) {
+                                        var tx = left + pw * (1 - k * tick / spanSec)
+                                        ctx.textAlign = k === 0 ? "right" : (k * tick === spanSec ? "left" : "center")
+                                        ctx.fillStyle = ColorPalette.textMuted
+                                        ctx.fillText(root.speedTickLabel(k * tick), tx, topY + ph + 6)
+                                    }
+
+                                    var series = root.speedSeries
+                                    if (!series)
+                                        return
+                                    var spanStart = series.nowMs - spanSec * 1000
+
+                                    // Straight segments between bucket averages (a spline
+                                    // overshoots spikes and invents speeds that never
+                                    // happened); buckets without data break the line.
+                                    function drawSeries(values, color, fillAlpha) {
+                                        var run = []
+                                        function flush() {
+                                            if (run.length === 0)
+                                                return
+                                            var baseY = topY + ph
+                                            ctx.beginPath()
+                                            ctx.moveTo(run[0][0], baseY)
+                                            for (var a = 0; a < run.length; ++a)
+                                                ctx.lineTo(run[a][0], run[a][1])
+                                            ctx.lineTo(run[run.length - 1][0], baseY)
+                                            ctx.closePath()
+                                            ctx.fillStyle = Qt.rgba(color.r, color.g, color.b, fillAlpha)
+                                            ctx.fill()
+                                            ctx.beginPath()
+                                            ctx.moveTo(run[0][0], run[0][1])
+                                            for (var b = 1; b < run.length; ++b)
+                                                ctx.lineTo(run[b][0], run[b][1])
+                                            if (run.length === 1)
+                                                ctx.lineTo(run[0][0] + 1, run[0][1])
+                                            ctx.strokeStyle = color
+                                            ctx.lineWidth = 1.5
+                                            ctx.stroke()
+                                            run = []
+                                        }
+                                        for (var i = 0; i < values.length; ++i) {
+                                            var t = root.speedBucketTime(series, i)
+                                            if (values[i] < 0 || t < spanStart) {
+                                                flush()
+                                                continue
+                                            }
+                                            run.push([frame.xForTime(series, t), frame.yForRate(values[i])])
+                                        }
+                                        flush()
+                                    }
+                                    // Upload first so download draws on top.
+                                    drawSeries(series.up, ColorPalette.progressGreen, 0.12)
+                                    drawSeries(series.down, ColorPalette.progressDownloading, 0.18)
+                                }
+                            }
+
+                            Canvas {
+                                id: speedHoverCanvas
+                                anchors.fill: parent
+                                renderTarget: Canvas.Image
+                                onPaint: {
+                                    var ctx = getContext("2d")
+                                    ctx.reset()
+                                    var series = root.speedSeries
+                                    var i = root.speedHoverBucket
+                                    if (!series || i < 0 || series.down[i] < 0)
+                                        return
+                                    var frame = speedGraphFrame
+                                    var x = Math.round(frame.xForTime(series, root.speedBucketTime(series, i))) + 0.5
+                                    ctx.strokeStyle = ColorPalette.textMuted
+                                    ctx.lineWidth = 1
+                                    ctx.beginPath()
+                                    ctx.moveTo(x, root._speedPlotTop)
+                                    ctx.lineTo(x, root._speedPlotTop + frame.plotH)
+                                    ctx.stroke()
+                                    var dots = [[series.up[i], ColorPalette.progressGreen],
+                                                [series.down[i], ColorPalette.progressDownloading]]
+                                    for (var d = 0; d < dots.length; ++d) {
+                                        ctx.beginPath()
+                                        ctx.arc(x, frame.yForRate(dots[d][0]), 3, 0, 2 * Math.PI)
+                                        ctx.fillStyle = dots[d][1]
+                                        ctx.fill()
+                                    }
+                                }
+                                Connections {
+                                    target: root
+                                    function onSpeedHoverBucketChanged() { speedHoverCanvas.requestPaint() }
+                                    function onSpeedSeriesChanged() { speedHoverCanvas.requestPaint() }
+                                }
+                            }
+
+                            Text {
+                                anchors.centerIn: parent
+                                visible: {
+                                    var s = root.speedSeries
+                                    if (!s) return true
+                                    for (var i = 0; i < s.down.length; ++i)
+                                        if (s.down[i] >= 0) return false
+                                    return true
+                                }
+                                text: qsTr("No speed recorded in this period yet")
+                                color: ColorPalette.textMuted
+                                font.pixelSize: 12 * App.fontScale
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                function bucketAt(mx) {
+                                    var s = root.speedSeries
+                                    if (!s || mx < root._speedPlotLeft || mx > root._speedPlotLeft + speedGraphFrame.plotW)
+                                        return -1
+                                    var spanMs = root.speedSpanSeconds * 1000
+                                    var t = s.nowMs - spanMs + (mx - root._speedPlotLeft) / speedGraphFrame.plotW * spanMs
+                                    var i = Math.floor((t - s.startMs) / s.bucketMs)
+                                    return Math.max(0, Math.min(s.down.length - 1, i))
+                                }
+                                onPositionChanged: function(mouse) { root.speedHoverBucket = bucketAt(mouse.x) }
+                                onExited: root.speedHoverBucket = -1
+                            }
+
+                            Rectangle {
+                                id: speedHoverTip
+                                readonly property var _s: root.speedSeries
+                                readonly property int _i: root.speedHoverBucket
+                                readonly property bool _has: !!_s && _i >= 0 && _i < _s.down.length && _s.down[_i] >= 0
+                                readonly property real _x: _has ? speedGraphFrame.xForTime(_s, root.speedBucketTime(_s, _i)) : 0
+                                visible: _has
+                                // Beside the hover line, flipped left near the right edge.
+                                x: _x + 12 + width < speedGraphFrame.width - 4 ? _x + 12 : _x - 12 - width
+                                y: root._speedPlotTop + 4
+                                width: tipGrid.implicitWidth + 16
+                                height: tipGrid.implicitHeight + 10
+                                radius: 3
+                                color: ColorPalette.tooltipBg
+                                border.color: ColorPalette.tooltipBorder
+
+                                GridLayout {
+                                    id: tipGrid
+                                    anchors.centerIn: parent
+                                    columns: 2
+                                    columnSpacing: 10
+                                    rowSpacing: 2
+                                    Text {
+                                        Layout.columnSpan: 2
+                                        text: speedHoverTip._has ? root.formatClockTime(root.speedBucketTime(speedHoverTip._s, speedHoverTip._i)) : ""
+                                        color: ColorPalette.tooltipText
+                                        font.pixelSize: 11 * App.fontScale
+                                        font.bold: true
+                                    }
+                                    Text { text: qsTr("Download"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
+                                    Text {
+                                        Layout.alignment: Qt.AlignRight
+                                        text: speedHoverTip._has ? root.compactSpeed(speedHoverTip._s.down[speedHoverTip._i]) : ""
+                                        color: ColorPalette.tooltipText
+                                        font.pixelSize: 11 * App.fontScale
+                                    }
+                                    Text { text: qsTr("Upload"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
+                                    Text {
+                                        Layout.alignment: Qt.AlignRight
+                                        text: speedHoverTip._has ? root.compactSpeed(speedHoverTip._s.up[speedHoverTip._i]) : ""
+                                        color: ColorPalette.tooltipText
+                                        font.pixelSize: 11 * App.fontScale
                                     }
                                 }
                             }
@@ -3402,268 +3344,289 @@ Window {
                                 color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale
                             }
 
-                            Popup {
+                            // Same thin 22px rows as the Files / Trackers menus.
+                            Menu {
                                 id: peerCtxMenu
-                                parent: Overlay.overlay
-                                modal: false
-                                width: 180
-                                height: 69
-                                padding: 0
-                                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+                                topPadding: 0; bottomPadding: 0
+                                delegate: FileCtxMenuItem {}
                                 property string endpoint: ""
                                 property int port: 0
                                 property string client: ""
                                 property string countryCode: ""
                                 property var peerData: ({})
 
-                                background: Rectangle {
-                                    color: ColorPalette.panelBg
-                                    border.color: ColorPalette.border
-                                    radius: 4
+                                FileCtxMenuItem {
+                                    text: qsTr("Peer Info")
+                                    iconSrc: "actions/peer-info.svg"
+                                    enabled: peerCtxMenu.endpoint.length > 0
+                                    onTriggered: peerInfoDialog.openForPeer(peerCtxMenu.peerData)
                                 }
-
-                                contentItem: Column {
-                                    spacing: 0
-
-                                    Rectangle {
-                                        width: 180
-                                        height: 34
-                                        color: peerInfoHover.containsMouse ? ColorPalette.border : "transparent"
-
-                                        Text {
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            anchors.left: parent.left
-                                            anchors.leftMargin: 10
-                                            text: qsTr("Peer Info")
-                                            color: peerCtxMenu.endpoint.length > 0 ? ColorPalette.textPrimary : ColorPalette.textDisabled
-                                            font.pixelSize: 12 * App.fontScale
-                                        }
-
-                                        MouseArea {
-                                            id: peerInfoHover
-                                            anchors.fill: parent
-                                            hoverEnabled: true
-                                            enabled: peerCtxMenu.endpoint.length > 0
-                                            onClicked: {
-                                                peerInfoDialog.openForPeer(peerCtxMenu.peerData)
-                                                peerCtxMenu.close()
-                                            }
-                                        }
-                                    }
-
-                                    Rectangle { width: 180; height: 1; color: ColorPalette.border }
-
-                                    Rectangle {
-                                        width: 180
-                                        height: 34
-                                        color: peerBanHover.containsMouse ? ColorPalette.border : "transparent"
-
-                                        Text {
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            anchors.left: parent.left
-                                            anchors.leftMargin: 10
-                                            text: qsTr("Ban peer")
-                                            color: (!!root.item && peerCtxMenu.endpoint.length > 0) ? ColorPalette.textPrimary : ColorPalette.textDisabled
-                                            font.pixelSize: 12 * App.fontScale
-                                        }
-
-                                        MouseArea {
-                                            id: peerBanHover
-                                            anchors.fill: parent
-                                            hoverEnabled: true
-                                            enabled: !!root.item && peerCtxMenu.endpoint.length > 0
-                                            onClicked: {
-                                                if (root.item) {
-                                                    if (root.torrentPeerModel)
-                                                        root.torrentPeerModel.removePeer(peerCtxMenu.endpoint, peerCtxMenu.port)
-                                                    App.banTorrentPeer(root.item.id, peerCtxMenu.endpoint, peerCtxMenu.port,
-                                                                       peerCtxMenu.client, peerCtxMenu.countryCode)
-                                                }
-                                                peerCtxMenu.close()
-                                            }
-                                        }
+                                FileCtxMenuItem {
+                                    text: qsTr("Ban peer")
+                                    iconSrc: "actions/peer-ban.svg"
+                                    enabled: !!root.item && peerCtxMenu.endpoint.length > 0
+                                    onTriggered: {
+                                        if (!root.item)
+                                            return
+                                        if (root.torrentPeerModel)
+                                            root.torrentPeerModel.removePeer(peerCtxMenu.endpoint, peerCtxMenu.port)
+                                        App.banTorrentPeer(root.item.id, peerCtxMenu.endpoint, peerCtxMenu.port,
+                                                           peerCtxMenu.client, peerCtxMenu.countryCode)
                                     }
                                 }
                             }
 
                             Window {
                                 id: peerInfoDialog
-                                width: 580
-                                height: 420
+                                width: 600
+                                height: 520
                                 minimumWidth: 560
-                                minimumHeight: 400
+                                minimumHeight: 480
                                 modality: Qt.ApplicationModal
                                 flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
                                 title: qsTr("Peer Info")
                                 color: ColorPalette.cardBg
+
+                                // Last known row for this peer; refreshed from the model while
+                                // open. When the peer leaves, the last values stay on screen and
+                                // `connected` drops so the header can say so.
                                 property var peerData: ({})
-                                function blankPeerData() {
-                                    return {
-                                        endpoint: "",
-                                        port: 0,
-                                        client: "",
-                                        countryCode: "",
-                                        countryFlag: "",
-                                        regionCode: "",
-                                        regionName: "",
-                                        cityName: "",
-                                        progress: 0,
-                                        downSpeed: 0,
-                                        upSpeed: 0,
-                                        downloaded: 0,
-                                        uploaded: 0,
-                                        isSeed: false,
-                                        flags: "",
-                                        latitude: 0,
-                                        longitude: 0,
-                                        rtt: 0,
-                                        source: ""
-                                    }
-                                }
+                                property string peerKey: ""
+                                property bool connected: true
+                                readonly property var flagList: root.peerFlagsList(peerData.flags)
+                                function hasFlag(f) { return flagList.indexOf(f) !== -1 }
+
                                 function openForPeer(peer) {
-                                    peerData = blankPeerData()
-                                    peerData = peer || blankPeerData()
+                                    peerData = peer || ({})
+                                    peerKey = root.safeStr(peerData.endpoint) + "|" + (Number(peerData.port) | 0)
+                                    connected = true
                                     show()
                                     raise()
                                     requestActivate()
                                 }
+                                function refresh() {
+                                    if (!root.torrentPeerModel || peerKey.length === 0)
+                                        return
+                                    var live = root.torrentPeerModel.peerByKey(peerKey)
+                                    if (live && live.endpoint !== undefined) {
+                                        peerData = live
+                                        connected = true
+                                    } else {
+                                        connected = false
+                                    }
+                                }
+                                Timer {
+                                    interval: 1000
+                                    repeat: true
+                                    running: peerInfoDialog.visible
+                                    onTriggered: peerInfoDialog.refresh()
+                                }
 
-                                Rectangle {
-                                    anchors.fill: parent
-                                    color: ColorPalette.cardBg
+                                ColumnLayout {
+                                    anchors { fill: parent; leftMargin: 14; rightMargin: 14; topMargin: 12; bottomMargin: 12 }
+                                    spacing: 4
 
-                                    ColumnLayout {
-                                        anchors.fill: parent
-                                        anchors.margins: 10
-                                        spacing: 6
+                                    // Identity: client logo, address, client string, copy.
+                                    RowLayout {
+                                        Layout.fillWidth: true
+                                        spacing: 10
 
-                                        Rectangle {
+                                        Image {
+                                            Layout.preferredWidth: 24
+                                            Layout.preferredHeight: 24
+                                            source: root.torrentClientIconSource(peerInfoDialog.peerData.client)
+                                            sourceSize: Qt.size(24, 24)
+                                            fillMode: Image.PreserveAspectFit
+                                            smooth: true
+                                            visible: status === Image.Ready
+                                        }
+                                        ColumnLayout {
                                             Layout.fillWidth: true
-                                            color: "transparent"
-                                            border.width: 0
-                                            implicitHeight: headerRow.implicitHeight
-
-                                            RowLayout {
-                                                id: headerRow
-                                                anchors.fill: parent
-                                                spacing: 8
-
-                                                Image {
-                                                    source: root.torrentClientIconSource(peerInfoDialog.peerData.client)
-                                                    width: 28
-                                                    height: 28
-                                                    sourceSize.width: 28
-                                                    sourceSize.height: 28
-                                                    Layout.rightMargin: 6
-                                                    fillMode: Image.PreserveAspectFit
-                                                    smooth: true
-                                                    visible: status === Image.Ready
+                                            spacing: 1
+                                            Text {
+                                                Layout.fillWidth: true
+                                                text: root.formatEndpoint(peerInfoDialog.peerData.endpoint, peerInfoDialog.peerData.port) || "-"
+                                                color: ColorPalette.textHeader
+                                                font.pixelSize: 14 * App.fontScale
+                                                font.bold: true
+                                                textFormat: Text.PlainText
+                                                elide: Text.ElideMiddle
+                                            }
+                                            Text {
+                                                Layout.fillWidth: true
+                                                text: {
+                                                    var c = root.safeStr(peerInfoDialog.peerData.client) || qsTr("Unknown client")
+                                                    return peerInfoDialog.connected ? c : qsTr("%1 · disconnected").arg(c)
                                                 }
-                                                ColumnLayout {
-                                                    Layout.fillWidth: true
-                                                    spacing: 2
+                                                color: ColorPalette.textSecond
+                                                font.pixelSize: 12 * App.fontScale
+                                                textFormat: Text.PlainText
+                                                elide: Text.ElideRight
+                                            }
+                                        }
+                                        SheetButton {
+                                            text: qsTr("Copy")
+                                            enabled: root.safeStr(peerInfoDialog.peerData.endpoint).length > 0
+                                            onClicked: App.copyToClipboard(root.formatEndpoint(peerInfoDialog.peerData.endpoint, peerInfoDialog.peerData.port))
+                                        }
+                                    }
 
-                                                    Row {
-                                                        Layout.fillWidth: true
-                                                        spacing: 6
+                                    SectionHeader { text: qsTr("Transfer"); Layout.topMargin: 8 }
+                                    GridLayout {
+                                        Layout.fillWidth: true
+                                        columns: 4; columnSpacing: 10; rowSpacing: 2
 
-                                                        Text {
-                                                            text: root.safeStr(peerInfoDialog.peerData.endpoint) || "--"
-                                                            color: ColorPalette.textPrimary
-                                                            font.pixelSize: 15 * App.fontScale
-                                                            font.bold: true
-                                                            elide: Text.ElideRight
-                                                            anchors.verticalCenter: parent.verticalCenter
-                                                        }
-                                                        Text {
-                                                            text: String(peerInfoDialog.peerData.port || 0)
-                                                            color: ColorPalette.textDisabled
-                                                            font.pixelSize: 15 * App.fontScale
-                                                            anchors.verticalCenter: parent.verticalCenter
-                                                        }
-                                                    }
-                                                    Text {
-                                                        text: root.safeStr(peerInfoDialog.peerData.client) || "Unknown client"
-                                                        color: ColorPalette.clientText
-                                                        font.pixelSize: 12 * App.fontScale
-                                                        elide: Text.ElideRight
-                                                        Layout.fillWidth: true
-                                                    }
-                                                    Text {
-                                                        text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName)
-                                                        color: ColorPalette.textPrimary
-                                                        font.pixelSize: 11 * App.fontScale
-                                                        elide: Text.ElideRight
-                                                        Layout.fillWidth: true
-                                                    }
-                                                }
-                                                Image {
-                                                    source: root.countryFlagSource(peerInfoDialog.peerData.countryCode)
-                                                    width: 28
-                                                    height: 20
-                                                    sourceSize.width: 28
-                                                    sourceSize.height: 20
-                                                    fillMode: Image.PreserveAspectFit
-                                                    smooth: true
-                                                    visible: status === Image.Ready
-                                                }
+                                        SheetKey  { text: qsTr("Download speed") }
+                                        PropValue { text: root.compactSpeed(peerInfoDialog.peerData.downSpeed) }
+                                        SheetKey  { text: qsTr("Upload speed") }
+                                        PropValue { text: root.compactSpeed(peerInfoDialog.peerData.upSpeed) }
+
+                                        SheetKey  { text: qsTr("Downloaded") }
+                                        PropValue { text: root.compactBytes(peerInfoDialog.peerData.downloaded) }
+                                        SheetKey  { text: qsTr("Uploaded") }
+                                        PropValue { text: root.compactBytes(peerInfoDialog.peerData.uploaded) }
+
+                                        SheetKey  { text: qsTr("Has") }
+                                        PropValue { text: Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100) + "%" }
+                                        SheetKey  { text: qsTr("Ping") }
+                                        PropValue {
+                                            readonly property bool measured: (Number(peerInfoDialog.peerData.rtt) || 0) > 0
+                                            text: measured ? peerInfoDialog.peerData.rtt + " ms" : qsTr("Not measured")
+                                            color: measured ? ColorPalette.textPrimary : ColorPalette.textMuted
+                                            HoverHandler { id: pingHover }
+                                            ThemedToolTip {
+                                                visible: pingHover.hovered
+                                                text: qsTr("Measured from how fast this peer answers block requests, so it's only known while you're downloading from it.")
+                                            }
+                                        }
+                                    }
+
+                                    SectionHeader { text: qsTr("Connection"); Layout.topMargin: 7 }
+                                    GridLayout {
+                                        Layout.fillWidth: true
+                                        columns: 4; columnSpacing: 10; rowSpacing: 2
+
+                                        SheetKey  { text: qsTr("Role") }
+                                        PropValue { text: peerInfoDialog.peerData.isSeed ? qsTr("Seed") : qsTr("Peer") }
+                                        SheetKey  { text: qsTr("Direction") }
+                                        PropValue { text: peerInfoDialog.hasFlag("IN") ? qsTr("Incoming") : qsTr("Outgoing") }
+
+                                        SheetKey  { text: qsTr("Found via") }
+                                        PropValue {
+                                            text: {
+                                                var names = { TRK: qsTr("Tracker"), DHT: "DHT", PEX: "PeX", LSD: qsTr("Local network") }
+                                                var out = []
+                                                for (var k in names)
+                                                    if (peerInfoDialog.hasFlag(k)) out.push(names[k])
+                                                return out.length > 0 ? out.join(", ") : "-"
+                                            }
+                                        }
+                                        SheetKey  { text: qsTr("Protocol") }
+                                        PropValue {
+                                            text: {
+                                                var p = peerInfoDialog.hasFlag("I2P") ? "I2P" : (peerInfoDialog.hasFlag("UTP") ? "uTP" : "TCP")
+                                                return peerInfoDialog.hasFlag("HPX") ? qsTr("%1, holepunched").arg(p) : p
                                             }
                                         }
 
-                                        RowLayout {
-                                            id: infoColumns
-                                            Layout.fillWidth: true
-                                            spacing: 16
-
-                                            Column {
-                                                Layout.fillWidth: true
-                                                Layout.preferredWidth: 1
-                                                Layout.alignment: Qt.AlignTop
-                                                spacing: 3
-
-                                                Text { text: qsTr("Connection"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true; bottomPadding: 2 }
-                                                Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                            }
-
-                                            Column {
-                                                Layout.fillWidth: true
-                                                Layout.preferredWidth: 1
-                                                Layout.alignment: Qt.AlignTop
-                                                spacing: 3
-
-                                                Text { text: qsTr("Transfer"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true; bottomPadding: 2 }
-                                                Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                            }
-
-                                            Column {
-                                                Layout.fillWidth: true
-                                                Layout.preferredWidth: 1
-                                                Layout.alignment: Qt.AlignTop
-                                                spacing: 3
-
-                                                Text { text: qsTr("Location"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true; bottomPadding: 2 }
-                                                Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
-                                                Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
-                                                Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: ColorPalette.clientText; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight; width: parent.width }
+                                        SheetKey  { text: qsTr("Encryption") }
+                                        PropValue { text: peerInfoDialog.hasFlag("ENC") ? qsTr("Encrypted") : qsTr("Not encrypted") }
+                                        SheetKey  { text: qsTr("State") }
+                                        PropValue {
+                                            text: {
+                                                var out = []
+                                                if (peerInfoDialog.hasFlag("SNB")) out.push(qsTr("Snubbed"))
+                                                if (peerInfoDialog.hasFlag("OPT")) out.push(qsTr("Optimistic unchoke"))
+                                                if (peerInfoDialog.hasFlag("UPO")) out.push(qsTr("Upload only"))
+                                                return out.length > 0 ? out.join(", ") : qsTr("Normal")
                                             }
                                         }
+                                    }
 
-                                        Rectangle {
-                                            Layout.fillWidth: true
-                                            Layout.fillHeight: true
-                                            Layout.minimumHeight: 170
-                                            color: ColorPalette.mapTooltipBg
-                                            border.color: ColorPalette.mapBorder
-                                            clip: true
+                                    SectionHeader { text: qsTr("Location"); Layout.topMargin: 7 }
+                                    RowLayout {
+                                        Layout.fillWidth: true
+                                        spacing: 8
+                                        Image {
+                                            Layout.preferredWidth: 18
+                                            Layout.preferredHeight: 12
+                                            source: root.countryFlagSource(peerInfoDialog.peerData.countryCode)
+                                            sourceSize: Qt.size(18, 12)
+                                            fillMode: Image.PreserveAspectFit
+                                            visible: status === Image.Ready
+                                        }
+                                        PropValue {
+                                            text: root.peerPlaceText(peerInfoDialog.peerData) || qsTr("Unknown")
+                                        }
+                                        Text {
+                                            readonly property bool known: !!root.torrentPeerModel && root.torrentPeerModel.hasLocalLocation
+                                                && root.hasGeoCoordinates(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
+                                            visible: known
+                                            text: known ? qsTr("%1 away").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)) : ""
+                                            color: ColorPalette.textMuted
+                                            font.pixelSize: 12 * App.fontScale
+                                        }
+                                    }
 
-                                            // Map label: no background; outline gives contrast against any map color
+                                    // You -> peer on the world map (zoomed to fit both).
+                                    Rectangle {
+                                        Layout.fillWidth: true
+                                        Layout.fillHeight: true
+                                        Layout.topMargin: 4
+                                        Layout.minimumHeight: 120
+                                        color: ColorPalette.mapCanvasBg
+                                        border.color: ColorPalette.border
+                                        radius: 2
+                                        clip: true
+
+                                        Item {
+                                            id: peerInfoMap
+                                            anchors.fill: parent
+                                            anchors.margins: 1
+                                            readonly property real mapHeight: height
+                                            readonly property real baseMapWidth: mapHeight * (800.0 / 387.0)
+                                            readonly property real baseMapX: (width - baseMapWidth) / 2
+                                            readonly property bool hasLocal: !!root.torrentPeerModel && root.torrentPeerModel.hasLocalLocation
+                                            readonly property bool hasPeer: root.hasGeoCoordinates(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
+                                            readonly property var transformData: root.peerInfoMapTransform(peerInfoDialog.peerData, baseMapWidth, mapHeight)
+                                            readonly property real absLocalX: baseMapX + transformData.localX
+                                            readonly property real localY: transformData.localY
+                                            readonly property real absPeerX: baseMapX + transformData.peerX
+                                            readonly property real peerY: transformData.peerY
+
+                                            Image {
+                                                x: parent.baseMapX + parent.transformData.offsetX
+                                                y: parent.transformData.offsetY
+                                                width: parent.baseMapWidth * parent.transformData.scale
+                                                height: parent.mapHeight * parent.transformData.scale
+                                                source: ColorPalette.dark ? "../icons/images/world-map-dark.svg" : "../icons/images/world-map-light.svg"
+                                                fillMode: Image.Stretch
+                                                smooth: true
+                                                sourceSize.width: 1200
+                                                sourceSize.height: 581
+                                            }
+
+                                            // Straight link between the two points.
+                                            Rectangle {
+                                                readonly property real dx: parent.absPeerX - parent.absLocalX
+                                                readonly property real dy: parent.peerY - parent.localY
+                                                visible: parent.hasLocal && parent.hasPeer
+                                                x: parent.absLocalX
+                                                y: parent.localY - height / 2
+                                                width: Math.sqrt(dx * dx + dy * dy)
+                                                height: 2
+                                                radius: 1
+                                                rotation: Math.atan2(dy, dx) * 180 / Math.PI
+                                                transformOrigin: Item.Left
+                                                color: ColorPalette.accent
+                                                opacity: 0.8
+                                            }
+
+                                            component MapDot: Rectangle {
+                                                width: 10; height: 10; radius: 5
+                                                border.color: ColorPalette.mapBorder
+                                                border.width: 1
+                                            }
                                             component MapLabel: Text {
                                                 color: ColorPalette.mapLabelText
                                                 style: Text.Outline
@@ -3671,204 +3634,44 @@ Window {
                                                 font.pixelSize: 10 * App.fontScale
                                                 font.bold: true
                                             }
+                                            MapDot { visible: parent.hasLocal; x: parent.absLocalX - 5; y: parent.localY - 5; color: "#9959e6" }
+                                            MapDot { visible: parent.hasPeer; x: parent.absPeerX - 5; y: parent.peerY - 5; color: root.peerMapColor(peerInfoDialog.peerData) }
+                                            MapLabel { visible: parent.hasLocal; x: parent.absLocalX + 8; y: parent.localY - 7; text: qsTr("You") }
+                                            MapLabel { visible: parent.hasPeer; x: parent.absPeerX + 8; y: parent.peerY - 7; text: qsTr("Peer") }
 
-                                            Item {
-                                                anchors.fill: parent
-                                                anchors.margins: 6
-                                                readonly property real mapHeight: height
-                                                readonly property real baseMapWidth: mapHeight * (800.0 / 387.0)
-                                                readonly property real baseMapX: (width - baseMapWidth) / 2
-                                                readonly property bool hasLocal: !!root.torrentPeerModel && root.torrentPeerModel.hasLocalLocation
-                                                readonly property bool hasPeer: root.hasGeoCoordinates(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
-                                                readonly property var transformData: root.peerInfoMapTransform(peerInfoDialog.peerData, baseMapWidth, mapHeight)
-                                                readonly property real localX: transformData.localX
-                                                readonly property real localY: transformData.localY
-                                                readonly property real peerX: transformData.peerX
-                                                readonly property real peerY: transformData.peerY
-                                                // Absolute (un-rotated) endpoints + midpoint of the You<->Peer line
-                                                readonly property real absLocalX: baseMapX + localX
-                                                readonly property real absPeerX: baseMapX + peerX
-                                                readonly property real midX: (absLocalX + absPeerX) / 2
-                                                readonly property real midY: (localY + peerY) / 2
-                                                readonly property real lineLen: Math.sqrt(Math.pow(absPeerX - absLocalX, 2) + Math.pow(peerY - localY, 2))
-
-                                                Item {
-                                                    x: parent.baseMapX + parent.transformData.offsetX
-                                                    y: parent.transformData.offsetY
-                                                    width: parent.baseMapWidth * parent.transformData.scale
-                                                    height: parent.mapHeight * parent.transformData.scale
-
-                                                    Image {
-                                                        id: mapImage
-                                                        anchors.fill: parent
-                                                        source: ColorPalette.dark ? "../icons/images/world-map-dark.svg" : "../icons/images/world-map-light.svg"
-                                                        fillMode: Image.Stretch
-                                                        smooth: true
-                                                        sourceSize.width: 1200
-                                                        sourceSize.height: 581
-                                                    }
-                                                }
-
-                                                Item {
-                                                    visible: parent.hasLocal && parent.hasPeer
-                                                    readonly property real x1: parent.absLocalX
-                                                    readonly property real y1: parent.localY
-                                                    readonly property real x2: parent.absPeerX
-                                                    readonly property real y2: parent.peerY
-                                                    readonly property real dx: x2 - x1
-                                                    readonly property real dy: y2 - y1
-                                                    readonly property real length: Math.sqrt(dx * dx + dy * dy)
-
-                                                    x: x1
-                                                    y: y1
-                                                    width: length
-                                                    height: 2
-                                                    rotation: Math.atan2(dy, dx) * 180 / Math.PI
-                                                    transformOrigin: Item.Left
-
-                                                    Rectangle {
-                                                        anchors.verticalCenter: parent.verticalCenter
-                                                        width: parent.width
-                                                        height: 2
-                                                        color: "#6db6ff"
-                                                    }
-                                                }
-
-                                                Rectangle { visible: parent.hasLocal; x: parent.absLocalX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: ColorPalette.textHeader; border.width: 1 }
-                                                Rectangle { visible: parent.hasPeer; x: parent.absPeerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: ColorPalette.textHeader; border.width: 1 }
-                                                MapLabel { visible: parent.hasLocal; x: parent.absLocalX + 6; y: parent.localY - 7; text: qsTr("You") }
-                                                MapLabel { visible: parent.hasPeer; x: parent.absPeerX + 6; y: parent.peerY - 7; text: qsTr("Peer") }
-
-                                                // Distance at line midpoint; hidden when nodes too close (labels would collide)
-                                                MapLabel {
-                                                    visible: parent.hasLocal && parent.hasPeer && parent.lineLen > 70 && text.length > 0
-                                                    x: parent.midX - implicitWidth / 2
-                                                    y: parent.midY - implicitHeight - 5
-                                                    text: root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
-                                                }
+                                            Text {
+                                                anchors.centerIn: parent
+                                                visible: !parent.hasPeer
+                                                text: qsTr("This peer's location is unknown")
+                                                color: ColorPalette.textMuted
+                                                font.pixelSize: 12 * App.fontScale
                                             }
                                         }
+                                    }
 
-                                        RowLayout {
-                                            Layout.fillWidth: true
-                                            spacing: 10
-
-                                            RowLayout {
-                                                Layout.fillWidth: true
-                                                spacing: 6
-
-                                                Text {
-                                                    text: qsTr("Flags")
-                                                    color: ColorPalette.textPrimary
-                                                    font.pixelSize: 11 * App.fontScale
-                                                    font.bold: true
-                                                    visible: root.peerFlagsList(peerInfoDialog.peerData.flags).length > 0
+                                    RowLayout {
+                                        Layout.fillWidth: true
+                                        Layout.topMargin: 8
+                                        spacing: 8
+                                        DlgButton {
+                                            text: qsTr("Ban Peer")
+                                            destructive: true
+                                            enabled: !!root.item && root.safeStr(peerInfoDialog.peerData.endpoint).length > 0
+                                            onClicked: {
+                                                if (root.item) {
+                                                    if (root.torrentPeerModel)
+                                                        root.torrentPeerModel.removePeer(peerInfoDialog.peerData.endpoint, peerInfoDialog.peerData.port)
+                                                    App.banTorrentPeer(root.item.id,
+                                                                       peerInfoDialog.peerData.endpoint,
+                                                                       peerInfoDialog.peerData.port,
+                                                                       peerInfoDialog.peerData.client,
+                                                                       peerInfoDialog.peerData.countryCode)
                                                 }
-
-                                                Flow {
-                                                    Layout.fillWidth: true
-                                                    spacing: 6
-
-                                                    Repeater {
-                                                        model: root.peerFlagsList(peerInfoDialog.peerData.flags)
-                                                        delegate: Rectangle {
-                                                            required property string modelData
-                                                            height: 14
-                                                            width: badgeLbl.implicitWidth + 6
-                                                            radius: 2
-                                                            color: "transparent"
-                                                            border.color: badgeColor(modelData)
-                                                            border.width: 1
-                                                            function badgeColor(flag) {
-                                                                if (flag === "Seed") return "#c0a54a"
-                                                                if (flag === "Peer") return ColorPalette.textSecond
-                                                                return root.flagColor(flag)
-                                                            }
-
-                                                            ThemedToolTip {
-                                                                visible: badgeMouse.containsMouse
-                                                                text: {
-                                                                    switch (modelData) {
-                                                                    case "IN": return "Incoming connection"
-                                                                    case "OUT": return "Outgoing connection"
-                                                                    case "TRK": return "Discovered via tracker"
-                                                                    case "DHT": return "Discovered via DHT"
-                                                                    case "PEX": return "Discovered via peer exchange"
-                                                                    case "LSD": return "Discovered via local service discovery"
-                                                                    case "UTP": return "Using uTP"
-                                                                    case "ENC": return "Encrypted connection"
-                                                                    case "SNB": return "Peer is snubbed"
-                                                                    case "UPO": return "Upload-only peer"
-                                                                    case "OPT": return "Optimistically unchoked"
-                                                                    case "HPX": return "Holepunched connection"
-                                                                    case "I2P": return "I2P transport"
-                                                                    default: return modelData
-                                                                    }
-                                                                }
-                                                            }
-
-                                                            Text {
-                                                                id: badgeLbl
-                                                                anchors.centerIn: parent
-                                                                text: modelData
-                                                                color: ColorPalette.textPrimary
-                                                                font.pixelSize: 9 * App.fontScale
-                                                                font.bold: true
-                                                            }
-
-                                                            MouseArea {
-                                                                id: badgeMouse
-                                                                anchors.fill: parent
-                                                                hoverEnabled: true
-                                                                acceptedButtons: Qt.NoButton
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            RowLayout {
-                                                spacing: 8
-                                                DlgButton {
-                                                    text: qsTr("Ban Peer")
-                                                    destructive: true
-                                                    enabled: !!root.item && root.safeStr(peerInfoDialog.peerData.endpoint).length > 0
-                                                    height: 28
-                                                    implicitHeight: 28
-                                                    Layout.preferredHeight: 28
-                                                    Layout.minimumHeight: 28
-                                                    Layout.maximumHeight: 28
-                                                    Layout.preferredWidth: 84
-                                                    Layout.minimumWidth: 84
-                                                    Layout.maximumWidth: 84
-                                                    onClicked: {
-                                                        if (root.item) {
-                                                            if (root.torrentPeerModel)
-                                                                root.torrentPeerModel.removePeer(peerInfoDialog.peerData.endpoint, peerInfoDialog.peerData.port)
-                                                            App.banTorrentPeer(root.item.id,
-                                                                               peerInfoDialog.peerData.endpoint,
-                                                                               peerInfoDialog.peerData.port,
-                                                                               peerInfoDialog.peerData.client,
-                                                                               peerInfoDialog.peerData.countryCode)
-                                                        }
-                                                        peerInfoDialog.close()
-                                                    }
-                                                }
-                                                DlgButton {
-                                                    text: qsTr("Close")
-                                                    primary: true
-                                                    height: 28
-                                                    implicitHeight: 28
-                                                    Layout.preferredHeight: 28
-                                                    Layout.minimumHeight: 28
-                                                    Layout.maximumHeight: 28
-                                                    Layout.preferredWidth: 84
-                                                    Layout.minimumWidth: 84
-                                                    Layout.maximumWidth: 84
-                                                    onClicked: peerInfoDialog.close()
-                                                }
+                                                peerInfoDialog.close()
                                             }
                                         }
+                                        Item { Layout.fillWidth: true }
+                                        DlgButton { text: qsTr("Close"); primary: true; onClicked: peerInfoDialog.close() }
                                     }
                                 }
                             }
@@ -3921,7 +3724,7 @@ Window {
                                             var fullCountry = cc ? countryFullName(cc) : ""
                                             var locBlock = locLine ? locLine + (fullCountry ? "\n" + fullCountry : "") : (fullCountry || "Location unavailable")
                                             var clientLine = safeStr(pd.client) || "Unknown client"
-                                            return pd.endpoint + ":" + pd.port + "\n" + locBlock + "\n" + clientLine
+                                            return root.formatEndpoint(pd.endpoint, pd.port) + "\n" + locBlock + "\n" + clientLine
                                         }
                                     }
                                 }
@@ -4099,10 +3902,7 @@ Window {
                                             rtt: pd.rtt,
                                             source: pd.source
                                         }
-                                        var pos = mapToItem(Overlay.overlay, mouse.x, mouse.y)
-                                        peerCtxMenu.x = pos.x
-                                        peerCtxMenu.y = pos.y
-                                        peerCtxMenu.open()
+                                        peerCtxMenu.popup()
                                     }
                                 }
                             }
@@ -4173,9 +3973,16 @@ Window {
                                 spacing: 12
 
                                 Text {
-                                    text: root.activePeerMapModel
-                                        ? qsTr("%1 known peers").arg(root.activePeerMapModel.count)
-                                        : qsTr("0 known peers")
+                                    // Peers without a GeoIP location (LAN, private or
+                                    // link-local IPv6, unknown ranges) can't be drawn;
+                                    // say so rather than silently showing fewer dots.
+                                    text: {
+                                        var total = root.activePeerMapModel ? root.activePeerMapModel.count : 0
+                                        var located = mapCanvas.plottedPeerCount
+                                        return located < total
+                                            ? qsTr("%1 peers, %2 on the map").arg(total).arg(located)
+                                            : qsTr("%1 peers").arg(total)
+                                    }
                                     color: ColorPalette.textPrimary
                                     font.pixelSize: 11 * App.fontScale
                                 }
@@ -4297,13 +4104,16 @@ Window {
                                             required property bool isSeed
                                             required property int downSpeed
                                             required property int upSpeed
+                                            required property int stackIndex
+                                            required property int stackSize
 
+                                            readonly property var stackOff: root.peerStackOffset(stackIndex, stackSize)
                                             readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
                                             readonly property bool hasLocalCoordinates: !!root.activePeerMapModel && root.activePeerMapModel.hasLocalLocation
                                             readonly property real hubX: mapCanvas.mapX + root.peerMapX(root.activePeerMapModel ? root.activePeerMapModel.localLongitude : 0, mapCanvas.mapWidth)
                                             readonly property real hubY: mapCanvas.mapY + root.peerMapY(root.activePeerMapModel ? root.activePeerMapModel.localLatitude : 0, mapCanvas.mapWidth, mapCanvas.mapHeight)
-                                            readonly property real targetX: mapCanvas.mapX + root.peerMapX(longitude, mapCanvas.mapWidth)
-                                            readonly property real targetY: mapCanvas.mapY + root.peerMapY(latitude, mapCanvas.mapWidth, mapCanvas.mapHeight)
+                                            readonly property real targetX: mapCanvas.mapX + root.peerMapX(longitude, mapCanvas.mapWidth) + stackOff.x / root.peerMapZoom
+                                            readonly property real targetY: mapCanvas.mapY + root.peerMapY(latitude, mapCanvas.mapWidth, mapCanvas.mapHeight) + stackOff.y / root.peerMapZoom
                                             readonly property real dx: targetX - hubX
                                             readonly property real dy: targetY - hubY
                                             readonly property real length: Math.sqrt(dx * dx + dy * dy)
@@ -4348,15 +4158,20 @@ Window {
                                             required property string source
                                             required property string flags
                                             required property double progress   // fraction 0-1; was missing, causing all peers to show 0%
+                                            required property int stackIndex
+                                            required property int stackSize
 
+                                            // Offsets are screen pixels; the canvas is scaled by
+                                            // the zoom, so divide to keep the fan a constant size.
+                                            readonly property var stackOff: root.peerStackOffset(stackIndex, stackSize)
                                             readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
                                             readonly property bool isActive: downSpeed > 0 || upSpeed > 0
                                             visible: hasCoordinates && (root.peerMapShowInactive || isActive)
                                             Component.onCompleted: { if (hasCoordinates) mapCanvas.plottedPeerCount++ }
                                             onHasCoordinatesChanged: { mapCanvas.plottedPeerCount += hasCoordinates ? 1 : -1 }
                                             Component.onDestruction: { if (hasCoordinates) mapCanvas.plottedPeerCount-- }
-                                            x: mapCanvas.mapX + root.peerMapX(longitude, mapCanvas.mapWidth) - width / 2
-                                            y: mapCanvas.mapY + root.peerMapY(latitude, mapCanvas.mapWidth, mapCanvas.mapHeight) - height / 2
+                                            x: mapCanvas.mapX + root.peerMapX(longitude, mapCanvas.mapWidth) + stackOff.x / root.peerMapZoom - width / 2
+                                            y: mapCanvas.mapY + root.peerMapY(latitude, mapCanvas.mapWidth, mapCanvas.mapHeight) + stackOff.y / root.peerMapZoom - height / 2
                                             width: 16
                                             height: 16
                                             scale: 1.0 / root.peerMapZoom
@@ -4372,46 +4187,26 @@ Window {
                                                 border.width: 1
                                             }
 
-                                            Rectangle {
-                                                visible: false
-                                                anchors.bottom: parent.top
-                                                anchors.horizontalCenter: parent.horizontalCenter
-                                                anchors.bottomMargin: 6
-                                                width: 220
-                                                implicitHeight: tooltipCol.implicitHeight + 10
-                                                color: ColorPalette.mapTooltipBg
-                                                border.color: ColorPalette.mapBorder
-                                                radius: 3
-                                                z: 10
-
-                                                Column {
-                                                    id: tooltipCol
-                                                    anchors.fill: parent
-                                                    anchors.margins: 5
-                                                    spacing: 2
-
-                                                    Text { text: endpoint + ":" + port; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: client; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: root.peerPlaceText(parent.parent); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: (isSeed ? qsTr("Seed") : qsTr("Peer")) + " . " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10 * App.fontScale; width: parent.width }
-                                                    Text { text: qsTr("Down %1  Up %2").arg(root.compactSpeed(downSpeed)).arg(root.compactSpeed(upSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; width: parent.width }
-                                                    Text { text: qsTr("RTT %1").arg(rtt > 0 ? (rtt + " ms") : "--"); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; width: parent.width }
-                                                }
+                                            // The tooltip copies this marker's values; re-copy them
+                                            // on every live update while hovered so speeds, ping and
+                                            // progress don't freeze at the moment the mouse arrived.
+                                            function publishHover() {
+                                                var p = mapToItem(mapRoot, width / 2, 0)
+                                                root.showPeerMapHover(this, p.x, p.y)
                                             }
+                                            onDownSpeedChanged: if (markerMouse.containsMouse) publishHover()
+                                            onUpSpeedChanged: if (markerMouse.containsMouse) publishHover()
+                                            onRttChanged: if (markerMouse.containsMouse) publishHover()
+                                            onProgressChanged: if (markerMouse.containsMouse) publishHover()
+                                            onFlagsChanged: if (markerMouse.containsMouse) publishHover()
 
                                             MouseArea {
                                                 id: markerMouse
                                                 anchors.fill: parent
                                                 hoverEnabled: true
                                                 acceptedButtons: Qt.NoButton
-                                                onEntered: {
-                                                    var p = parent.mapToItem(mapRoot, parent.width / 2, 0)
-                                                    root.showPeerMapHover(parent, p.x, p.y)
-                                                }
-                                                onPositionChanged: {
-                                                    var p = parent.mapToItem(mapRoot, parent.width / 2, 0)
-                                                    root.showPeerMapHover(parent, p.x, p.y)
-                                                }
+                                                onEntered: parent.publishHover()
+                                                onPositionChanged: parent.publishHover()
                                                 onExited: root.hidePeerMapHover()
                                             }
                                         }
@@ -4450,8 +4245,7 @@ Window {
                                                 hoverEnabled: true
                                                 acceptedButtons: Qt.NoButton
                                                 onEntered: {
-                                                    var host = url.replace(/^(udp|http|https):\/\//, "").replace(/\/.*$/, "")
-                                                    root.peerMapTrackerHoverHost = host
+                                                    root.peerMapTrackerHoverHost = root.urlHost(url)
                                                     root.peerMapTrackerHoverCountry = countryCode
                                                     root.peerMapTrackerHoverStatus = status
                                                     root.peerMapTrackerHoverTier = tier
@@ -4503,7 +4297,7 @@ Window {
                                         visible: root.peerMapHoverVisible
                                         x: Math.max(10, Math.min(parent.width - width - 10, root.peerMapHoverX + 14))
                                         y: Math.max(10, Math.min(parent.height - height - 10, root.peerMapHoverY - height / 2))
-                                        width: 200
+                                        width: Math.max(200, Math.min(360, hoverIpLbl.implicitWidth + portLbl.implicitWidth + 5 + 14))
                                         implicitHeight: mapTooltipCol.implicitHeight + 10
                                         color: ColorPalette.mapTooltipBg
                                         border.color: ColorPalette.mapBorder
@@ -4521,11 +4315,13 @@ Window {
                                                 spacing: 5
                                                 width: parent.width
                                                 Text {
-                                                    text: root.peerMapHoverEndpoint
+                                                    id: hoverIpLbl
+                                                    text: root.peerMapHoverEndpoint.indexOf(":") !== -1
+                                                          ? "[" + root.peerMapHoverEndpoint + "]" : root.peerMapHoverEndpoint
                                                     color: ColorPalette.textPrimary
                                                     font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
-                                                    elide: Text.ElideRight
+                                                    elide: Text.ElideMiddle
                                                     width: Math.min(implicitWidth, parent.width - portLbl.width - 5)
                                                 }
                                                 Text {
@@ -4582,7 +4378,7 @@ Window {
                                                     })
                                                     color: ColorPalette.textPrimary
                                                     font.pixelSize: 11 * App.fontScale
-                                                    elide: Text.ElideRight
+                                                    wrapMode: Text.WordWrap
                                                     width: parent.width - 21
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
@@ -4633,7 +4429,15 @@ Window {
 
                                             // Ping + progress row
                                             Text {
-                                                text: qsTr("Ping %1  %2% done").arg(root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "-").arg(Math.round(root.peerMapHoverProgress * 100))
+                                                // libtorrent's rtt is the mean block-request response time,
+                                                // so it only exists for peers we download from; leave it out
+                                                // rather than show a dash that reads as "broken".
+                                                text: {
+                                                    var done = qsTr("%1% done").arg(Math.round(root.peerMapHoverProgress * 100))
+                                                    return root.peerMapHoverRtt > 0
+                                                        ? qsTr("Ping %1 ms").arg(root.peerMapHoverRtt) + "  ·  " + done
+                                                        : done
+                                                }
                                                 color: ColorPalette.textPrimary
                                                 font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
@@ -4825,7 +4629,7 @@ Window {
                                                     }
                                                     color: ColorPalette.textPrimary
                                                     font.pixelSize: 11 * App.fontScale
-                                                    elide: Text.ElideRight
+                                                    wrapMode: Text.WordWrap
                                                     width: parent.width - 21
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
@@ -4853,6 +4657,14 @@ Window {
                                         cursorShape: pressed ? Qt.ClosedHandCursor : Qt.OpenHandCursor
                                         property real lastX: 0
                                         property real lastY: 0
+                                        // The zoomed canvas is width*zoom wide anchored at the
+                                        // pan offset; keep it covering the frame so the map can't
+                                        // be dragged away into empty space.
+                                        function clampPan() {
+                                            var z = root.peerMapZoom
+                                            root.peerMapPanX = Math.max(mapRoot.width * (1 - z), Math.min(0, root.peerMapPanX))
+                                            root.peerMapPanY = Math.max(mapRoot.height * (1 - z), Math.min(0, root.peerMapPanY))
+                                        }
                                         onPressed: function(mouse) {
                                             lastX = mouse.x
                                             lastY = mouse.y
@@ -4862,6 +4674,7 @@ Window {
                                                 return
                                             root.peerMapPanX += mouse.x - lastX
                                             root.peerMapPanY += mouse.y - lastY
+                                            clampPan()
                                             lastX = mouse.x
                                             lastY = mouse.y
                                         }
@@ -4872,6 +4685,8 @@ Window {
                                             var factor = root.peerMapZoom / oldZoom
                                             root.peerMapPanX = wheel.x - (wheel.x - root.peerMapPanX) * factor
                                             root.peerMapPanY = wheel.y - (wheel.y - root.peerMapPanY) * factor
+                                            clampPan()
+                                            root.hidePeerMapHover()
                                         }
                                         onDoubleClicked: {
                                             root.peerMapZoom = 1.0
@@ -4884,7 +4699,9 @@ Window {
                                     Text {
                                         anchors.centerIn: parent
                                         visible: !root.activePeerMapModel || mapCanvas.plottedPeerCount === 0
-                                        text: qsTr("No connected peers to plot")
+                                        text: root.activePeerMapModel && root.activePeerMapModel.count > 0
+                                              ? qsTr("None of the connected peers have a known location")
+                                              : qsTr("No connected peers to plot")
                                         color: ColorPalette.textSecond
                                         font.pixelSize: 12 * App.fontScale
                                     }
@@ -4904,34 +4721,38 @@ Window {
                 }
 
                 Item {
-                    // Shared context menu for tracker rows
+                    // Shared context menu for tracker rows. Same thin 22px rows as
+                    // the Files tab menu (FileCtxMenuItem).
                     Menu {
                         id: trackerCtxMenu
+                        topPadding: 0; bottomPadding: 0
+                        delegate: FileCtxMenuItem {}
                         property string trackerUrl: ""
                         // DHT/PEX/LSD are virtual "trackers" with no real URL - disable
                         // destructive/copy actions so right-clicking them feels inert.
                         property bool isSystemEntry: false
 
-                        Action {
+                        FileCtxMenuItem {
                             text: qsTr("Force Reannounce")
+                            iconSrc: "actions/tracker-reannounce.svg"
                             enabled: !trackerCtxMenu.isSystemEntry && !!root.item
                             onTriggered: {
                                 if (root.item && trackerCtxMenu.trackerUrl.length > 0)
                                     App.forceReannounceTorrent(root.item.id, [trackerCtxMenu.trackerUrl])
                             }
                         }
-                        MenuSeparator {}
-                        Action {
+                        FileCtxMenuItem {
                             text: qsTr("Copy URL")
+                            iconSrc: "actions/copy-link.svg"
                             enabled: !trackerCtxMenu.isSystemEntry
                             onTriggered: {
                                 if (trackerCtxMenu.trackerUrl.length > 0)
                                     App.copyToClipboard(trackerCtxMenu.trackerUrl)
                             }
                         }
-                        MenuSeparator {}
-                        Action {
+                        FileCtxMenuItem {
                             text: qsTr("Remove tracker")
+                            iconSrc: "actions/edit-delete.svg"
                             enabled: !trackerCtxMenu.isSystemEntry
                             onTriggered: {
                                 if (root.item && trackerCtxMenu.trackerUrl.length > 0)
@@ -5578,26 +5399,30 @@ Window {
 
                             Menu {
                                 id: webSeedCtxMenu
+                                topPadding: 0; bottomPadding: 0
+                                delegate: FileCtxMenuItem {}
                                 property string seedUrl:  ""
                                 property string seedType: ""
 
-                                Action {
+                                FileCtxMenuItem {
                                     text: qsTr("Copy URL")
+                                    iconSrc: "actions/copy-link.svg"
                                     onTriggered: {
                                         if (webSeedCtxMenu.seedUrl.length > 0)
                                             App.copyToClipboard(webSeedCtxMenu.seedUrl)
                                     }
                                 }
-                                Action {
+                                FileCtxMenuItem {
                                     text: qsTr("Open in browser")
+                                    iconSrc: "places/globe.svg"
                                     onTriggered: {
                                         if (webSeedCtxMenu.seedUrl.length > 0)
                                             App.openExternalUrl(webSeedCtxMenu.seedUrl)
                                     }
                                 }
-                                MenuSeparator {}
-                                Action {
+                                FileCtxMenuItem {
                                     text: qsTr("Remove seed")
+                                    iconSrc: "actions/edit-delete.svg"
                                     onTriggered: {
                                         if (root.item && webSeedCtxMenu.seedUrl.length > 0) {
                                             App.removeTorrentWebSeed(root.item.id, webSeedCtxMenu.seedUrl)

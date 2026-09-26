@@ -321,12 +321,15 @@ qt_add_qml_module(Stellar
         app/qml/icons/actions/mail-mark-read.svg
         app/qml/icons/actions/media-playback-pause.svg
         app/qml/icons/actions/media-playback-start.svg
+        app/qml/icons/actions/peer-ban.svg
+        app/qml/icons/actions/peer-info.svg
         app/qml/icons/actions/preferences-desktop-locale.svg
         app/qml/icons/actions/preferences-system.svg
         app/qml/icons/actions/speed-limiter.svg
         app/qml/icons/actions/theme-dark.svg
         app/qml/icons/actions/theme-light.svg
         app/qml/icons/actions/torrent-verify.svg
+        app/qml/icons/actions/tracker-reannounce.svg
         app/qml/icons/actions/view-categories.svg
         app/qml/icons/actions/view-columns.svg
         app/qml/icons/actions/view-refresh.svg

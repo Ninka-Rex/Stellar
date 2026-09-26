@@ -2804,6 +2804,221 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <source>Comment</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="406"/>
+        <source>15m</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="407"/>
+        <source>1h</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="404"/>
+        <source>1m</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="409"/>
+        <source>24h</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="405"/>
+        <source>5m</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="408"/>
+        <source>6h</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2349"/>
+        <source>Average</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2348"/>
+        <source>Current</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2576"/>
+        <source>No speed recorded in this period yet</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2350"/>
+        <source>Peak</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2351"/>
+        <source>Transferred</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2359"/>
+        <source>Upload</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="842"/>
+        <source>now</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3556"/>
+        <source>%1 away</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3975"/>
+        <source>%1 peers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3974"/>
+        <source>%1 peers, %2 on the map</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3459"/>
+        <source>%1 · disconnected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3519"/>
+        <source>%1, holepunched</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3502"/>
+        <source>Direction</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3479"/>
+        <source>Download speed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3524"/>
+        <source>Encrypted</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3523"/>
+        <source>Encryption</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3505"/>
+        <source>Found via</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3489"/>
+        <source>Has</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3503"/>
+        <source>Incoming</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3508"/>
+        <source>Local network</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4678"/>
+        <source>None of the connected peers have a known location</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3524"/>
+        <source>Not encrypted</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3530"/>
+        <source>Optimistic unchoke</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3503"/>
+        <source>Outgoing</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3491"/>
+        <source>Ping</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3515"/>
+        <source>Protocol</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3500"/>
+        <source>Role</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3529"/>
+        <source>Snubbed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3525"/>
+        <source>State</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3636"/>
+        <source>This peer's location is unknown</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3458"/>
+        <source>Unknown client</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3531"/>
+        <source>Upload only</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3481"/>
+        <source>Upload speed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4436"/>
+        <source>%1% done</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3499"/>
+        <source>Measured from how fast this peer answers block requests, so it's only known while you're downloading from it.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3494"/>
+        <source>Not measured</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4438"/>
+        <source>Ping %1 ms</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>FindDialog</name>
@@ -7206,6 +7421,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <message>
         <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1311"/>
         <source>Show a warning when the limit pauses downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3796"/>
+        <source>Announce to all tiers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3802"/>
+        <source>Announce to all trackers in a tier</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3797"/>
+        <source>Contact every tracker tier instead of stopping at the first one that answers. Magnet links put each tracker in its own tier.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3803"/>
+        <source>Contact every tracker within a tier, not just the first working one. More peers, more tracker traffic.</source>
         <translation></translation>
     </message>
 </context>

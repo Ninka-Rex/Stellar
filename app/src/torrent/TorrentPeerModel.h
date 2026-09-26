@@ -53,7 +53,11 @@ public:
         LongitudeRole,
         RttRole,
         SourceRole,
-        FlagsRole
+        FlagsRole,
+        // Position of this peer among peers geolocated to the same spot, so the
+        // swarm map can fan them out instead of drawing them on top of each other.
+        StackIndexRole,
+        StackSizeRole
     };
 
     struct Entry {
@@ -76,6 +80,8 @@ public:
         int rtt{0};
         QString source;
         QString flags; // space-separated: IN OUT TRK DHT PEX LSD UTP ENC SNB UPO OPT HPX
+        int stackIndex{0};
+        int stackSize{1};
     };
 
     explicit TorrentPeerModel(QObject *parent = nullptr);
@@ -102,6 +108,9 @@ public:
     Q_INVOKABLE void sortBy(const QString &key, bool ascending);
     Q_INVOKABLE QString peerKeyAt(int row) const;
     Q_INVOKABLE int indexOfPeerKey(const QString &key) const;
+    // Whole row for `endpoint|port` as {roleName: value}; empty map once the
+    // peer has left. Lets detached views (Peer info window) follow one peer live.
+    Q_INVOKABLE QVariantMap peerByKey(const QString &key) const;
     Q_INVOKABLE bool removePeerByKey(const QString &key);
     Q_INVOKABLE bool removePeer(const QString &endpoint, int port);
     Q_INVOKABLE QVariantMap breakdownByClient() const;

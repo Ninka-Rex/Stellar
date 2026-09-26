@@ -161,6 +161,8 @@
     X(bool, bool, torrentEnableUpnp, TorrentEnableUpnp, true, "torrentEnableUpnp", T) \
     X(bool, bool, torrentEnableNatPmp, TorrentEnableNatPmp, true, "torrentEnableNatPmp", T) \
     X(bool, bool, torrentEnablePex, TorrentEnablePex, true, "torrentEnablePex", T) \
+    X(bool, bool, torrentAnnounceToAllTiers, TorrentAnnounceToAllTiers, true, "torrentAnnounceToAllTiers", T) \
+    X(bool, bool, torrentAnnounceToAllTrackers, TorrentAnnounceToAllTrackers, false, "torrentAnnounceToAllTrackers", T) \
     X(bool, bool, torrentAutoBanAbusivePeers, TorrentAutoBanAbusivePeers, false, "torrentAutoBanAbusivePeers", T) \
     X(bool, bool, torrentAutoBanMediaPlayerPeers, TorrentAutoBanMediaPlayerPeers, false, "torrentAutoBanMediaPlayerPeers", T) \
     X(bool, bool, torrentAnonymousMode, TorrentAnonymousMode, false, "torrentAnonymousMode", T) \
