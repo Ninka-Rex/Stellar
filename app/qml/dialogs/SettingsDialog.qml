@@ -3693,6 +3693,8 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: App.torrentPortTestMessage
+                                // Carries text from the port-check server.
+                                textFormat: Text.PlainText
                                 color: {
                                     if (App.torrentPortTestStatus === "open")
                                         return "#7bd88f"

@@ -462,6 +462,56 @@
         <source>No media format was selected for this download.</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3205"/>
+        <source>(%1)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3098"/>
+        <source>External IP is not known yet. Start the torrent session and try again.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3190"/>
+        <source>Note: torrents use %1, so this result may not apply to them.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3202"/>
+        <source>Port %1 is closed on %2. Check your firewall, router or VPN port forwarding, and adapter binding.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3195"/>
+        <source>Port %1 is open on %2. Incoming torrent connections should work.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3145"/>
+        <source>Port test failed: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3172"/>
+        <source>Port test returned an unexpected response.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3113"/>
+        <source>Testing port %1 on %2...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3103"/>
+        <source>Torrent listen port is not valid.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3090"/>
+        <source>Torrent support is unavailable in this build.</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>BatchDownloadDialog</name>

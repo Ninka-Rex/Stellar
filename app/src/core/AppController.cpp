@@ -3087,7 +3087,7 @@ bool AppController::unbanTorrentPeer(const QString &endpoint) {
 void AppController::testTorrentPort() {
     if (!m_torrentSession || !m_settings) {
         setTorrentPortTestState(false, QStringLiteral("error"),
-                                QStringLiteral("Torrent support is unavailable in this build."));
+                                tr("Torrent support is unavailable in this build."));
         return;
     }
 
@@ -3095,72 +3095,115 @@ void AppController::testTorrentPort() {
     const int port = m_settings->torrentListenPort();
     if (externalIp.isEmpty()) {
         setTorrentPortTestState(false, QStringLiteral("error"),
-                                QStringLiteral("External IP is not known yet. Start the torrent session and try again."));
+                                tr("External IP is not known yet. Start the torrent session and try again."));
         return;
     }
     if (port <= 0 || port > 65535) {
         setTorrentPortTestState(false, QStringLiteral("error"),
-                                QStringLiteral("Torrent listen port is not valid."));
+                                tr("Torrent listen port is not valid."));
         return;
     }
 
-    // respectful cooldown because i'm stealing this service from someone else
-
+    // Third-party service we don't run: don't let button mashing hammer it.
     if (m_torrentPortTestCooldown.isValid() && m_torrentPortTestCooldown.elapsed() < 4000) {
         return;
     }
 
     setTorrentPortTestState(true, QStringLiteral("testing"),
-                            QStringLiteral("Testing port %1 on %2...").arg(port).arg(externalIp));
+                            tr("Testing port %1 on %2...").arg(port).arg(externalIp));
     m_torrentPortTestCooldown.restart();
 
-    QNetworkRequest request(QUrl(QStringLiteral("https://ports.yougetsignal.com/check-port.php")));
+    // canyouseeme.org answers a plain form post with a full HTML page. No
+    // Accept-Encoding header: QNAM then negotiates only what it can decode.
+    QNetworkRequest request(QUrl(QStringLiteral("https://canyouseeme.org/")));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
-                      QStringLiteral("application/x-www-form-urlencoded; charset=UTF-8"));
+                      QStringLiteral("application/x-www-form-urlencoded"));
     request.setRawHeader("User-Agent",
-                         QByteArray("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"));
+                         QByteArray("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0"));
     request.setRawHeader("Accept",
-                         QByteArray("text/javascript, text/html, application/xml, text/xml, */*"));
-    request.setRawHeader("X-Requested-With", QByteArray("XMLHttpRequest"));
-    request.setRawHeader("X-Prototype-Version", QByteArray("1.6.0"));
-    request.setRawHeader("Origin", QByteArray("https://www.yougetsignal.com"));
-    request.setRawHeader("Referer", QByteArray("https://www.yougetsignal.com/"));
+                         QByteArray("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"));
+    request.setRawHeader("Accept-Language", QByteArray("en-US,en;q=0.9"));
+    request.setRawHeader("Origin", QByteArray("https://canyouseeme.org"));
+    request.setRawHeader("Referer", QByteArray("https://canyouseeme.org/"));
+    request.setTransferTimeout(30'000);
 
     QUrlQuery form;
-    form.addQueryItem(QStringLiteral("remoteAddress"), externalIp);
-    form.addQueryItem(QStringLiteral("portNumber"), QString::number(port));
+    form.addQueryItem(QStringLiteral("port"), QString::number(port));
+    form.addQueryItem(QStringLiteral("IP"), externalIp);
     QNetworkReply *reply = m_nam->post(request, form.query(QUrl::FullyEncoded).toUtf8());
 
     connect(reply, &QNetworkReply::finished, this, [this, reply, externalIp, port]() {
-        const QByteArray body = reply->readAll();
-        const QString responseText = QString::fromUtf8(body);
+        // The page is a few KB; anything far larger is not the page we expect.
+        constexpr qint64 kMaxBody = 512 * 1024;
+        const QByteArray body = reply->read(kMaxBody);
         const QNetworkReply::NetworkError error = reply->error();
         const QString errorText = reply->errorString();
         reply->deleteLater();
 
         if (error != QNetworkReply::NoError) {
             setTorrentPortTestState(false, QStringLiteral("error"),
-                                    QStringLiteral("Port test failed: %1").arg(errorText));
+                                    tr("Port test failed: %1").arg(errorText));
             return;
         }
 
-        const QString lower = responseText.toLower();
-        if (lower.contains(QStringLiteral("is open"))) {
+        // Reduce the verdict paragraph to plain text. Everything here comes from
+        // a server we don't control, so it is only ever matched against and
+        // shown as plain text, never interpreted.
+        const auto toPlain = [](QString html) {
+            static const QRegularExpression tags(QStringLiteral("<[^>]*>"));
+            static const QRegularExpression spaces(QStringLiteral("\\s+"));
+            html.replace(tags, QStringLiteral(" "));
+            html.replace(QStringLiteral("&nbsp;"), QStringLiteral(" "), Qt::CaseInsensitive)
+                .replace(QStringLiteral("&lt;"), QStringLiteral("<"), Qt::CaseInsensitive)
+                .replace(QStringLiteral("&gt;"), QStringLiteral(">"), Qt::CaseInsensitive)
+                .replace(QStringLiteral("&quot;"), QStringLiteral("\""), Qt::CaseInsensitive)
+                .replace(QStringLiteral("&#39;"), QStringLiteral("'"))
+                .replace(QStringLiteral("&amp;"), QStringLiteral("&"), Qt::CaseInsensitive);
+            return html.replace(spaces, QStringLiteral(" ")).trimmed();
+        };
+
+        // The verdict is the paragraph opening with "Success:" or "Error:".
+        static const QRegularExpression verdictRe(
+            QStringLiteral("<b>\\s*(Success|Error)\\s*:\\s*</b>(.*?)</p>"),
+            QRegularExpression::CaseInsensitiveOption | QRegularExpression::DotMatchesEverythingOption);
+        const QRegularExpressionMatch verdict = verdictRe.match(QString::fromUtf8(body));
+        if (!verdict.hasMatch()) {
+            setTorrentPortTestState(false, QStringLiteral("error"),
+                                    tr("Port test returned an unexpected response."));
+            return;
+        }
+
+        const bool success = verdict.captured(1).compare(QStringLiteral("success"), Qt::CaseInsensitive) == 0;
+        const QString detail = toPlain(verdict.captured(2));
+
+        // The service ignores the IP field and probes the address the request
+        // came from, which is not necessarily the torrent session's (torrents
+        // bound to a VPN while other traffic goes direct). Report the address it
+        // actually probed, and say so when that isn't the torrent address.
+        static const QRegularExpression ipRe(QStringLiteral("service on ([0-9A-Fa-f:.]+) on port"));
+        QString testedIp = externalIp;
+        const QRegularExpressionMatch ipMatch = ipRe.match(detail);
+        if (ipMatch.hasMatch() && !QHostAddress(ipMatch.captured(1)).isNull())
+            testedIp = QHostAddress(ipMatch.captured(1)).toString();
+        const QHostAddress torrentAddr(externalIp);
+        const QString mismatchNote = (!torrentAddr.isNull() && !torrentAddr.isEqual(QHostAddress(testedIp)))
+            ? QLatin1Char(' ') + tr("Note: torrents use %1, so this result may not apply to them.").arg(externalIp)
+            : QString();
+
+        if (success) {
             setTorrentPortTestState(false, QStringLiteral("open"),
-                                    QStringLiteral("Port %1 is open on %2. Incoming torrent connections should work.")
-                                        .arg(port).arg(externalIp));
+                                    tr("Port %1 is open on %2. Incoming torrent connections should work.")
+                                        .arg(port).arg(testedIp) + mismatchNote);
             return;
         }
 
-        if (lower.contains(QStringLiteral("is closed"))) {
-            setTorrentPortTestState(false, QStringLiteral("closed"),
-                                    QStringLiteral("Port %1 is closed on %2. Check your firewall, router or VPN port forwarding, and adapter binding.")
-                                        .arg(port).arg(externalIp));
-            return;
-        }
-
-        setTorrentPortTestState(false, QStringLiteral("error"),
-                                QStringLiteral("Port test returned an unexpected response."));
+        static const QRegularExpression reasonRe(QStringLiteral("Reason:\\s*(.+)$"));
+        const QString reason = reasonRe.match(detail).captured(1).left(120);
+        QString message = tr("Port %1 is closed on %2. Check your firewall, router or VPN port forwarding, and adapter binding.")
+                              .arg(port).arg(testedIp);
+        if (!reason.isEmpty())
+            message += QLatin1Char(' ') + tr("(%1)").arg(reason);
+        setTorrentPortTestState(false, QStringLiteral("closed"), message + mismatchNote);
     });
 }
 
