@@ -1069,6 +1069,13 @@ void AppController::handleIpcPayload(const QByteArray &json) {
             emit importLinksRequested(out);
             emit showWindowRequested();
         }
+    } else if (type == QStringLiteral("excludeSite")) {
+        // "Never intercept on this site" from the browser extension. The native
+        // host validated the host already; setSiteExcluded validates again since
+        // any local process can write to the IPC socket.
+        const QJsonValue exclude = obj.value(QStringLiteral("exclude"));
+        if (exclude.isBool())
+            m_settings->setSiteExcluded(obj.value(QStringLiteral("site")).toString(), exclude.toBool());
     } else if (type == QStringLiteral("focus")) {
         emit showWindowRequested();
     } else if (type == QStringLiteral("quit")) {

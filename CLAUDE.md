@@ -61,5 +61,5 @@ Stellar — clean-room IDM reimplementation. C++/Qt 6 backend + QML frontend, to
 **Other**
 - yt-dlp: pass `--proxy` explicitly (doesn't inherit Qt proxy). Reconcile final filename via filesystem scan — yt-dlp stdout corrupts non-ASCII names on Windows.
 - Native messaging: 4-byte LE uint32 length prefix + JSON.
-- Firefox extension has no `shared/` dir — when editing shared logic change BOTH `chrome/shared/messaging.js` and its inline copy in `firefox/service-worker.js`. Firefox manifest must **NOT** contain `allowed_origins` (Chrome-only; Firefox silently skips the manifest).
+- Extensions: edit logic only in `extensions/shared/`, then run `python extensions/sync_shared.py` — `chrome/shared/` and `firefox/shared/` are generated copies (each browser package must be self-contained). Only the per-browser `service-worker.js` (Firefox: blocking `onHeadersReceived`; Chrome: pause in `downloads.onCreated` + hold in `onDeterminingFilename`) and manifests differ. Never cancel a browser download before the native host acks. Native-host manifest for Firefox must **NOT** contain `allowed_origins` (Chrome-only; Firefox silently skips the manifest).
 - Tray tooltip / live speed cadence is 5 s — don't reduce it (Windows dismisses the tooltip on every `setToolTip()`).

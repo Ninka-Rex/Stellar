@@ -41,11 +41,16 @@ I understand installing random browser extensions from GitHub can be uncomfortab
 1. On the `chrome://extensions` page, find the **ID** field for Stellar and copy it.
 2. In a normal browser tab, open these addresses one at a time, putting your ID where shown:
    - `chrome-extension://YOUR-ID/service-worker.js`
-   - `chrome-extension://YOUR-ID/content.js`
-   - `chrome-extension://YOUR-ID/page-bridge.js`
-   - `chrome-extension://YOUR-ID/popup.js`
-   - `chrome-extension://YOUR-ID/shared/messaging.js`
-   - `chrome-extension://YOUR-ID/shared/interceptor.js`
+   - `chrome-extension://YOUR-ID/shared/background-common.js`
+   - `chrome-extension://YOUR-ID/shared/clicks.js`
+   - `chrome-extension://YOUR-ID/shared/content.js`
+   - `chrome-extension://YOUR-ID/shared/cookies.js`
+   - `chrome-extension://YOUR-ID/shared/ext.js`
+   - `chrome-extension://YOUR-ID/shared/native.js`
+   - `chrome-extension://YOUR-ID/shared/policy.js`
+   - `chrome-extension://YOUR-ID/shared/popup.js`
+   - `chrome-extension://YOUR-ID/shared/settings.js`
+   - `chrome-extension://YOUR-ID/shared/tracker.js`
 3. Each one shows the raw file, audit the code.
 
 ### Firefox

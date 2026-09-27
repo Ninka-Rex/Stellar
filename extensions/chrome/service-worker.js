@@ -1,4 +1,4 @@
-// Chrome MV3 service worker - Stellar extension
+// Stellar Download Manager — Chrome MV3 service worker
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -14,255 +14,136 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import { handleDownloadCreated, recordModifierKey, forceIntercept } from "./shared/interceptor.js";
-import { ping, requestDownload, requestImportLinks, shouldIntercept, syncSettingsFromApp, passesGlobalGate } from "./shared/messaging.js";
+// MV3 Chrome has no blocking webRequest, so a download is caught after Chrome
+// has turned a response into a download, and held there while Stellar decides:
+//   onCreated              — pause it at once, so no bandwidth is spent and the
+//                            file cannot finish (and be saved twice) meanwhile;
+//   onDeterminingFilename  — returning true defers the filename, and with it any
+//                            "Save as" dialog, until the decision is made.
+// Taken: cancel + erase. Declined or unreachable: resume, and Chrome finishes it
+// as if the extension were not there. Request details the downloads API lacks
+// (method, the Cookie header actually sent, the tab) come from the tracker.
 
-const ICONS_ENABLED = {
-    16: "icons/milky-way.png",
-    48: "icons/milky-way.png",
-    128: "icons/milky-way.png",
-};
+import { ext } from "./shared/ext.js";
+import { installCommon } from "./shared/background-common.js";
+import { decisionSettings } from "./shared/settings.js";
+import { isBypassClick, takeClick } from "./shared/clicks.js";
+import { baseName, isTransferableUrl, parseContentDisposition, shouldIntercept } from "./shared/policy.js";
+import { cookieHeaderFor } from "./shared/cookies.js";
+import { sendDownload } from "./shared/native.js";
+import { tabContext } from "./shared/sitecontrol.js";
+import { RequestTracker } from "./shared/tracker.js";
 
-const ICONS_DISABLED = {
-    16: "icons/milky-way-bw.png",
-    48: "icons/milky-way-bw.png",
-    128: "icons/milky-way-bw.png",
-};
+const tracker = new RequestTracker();
+tracker.install({ extraHeaders: true });
 
-async function refreshIcon() {
-    try {
-        const stored = await chrome.storage.local.get(["enabled"]);
-        const enabled = stored.enabled !== false;
-        await chrome.action.setIcon({ path: enabled ? ICONS_ENABLED : ICONS_DISABLED });
-    } catch (err) {
-        console.warn("[Stellar] Could not refresh extension icon:", err);
-    }
+// Chrome's fixed cookie store ids, used when no request was observed.
+const DEFAULT_STORE = "0";
+const INCOGNITO_STORE = "1";
+
+// onDeterminingFilename normally follows onCreated immediately. If it never
+// comes, a held download must not stay paused forever.
+const HOLD_TIMEOUT_MS = 10000;
+
+const held = new Map(); // downloadId -> { paused: Promise<boolean>, timer, deciding }
+
+function isCandidate(item) {
+    return item.state === "in_progress"
+        && item.byExtensionId !== ext.runtime.id
+        && isTransferableUrl(item.finalUrl || item.url);
 }
 
-async function updateConnectionState() {
-    try {
-        const alive = await ping();
-        await refreshIcon();
-        if (!alive) {
-            console.warn("[Stellar] Native host replied, but not with a ready response.");
-        }
-    } catch (err) {
-        await refreshIcon();
-        console.warn("[Stellar] Native host ping failed during icon refresh:", err?.message ?? err);
-    }
+async function release(id) {
+    const entry = held.get(id);
+    held.delete(id);
+    if (!entry) return;
+    clearTimeout(entry.timer);
+    if (await entry.paused) await ext.downloads.resume(id).catch(() => {});
 }
 
-// Download interception
-chrome.downloads.onCreated.addListener((item) => {
-    handleDownloadCreated(item);
+async function take(id) {
+    const entry = held.get(id);
+    held.delete(id);
+    if (entry) clearTimeout(entry.timer);
+    await ext.downloads.cancel(id).catch(() => {});
+    await ext.downloads.erase({ id }).catch(() => {});
+}
+
+// Resolves true once Stellar has accepted the download.
+async function handOff(item) {
+    const url = item.finalUrl || item.url;
+    const settings = await decisionSettings();
+    const rec = tracker.findByUrl(url, item.url);
+    // A POST body cannot be replayed by the app; the browser keeps those.
+    if (rec && rec.method !== "GET") return false;
+
+    const click = takeClick(url, item.url);
+    const ctx = await tabContext([rec?.tabId, click?.tabId], [click?.pageUrl, item.referrer, rec?.initiator]);
+    if (ctx.paused) return false;
+    const disposition = parseContentDisposition(rec?.contentDisposition);
+    // Chrome has already resolved Content-Disposition and the `download`
+    // attribute into item.filename.
+    const filename = baseName(item.filename) || disposition.filename || click?.filename || "";
+
+    const wanted = shouldIntercept({
+        url,
+        originalUrl: item.url,
+        mime: item.mime || rec?.contentType || "",
+        filename,
+        attachment: disposition.attachment,
+        userIntent: !!click?.downloadAttr,
+        browserDownload: true,
+        pageUrl: ctx.pageUrl,
+    }, settings);
+    if (!wanted || isBypassClick(click, settings)) return false;
+
+    // The Cookie header Chrome actually sent (none at all is a valid answer);
+    // the cookie store is only consulted if the request went unobserved.
+    const cookies = rec
+        ? rec.cookieHeader ?? ""
+        : await cookieHeaderFor(url, item.incognito ? INCOGNITO_STORE : DEFAULT_STORE);
+
+    await sendDownload({
+        // The final URL: the original may be a one-time link Chrome has already
+        // spent on its redirect.
+        url,
+        filename,
+        referrer: item.referrer || rec?.referrer || "",
+        pageUrl: click?.pageUrl || ctx.pageUrl || item.referrer || "",
+        cookies,
+    });
+    return true;
+}
+
+ext.downloads.onCreated.addListener((item) => {
+    if (!isCandidate(item)) return;
+    const entry = {
+        paused: ext.downloads.pause(item.id).then(() => true, () => false),
+        timer: 0,
+        deciding: false,
+    };
+    entry.timer = setTimeout(() => { if (!entry.deciding) release(item.id); }, HOLD_TIMEOUT_MS);
+    held.set(item.id, entry);
 });
 
-// Handle modifier key tracking from content script
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === "recordModifierKey") {
-        recordModifierKey(message.modifierKey);
-        sendResponse({ ok: true });
-        return true;
-    }
+ext.downloads.onDeterminingFilename.addListener((item, suggest) => {
+    // Returning nothing lets Chrome pick the name immediately.
+    if (!isCandidate(item)) return undefined;
+    const entry = held.get(item.id);
+    if (entry) entry.deciding = true;
 
-    if (message.type === "getSettings") {
-        (async () => {
-            try {
-                const stored = await chrome.storage.local.get([
-                    "monitoredExtensions",
-                    "excludedSites",
-                    "excludedAddresses",
-                    "enabled"
-                ]);
-                sendResponse({
-                    type: "settings",
-                    monitoredExtensions: stored.monitoredExtensions ?? [],
-                    excludedSites: stored.excludedSites ?? [],
-                    excludedAddresses: stored.excludedAddresses ?? [],
-                    enabled: stored.enabled !== false
-                });
-            } catch (err) {
-                sendResponse({ type: "settings", enabled: true, error: err?.message ?? "unknown" });
-            }
-        })();
-        return true;
-    }
-
-    if (message.type === "ping") {
-        (async () => {
-            try {
-                const alive = await ping();
-                sendResponse({ alive });
-            } catch (err) {
-                sendResponse({ alive: false, error: err?.message ?? "unknown" });
-            }
-        })();
-        return true;
-    }
-
-    if (message.type === "focus") {
-        chrome.runtime.sendNativeMessage("com.stellar.downloadmanager", { type: "focus" }, (response) => {
-            if (chrome.runtime.lastError) {
-                sendResponse({ ok: false, error: chrome.runtime.lastError.message });
-            } else {
-                sendResponse({ ok: true, response });
-            }
+    handOff(item)
+        .catch((err) => {
+            console.warn("[Stellar] Hand-off failed; leaving the download to Chrome:", err?.message ?? err);
+            return false;
+        })
+        .then((taken) => (taken ? take(item.id) : release(item.id)))
+        .finally(() => {
+            // Chrome waits for every listener's answer; a cancelled download
+            // may reject it, which is harmless.
+            try { suggest(); } catch { /* download already gone */ }
         });
-        return true;
-    }
-
-    if (message.type === "setEnabled") {
-        chrome.storage.local.set({ enabled: !!message.value }, () => {
-            if (chrome.runtime.lastError) {
-                sendResponse({ ok: false, error: chrome.runtime.lastError.message });
-            } else {
-                sendResponse({ ok: true });
-            }
-        });
-        return true;
-    }
-
-    if (message.type === "interceptLinkClick") {
-        (async () => {
-            try {
-                const alive = await ping();
-                if (!alive) {
-                    sendResponse({ ok: false, reason: "native-host-unavailable" });
-                    return;
-                }
-                const url = message.url || "";
-                const filename = message.filename || "";
-                const explicitIntent = !!message.explicitIntent;
-                const forced = forceIntercept(url, false) && await passesGlobalGate(url);
-                const allowed = forced || await shouldIntercept(url, "", filename, explicitIntent);
-                if (!allowed) {
-                    sendResponse({ ok: false, reason: "not-intercepted" });
-                    return;
-                }
-                let cookieHeader = message.cookies || "";
-                if (!cookieHeader) {
-                    try {
-                        const urlObj = new URL(url);
-                        const cookieUrls = [url];
-                        const parts = urlObj.hostname.split(".");
-                        for (let i = 1; i < parts.length - 1; i++)
-                            cookieUrls.push(`${urlObj.protocol}//${parts.slice(i).join(".")}/`);
-                        const seen = new Set();
-                        const allCookies = [];
-                        for (const cu of cookieUrls) {
-                            const batch = await chrome.cookies.getAll({ url: cu });
-                            for (const c of batch) {
-                                if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
-                            }
-                        }
-                        cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
-                    } catch (err) {
-                        console.warn("[Stellar] Could not collect cookies for intercepted link:", err);
-                    }
-                }
-                await requestDownload({
-                    url,
-                    filename,
-                    referrer: message.referrer || "",
-                    pageUrl: message.pageUrl || "",
-                    cookies: cookieHeader,
-                    modifierKey: 0,
-                });
-                sendResponse({ ok: true });
-            } catch (err) {
-                console.error("[Stellar] Failed to process interceptLinkClick:", err);
-                sendResponse({ ok: false, error: err?.message ?? "unknown" });
-            }
-        })();
-        return true;
-    }
+    return true;
 });
 
-// Context menu
-chrome.runtime.onInstalled.addListener(async () => {
-    chrome.contextMenus.create({
-        id: "stellar-download-link",
-        title: "Download with Stellar",
-        contexts: ["link"],
-    });
-    chrome.contextMenus.create({
-        id: "stellar-download-media",
-        title: "Download with Stellar",
-        contexts: ["video", "audio", "image"],
-    });
-    chrome.contextMenus.create({
-        id: "stellar-download-links",
-        title: "Download all links with Stellar",
-        contexts: ["selection"],
-    });
-    await syncSettingsFromApp();
-    await refreshIcon();
-});
-
-// Collect the cookie header the app needs to re-fetch a URL behind a login.
-async function collectCookieHeader(url) {
-    try {
-        const urlObj = new URL(url);
-        const cookieUrls = [url];
-        const parts = urlObj.hostname.split(".");
-        for (let i = 1; i < parts.length - 1; i++)
-            cookieUrls.push(`${urlObj.protocol}//${parts.slice(i).join(".")}/`);
-        const seen = new Set();
-        const allCookies = [];
-        for (const cu of cookieUrls) {
-            const batch = await chrome.cookies.getAll({ url: cu });
-            for (const c of batch) {
-                if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
-            }
-        }
-        return allCookies.map(c => `${c.name}=${c.value}`).join("; ");
-    } catch { /* cookies permission may not be granted */ }
-    return "";
-}
-
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-    if (info.menuItemId === "stellar-download-links") {
-        if (!tab || tab.id === undefined) return;
-        let links = [];
-        try {
-            links = await chrome.tabs.sendMessage(tab.id, { type: "collectSelectedLinks" });
-        } catch (err) {
-            console.error("[Stellar] Could not collect selected links:", err);
-        }
-        if (!Array.isArray(links) || links.length === 0) return;
-        // Cookies for the page host so the app can refetch login-gated links.
-        const cookieHeader = await collectCookieHeader(info.pageUrl || (tab && tab.url) || "");
-        try {
-            await requestImportLinks(links, {
-                referrer: info.pageUrl ?? "",
-                pageUrl: info.pageUrl ?? "",
-                cookies: cookieHeader,
-            });
-        } catch (err) {
-            console.error("[Stellar] Import links failed:", err);
-        }
-        return;
-    }
-
-    const url = info.linkUrl || info.srcUrl || info.pageUrl;
-    if (!url) return;
-    const cookieHeader = await collectCookieHeader(url);
-    try {
-        await requestDownload({ url, referrer: info.frameUrl ?? info.pageUrl ?? "", pageUrl: info.pageUrl ?? "", cookies: cookieHeader });
-    } catch (err) {
-        console.error("[Stellar] Context menu download failed:", err);
-    }
-});
-
-chrome.runtime.onStartup.addListener(async () => {
-    await syncSettingsFromApp();
-    await refreshIcon();
-});
-
-chrome.storage.onChanged.addListener(async (changes, areaName) => {
-    if (areaName === "local" && Object.prototype.hasOwnProperty.call(changes, "enabled")) {
-        await refreshIcon();
-    }
-});
-
-updateConnectionState();
+installCommon();

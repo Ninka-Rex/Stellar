@@ -36,12 +36,15 @@ clean:
 	rm -rf build/
 
 # Extension helpers
-.PHONY: ext-pack-chrome ext-pack-firefox
-ext-pack-chrome:
-	cd extensions/chrome && zip -r ../../build/stellar-chrome.zip . -x "*.DS_Store"
+.PHONY: ext-sync ext-pack-chrome ext-pack-firefox
+ext-sync:
+	python3 extensions/sync_shared.py
 
-ext-pack-firefox:
-	cd extensions/firefox && zip -r ../../build/stellar-firefox.zip . -x "*.DS_Store"
+ext-pack-chrome: ext-sync
+	cd extensions/chrome && zip -r ../../build/stellar-chrome.zip . -x "*.DS_Store" "*.zip" "manifest.store.json"
+
+ext-pack-firefox: ext-sync
+	cd extensions/firefox && zip -r ../../build/stellar-firefox.zip . -x "*.DS_Store" "*.zip" "*.bat"
 
 help:
 	@echo "Targets:"
@@ -49,5 +52,6 @@ help:
 	@echo "  release         Build release configuration"
 	@echo "  run             Build debug then launch"
 	@echo "  clean           Remove all build artifacts"
+	@echo "  ext-sync        Copy extensions/shared into each browser package"
 	@echo "  ext-pack-chrome Pack Chrome extension zip"
 	@echo "  ext-pack-firefox Pack Firefox extension zip"

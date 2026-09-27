@@ -222,6 +222,16 @@ public:
     static QStringList defaultExcludedSites();
     static QStringList defaultExcludedAddresses();
 
+    // Site exclusions added from the browser extension ("never intercept on this
+    // site"). The host arrives from a browser, so it is validated: returns the
+    // lower-cased hostname, or an empty string if `site` is not a plain hostname.
+    static QString normalizedExclusionHost(const QString &site);
+    // `list` with `host` appended (if not already listed) or with every exact
+    // entry for it removed. Wildcard patterns are never touched: they are the
+    // user's own and may cover more than this one site.
+    static QStringList withSiteExclusion(QStringList list, const QString &host, bool exclude);
+    void setSiteExcluded(const QString &host, bool exclude);
+
     // ========================================================================
     // Generated getters
     // ========================================================================

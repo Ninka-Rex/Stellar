@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--
+  Stellar Download Manager — Extension Popup (Chrome and Firefox)
+  Copyright (C) 2026 Ninka_
+  GNU GPL v3.0 — https://www.gnu.org/licenses/gpl-3.0.html
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stellar</title>
+  <style>
+    /* Mirrors app/qml/singletons/ColorPalette.qml and the app's DlgButton /
+       StyledCheckBox / SectionHeader components, so the popup reads as part of
+       Stellar rather than as a separate product. popup.js sets data-theme from
+       the app's own dark/light setting (the browser's until the app has been
+       reached once). */
+    :root {
+      --window-bg: #f0f0f0;
+      --header-strip-bg: #dde4f0;
+      --input-bg: #ffffff;
+      --border: #c8c8c8;
+      --text-primary: #1a1a1a;
+      --text-second: #555555;
+      --text-disabled: #aaaaaa;
+      --text-header: #111111;
+      --accent: #4488dd;
+      --button-secondary-bg: #d0d4da;
+      --button-secondary-hover-bg: #c0c6ce;
+      --button-pressed-bg: #d8d8d8;
+      --info-box-bg: #e8f0ff;
+      --info-box-border: #aabbdd;
+      --warning-text: #9a6a00;
+      color-scheme: light;
+    }
+    :root[data-theme="dark"] {
+      --window-bg: #1c1c1c;
+      --header-strip-bg: #222228;
+      --input-bg: #1b1b1b;
+      --border: #3a3a3a;
+      --text-primary: #e0e0e0;
+      --text-second: #aaaaaa;
+      --text-disabled: #666666;
+      --text-header: #ffffff;
+      --button-secondary-bg: #3a3a3a;
+      --button-secondary-hover-bg: #484848;
+      --button-pressed-bg: #2d2d2d;
+      --info-box-bg: #1a2030;
+      --info-box-border: #2a3050;
+      --warning-text: #e8c840;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 300px;
+      background: var(--window-bg);
+      color: var(--text-primary);
+      font: 13px "Segoe UI", system-ui, -apple-system, "Noto Sans", sans-serif;
+      user-select: none;
+    }
+
+    [hidden] { display: none !important; }
+
+    /* Header strip, as at the top of Stellar's dialogs. */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: var(--header-strip-bg);
+      border-bottom: 1px solid var(--border);
+    }
+    header img { width: 20px; height: 20px; }
+    header h1 {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-header);
+    }
+    #status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--text-second);
+    }
+    #statusIcon { width: 10px; height: 10px; }
+
+    main { padding: 12px; }
+
+    /* StyledCheckBox */
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 4px 0;
+      cursor: pointer;
+    }
+    .check input {
+      appearance: none;
+      flex: none;
+      width: 16px;
+      height: 16px;
+      margin-top: 1px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--input-bg);
+      display: grid;
+      place-content: center;
+      cursor: inherit;
+    }
+    .check input:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .check input:checked::after {
+      content: "";
+      width: 8px;
+      height: 4px;
+      margin-top: -2px;
+      border: solid #ffffff;
+      border-width: 0 0 2px 2px;
+      transform: rotate(-45deg);
+    }
+    .check input:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+    .check.disabled { cursor: default; color: var(--text-disabled); }
+    .check.disabled input { opacity: 0.55; }
+    .check small {
+      display: block;
+      font-size: 11px;
+      color: var(--text-second);
+    }
+    .check.disabled small { color: var(--text-disabled); }
+
+    /* SectionHeader: group label followed by a hairline rule. */
+    .section {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 12px 0 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-second);
+    }
+    .section span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 75%;
+    }
+    .section::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .note {
+      margin: 4px 0 0 24px;
+      font-size: 11px;
+      color: var(--text-second);
+    }
+
+    /* Info box (ColorPalette infoBox*), warning variant. */
+    #access {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid var(--info-box-border);
+      border-radius: 3px;
+      background: var(--info-box-bg);
+      font-size: 12px;
+      color: var(--warning-text);
+    }
+    #access img { flex: none; width: 16px; height: 16px; }
+    #access button { margin-top: 6px; }
+
+    /* DlgButton */
+    button {
+      min-width: 80px;
+      height: 30px;
+      padding: 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--button-secondary-bg);
+      color: var(--text-primary);
+      font: inherit;
+      cursor: pointer;
+    }
+    button:hover { background: var(--button-secondary-hover-bg); }
+    button:active { background: var(--button-pressed-bg); }
+    button:disabled { opacity: 0.55; cursor: default; }
+    button.primary {
+      border-color: #4488dd;
+      background: #3266a8;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    button.primary:hover { background: #3a78c8; }
+    button.primary:active { background: #254a8a; }
+    button:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+
+    footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img id="logo" alt="">
+    <h1>Stellar</h1>
+    <div id="status"><img id="statusIcon" alt="" hidden><span id="statusText">Checking…</span></div>
+  </header>
+
+  <main>
+    <div id="access" hidden>
+      <img src="icons/dialog-warning.svg" alt="">
+      <div>
+        Stellar needs access to websites to capture downloads.
+        <div><button id="grantAccess">Allow access</button></div>
+      </div>
+    </div>
+
+    <label class="check">
+      <input type="checkbox" id="enabled">
+      <span>Intercept browser downloads</span>
+    </label>
+
+    <div id="site" hidden>
+      <div class="section"><span id="siteName"></span></div>
+      <label class="check">
+        <input type="checkbox" id="pauseTab">
+        <span>Pause on this tab<small>Until the tab is closed</small></span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="excludeSite">
+        <span><span id="excludeLabel"></span><small id="excludeHint"></small></span>
+      </label>
+      <p class="note" id="siteNote" hidden></p>
+    </div>
+  </main>
+
+  <footer>
+    <button id="openApp" class="primary">Open Stellar</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

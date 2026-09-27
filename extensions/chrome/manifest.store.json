@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
   "name": "Stellar Integration Module",
-  "version": "0.1.11",
+  "version": "0.3.1",
   "description": "Intercepts browser downloads and sends them to Stellar download manager.",
   "icons": {
-    "16":  "icons/milky-way.png",
-    "48":  "icons/milky-way.png",
+    "16": "icons/milky-way.png",
+    "48": "icons/milky-way.png",
     "128": "icons/milky-way.png"
   },
   "background": {
@@ -13,10 +13,10 @@
     "type": "module"
   },
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "shared/popup.html",
     "default_icon": {
-      "16":  "icons/milky-way.png",
-      "48":  "icons/milky-way.png"
+      "16": "icons/milky-way.png",
+      "48": "icons/milky-way.png"
     }
   },
   "permissions": [
@@ -25,22 +25,23 @@
     "storage",
     "contextMenus",
     "cookies",
-    "tabs"
+    "tabs",
+    "webRequest"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
-  "web_accessible_resources": [
-    {
-      "resources": ["page-bridge.js"],
-      "matches": ["<all_urls>"]
-    }
-  ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "shared/content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
     }
-  ]
+  ],
+  "minimum_chrome_version": "109"
 }

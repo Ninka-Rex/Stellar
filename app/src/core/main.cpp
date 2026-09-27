@@ -294,6 +294,44 @@ static void nmLog(const QString &msg)
     Q_UNUSED(msg);
 }
 
+// A list setting as the GUI would load it.
+static QStringList readSettingsList(QSettings &s, const QString &key, const QStringList &defaultVal)
+{
+    const QVariant v = s.value(key);
+    QStringList list = v.isValid() ? v.toStringList() : defaultVal;
+    // Legacy entries may have been stored as a single comma-joined QString
+    // rather than a QStringList. Detect that and split on commas.
+    if (list.size() == 1 && list.first().contains(QLatin1Char(','))) {
+        const QStringList parts = list.first().split(QLatin1Char(','), Qt::SkipEmptyParts);
+        list.clear();
+        for (const QString &p : parts) {
+            const QString t = p.trimmed();
+            if (!t.isEmpty()) list << t;
+        }
+    }
+    if (list.isEmpty()) list = defaultVal;
+    return list;
+}
+
+// URLs a browser extension may hand to the GUI. The GUI's "download" handler
+// also accepts local .torrent paths (used by the CLI hand-off), and the browser
+// side is untrusted — its URLs are chosen by web pages — so only web schemes may
+// enter through native messaging.
+static bool isBrowserDownloadUrl(const QJsonValue &value)
+{
+    if (!value.isString())
+        return false;
+    const QUrl url(value.toString().trimmed(), QUrl::StrictMode);
+    if (!url.isValid())
+        return false;
+    const QString scheme = url.scheme().toLower();
+    if (scheme == QStringLiteral("magnet"))
+        return true;
+    return (scheme == QStringLiteral("http") || scheme == QStringLiteral("https")
+            || scheme == QStringLiteral("ftp"))
+        && !url.host().isEmpty();
+}
+
 static int runNativeMessagingHost(int argc, char *argv[])
 {
     nmLog(QStringLiteral("native host invoked"));
@@ -322,6 +360,14 @@ static int runNativeMessagingHost(int argc, char *argv[])
         }).toJson(QJsonDocument::Compact);
         writeNativeMsg(resp);
         nmLog(QStringLiteral("ping replied: %1").arg(QString::fromUtf8(resp)));
+        return 0;
+    }
+
+    if (type == QStringLiteral("download") && !isBrowserDownloadUrl(req.value(QStringLiteral("url")))) {
+        writeNativeMsg(QJsonDocument(QJsonObject{
+            {QStringLiteral("type"),    QStringLiteral("error")},
+            {QStringLiteral("message"), QStringLiteral("Unsupported URL")}
+        }).toJson(QJsonDocument::Compact));
         return 0;
     }
 
@@ -423,27 +469,52 @@ static int runNativeMessagingHost(int argc, char *argv[])
         return 0;
     }
 
+    if (type == QStringLiteral("excludeSite")) {
+        const QString host = AppSettings::normalizedExclusionHost(req.value(QStringLiteral("site")).toString());
+        const QJsonValue exclude = req.value(QStringLiteral("exclude"));
+        if (host.isEmpty() || !exclude.isBool()) {
+            writeNativeMsg(QJsonDocument(QJsonObject{
+                {QStringLiteral("type"),    QStringLiteral("error")},
+                {QStringLiteral("message"), QStringLiteral("Invalid site")}
+            }).toJson(QJsonDocument::Compact));
+            return 0;
+        }
+        // A running GUI owns the settings file: it rewrites every key on save,
+        // so editing the file underneath it would be lost. Hand it the change;
+        // only write the file directly when no GUI is running.
+        const QByteArray forward = QJsonDocument(QJsonObject{
+            {QStringLiteral("type"),    QStringLiteral("excludeSite")},
+            {QStringLiteral("site"),    host},
+            {QStringLiteral("exclude"), exclude.toBool()}
+        }).toJson(QJsonDocument::Compact);
+        QLocalSocket sock;
+        sock.connectToServer(QStringLiteral("StellarDownloadManager"));
+        if (sock.waitForConnected(500)) {
+            sock.write(forward);
+            sock.flush();
+            sock.waitForBytesWritten(3000);
+        } else {
+            QSettings s(StellarPaths::settingsFile(), QSettings::IniFormat);
+            const QStringList current = readSettingsList(s, QStringLiteral("excludedSites"),
+                                                         AppSettings::defaultExcludedSites());
+            s.setValue(QStringLiteral("excludedSites"),
+                       AppSettings::withSiteExclusion(current, host, exclude.toBool()));
+            s.sync();
+        }
+        writeNativeMsg(QJsonDocument(QJsonObject{
+            {QStringLiteral("type"), QStringLiteral("ack")}
+        }).toJson(QJsonDocument::Compact));
+        return 0;
+    }
+
     if (type == QStringLiteral("getSettings")) {
         // Read settings directly from the INI file — no need for the running app.
         // This means changes saved by the app are immediately visible to the extension.
         QSettings s(StellarPaths::settingsFile(), QSettings::IniFormat);
 
         auto toJsonArray = [&](const QString &key, const QStringList &defaultVal) -> QJsonArray {
-            const QVariant v = s.value(key);
-            QStringList list = v.isValid() ? v.toStringList() : defaultVal;
-            // Legacy entries may have been stored as a single comma-joined QString
-            // rather than a QStringList. Detect that and split on commas.
-            if (list.size() == 1 && list.first().contains(QLatin1Char(','))) {
-                const QStringList parts = list.first().split(QLatin1Char(','), Qt::SkipEmptyParts);
-                list.clear();
-                for (const QString &p : parts) {
-                    const QString t = p.trimmed();
-                    if (!t.isEmpty()) list << t;
-                }
-            }
-            if (list.isEmpty()) list = defaultVal;
             QJsonArray arr;
-            for (const QString &item : list) arr.append(item);
+            for (const QString &item : readSettingsList(s, key, defaultVal)) arr.append(item);
             return arr;
         };
 
@@ -451,7 +522,12 @@ static int runNativeMessagingHost(int argc, char *argv[])
             {QStringLiteral("type"),               QStringLiteral("settings")},
             {QStringLiteral("monitoredExtensions"), toJsonArray(QStringLiteral("monitoredExtensions"), AppSettings::defaultMonitoredExtensions())},
             {QStringLiteral("excludedSites"),       toJsonArray(QStringLiteral("excludedSites"),       AppSettings::defaultExcludedSites())},
-            {QStringLiteral("excludedAddresses"),   toJsonArray(QStringLiteral("excludedAddresses"),   AppSettings::defaultExcludedAddresses())}
+            {QStringLiteral("excludedAddresses"),   toJsonArray(QStringLiteral("excludedAddresses"),   AppSettings::defaultExcludedAddresses())},
+            // The extension applies the bypass itself (per clicked link), so it
+            // needs the key the user picked: 0 None, 1 Alt, 2 Ctrl, 3 Shift.
+            {QStringLiteral("bypassInterceptKey"),  s.value(QStringLiteral("bypassInterceptKey"), 1).toInt()},
+            // The extension popup follows the app's theme rather than the browser's.
+            {QStringLiteral("darkMode"),            s.value(QStringLiteral("ui/darkMode"), true).toBool()}
         };
         const QByteArray respData = QJsonDocument(resp).toJson(QJsonDocument::Compact);
         nmLog(QStringLiteral("getSettings: returning %1 exts, %2 sites, %3 addrs")

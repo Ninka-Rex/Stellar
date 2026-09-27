@@ -25,6 +25,8 @@
 #include <QStandardPaths>
 #include <QTextStream>
 #include <QDateTime>
+#include <QRegularExpression>
+#include <algorithm>
 
 // ============================================================================
 // Type-conversion helpers for load() lines
@@ -371,6 +373,41 @@ void AppSettings::setMonitoredExtensions(const QStringList &v) {
 
 void AppSettings::setExcludedSites(const QStringList &v) {
     if (m_excludedSites != v) { m_excludedSites = v; emit excludedSitesChanged(); save(); }
+}
+
+QString AppSettings::normalizedExclusionHost(const QString &site) {
+    // LDH labels only (browsers report IDNs in punycode), total length per RFC 1035.
+    static const QRegularExpression hostRe(QStringLiteral(
+        "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*$"));
+    QString host = site.trimmed().toLower();
+    while (host.startsWith(QLatin1Char('.')))
+        host.remove(0, 1);
+    if (host.isEmpty() || host.size() > 253 || !hostRe.match(host).hasMatch())
+        return {};
+    return host;
+}
+
+QStringList AppSettings::withSiteExclusion(QStringList list, const QString &host, bool exclude) {
+    // A bare entry and its leading-dot form mean the same site to the extension.
+    const auto isEntryFor = [&host](const QString &entry) {
+        QString e = entry.trimmed();
+        while (e.startsWith(QLatin1Char('.')))
+            e.remove(0, 1);
+        return e.compare(host, Qt::CaseInsensitive) == 0;
+    };
+    if (exclude) {
+        if (std::none_of(list.cbegin(), list.cend(), isEntryFor))
+            list.append(host);
+    } else {
+        list.removeIf(isEntryFor);
+    }
+    return list;
+}
+
+void AppSettings::setSiteExcluded(const QString &host, bool exclude) {
+    const QString normalized = normalizedExclusionHost(host);
+    if (!normalized.isEmpty())
+        setExcludedSites(withSiteExclusion(m_excludedSites, normalized, exclude));
 }
 
 void AppSettings::setExcludedAddresses(const QStringList &v) {

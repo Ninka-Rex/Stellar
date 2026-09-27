@@ -536,6 +536,33 @@ Window {
         }
     }
 
+    // The browser extension adds/removes sites ("never intercept on this site")
+    // while this window may be open. Once the user has typed in the box its text
+    // binding is gone, and pressing OK would write the stale text back and undo
+    // the extension's change, so the difference is merged into the text instead.
+    property var _knownExcludedSites: App.settings.excludedSites.slice()
+    Connections {
+        target: App.settings
+        function onExcludedSitesChanged() {
+            var now = App.settings.excludedSites
+            var before = root._knownExcludedSites
+            root._knownExcludedSites = now.slice()
+            if (!excludedSitesArea)
+                return
+            var tokens = excludedSitesArea.text.split(/[\s,]+/).filter(function(s) { return s.length > 0 })
+            var changed = false
+            now.forEach(function(site) {
+                if (before.indexOf(site) < 0 && tokens.indexOf(site) < 0) { tokens.push(site); changed = true }
+            })
+            before.forEach(function(site) {
+                var i = tokens.indexOf(site)
+                if (now.indexOf(site) < 0 && i >= 0) { tokens.splice(i, 1); changed = true }
+            })
+            if (changed)
+                excludedSitesArea.text = tokens.join(" ")
+        }
+    }
+
     Connections {
         target: App
         function onIpToCityDbInfoChanged() {
