@@ -246,6 +246,22 @@ qt_add_qml_module(Stellar
         app/qml/components/DayOfWeekSelector.qml
         app/qml/components/SectionHeader.qml
         app/qml/components/SheetKey.qml
+        app/qml/components/SettingsPage.qml
+        app/qml/components/SettingsScroll.qml
+        app/qml/components/SettingsSection.qml
+        app/qml/components/SettingsRow.qml
+        app/qml/components/SettingsCheck.qml
+        app/qml/components/SettingsNumber.qml
+        app/qml/components/SettingsTextField.qml
+        app/qml/components/SettingsPathField.qml
+        app/qml/components/SettingsTextArea.qml
+        app/qml/components/SettingsCombo.qml
+        app/qml/components/SettingsHint.qml
+        app/qml/components/SettingsNote.qml
+        app/qml/components/SettingsStatus.qml
+        app/qml/components/SettingsLink.qml
+        app/qml/components/SettingsTabBar.qml
+        app/qml/components/SettingsIconButton.qml
         # singletons/
         app/qml/singletons/ColorPalette.qml
         app/qml/singletons/LanguageList.qml

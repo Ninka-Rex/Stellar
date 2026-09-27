@@ -7507,6 +7507,412 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <source>Contact every tracker within a tier, not just the first working one. More peers, more tracker traffic.</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1304"/>
+        <source>Connections</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1307"/>
+        <source>Simultaneous downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1311"/>
+        <source>Simultaneous torrents</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1315"/>
+        <source>Connections per download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1319"/>
+        <source>Connection timeout</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1323"/>
+        <source>Retry failed downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1329"/>
+        <source>Per-server connections</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1330"/>
+        <source>Override the connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1397"/>
+        <source>No exceptions</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1443"/>
+        <source>User agent</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1446"/>
+        <source>Use a custom user agent</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1458"/>
+        <source>Stellar&apos;s built-in user agent, shown for reference. Turn on the option above to replace it.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1466"/>
+        <source>Proxy type</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1480"/>
+        <source>Host</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1484"/>
+        <source>Port</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1488"/>
+        <source>Username</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1492"/>
+        <source>Password</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1522"/>
+        <source>Timed out - proxy did not respond</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1690"/>
+        <source>File types</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1715"/>
+        <source>Not in the browser&apos;s captured file types: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1724"/>
+        <source>Sites</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1755"/>
+        <source>Folders</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1758"/>
+        <source>Default save folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1766"/>
+        <source>Torrent save folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1775"/>
+        <source>Temporary folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1786"/>
+        <source>Adding downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1824"/>
+        <source>File list</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1827"/>
+        <source>If a duplicate URL is added</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1836"/>
+        <source>Double-clicking a download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1847"/>
+        <source>Last try date</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1850"/>
+        <source>Date format</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1858"/>
+        <source>Time format</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1892"/>
+        <source>Captured file types</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1904"/>
+        <source>Excluded sites</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1938"/>
+        <source>Bypass key</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1939"/>
+        <source>Hold this key while clicking a download link to skip interception and let the browser download.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1957"/>
+        <source>Speed limiter</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1965"/>
+        <source>Maximum download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1969"/>
+        <source>Maximum upload</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1986"/>
+        <source>Schedule</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2082"/>
+        <source>Days</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2090"/>
+        <source>From</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2095"/>
+        <source>to</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2124"/>
+        <source>Add Rule</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2136"/>
+        <source>Rules are evaluated every minute; the first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2149"/>
+        <source>Desktop notifications</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2171"/>
+        <source>Startup</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2191"/>
+        <source>Window</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2214"/>
+        <source>Theme</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2216"/>
+        <source>Dark</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2216"/>
+        <source>Light</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2223"/>
+        <source>UI scale</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2233"/>
+        <source>Font size</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2242"/>
+        <source>Tray icon style</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2249"/>
+        <source>A restart is required for appearance changes to take effect.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2253"/>
+        <source>Status display</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2286"/>
+        <source>Show public IP in status bar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2334"/>
+        <source>yt-dlp</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2402"/>
+        <source>Default cookie browser</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2421"/>
+        <source>FFmpeg</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2427"/>
+        <source>ffmpeg not found - HD downloads will be limited to pre-muxed formats (max ~480p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2459"/>
+        <source>No JS runtime found - YouTube n-challenge solving disabled</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2466"/>
+        <source>Custom runtime path</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2501"/>
+        <source>BitTorrent - Legal Notice</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2541"/>
+        <source>Network</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2541"/>
+        <source>Privacy</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2541"/>
+        <source>Database</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2568"/>
+        <source>Limits</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2628"/>
+        <source>Listening port</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2648"/>
+        <source>Not tested yet.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2665"/>
+        <source>TCP and µTP</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2665"/>
+        <source>µTP only</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2673"/>
+        <source>Peer discovery</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2717"/>
+        <source>Peer Exchange: share peer lists between connected peers so you find more sources without hitting the tracker.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2861"/>
+        <source>One substring per line, for example:
+aria2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3261"/>
+        <source>Default app</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3400"/>
+        <source>Build</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3430"/>
+        <source>License</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1686"/>
+        <source>Add category</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1694"/>
+        <source>Remove category</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2122"/>
+        <source>To</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>Sidebar</name>
@@ -9715,6 +10121,14 @@ Drag downloads here or use “Move to Queue” in the download list.</source>
     <message>
         <location filename="../app/qml/dialogs/QueuesWindow.qml" line="1057"/>
         <source>Select file to open when done</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPathField</name>
+    <message>
+        <location filename="../app/qml/components/SettingsPathField.qml" line="46"/>
+        <source>Browse…</source>
         <translation></translation>
     </message>
 </context>

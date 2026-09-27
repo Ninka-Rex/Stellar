@@ -77,6 +77,10 @@ QtObject {
     readonly property color tooltipBorder: dark ? "#3a3a3a" : "#c2c2c2"
     readonly property color tooltipText:   dark ? "#e0e0e0" : "#202020"
 
+    // Status text: success (green) and error (red). Darker in light mode for legibility.
+    readonly property color successText: dark ? "#55bb77" : "#2f8a4a"
+    readonly property color errorText:   dark ? "#e06a60" : "#b3261e"
+
     // Warning / caution text (amber). Darker in light mode for legibility.
     readonly property color warningText: dark ? "#e8c840" : "#9a6a00"
     // Speed-limit / throttle accent. Cleaner orange in light mode (warningText

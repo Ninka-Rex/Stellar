@@ -22,6 +22,9 @@ import QtQuick.Layouts
 // group in its own bordered card.
 RowLayout {
     property alias text: label.text
+    // Settings sections use the same title-plus-rule shape at a larger size.
+    property alias font: label.font
+    property alias color: label.color
 
     Layout.fillWidth: true
     spacing: 8
