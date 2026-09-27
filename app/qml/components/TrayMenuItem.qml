@@ -20,34 +20,53 @@ Rectangle {
     id: root
     property string label: ""
     property bool bold: false
-    property string iconSource: ""
+    // Path relative to the icons folder ("actions/help-about.svg"), resolved
+    // here like FileCtxMenuItem does: Qt 6 resolves a relative url against the
+    // component that uses it (this file, in components/), not the one that set it.
+    property string iconSrc: ""
+    readonly property bool hasIcon: iconSrc.length > 0
+    // Right-aligned muted state ("On") for toggle rows, instead of a check mark.
+    property string statusText: ""
     signal clicked()
 
     width: parent ? parent.width : 180
     height: 28
-    color: ma.containsMouse ? ColorPalette.hoverBg : "transparent"
+    color: ma.containsMouse && root.enabled ? ColorPalette.hoverBg : "transparent"
 
     Image {
         id: icon
         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-        source: root.iconSource
+        source: root.hasIcon ? "../icons/" + root.iconSrc : ""
+        sourceSize: Qt.size(14, 14)
+        opacity: root.enabled ? 1.0 : 0.4
         width: 14; height: 14
-        visible: root.iconSource !== ""
+        visible: root.hasIcon
         fillMode: Image.PreserveAspectFit
     }
 
     Text {
-        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: root.iconSource !== "" ? 30 : 12 }
+        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: root.hasIcon ? 30 : 12
+                  right: status.left; rightMargin: 8 }
         text: root.label
-        color: ColorPalette.textPrimary
+        color: root.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
         font.pixelSize: 12 * App.fontScale
         font.bold: root.bold
+        elide: Text.ElideRight
+    }
+
+    Text {
+        id: status
+        anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 12 }
+        text: root.statusText
+        color: ColorPalette.textMuted
+        font.pixelSize: 11 * App.fontScale
     }
 
     MouseArea {
         id: ma
         anchors.fill: parent
         hoverEnabled: true
+        enabled: root.enabled
         onClicked: root.clicked()
     }
 }

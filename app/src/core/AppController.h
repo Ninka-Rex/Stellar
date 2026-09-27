@@ -540,8 +540,8 @@ signals:
     void torrentSupportDisabled(const QString &pendingUri);
     void downloadAdded(QObject *item);
     void downloadCompleted(QObject *item);
-    void trayGithubRequested();
     void trayAboutRequested();
+    void traySettingsRequested();
     void traySpeedLimiterRequested();
     void sessionPausedChanged();
     void contextMenuRequested(int x, int y);

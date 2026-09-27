@@ -294,9 +294,11 @@ qt_add_qml_module(Stellar
         app/qml/torrent/TorrentSearchPluginsDialog.qml
         app/qml/torrent/TorrentSearchInstallDialog.qml
     RESOURCES
+        app/qml/icons/actions/application-exit-symbolic.svg
         app/qml/icons/actions/application-exit.svg
         app/qml/icons/actions/check-for-updates.svg
         app/qml/icons/actions/cloud-link.svg
+        app/qml/icons/actions/configure-symbolic.svg
         app/qml/icons/actions/copy-link.svg
         app/qml/icons/actions/copy-magnet-link.svg
         app/qml/icons/actions/document-export-torrent.svg
@@ -315,16 +317,23 @@ qt_add_qml_module(Stellar
         app/qml/icons/actions/folder-open.svg
         app/qml/icons/actions/go-down.svg
         app/qml/icons/actions/grabber.svg
+        app/qml/icons/actions/help-about-symbolic.svg
         app/qml/icons/actions/help-about.svg
+        app/qml/icons/actions/list-add-symbolic.svg
         app/qml/icons/actions/list-add.svg
         app/qml/icons/actions/magic-wand.svg
         app/qml/icons/actions/mail-mark-read.svg
+        app/qml/icons/actions/media-playback-pause-symbolic.svg
         app/qml/icons/actions/media-playback-pause.svg
+        app/qml/icons/actions/media-playback-start-symbolic.svg
         app/qml/icons/actions/media-playback-start.svg
+        app/qml/icons/actions/media-playback-stop-symbolic.svg
         app/qml/icons/actions/peer-ban.svg
         app/qml/icons/actions/peer-info.svg
         app/qml/icons/actions/preferences-desktop-locale.svg
+        app/qml/icons/actions/preferences-system-symbolic.svg
         app/qml/icons/actions/preferences-system.svg
+        app/qml/icons/actions/speed-limiter-symbolic.svg
         app/qml/icons/actions/speed-limiter.svg
         app/qml/icons/actions/theme-dark.svg
         app/qml/icons/actions/theme-light.svg

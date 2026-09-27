@@ -40,15 +40,20 @@ public:
     // Called by AppController to keep native menu state in sync.
     void setSpeedLimiterActive(bool active);
     void setSessionPaused(bool paused);
+    void setStopAllEnabled(bool enabled);
     // 0=Colored, 1=White, 2=Black
     void setTrayIconStyle(int style);
+    // Swap the tray icon for a greyscale copy while the app cleans up after
+    // Exit, so it's visibly on its way out rather than hung. Idempotent.
+    void setShuttingDown();
 
 signals:
     void showRequested();
     void addUrlRequested();
+    void stopAllRequested();
+    void settingsRequested();
     void quitRequested();
     void contextMenuRequested(int x, int y);
-    void githubRequested();
     void aboutRequested();
     void speedLimiterRequested();
     void enableSpeedLimiterRequested();
@@ -63,10 +68,17 @@ signals:
 private:
     QSystemTrayIcon *m_tray{nullptr};
     QSystemTrayIcon *m_downloadsTray{nullptr};
+    bool m_shuttingDown{false};
 
 #if defined(Q_OS_LINUX)
     QMenu   *m_menu{nullptr};
+    QAction *m_stopAllAction{nullptr};
     QAction *m_speedLimiterAction{nullptr};
     QAction *m_pauseSessionAction{nullptr};
+    // Toggle state lives here rather than in QAction::isChecked(): the rows are
+    // no longer checkable (a check mark next to an icon looked out of place),
+    // they show state in their text instead.
+    bool m_speedLimiterOn{false};
+    bool m_sessionPaused{false};
 #endif
 };

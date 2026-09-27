@@ -4984,6 +4984,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <source>Queues</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="722"/>
+        <source>On</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="713"/>
+        <source>Stop All</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>QueueSelectionDialog</name>
@@ -7740,6 +7750,21 @@ Click to open Statistics</source>
     <message>
         <source>Resume Session</source>
         <translation type="obsolete">Resume Session</translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/SystemTrayIcon.cpp" line="258"/>
+        <source>On</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/SystemTrayIcon.cpp" line="160"/>
+        <source>Settings…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/SystemTrayIcon.cpp" line="158"/>
+        <source>Stop All</source>
+        <translation></translation>
     </message>
 </context>
 <context>

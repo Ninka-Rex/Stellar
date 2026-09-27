@@ -16,6 +16,7 @@
 
 #include "SystemTrayIcon.h"
 #include <QIcon>
+#include <QImage>
 #include <QPixmap>
 #include <QPainter>
 #include <QFont>
@@ -153,33 +154,29 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     openAction->setFont([&]{ QFont f; f.setBold(true); return f; }());
     connect(openAction, &QAction::triggered, this, &SystemTrayIcon::showRequested);
 
-    auto *addUrlAction = m_menu->addAction(trayIcon("toolbar/add-url.svg"), tr("Add URL…"), this, &SystemTrayIcon::addUrlRequested);
-    Q_UNUSED(addUrlAction)
+    m_menu->addAction(trayIcon("actions/list-add-symbolic.svg"), tr("Add URL…"), this, &SystemTrayIcon::addUrlRequested);
+    m_stopAllAction = m_menu->addAction(trayIcon("actions/media-playback-stop-symbolic.svg"), tr("Stop All"), this, &SystemTrayIcon::stopAllRequested);
     m_menu->addSeparator();
-    m_menu->addAction(trayIcon("places/globe.svg"),       tr("GitHub"),        this, &SystemTrayIcon::githubRequested);
-    m_menu->addAction(trayIcon("actions/help-about.svg"),        tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
+    m_menu->addAction(trayIcon("actions/preferences-system-symbolic.svg"), tr("Settings…"),     this, &SystemTrayIcon::settingsRequested);
+    m_menu->addAction(trayIcon("actions/help-about-symbolic.svg"),        tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
     m_menu->addSeparator();
 
-    m_speedLimiterAction = m_menu->addAction(trayIcon("actions/speed-limiter.svg"), tr("Speed Limiter"), this, [this] {
-        if (m_speedLimiterAction->isChecked())
+    m_speedLimiterAction = m_menu->addAction(trayIcon("actions/speed-limiter-symbolic.svg"), tr("Speed Limiter"), this, [this] {
+        if (m_speedLimiterOn)
             emit disableSpeedLimiterRequested();
         else
             emit enableSpeedLimiterRequested();
     });
-    m_speedLimiterAction->setCheckable(true);
-    m_menu->addAction(trayIcon("actions/preferences-system.svg"), tr("Speed Limiter Settings…"), this, &SystemTrayIcon::speedLimiterSettingsRequested);
+    m_menu->addAction(trayIcon("actions/configure-symbolic.svg"), tr("Speed Limiter Settings…"), this, &SystemTrayIcon::speedLimiterSettingsRequested);
     m_menu->addSeparator();
 
-    m_pauseSessionAction = m_menu->addAction(trayIcon("actions/media-playback-pause.svg"), tr("Pause Session"), this, [this] {
-        if (m_pauseSessionAction->isChecked())
-            emit pauseSessionRequested();
-        else
+    m_pauseSessionAction = m_menu->addAction(trayIcon("actions/media-playback-pause-symbolic.svg"), tr("Pause Session"), this, [this] {
+        if (m_sessionPaused)
             emit resumeSessionRequested();
+        else
+            emit pauseSessionRequested();
     });
-    m_pauseSessionAction->setCheckable(true);
-
-    m_menu->addSeparator();
-    m_menu->addAction(trayIcon("actions/application-exit.svg"), tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
+    m_menu->addAction(trayIcon("actions/application-exit-symbolic.svg"), tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
 
     m_tray->setContextMenu(m_menu);
 #endif
@@ -207,7 +204,37 @@ void SystemTrayIcon::setup(const QString &iconPath) {
 }
 
 void SystemTrayIcon::setTrayIconStyle(int style) {
+    if (m_shuttingDown)
+        return;
     m_tray->setIcon(trayIconForStyle(style));
+}
+
+void SystemTrayIcon::setShuttingDown() {
+    if (m_shuttingDown || !m_tray)
+        return;
+    m_shuttingDown = true;
+    const QIcon current = m_tray->icon();
+    QIcon grey;
+    // Every size the tray might ask for (16/22/24 at 100-300% scaling), so the
+    // shell never falls back to the colour pixmap.
+    for (const int size : { 16, 20, 22, 24, 32, 44, 48, 64, 66 }) {
+        QImage img = current.pixmap(size, size).toImage()
+                         .convertToFormat(QImage::Format_ARGB32);
+        if (img.isNull())
+            continue;
+        for (int y = 0; y < img.height(); ++y) {
+            auto *line = reinterpret_cast<QRgb *>(img.scanLine(y));
+            for (int x = 0; x < img.width(); ++x) {
+                // Luminance keeps the logo's shape and contrast; alpha is kept
+                // so the rounded corners stay transparent.
+                const int g = qGray(line[x]);
+                line[x] = qRgba(g, g, g, qAlpha(line[x]));
+            }
+        }
+        grey.addPixmap(QPixmap::fromImage(img));
+    }
+    if (!grey.isNull())
+        m_tray->setIcon(grey);
 }
 
 void SystemTrayIcon::show()  { m_tray->show(); }
@@ -223,17 +250,34 @@ void SystemTrayIcon::setToolTip(const QString &tip) {
 
 void SystemTrayIcon::setSpeedLimiterActive(bool active) {
 #if defined(Q_OS_LINUX)
+    m_speedLimiterOn = active;
+    // The text after the tab lands in QMenu's right-aligned shortcut column,
+    // matching the QML tray menu's muted "On".
     if (m_speedLimiterAction)
-        m_speedLimiterAction->setChecked(active);
+        m_speedLimiterAction->setText(active ? tr("Speed Limiter") + QLatin1Char('\t') + tr("On")
+                                             : tr("Speed Limiter"));
 #else
     Q_UNUSED(active)
 #endif
 }
 
+void SystemTrayIcon::setStopAllEnabled(bool enabled) {
+#if defined(Q_OS_LINUX)
+    if (m_stopAllAction)
+        m_stopAllAction->setEnabled(enabled);
+#else
+    Q_UNUSED(enabled)
+#endif
+}
+
 void SystemTrayIcon::setSessionPaused(bool paused) {
 #if defined(Q_OS_LINUX)
-    if (m_pauseSessionAction)
-        m_pauseSessionAction->setChecked(paused);
+    m_sessionPaused = paused;
+    if (m_pauseSessionAction) {
+        m_pauseSessionAction->setText(paused ? tr("Resume Session") : tr("Pause Session"));
+        m_pauseSessionAction->setIcon(QIcon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/actions/")
+            + (paused ? QStringLiteral("media-playback-start-symbolic.svg") : QStringLiteral("media-playback-pause-symbolic.svg"))));
+    }
 #else
     Q_UNUSED(paused)
 #endif

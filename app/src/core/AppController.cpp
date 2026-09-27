@@ -1165,6 +1165,7 @@ void AppController::requestQuit() {
     // for the entire shutdown duration.
     if (m_tray) {
         m_tray->setToolTip(tr("Stellar is shutting down..."));
+        m_tray->setShuttingDown();
     }
     // Let the tooltip render before the window-close cascade begins.
     QCoreApplication::processEvents();
@@ -2328,8 +2329,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_tray, &SystemTrayIcon::showRequested,        this, &AppController::showWindowRequested);
     connect(m_tray, &SystemTrayIcon::quitRequested,        this, &AppController::requestQuit);
     connect(m_tray, &SystemTrayIcon::addUrlRequested,      this, [this]() { emit showWindowRequested(); });
-    connect(m_tray, &SystemTrayIcon::githubRequested,       this, &AppController::trayGithubRequested);
     connect(m_tray, &SystemTrayIcon::aboutRequested,        this, &AppController::trayAboutRequested);
+    connect(m_tray, &SystemTrayIcon::settingsRequested,     this, &AppController::traySettingsRequested);
+    connect(m_tray, &SystemTrayIcon::stopAllRequested,      this, &AppController::pauseAllDownloads);
     connect(m_tray, &SystemTrayIcon::speedLimiterRequested, this, &AppController::traySpeedLimiterRequested);
     connect(m_tray, &SystemTrayIcon::enableSpeedLimiterRequested,  this, &AppController::enableSpeedLimiter);
     connect(m_tray, &SystemTrayIcon::disableSpeedLimiterRequested, this, &AppController::disableSpeedLimiter);
@@ -2341,9 +2343,18 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_tray, &SystemTrayIcon::downloadsShowAllRequested,     this, &AppController::downloadsShowAllRequested);
 
     // Keep native Linux tray menu state in sync with settings.
-    connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this] {
+    // Either limit counts as "on"; listen to both or an upload-only limit never
+    // shows in the menu.
+    const auto syncTraySpeedLimiter = [this] {
         m_tray->setSpeedLimiterActive(m_settings->globalSpeedLimitKBps() > 0 || m_settings->globalUploadLimitKBps() > 0);
+    };
+    connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, syncTraySpeedLimiter);
+    connect(m_settings, &AppSettings::globalUploadLimitKBpsChanged, this, syncTraySpeedLimiter);
+    syncTraySpeedLimiter();
+    connect(this, &AppController::activeDownloadsChanged, this, [this] {
+        m_tray->setStopAllEnabled(canPauseAll());
     });
+    m_tray->setStopAllEnabled(canPauseAll());
     connect(m_settings, &AppSettings::trayIconStyleChanged, this, [this] {
         m_tray->setTrayIconStyle(m_settings->trayIconStyle());
     });
@@ -2361,6 +2372,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             const QString tip = tr("Stellar is shutting down...");
             m_lastTrayTooltip = tip;
             m_tray->setToolTip(tip);
+            // Also covers exits that skip requestQuit() (OS logoff/shutdown).
+            m_tray->setShuttingDown();
         }
         const auto items = m_downloadModel->allItems();
         for (DownloadItem *item : items) {

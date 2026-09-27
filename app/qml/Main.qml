@@ -677,7 +677,7 @@ ApplicationWindow {
         id: trayMenu
         transientParent: null
         flags: Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
-        width: 180
+        width: 200
         height: menuCol.implicitHeight + 2
         color: ColorPalette.cardBg
         visible: false
@@ -705,17 +705,31 @@ ApplicationWindow {
             id: menuCol
             anchors { left: parent.left; right: parent.right; top: parent.top; margins: 1 }
 
+            // Same entries, order and icons as the Linux QMenu in SystemTrayIcon.cpp.
+            // Monochrome *-symbolic glyphs so the labels lead; toggle rows show
+            // their state in words ("On", Pause/Resume) rather than a check mark.
             TrayMenuItem { label: qsTr("Open Stellar"); bold: true; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.requestActivate() } }
-            TrayMenuItem { label: qsTr("Add URL…");     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
+            TrayMenuItem { label: qsTr("Add URL…"); iconSrc: "actions/list-add-symbolic.svg"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
+            TrayMenuItem { label: qsTr("Stop All"); iconSrc: "actions/media-playback-stop-symbolic.svg"; enabled: App.canPauseAll; onClicked: { trayMenu.visible = false; App.pauseAllDownloads() } }
             Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
-            TrayMenuItem { label: qsTr("GitHub");        onClicked: { trayMenu.visible = false; App.openExternalUrl("https://github.com/Ninka-Rex/Stellar") } }
-            TrayMenuItem { label: qsTr("About Stellar"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
+            TrayMenuItem { label: qsTr("Settings…"); iconSrc: "actions/preferences-system-symbolic.svg"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageGeneral) } }
+            TrayMenuItem { label: qsTr("About Stellar"); iconSrc: "actions/help-about-symbolic.svg"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
             Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
-            TrayMenuItem { label: ((App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) ? "✓" : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
-            TrayMenuItem { label: qsTr("Speed Limiter Settings…"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
+            TrayMenuItem {
+                readonly property bool limiterOn: App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0
+                label: qsTr("Speed Limiter")
+                statusText: limiterOn ? qsTr("On") : ""
+                iconSrc: "actions/speed-limiter-symbolic.svg"
+                onClicked: { trayMenu.visible = false; if (limiterOn) App.disableSpeedLimiter(); else App.enableSpeedLimiter() }
+            }
+            TrayMenuItem { label: qsTr("Speed Limiter Settings…"); iconSrc: "actions/configure-symbolic.svg"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
             Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
-            TrayMenuItem { label: (App.sessionPaused ? "✓" : "") + qsTr("Pause Session"); onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() } }
-            TrayMenuItem { label: qsTr("Exit Stellar");  onClicked: { trayMenu.visible = false; root.quitApp() } }
+            TrayMenuItem {
+                label: App.sessionPaused ? qsTr("Resume Session") : qsTr("Pause Session")
+                iconSrc: App.sessionPaused ? "actions/media-playback-start-symbolic.svg" : "actions/media-playback-pause-symbolic.svg"
+                onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() }
+            }
+            TrayMenuItem { label: qsTr("Exit Stellar"); iconSrc: "actions/application-exit-symbolic.svg"; onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
     }
 
@@ -857,12 +871,13 @@ ApplicationWindow {
                 return
             root._showCompleteDialog(item)
         }
-        function onTrayGithubRequested() {
-            App.openExternalUrl("https://github.com/Ninka-Rex/Stellar")
-        }
         function onTrayAboutRequested() {
             root.show(); root.raise()
             root.showSettingsPage(root.settingsPageAbout)
+        }
+        function onTraySettingsRequested() {
+            root.show(); root.raise()
+            root.showSettingsPage(root.settingsPageGeneral)
         }
         function onTraySpeedLimiterRequested() {
             root.show(); root.raise()
@@ -4128,7 +4143,7 @@ ApplicationWindow {
             CompactMenuItem { text: qsTr("Check for Updates"); iconSrc: "icons/actions/check-for-updates.svg"; onTriggered: App.checkForUpdates(true) }
             // CompactMenuItem { text: qsTr("Debug: Simulate Update Available"); onTriggered: App.simulateUpdateAvailable() }
             CompactSep {}
-            CompactMenuItem { text: qsTr("About Stellar"); shortcutDisplay: "Ctrl+/"; iconSrc: "icons/status/dialog-information.svg"; onTriggered: root.showSettingsPage(root.settingsPageAbout) }
+            CompactMenuItem { text: qsTr("About Stellar"); shortcutDisplay: "Ctrl+/"; iconSrc: "icons/actions/help-about.svg"; onTriggered: root.showSettingsPage(root.settingsPageAbout) }
             CompactSep {}
             CompactMenuItem {
                 id: _browserIntItem
