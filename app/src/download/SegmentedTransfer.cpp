@@ -90,10 +90,13 @@ QString resolvedUserAgent(bool useCustomUserAgent, const QString &customUserAgen
     return browserStyleFallback ? kBrowserUserAgent : kUserAgent;
 }
 
-// Returns false for strings that are clearly not a real filename (no extension,
-// too long an extension, non-alphanumeric extension). Used to distinguish a URL
-// path segment like "x64" from a genuine filename like "file.zip".
-static bool isPlausibleFilename(const QString &name) {
+}
+
+// ── Shared helpers (external linkage; declared in FileNameUtils.h) ────────────
+// Moved out of the anonymous namespace above so FtpTransfer can link against the
+// same single implementation rather than duplicating it.
+
+bool isPlausibleFilename(const QString &name) {
     if (name.isEmpty() || name == QStringLiteral("download"))
         return false;
     int dot = name.lastIndexOf('.');
@@ -108,12 +111,6 @@ static bool isPlausibleFilename(const QString &name) {
     }
     return true;
 }
-
-}
-
-// ── Shared helpers (external linkage; declared in FileNameUtils.h) ────────────
-// Moved out of the anonymous namespace above so FtpTransfer can link against the
-// same single implementation rather than duplicating it.
 
 bool copyFileContents(QIODevice &src, QIODevice &dst, qint64 maxBytes,
                       QString *errorOut) {
@@ -361,6 +358,7 @@ void SegmentedTransfer::onAsyncWriteFailed(const QString &error) {
 }
 
 void SegmentedTransfer::start() {
+    m_serverDeclaredEmpty = false;
     m_paused    = false;
     m_cancelled = false;
 
@@ -634,11 +632,32 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
         return;
     }
 
-    qint64 contentLength = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+    const QVariant contentLengthHeader = reply->header(QNetworkRequest::ContentLengthHeader);
+    qint64 contentLength = contentLengthHeader.toLongLong();
     QString contentType = reply->header(QNetworkRequest::ContentTypeHeader).toString().toLower();
     QString acceptRanges = reply->rawHeader("Accept-Ranges");
+    if (contentLengthHeader.isValid() && contentLength == 0)
+        m_serverDeclaredEmpty = true;
 
     m_item->setContentType(contentType);
+
+    // Auth wall at probe time: the link redirected to a sign-in page (expired
+    // Drive/OneDrive/... links). Fail before any part file is created and before
+    // the filename is touched — otherwise the item is renamed after the login
+    // page ("identifier") and the interstitial parser starts following the
+    // sign-in form.
+    const QByteArray headDisposition = reply->rawHeader("Content-Disposition").toLower();
+    if (contentType.contains(QStringLiteral("text/html"))
+        && !headDisposition.contains("attachment") && !headDisposition.contains("filename")
+        && isAuthWall(reply->url())) {
+        const QString msg = authWallError(reply->url().host());
+        reply->deleteLater();
+        m_headReply = nullptr;
+        m_item->setErrorString(msg);
+        m_item->setStatus(DownloadItem::Status::Error);
+        emit failed(msg);
+        return;
+    }
 
     // Interstitial detection (host-agnostic): the server answered text/html with
     // no Content-Disposition attachment for an *extensionless* URL (e.g.
@@ -973,10 +992,10 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     auto &seg = m_segments[index];
     if (!seg.reply || !seg.file) return;
 
-    // Auth-wall / off-domain redirect check (host-agnostic): if a reply's final
-    // URL has left the registered domain of the original download AND the body
-    // sniffs as HTML, the server redirected us to a sign-in or error page on an
-    // identity provider (e.g. an "accounts.*" login wall) instead of the file.
+    // Auth-wall check (host-agnostic): if a reply's final URL has left the
+    // registered domain of the original download, or landed on a sign-in page of
+    // the same domain, AND the body sniffs as HTML, the server redirected us to a
+    // login or error page instead of the file.
     // Abort all connections immediately so we don't save an HTML login page as
     // file data. Parts and meta are intentionally left on disk so the user can
     // re-add the download from the browser (with fresh cookies) and resume from
@@ -987,7 +1006,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     // registered-domain parse + peek()/toLower() on every readyRead is pure
     // overhead that becomes a main-thread bottleneck at high throughput
     // (localhost / gigabit), stalling the UI ("Not Responding").
-    if (seg.received == 0 && !sameRegisteredDomain(seg.reply->url(), m_item->url())) {
+    if (seg.received == 0 && isAuthWall(seg.reply->url())) {
         const QByteArray peeked = seg.reply->peek(512).trimmed();
         const QByteArray peekLower = peeked.toLower();
         const bool bodyIsHtml = peekLower.contains("<html") || peekLower.contains("<!doctype");
@@ -1000,10 +1019,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             }
             m_htmlIntercepting = false;
             m_htmlInterceptBuf.clear();
-            emit failed(tr("The server redirected to a sign-in or error page (%1) instead of "
-                           "the file. Re-add the download from your browser (right-click → "
-                           "Download with Stellar) to refresh authentication, then resume. "
-                           "your partial download will be reused.").arg(redirectHost));
+            emit failed(authWallError(redirectHost));
             return;
         }
     }
@@ -1254,12 +1270,18 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         return;
     }
 
+    {
+        const QVariant cl = seg.reply->header(QNetworkRequest::ContentLengthHeader);
+        const int status = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (cl.isValid() && cl.toLongLong() == 0 && status >= 200 && status < 300)
+            m_serverDeclaredEmpty = true;
+    }
+
     // HTML interstitial interception: response finished while still intercepting
     // means the entire response is small (a confirmation page or an off-domain
     // auth/error redirect).
     if (m_htmlIntercepting && index == 0) {
-        // Off-domain redirect = sign-in / error page on another registered domain.
-        const bool isAuthRedirect = !sameRegisteredDomain(seg.reply->url(), m_item->url());
+        const bool isAuthRedirect = isAuthWall(seg.reply->url());
         const QString redirectHost = seg.reply->url().host();
 
         if (seg.reply->bytesAvailable() > 0)
@@ -1277,10 +1299,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         if (isAuthRedirect) {
             m_htmlIntercepting = false;
             m_htmlInterceptBuf.clear();
-            emit failed(tr("The server redirected to a sign-in or error page (%1) instead of "
-                           "the file. Re-add the download from your browser (right-click → "
-                           "Download with Stellar) to refresh authentication, then resume. "
-                           "your partial download will be reused.").arg(redirectHost));
+            emit failed(authWallError(redirectHost));
             return;
         }
 
@@ -1906,6 +1925,18 @@ void SegmentedTransfer::mergeAndFinish() {
             ? std::numeric_limits<qint64>::max()
             : (50 * 1024);
         QFileInfo fi(outPath);
+        // Zero bytes is only a real file when the server said so (Content-Length:
+        // 0). Otherwise the transfer produced nothing — typically an expired link
+        // answering with an empty body — and must not be reported as Completed.
+        if (fi.size() == 0 && !m_serverDeclaredEmpty) {
+            QFile::remove(outPath);
+            const QString msg = tr("The server sent no data. The link may have expired; "
+                                   "add the download again from your browser.");
+            m_item->setErrorString(msg);
+            m_item->setStatus(DownloadItem::Status::Error);
+            emit failed(msg);
+            return;
+        }
         if (fi.size() > 0 && fi.size() < sniffThreshold) {
             QFile f(outPath);
             if (f.open(QIODevice::ReadOnly)) {
@@ -2069,7 +2100,12 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
     // otherwise overwrite it with something like "already-downloaded". But if
     // the current filename is just a URL path segment guess ("x64", "latest"),
     // allow the redirect URL to supply the real name.
-    if (filename.isEmpty() && !m_item->isFilenameManuallySet()
+    //
+    // An HTML response without Content-Disposition is a web page (sign-in wall,
+    // error or viewer page), and a page's address is never the file's name.
+    const bool isHtmlPage = reply->header(QNetworkRequest::ContentTypeHeader)
+        .toString().contains(QStringLiteral("text/html"), Qt::CaseInsensitive);
+    if (filename.isEmpty() && !isHtmlPage && !m_item->isFilenameManuallySet()
         && !isPlausibleFilename(m_item->filename())) {
         QUrl finalUrl = reply->url();
         QString pathName = QFileInfo(finalUrl.path()).fileName();
@@ -2186,6 +2222,43 @@ QString SegmentedTransfer::htmlMasqueradeError() {
               "Nothing was saved.");
 }
 
+bool SegmentedTransfer::isSignInUrl(const QUrl &url) {
+    static const QSet<QString> signInHostLabels = {
+        QStringLiteral("accounts"), QStringLiteral("account"), QStringLiteral("login"),
+        QStringLiteral("signin"),   QStringLiteral("auth"),    QStringLiteral("sso"),
+        QStringLiteral("idp"),      QStringLiteral("identity"), QStringLiteral("oauth"),
+    };
+    static const QSet<QString> signInPathSegments = {
+        QStringLiteral("signin"),  QStringLiteral("sign-in"),  QStringLiteral("sign_in"),
+        QStringLiteral("login"),   QStringLiteral("log-in"),   QStringLiteral("logon"),
+        QStringLiteral("identifier"), QStringLiteral("servicelogin"), QStringLiteral("authorize"),
+        QStringLiteral("oauth"),   QStringLiteral("oauth2"),   QStringLiteral("sso"),
+        QStringLiteral("saml"),    QStringLiteral("saml2"),
+    };
+    const QString host = url.host().toLower();
+    if (signInHostLabels.contains(host.section(QLatin1Char('.'), 0, 0)))
+        return true;
+    const QStringList segments = url.path().toLower().split(QLatin1Char('/'), Qt::SkipEmptyParts);
+    return std::any_of(segments.cbegin(), segments.cend(),
+                       [](const QString &seg) { return signInPathSegments.contains(seg); });
+}
+
+bool SegmentedTransfer::isAuthWall(const QUrl &finalUrl) const {
+    if (!sameRegisteredDomain(finalUrl, m_item->url()))
+        return true;
+    // Same site: only a redirect *to* a sign-in page counts. A download URL that
+    // itself lives under e.g. /login/ is not a wall.
+    return finalUrl.adjusted(QUrl::RemoveFragment) != m_item->url().adjusted(QUrl::RemoveFragment)
+        && isSignInUrl(finalUrl);
+}
+
+QString SegmentedTransfer::authWallError(const QString &host) {
+    return tr("The server redirected to a sign-in or error page (%1) instead of the file. "
+              "Re-add the download from your browser (right-click → Download with Stellar) "
+              "to refresh authentication, then resume. Your partial download will be reused.")
+        .arg(host);
+}
+
 bool SegmentedTransfer::sameRegisteredDomain(const QUrl &a, const QUrl &b) {
     // Derive eTLD+1 using a hardcoded set of known multi-label public suffixes.
     // Qt has no public PSL API; the naive last-two-labels approach misidentifies
@@ -2300,6 +2373,12 @@ void SegmentedTransfer::handleInterstitialPage(const QByteArray &html) {
     // registered domain (eTLD+1) so subdomains of the same site are accepted
     // (e.g. drive.google.com → drive.usercontent.google.com) while unrelated
     // hosts are rejected outright.
+    // A page whose form or link leads into a sign-in flow is a login wall, not a
+    // download gateway; following it only fetches more login pages.
+    if (isSignInUrl(newUrl)) {
+        emit failed(authWallError(newUrl.host()));
+        return;
+    }
     if (!sameRegisteredDomain(m_item->url(), newUrl)) {
         qWarning() << "[HTMLIntercept] target URL rejected — domain mismatch:"
                    << newUrl.host() << "vs original" << m_item->url().host();

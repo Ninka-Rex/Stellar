@@ -5577,9 +5577,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/src/download/SegmentedTransfer.cpp" line="779"/>
-        <location filename="../app/src/download/SegmentedTransfer.cpp" line="1020"/>
-        <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+        <location filename="../app/src/download/SegmentedTransfer.cpp" line="2256"/>
+        <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. Your partial download will be reused.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/download/SegmentedTransfer.cpp" line="1933"/>
+        <source>The server sent no data. The link may have expired; add the download again from your browser.</source>
         <translation></translation>
     </message>
     <message>

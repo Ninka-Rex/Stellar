@@ -4951,9 +4951,16 @@ void AppController::redownload(const QString &id) {
     QString username = item->username();
     QString password = item->password();
 
+    // Carry a real name over; otherwise the new item starts as the URL's last path
+    // segment ("download", "uc") until the server names it again, and shows that
+    // placeholder if the link has since expired. Placeholders are not carried so
+    // the server can still supply the real name.
+    const QString filename = isPlausibleFilename(item->filename()) ? item->filename() : QString();
+
     m_queue->cancel(id);
 
-    addUrl(url, savePath, category, description, true, cookies, referrer, parentUrl, username, password);
+    addUrl(url, savePath, category, description, true, cookies, referrer, parentUrl, username, password,
+           filename);
 }
 
 void AppController::deleteDownload(const QString &id, int mode) {

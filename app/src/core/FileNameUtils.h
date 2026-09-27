@@ -30,6 +30,11 @@ class QFile;
 // and cap length to leave room for ".stellar-part-NN" suffixes. Never returns empty.
 QString sanitizeFilename(const QString &in);
 
+// False for strings that are clearly not a real filename (no extension, too long
+// an extension, non-alphanumeric extension, or the "download" placeholder). Tells
+// a URL path guess like "x64" apart from a genuine name like "file.zip".
+bool isPlausibleFilename(const QString &name);
+
 // On Windows, prefix absolute paths approaching MAX_PATH (260) with \\?\ so the
 // long-path API is used. No-op elsewhere or for short paths.
 QString longPath(const QString &path);

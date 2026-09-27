@@ -190,6 +190,17 @@ private:
     // Returns true if a recovery HEAD was issued (caller must return).
     bool tryRecoverMasqueradedUrl(const QString &expectedExt);
     static QString htmlMasqueradeError();
+    // True when a URL is an identity provider's sign-in page: an accounts./login./
+    // auth.-style host, or a path segment such as "signin", "login" or
+    // "identifier". Host-agnostic; only meaningful for a response that was
+    // redirected there and is HTML.
+    static bool isSignInUrl(const QUrl &url);
+    // True when a response that ended at `finalUrl` is an auth wall rather than the
+    // file (given an HTML body): it left the download's registered domain, or it
+    // was redirected to a sign-in page on the same domain (e.g. an expired Google
+    // Drive link lands on accounts.google.com — still google.com).
+    bool isAuthWall(const QUrl &finalUrl) const;
+    static QString authWallError(const QString &host);
     // True when the URL path carries no file extension (e.g. "/uc?id=...",
     // "/download?file=..."). Extensionless cloud-download endpoints are the ones
     // that gate behind an HTML interstitial and/or a browser User-Agent, so this
@@ -237,6 +248,9 @@ private:
     bool                   m_htmlIntercepting{false};
     QByteArray             m_htmlInterceptBuf;
     bool                   m_recoveryAttempted{false}; // guards single masquerade-recovery retry
+    // A 2xx response explicitly declared Content-Length: 0. Only then is an empty
+    // result a real (empty) file; otherwise zero bytes means the download failed.
+    bool                   m_serverDeclaredEmpty{false};
     // Set when a response looks like an HTML interstitial standing in for a binary
     // download (text/html, no Content-Disposition, extensionless or binary-ext
     // URL). Drives the browser-UA choice and the HTML-intercept / auth-wall logic.
