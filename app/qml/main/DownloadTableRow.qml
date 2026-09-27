@@ -600,36 +600,22 @@ Rectangle {
 
         onDoubleClicked: function(mouse) {
             if (!rowRect.item) return
-            // Double-click on the container twisty toggles expand/collapse rather
-            // than opening any progress dialog.
+            // A channel container (from older versions) has no file of its own:
+            // double-click expands or collapses its video rows.
             if (rowRect.item.isChannelContainer) {
-                var tp = mapToItem(twisty, mouse.x, mouse.y)
-                if (tp.x >= 0 && tp.x <= twisty.width && tp.y >= 0 && tp.y <= twisty.height) {
-                    table.toggleExpandPreservingScroll(rowRect.item, rowRect.rowIndex)
-                    return
-                }
+                table.toggleExpandPreservingScroll(rowRect.item, rowRect.rowIndex)
+                return
             }
             if (rowRect.item.isTorrent) {
                 table.openPropertiesRequested(rowRect.item)
                 return
             }
-            // A yt-dlp channel/playlist download has its own multi-item progress
-            // window — reopen that instead of single-file progress/properties.
-            if (rowRect.item.isYtdlp && rowRect.item.ytdlpPlaylistMode) {
-                table.openChannelProgressRequested(rowRect.item)
-                return
-            }
-            // A child video row: while still downloading it has no HTTP-style
-            // segmented progress (the parent's single yt-dlp worker drives all
-            // videos) — open the parent's channel progress dialog. Once finished,
-            // fall through to the normal open-file / properties behaviour.
+            // A container's video row is driven by the container's single
+            // yt-dlp run and has no progress of its own until it has finished;
+            // its progress shows in the row itself.
             if (rowRect.item.parentId && rowRect.item.parentId.length > 0
-                    && rowRect.item.status !== "Completed") {
-                var parent = App.downloadModel.itemById(rowRect.item.parentId)
-                if (parent)
-                    table.openChannelProgressRequested(parent)
+                    && rowRect.item.status !== "Completed")
                 return
-            }
             if (rowRect.item.status === "Downloading" || rowRect.item.status === "Assembling") {
                 table.openProgressRequested(rowRect.item)
                 return

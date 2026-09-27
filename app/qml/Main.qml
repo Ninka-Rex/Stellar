@@ -233,17 +233,12 @@ ApplicationWindow {
 
     function showDownloadProgressForItem(item) {
         if (!item) return
-        // yt-dlp channel/playlist downloads (the container row OR any of its child
-        // video rows) have no HTTP segmented-progress; their multi-item batch
-        // window is the only meaningful progress view. Redirect here so no caller
-        // path (double-click, properties, open-progress) can leak the HTTP dialog.
+        // Channel container rows from older versions (and their child rows) are
+        // driven by one yt-dlp playlist run and have no per-row transfer to
+        // show; their progress lives in the download table itself.
         if (item.isYtdlp && (item.ytdlpPlaylistMode
-                || (item.parentId && item.parentId.length > 0))) {
-            var batchId = item.ytdlpPlaylistMode ? item.id : item.parentId
-            App.showYtdlpBatchForItem(batchId)
-            showAndActivate(ytdlpBatchWindow)
+                || (item.parentId && item.parentId.length > 0)))
             return
-        }
         // Never open the progress window for an already-finished download — the
         // complete dialog handles those. Guards a race where a fast (e.g. numbered
         // duplicate) download completes before the deferred show() runs, leaving an
@@ -939,7 +934,6 @@ ApplicationWindow {
 
             if (App.isLikelyYtdlpUrl(url)) {
                 _showYtdlpDialog(url)
-                ytdlpDialog.uniqueFilename = false
                 return
             }
 
@@ -1409,14 +1403,21 @@ ApplicationWindow {
         }
     }
 
-    // Open the yt-dlp format picker for a video site URL.
-    // ── No DownloadItem is created here it only appears in the list once the ──
-    // user confirms a format and App.finalizeYtdlpDownload() runs.
-    function _showYtdlpDialog(url) {
+    // Open the yt-dlp dialog for a video site URL: the video picker for one
+    // video, the channel picker for channels and playlists. No DownloadItem is
+    // created here; downloads appear once the user confirms in the dialog.
+    // overwriteExistingId: a download the user chose to overwrite (duplicate
+    // dialog); removed only when the new download is actually started.
+    function _showYtdlpDialog(url, overwriteExistingId) {
+        if (App.ytdlpUrlKind(url) !== "single") {
+            ytdlpChannelDialog.pendingUrl = url
+            showAndActivate(ytdlpChannelDialog)
+            return
+        }
+        _ytdlpOverwriteExistingId = overwriteExistingId || ""
+        ytdlpDialog.overwriteExisting = _ytdlpOverwriteExistingId.length > 0
         ytdlpDialog.pendingUrl = url
-        ytdlpDialog.show()
-        ytdlpDialog.raise()
-        ytdlpDialog.requestActivate()
+        showAndActivate(ytdlpDialog)
     }
 
     function _showFileInfoDialog(url, filenameOverride) {
@@ -1483,27 +1484,23 @@ ApplicationWindow {
             // Overwrite: re-add the download.
             if (App.isLikelyYtdlpUrl(url)) {
                 // yt-dlp names the file from video metadata, so the collision
-                // scan would otherwise append _2. overwriteExisting tells the
-                // backend to skip that rename and force yt-dlp to overwrite.
-                // Defer removing the existing entry until the user actually starts
-                // the download in the format picker — stash its id and delete it
-                // in onDownloadRequested. Cancelling the picker leaves it intact.
-                _showYtdlpDialog(url)
-                ytdlpDialog.overwriteExisting = true
-                _ytdlpOverwriteExistingId = existing.id
+                // scan would otherwise append _2; overwriting tells the backend
+                // to skip that rename and force yt-dlp to overwrite. The existing
+                // entry is removed only once the user starts the download, so
+                // cancelling the picker leaves it intact.
+                _showYtdlpDialog(url, existing.id)
             } else {
                 // Non-yt-dlp goes straight to the file-info dialog; remove now.
                 App.deleteDownload(existing.id, 0)
                 _showFileInfoDialog(url, "")
             }
         } else {
-            // AddNumbered: for yt-dlp URLs the filename is chosen by yt-dlp itself
-            // ── (from video metadata), so generating a numbered name here has no effect ──
-            // just open the format picker as a fresh download.
-            // For regular URLs, generate a unique filename as usual.
+            // AddNumbered: yt-dlp names the file from video metadata and the
+            // backend always picks a free name (_2, _3, …), so a yt-dlp URL
+            // just opens the picker as a fresh download. Regular URLs get a
+            // numbered filename here.
             if (App.isLikelyYtdlpUrl(url)) {
                 _showYtdlpDialog(url)
-                ytdlpDialog.uniqueFilename = true
             } else {
                 var base = url.split("/").pop().split("?")[0] || "download"
                 var numbered = App.generateNumberedFilename(base)
@@ -1646,21 +1643,20 @@ ApplicationWindow {
         }
     }
 
-    // ── yt-dlp format picker dialog ──────────────────────────────────────
-    // Shown when a yt-dlp-compatible URL is submitted via Add URL or clipboard.
-    // The URL is probed with "yt-dlp --dump-json" so the user can choose quality
-    // before the actual download starts.
+    // ── yt-dlp dialogs ───────────────────────────────────────────────────
+    // Shown when a yt-dlp-compatible URL is submitted (Add URL, clipboard,
+    // browser). See _showYtdlpDialog for which one opens.
     YtdlpDialog {
         id: ytdlpDialog
         transientParent: root
 
-        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions, overwriteExisting) => {
+        onDownloadRequested: (url, formatId, containerFormat, savePath, category, videoTitle, extraOptions, overwriteExisting) => {
             // Now that the user has committed, remove the entry being overwritten.
             if (overwriteExisting && root._ytdlpOverwriteExistingId.length > 0) {
                 App.deleteDownload(root._ytdlpOverwriteExistingId, 0)
                 root._ytdlpOverwriteExistingId = ""
             }
-            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions, overwriteExisting)
+            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, videoTitle, extraOptions, overwriteExisting)
         }
         onClosing: root._ytdlpOverwriteExistingId = ""  // cancelled — keep existing entry
         onOpenSettingsRequested: (page) => showSettingsPage(page)
@@ -1668,716 +1664,17 @@ ApplicationWindow {
         // gif/image posts) — hand it to the regular HTTP download flow. The
         // backend already stashed the post URL as the pending referrer.
         onDirectDownloadRequested: (directUrl) => _showFileInfoDialog(directUrl, "")
+        onPlaylistRequested: (playlistUrl) => _showYtdlpDialog(playlistUrl)
     }
 
-    Window {
-        id: ytdlpBatchWindow
+    YtdlpChannelDialog {
+        id: ytdlpChannelDialog
         transientParent: root
-        width: 760
-        height: 500
-        minimumWidth: 520
-        minimumHeight: 360
-        maximumHeight: 500
-        title: qsTr("Channel Download Progress")
-        color: ColorPalette.cardBg
-        modality: Qt.NonModal
-        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
-        visible: false
 
-        onVisibleChanged: {
-            if (visible) {
-                x = root.x + Math.round((root.width  - width)  / 2)
-                y = root.y + Math.round((root.height - height) / 2)
-            }
+        onVideosRequested: (videos, savePath, category, formatId, containerFormat, extraOptions, queueName) => {
+            App.addYtdlpVideos(videos, savePath, category, formatId, containerFormat, extraOptions, queueName)
         }
-
-        // Auto-open only once when a NEW batch starts — keyed on the active batch
-        // id. ytdlpBatchChanged fires on every progress tick (and every video
-        // finish), so re-showing unconditionally yanked the window back to the
-        // foreground constantly. The user can close it; it must stay closed until
-        // a different batch begins.
-        property string _autoShownBatchId: ""
-        Connections {
-            target: App
-            function onYtdlpBatchChanged() {
-                if (App.ytdlpBatchActive
-                        && App.ytdlpBatchId !== ytdlpBatchWindow._autoShownBatchId) {
-                    ytdlpBatchWindow._autoShownBatchId = App.ytdlpBatchId
-                    ytdlpBatchWindow.show()
-                    ytdlpBatchWindow.raise()
-                    ytdlpBatchWindow.requestActivate()
-                }
-            }
-        }
-
-        // ── Column definitions ───────────────────────────────────────────
-        readonly property var _defaultCols: [
-            { title: "#",           key: "index",    widthPx: 40,  visible: true },
-            { title: qsTr("File Name"), key: "filename", widthPx: 320, visible: true },
-            { title: qsTr("Size"),      key: "size",     widthPx: 80,  visible: true },
-            { title: qsTr("Status"),    key: "status",   widthPx: 110, visible: true },
-            { title: qsTr("Time left"), key: "timeleft", widthPx: 90,  visible: true }
-        ]
-        property var columnDefs: {
-            var defs = []
-            for (var i = 0; i < _defaultCols.length; i++)
-                defs.push(Object.assign({}, _defaultCols[i]))
-            return defs
-        }
-
-        function makeVisibleCols() {
-            var r = []
-            for (var i = 0; i < columnDefs.length; i++)
-                if (columnDefs[i].visible) r.push(columnDefs[i])
-            return r
-        }
-        property var visibleCols: makeVisibleCols()
-        onColumnDefsChanged: {
-            visibleCols = makeVisibleCols()
-            visibleContentWidth = totalVisibleWidth()
-        }
-
-        function colWidth(key) {
-            if (_resizingColumnKey === key) return _resizingColumnWidth
-            for (var i = 0; i < columnDefs.length; i++) {
-                if (columnDefs[i].key === key)
-                    return columnDefs[i].widthPx || 100
-            }
-            return 0
-        }
-
-        function _colVisible(key) {
-            for (var i = 0; i < columnDefs.length; i++)
-                if (columnDefs[i].key === key) return columnDefs[i].visible
-            return false
-        }
-
-        function totalVisibleWidth() {
-            var total = 0
-            for (var i = 0; i < visibleCols.length; i++)
-                total += colWidth(visibleCols[i].key)
-            return total
-        }
-
-        function minColWidth(key) {
-            if (key === "index") return 30
-            return 24
-        }
-
-        function formatBytesShort(bytes) {
-            // Guard against absurd/garbled values from yt-dlp (NaN, Infinity, huge):
-            // never let the UI render "388548235 MB".
-            if (!isFinite(bytes) || bytes <= 0 || bytes > 1e15) return ""
-            if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(2) + " GB"
-            if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + " MB"
-            if (bytes >= 1024) return (bytes / 1024).toFixed(1) + " KB"
-            return bytes + " B"
-        }
-
-        function formatTimeLeft(etaStr) {
-            if (!etaStr || etaStr === "") return ""
-            // yt-dlp ETA: "HH:MM:SS" or "MM:SS"
-            var parts = etaStr.split(":")
-            var seconds = 0
-            if (parts.length === 3)
-                seconds = parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[2])
-            else if (parts.length === 2)
-                seconds = parseInt(parts[0]) * 60 + parseInt(parts[1])
-            else
-                seconds = parseInt(parts[0]) || 0
-            if (seconds <= 0) return ""
-            if (seconds < 60) return seconds + " sec"
-            var units = [
-                [31557600, "year", "years"],
-                [2629800, "month", "months"],
-                [86400, "day", "days"],
-                [3600, "hour", "hours"],
-                [60, "min", "min"]
-            ]
-            var partsOut = []
-            var rem = seconds
-            for (var i = 0; i < units.length; i++) {
-                if (rem < units[i][0]) continue
-                var count = Math.floor(rem / units[i][0])
-                rem %= units[i][0]
-                partsOut.push(count + " " + (count === 1 ? units[i][1] : units[i][2]))
-                if (partsOut.length === 2) break
-            }
-            if (partsOut.length === 0)
-                return Math.ceil(seconds / 60) + " min"
-            return partsOut.join(" ")
-        }
-
-        property real visibleContentWidth: totalVisibleWidth()
-        onVisibleColsChanged: visibleContentWidth = totalVisibleWidth()
-
-        property string _resizingColumnKey: ""
-        property real _resizingColumnWidth: 0
-
-        property var _colXMap: {
-            visibleContentWidth
-            return _buildColXMap()
-        }
-        function _buildColXMap() {
-            var map = {}
-            var x = 0
-            for (var i = 0; i < visibleCols.length; i++) {
-                var col = visibleCols[i]
-                map[col.key] = x
-                x += colWidth(col.key)
-            }
-            return map
-        }
-
-        property string _colDragFromKey:          ""
-        property string _colDragInsertBeforeKey:  ""
-        property bool   _colDragging:             false
-
-        function _applyColReorder() {
-            if (!_colDragFromKey) return
-            var defs = columnDefs.slice()
-            var fromIdx = -1
-            for (var i = 0; i < defs.length; i++) { if (defs[i].key === _colDragFromKey) { fromIdx = i; break } }
-            if (fromIdx < 0) return
-            var toIdx
-            if (_colDragInsertBeforeKey === "__end__") {
-                toIdx = defs.length
-            } else {
-                toIdx = -1
-                for (var j = 0; j < defs.length; j++) { if (defs[j].key === _colDragInsertBeforeKey) { toIdx = j; break } }
-            }
-            if (toIdx < 0 || toIdx === fromIdx) return
-            var moved = defs.splice(fromIdx, 1)[0]
-            if (toIdx > fromIdx) toIdx--
-            defs.splice(toIdx, 0, moved)
-            columnDefs = defs
-        }
-
-        // ── Aggregate stats ──────────────────────────────────────────────
-        property int _statsTotal: {
-            return App.ytdlpBatchItems.length
-        }
-        property int _statsDone: {
-            var c = 0
-            for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
-                if ((App.ytdlpBatchItems[i].status || "") === "Completed") c++
-            return c
-        }
-        property int _statsActive: {
-            var c = 0
-            for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
-                if ((App.ytdlpBatchItems[i].status || "") === "Downloading") c++
-            return c
-        }
-        property int _statsQueued: Math.max(0, _statsTotal - _statsDone - _statsActive)
-        // Single source of truth, computed in C++ (recomputeChannelAggregate) so the
-        // header bar and the main-table parent row always agree.
-        property int _statsAvgProgress: {
-            App.ytdlpBatchChanged   // re-evaluate on every batch tick
-            return Math.round(Math.max(0, Math.min(100, App.ytdlpBatchProgress)))
-        }
-        // Combined download speed of the currently-active video(s). yt-dlp runs a
-        // single worker, but video+audio phases and quick item hand-off mean more
-        // than one row can read "Downloading" for a tick — sum to be safe.
-        property real _statsSpeed: {
-            App.ytdlpBatchChanged   // re-evaluate on every batch tick
-            var bps = 0
-            for (var i = 0; i < App.ytdlpBatchItems.length; ++i) {
-                var it = App.ytdlpBatchItems[i]
-                if ((it.status || "") === "Downloading")
-                    bps += (it.speedBps || 0)
-            }
-            return bps
-        }
-
-        function _fmtSpeed(bps) {
-            // Guard absurd/garbled speeds (NaN, Infinity, > ~50 GB/s) so the header
-            // can never read "388548235 MB/s".
-            if (!isFinite(bps) || bps <= 0 || bps > 5e10) return "0 B/s"
-            if (bps >= 1000000000) return (bps / 1000000000).toFixed(2) + " GB/s"
-            if (bps >= 1000000)    return (bps / 1000000).toFixed(2) + " MB/s"
-            if (bps >= 1000)       return (bps / 1000).toFixed(1) + " KB/s"
-            return Math.round(bps) + " B/s"
-        }
-
-        ColumnLayout {
-            anchors.fill: parent
-            spacing: 0
-
-            // ── Themed progress header (mirrors the HTTP progress dialog) ──
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: headerCol.implicitHeight + 8
-                color: ColorPalette.headerStripBg
-                border.width: 0
-                radius: 0
-
-                ColumnLayout {
-                    id: headerCol
-                    anchors { left: parent.left; right: parent.right
-                              verticalCenter: parent.verticalCenter
-                              leftMargin: 14; rightMargin: 14 }
-                    spacing: 4
-
-                    Text {
-                        Layout.fillWidth: true
-                        text: App.ytdlpBatchLabel.length > 0 ? App.ytdlpBatchLabel : qsTr("Channel/Playlist")
-                        color: ColorPalette.textHeader
-                        font.pixelSize: 13 * App.fontScale
-                        font.bold: true
-                        elide: Text.ElideMiddle
-                    }
-
-                    RowLayout {
-                        Layout.fillWidth: true
-                        spacing: 8
-
-                        Text {
-                            text: ytdlpBatchWindow._statsAvgProgress + "%"
-                            color: ColorPalette.textHeader
-                            font.pixelSize: 12 * App.fontScale
-                            font.bold: true
-                        }
-
-                        Rectangle {
-                            Layout.fillWidth: true
-                            height: 5; radius: 2
-                            color: ColorPalette.windowBg
-                            border.color: ColorPalette.dividerBg
-                            clip: true
-                            Rectangle {
-                                width: Math.max(0, parent.width * ytdlpBatchWindow._statsAvgProgress / 100)
-                                height: parent.height; radius: parent.radius
-                                color: ColorPalette.accent
-                                Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
-                            }
-                        }
-
-                        Text {
-                            visible: ytdlpBatchWindow._statsSpeed > 0
-                            text: "↓ " + ytdlpBatchWindow._fmtSpeed(ytdlpBatchWindow._statsSpeed)
-                            color: ColorPalette.textHeader
-                            font.pixelSize: 11 * App.fontScale
-                        }
-                    }
-
-                    Text {
-                        Layout.fillWidth: true
-                        text: qsTr("Total: %1").arg(ytdlpBatchWindow._statsTotal)
-                              + "   " + qsTr("Completed: %1").arg(ytdlpBatchWindow._statsDone)
-                              + "   " + qsTr("Downloading: %1").arg(ytdlpBatchWindow._statsActive)
-                              + "   " + qsTr("Queued: %1").arg(ytdlpBatchWindow._statsQueued)
-                        color: ColorPalette.textSecond
-                        font.pixelSize: 11 * App.fontScale
-                        elide: Text.ElideRight
-                    }
-                }
-            }
-
-            // ── Table ────────────────────────────────────────────────────
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-                Layout.topMargin: 8
-                color: ColorPalette.inputBg
-                border.color: ColorPalette.border
-                radius: 4
-                clip: true
-
-                // ── Header ───────────────────────────────────────────────
-                Rectangle {
-                    id: batchHeader
-                    anchors { top: parent.top; left: parent.left; right: parent.right }
-                    height: 26
-                    color: ColorPalette.dividerBg
-                    clip: true
-
-                    Row {
-                        x: -batchListView.contentX
-                        width: ytdlpBatchWindow.visibleContentWidth
-                        height: parent.height
-
-                        Repeater {
-                            id: hdrRepeater
-                            model: ytdlpBatchWindow.visibleCols
-                            delegate: Rectangle {
-                                id: hdrCell
-                                width: ytdlpBatchWindow.colWidth(modelData.key)
-                                height: parent.height
-                                color: (hdrMouse.containsMouse && !ytdlpBatchWindow._colDragging) ? ColorPalette.border : "transparent"
-                                opacity: (ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragFromKey === modelData.key) ? 0.5 : 1.0
-
-                                // Drop insert-line LEFT of this column
-                                Rectangle {
-                                    visible: ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragInsertBeforeKey === modelData.key
-                                    width: 2; height: parent.height
-                                    anchors.left: parent.left
-                                    color: ColorPalette.accent
-                                    z: 20
-                                }
-
-                                // Insert-line at END of header
-                                Rectangle {
-                                    visible: ytdlpBatchWindow._colDragging
-                                          && ytdlpBatchWindow._colDragInsertBeforeKey === "__end__"
-                                          && index === hdrRepeater.count - 1
-                                    width: 2; height: parent.height
-                                    anchors.right: parent.right
-                                    color: ColorPalette.accent
-                                    z: 20
-                                }
-
-                                Text {
-                                    anchors {
-                                        verticalCenter: parent.verticalCenter
-                                        left: parent.left
-                                        leftMargin: modelData.key === "index" ? 0 : 6
-                                        right: parent.right
-                                        rightMargin: 12
-                                    }
-                                    text: modelData.title
-                                    color: ColorPalette.textSecond
-                                    font.pixelSize: 12 * App.fontScale
-                                    font.bold: true
-                                    horizontalAlignment: modelData.key === "index" ? Text.AlignHCenter : Text.AlignLeft
-                                    elide: Text.ElideRight
-                                }
-
-                                // Column reorder drag
-                                MouseArea {
-                                    id: hdrMouse
-                                    anchors { fill: parent; rightMargin: 10 }
-                                    hoverEnabled: true
-                                    preventStealing: true
-                                    cursorShape: ytdlpBatchWindow._colDragging ? Qt.ClosedHandCursor : Qt.ArrowCursor
-
-                                    property real _pressX:  0
-                                    property bool _didDrag: false
-
-                                    onPressed:  { _pressX = mouseX; _didDrag = false }
-
-                                    onPositionChanged: {
-                                        if (!(pressedButtons & Qt.LeftButton)) return
-                                        if (!ytdlpBatchWindow._colDragging && Math.abs(mouseX - _pressX) > 8) {
-                                            ytdlpBatchWindow._colDragFromKey = modelData.key
-                                            ytdlpBatchWindow._colDragging = true
-                                            _didDrag = true
-                                        }
-                                        if (ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragFromKey === modelData.key) {
-                                            var cursorX = hdrMouse.mapToItem(batchHeaderRow, mouseX, 0).x
-                                            var insertBefore = "__end__"
-                                            var xAcc = 0
-                                            for (var k = 0; k < ytdlpBatchWindow.visibleCols.length; k++) {
-                                                var colW = ytdlpBatchWindow.colWidth(ytdlpBatchWindow.visibleCols[k].key)
-                                                if (cursorX < xAcc + colW / 2) {
-                                                    insertBefore = ytdlpBatchWindow.visibleCols[k].key
-                                                    break
-                                                }
-                                                xAcc += colW
-                                            }
-                                            ytdlpBatchWindow._colDragInsertBeforeKey = insertBefore
-                                        }
-                                    }
-
-                                    onReleased: {
-                                        var didDrag = _didDrag
-                                        var win = ytdlpBatchWindow
-                                        Qt.callLater(function() {
-                                            if (didDrag) win._applyColReorder()
-                                            win._colDragging = false
-                                            win._colDragFromKey = ""
-                                            win._colDragInsertBeforeKey = ""
-                                        })
-                                        _didDrag = false
-                                        _pressX = 0
-                                    }
-                                }
-
-                                // Column separator
-                                Rectangle {
-                                    anchors.right: parent.right
-                                    width: 1; height: parent.height
-                                    color: ColorPalette.border
-                                }
-
-                                // Column resize handle
-                                Item {
-                                    id: batchResizeHandle
-                                    width: 10
-                                    height: parent.height
-                                    anchors.right: parent.right
-                                    z: 10
-
-                                    property real _startWidthPx: 0
-
-                                    Rectangle {
-                                        anchors.right: parent.right
-                                        width: 2
-                                        height: parent.height
-                                        color: (batchResizeDrag.active || batchResizeHover.hovered) ? "#6aa0ff" : "transparent"
-                                        opacity: batchResizeDrag.active ? 1.0 : 0.75
-                                    }
-
-                                    HoverHandler {
-                                        id: batchResizeHover
-                                        cursorShape: Qt.SizeHorCursor
-                                    }
-
-                                    DragHandler {
-                                        id: batchResizeDrag
-                                        target: null
-                                        xAxis.enabled: true
-                                        yAxis.enabled: false
-                                        cursorShape: Qt.SizeHorCursor
-
-                                        onActiveChanged: {
-                                            if (active) {
-                                                batchResizeHandle._startWidthPx = modelData.widthPx || 100
-                                                ytdlpBatchWindow._resizingColumnKey = modelData.key
-                                                ytdlpBatchWindow._resizingColumnWidth = batchResizeHandle._startWidthPx
-                                                return
-                                            }
-                                            if (ytdlpBatchWindow._resizingColumnKey === modelData.key) {
-                                                var defs = ytdlpBatchWindow.columnDefs.slice()
-                                                for (var j = 0; j < defs.length; j++) {
-                                                    if (defs[j].key === modelData.key) {
-                                                        defs[j] = Object.assign({}, defs[j], { widthPx: ytdlpBatchWindow._resizingColumnWidth })
-                                                        break
-                                                    }
-                                                }
-                                                ytdlpBatchWindow._resizingColumnKey = ""
-                                                ytdlpBatchWindow._resizingColumnWidth = 0
-                                                ytdlpBatchWindow.columnDefs = defs
-                                            }
-                                        }
-
-                                        onTranslationChanged: {
-                                            if (!active) return
-                                            ytdlpBatchWindow._resizingColumnWidth = Math.max(ytdlpBatchWindow.minColWidth(modelData.key),
-                                                Math.round(batchResizeHandle._startWidthPx + translation.x))
-                                            ytdlpBatchWindow.visibleContentWidth = ytdlpBatchWindow.totalVisibleWidth()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Bottom border
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
-                }
-
-                Item {
-                    id: batchHeaderRow
-                    visible: false
-                }
-
-                // ── Rows ─────────────────────────────────────────────────
-                ListView {
-                    id: batchListView
-                    anchors { top: batchHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-                    model: App.ytdlpBatchItems
-                    clip: true
-                    contentWidth: ytdlpBatchWindow.visibleContentWidth
-                    cacheBuffer: 300
-                    reuseItems: true
-
-                    ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
-                    ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
-
-                    WheelHandler {
-                        orientation: Qt.Vertical
-                        acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
-                        onWheel: function(e) {
-                            batchListView.contentY = Math.max(0,
-                                Math.min(batchListView.contentY - e.angleDelta.y / 2,
-                                         Math.max(0, batchListView.contentHeight - batchListView.height)))
-                            e.accepted = true
-                        }
-                    }
-
-                    WheelHandler {
-                        orientation: Qt.Horizontal
-                        acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
-                        onWheel: function(e) {
-                            batchListView.contentX = Math.max(0,
-                                Math.min(batchListView.contentX - e.angleDelta.x / 2,
-                                         Math.max(0, batchListView.contentWidth - batchListView.width)))
-                            e.accepted = true
-                        }
-                    }
-
-                    delegate: Rectangle {
-                        id: batchRow
-                        required property int index
-                        required property var modelData
-                        // Stretch the stripe across the full viewport even when the
-                        // columns are narrower than the list, so alternating row
-                        // colors reach the right edge.
-                        width: Math.max(batchListView.contentWidth, batchListView.width)
-                        height: 28
-                        color: batchRowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
-                        clip: true
-
-                        readonly property int batchRowIndex: index
-                        readonly property var itemData: modelData
-
-                        Row {
-                            // ── # column ─────────────────────────────────
-                            Item {
-                                visible: ytdlpBatchWindow._colVisible("index")
-                                x: ytdlpBatchWindow._colXMap["index"] || 0
-                                width: ytdlpBatchWindow.colWidth("index")
-                                height: batchRow.height - 1
-                                clip: true
-                                Text {
-                                    anchors { fill: parent; leftMargin: 0 }
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: batchRow.itemData.index || (batchRow.batchRowIndex + 1)
-                                    color: ColorPalette.textMuted
-                                    font.pixelSize: 11 * App.fontScale
-                                }
-                            }
-
-                            // ── Filename column ──────────────────────────
-                            Item {
-                                visible: ytdlpBatchWindow._colVisible("filename")
-                                x: ytdlpBatchWindow._colXMap["filename"] || 0
-                                width: ytdlpBatchWindow.colWidth("filename")
-                                height: batchRow.height - 1
-                                clip: true
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        var t = batchRow.itemData.title
-                                        if (t === undefined || t === null || t === "") return qsTr("Pending…")
-                                        return t
-                                    }
-                                    color: ColorPalette.textPrimary
-                                    font.pixelSize: 12 * App.fontScale
-                                    elide: Text.ElideMiddle
-                                }
-                            }
-
-                            // ── Size column ──────────────────────────────
-                            Item {
-                                visible: ytdlpBatchWindow._colVisible("size")
-                                x: ytdlpBatchWindow._colXMap["size"] || 0
-                                width: ytdlpBatchWindow.colWidth("size")
-                                height: batchRow.height - 1
-                                clip: true
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        var tb = batchRow.itemData.totalBytes
-                                        if (!tb || tb <= 0) return ""
-                                        return ytdlpBatchWindow.formatBytesShort(tb)
-                                    }
-                                    color: ColorPalette.textSecond
-                                    font.pixelSize: 12 * App.fontScale
-                                }
-                            }
-
-                            // ── Status column ────────────────────────────
-                            Item {
-                                visible: ytdlpBatchWindow._colVisible("status")
-                                x: ytdlpBatchWindow._colXMap["status"] || 0
-                                width: ytdlpBatchWindow.colWidth("status")
-                                height: batchRow.height - 1
-                                clip: true
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        var st = batchRow.itemData.status || "Queued"
-                                        var pct = batchRow.itemData.progress || 0
-                                        if (st === "Completed")
-                                            return qsTr("Completed")
-                                        if (st === "Downloading")
-                                            // Cap at 99: a running item must never read 100%.
-                                            return qsTr("Downloading %1%").arg(Math.min(99, Math.round(pct)))
-                                        return st
-                                    }
-                                    color: ColorPalette.textSecond
-                                    font.pixelSize: 12 * App.fontScale
-                                }
-                            }
-
-                            // ── Time left column ─────────────────────────
-                            Item {
-                                visible: ytdlpBatchWindow._colVisible("timeleft")
-                                x: ytdlpBatchWindow._colXMap["timeleft"] || 0
-                                width: ytdlpBatchWindow.colWidth("timeleft")
-                                height: batchRow.height - 1
-                                clip: true
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        var st = batchRow.itemData.status || ""
-                                        if (st !== "Downloading") return ""
-                                        var eta = batchRow.itemData.timeLeft || ""
-                                        if (eta === "") return ""
-                                        return ytdlpBatchWindow.formatTimeLeft(eta)
-                                    }
-                                    color: ColorPalette.textSecond
-                                    font.pixelSize: 12 * App.fontScale
-                                }
-                            }
-                        }
-
-                        // Progress bar
-                        Rectangle {
-                            anchors { bottom: parent.bottom; bottomMargin: 1 }
-                            width: {
-                                var pct = Math.max(0, Math.min(100, batchRow.itemData.progress || 0))
-                                return pct / 100 * Math.max(0, Math.min(batchListView.width, batchRow.width - batchListView.contentX))
-                            }
-                            height: 2
-                            color: ColorPalette.accent
-                            visible: (batchRow.itemData.status || "") === "Downloading"
-                        }
-
-                        // Row separator
-                        Rectangle {
-                            anchors.bottom: parent.bottom
-                            width: parent.width
-                            height: 1
-                            color: ColorPalette.dividerBg
-                        }
-                    }
-                }
-            }
-
-            // ── Buttons ──────────────────────────────────────────────────
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.leftMargin: 8
-                Layout.rightMargin: 8
-                Layout.topMargin: 6
-                Layout.bottomMargin: 8
-                Item { Layout.fillWidth: true }
-                DlgButton {
-                    text: qsTr("Stop")
-                    enabled: App.ytdlpBatchActive
-                    onClicked: App.stopActiveYtdlpBatch()
-                }
-                DlgButton {
-                    text: qsTr("Resume")
-                    enabled: !App.ytdlpBatchActive && App.ytdlpBatchCanResume
-                    onClicked: App.resumeLastYtdlpBatch()
-                }
-                DlgButton {
-                    text: qsTr("Close")
-                    onClicked: ytdlpBatchWindow.hide()
-                }
-            }
-        }
+        onOpenSettingsRequested: (page) => showSettingsPage(page)
     }
 
     TorrentCreatorDialog {
@@ -3186,17 +2483,9 @@ ApplicationWindow {
         transientParent: root
         onOpenPropertiesRequested: (item) => {
             if (!item) return
-            if (item.isChannelContainer) {
-                App.showYtdlpBatchForItem(item.id)
-                ytdlpBatchWindow.show()
-                ytdlpBatchWindow.raise()
-                ytdlpBatchWindow.requestActivate()
+            // A channel container (older versions) has no single file to show.
+            if (item.isChannelContainer)
                 return
-            }
-            if (item.isYtdlp) {
-                root.showDownloadProgressForItem(item)
-                return
-            }
             if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
                 root.showDownloadProgressForItem(item)
                 return
@@ -4588,31 +3877,12 @@ ApplicationWindow {
                 onOpenProgressRequested: (item) => {
                     root.showDownloadProgressForItem(item)
                 }
-                onOpenChannelProgressRequested: (item) => {
-                    if (!item) return
-                    App.showYtdlpBatchForItem(item.id)
-                    ytdlpBatchWindow.show()
-                    ytdlpBatchWindow.raise()
-                    ytdlpBatchWindow.requestActivate()
-                }
                 onOpenPropertiesRequested: (item) => {
                     if (!item)
                         return
-                    // yt-dlp channel container: properties = the channel batch progress
-                    // dialog, not the HTTP file-properties dialog (no single file).
-                    if (item.isChannelContainer) {
-                        App.showYtdlpBatchForItem(item.id)
-                        ytdlpBatchWindow.show()
-                        ytdlpBatchWindow.raise()
-                        ytdlpBatchWindow.requestActivate()
+                    // A channel container (older versions) has no single file to show.
+                    if (item.isChannelContainer)
                         return
-                    }
-                    // yt-dlp items (children + singles) use the download progress dialog
-                    // regardless of state — the file-properties dialog is HTTP/torrent only.
-                    if (item.isYtdlp) {
-                        root.showDownloadProgressForItem(item)
-                        return
-                    }
                     if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
                         root.showDownloadProgressForItem(item)
                         return

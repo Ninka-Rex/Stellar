@@ -137,12 +137,6 @@ class AppController : public QObject {
     Q_PROPERTY(RssManager *rssManager READ rssManager CONSTANT)
     // True when a custom proxy (HTTP or SOCKS5) is currently active
     Q_PROPERTY(bool proxyActive READ proxyActive NOTIFY proxyActiveChanged)
-    Q_PROPERTY(bool ytdlpBatchActive READ ytdlpBatchActive NOTIFY ytdlpBatchChanged)
-    Q_PROPERTY(QString ytdlpBatchId READ ytdlpBatchId NOTIFY ytdlpBatchChanged)
-    Q_PROPERTY(bool ytdlpBatchCanResume READ ytdlpBatchCanResume NOTIFY ytdlpBatchChanged)
-    Q_PROPERTY(QString ytdlpBatchLabel READ ytdlpBatchLabel NOTIFY ytdlpBatchChanged)
-    Q_PROPERTY(QVariantList ytdlpBatchItems READ ytdlpBatchItems NOTIFY ytdlpBatchChanged)
-    Q_PROPERTY(double ytdlpBatchProgress READ ytdlpBatchProgress NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QVariantList torrentBannedPeers READ torrentBannedPeers NOTIFY torrentBannedPeersChanged)
     Q_PROPERTY(QString publicIp READ publicIp NOTIFY publicIpChanged)
     Q_PROPERTY(int publicIpListenPort READ publicIpListenPort NOTIFY publicIpChanged)
@@ -219,12 +213,6 @@ public:
     TorrentSearchManager *torrentSearchManager() const { return m_torrentSearchManager; }
     RssManager *rssManager() const { return m_rssManager; }
     bool proxyActive() const { return m_proxyActive; }
-    bool ytdlpBatchActive() const { return !m_activeYtdlpBatchId.isEmpty(); }
-    QString ytdlpBatchId() const { return m_activeYtdlpBatchId; }
-    bool ytdlpBatchCanResume() const { return !m_lastYtdlpBatchId.isEmpty(); }
-    QString ytdlpBatchLabel() const { return m_activeYtdlpBatchLabel; }
-    QVariantList ytdlpBatchItems() const { return m_activeYtdlpBatchItems; }
-    double ytdlpBatchProgress() const { return m_ytdlpBatchProgress; }
     QVariantList torrentBannedPeers() const;
     QString publicIp() const { return m_torrentSession ? m_torrentSession->detectedExternalAddress() : QString(); }
     int publicIpListenPort() const { return m_torrentSession ? m_torrentSession->listenPort() : 0; }
@@ -269,8 +257,37 @@ public:
     // Returns a probe ID so callers can match response signals to requests.
     Q_INVOKABLE QString beginYtdlpInfo(const QString &url, const QString &cookiesBrowser = {});
 
-    // Cancel a running --dump-json probe (identified by probeId from beginYtdlpInfo).
+    // Cancel a running probe or listing (identified by the id beginYtdlpInfo /
+    // beginYtdlpListing returned).
     Q_INVOKABLE void cancelYtdlpInfo(const QString &probeId);
+
+    // "single", "channel" or "playlist": which yt-dlp flow a URL belongs to.
+    Q_INVOKABLE QString ytdlpUrlKind(const QString &url) const;
+    // YouTube channels list per tab (videos / shorts / streams).
+    Q_INVOKABLE bool ytdlpHasChannelTabs(const QString &url) const;
+    Q_INVOKABLE QString ytdlpChannelTabUrl(const QString &url, const QString &tab) const;
+    // The playlist a video link carries (watch?v=X&list=Y), or empty.
+    Q_INVOKABLE QString ytdlpPlaylistUrlFor(const QString &url) const;
+    // A site-supplied name made safe as one folder name.
+    Q_INVOKABLE QString safeFolderName(const QString &name) const;
+    // Quality choices for videos that were listed but not probed:
+    // [{ id (format selector), label, audioOnly }].
+    Q_INVOKABLE QVariantList ytdlpQualityPresets() const;
+
+    // List a channel's or playlist's videos without downloading them (flat
+    // extraction). limit > 0 lists only the first `limit` entries. Emits
+    // ytdlpListingProgress while paging, then ytdlpListingReady or ytdlpInfoFailed.
+    Q_INVOKABLE QString beginYtdlpListing(const QString &url, int limit,
+                                          const QString &cookiesBrowser = {});
+
+    // Add the chosen videos of a channel/playlist as individual downloads in a
+    // queue named `queueName` (created on first use), each queued under the
+    // normal concurrency limits. videos = [{ url, title }]. Returns how many
+    // were added.
+    Q_INVOKABLE int addYtdlpVideos(const QVariantList &videos, const QString &saveDir,
+                                   const QString &category, const QString &formatId,
+                                   const QString &containerFormat, const QVariantMap &extraOptions,
+                                   const QString &queueName);
 
     // One-stop create + start for yt-dlp downloads.
     // Creates a new DownloadItem from `url`, configures it with the chosen format
@@ -282,10 +299,7 @@ public:
                                            const QString &category,
                                            const QString &formatId,
                                            const QString &containerFormat,
-                                           bool uniqueFilename = false,
                                            const QString &videoTitle = {},
-                                           bool playlistMode = false,
-                                           int  maxItems = 0,
                                            const QVariantMap &extraOptions = {},
                                            bool overwriteExisting = false);
 
@@ -296,12 +310,6 @@ public:
 
     // Download the yt-dlp binary (delegates to YtdlpManager).
     Q_INVOKABLE void downloadYtdlpBinary();
-    Q_INVOKABLE void stopActiveYtdlpBatch();
-    Q_INVOKABLE void resumeLastYtdlpBatch();
-    // Re-bind the channel/batch progress dialog to a specific yt-dlp playlist
-    // download (e.g. user double-clicked the row). Repopulates the item list from
-    // the live/last batch when it matches, so the dialog reopens with content.
-    Q_INVOKABLE void showYtdlpBatchForItem(const QString &id);
     Q_INVOKABLE bool retryYtdlpWithBrowserCookies(const QString &downloadId, const QString &browser);
     Q_INVOKABLE bool isTorrentUri(const QString &value) const;
     Q_INVOKABLE QObject *downloadById(const QString &id) const;
@@ -471,7 +479,8 @@ public:
     Q_INVOKABLE bool     isMagnetAssociationDefault() const;
     Q_INVOKABLE QString  setTorrentFileAssociationDefault() const;
     Q_INVOKABLE QString  setMagnetAssociationDefault() const;
-    Q_INVOKABLE void createQueue(const QString &name);
+    // Returns the new queue's id (empty for a blank name).
+    Q_INVOKABLE QString createQueue(const QString &name);
     Q_INVOKABLE void deleteQueue(const QString &queueId);
     Q_INVOKABLE void saveQueues();
     Q_INVOKABLE void startQueue(const QString &queueId);
@@ -583,7 +592,6 @@ signals:
     void proxyActiveChanged();
     // success=true means GitHub was reachable; message holds latency or error text
     void proxyTestResult(bool success, const QString &message);
-    void ytdlpBatchChanged();
     void torrentBindingStatusTextChanged();
     void torrentPortTestChanged();
     // Emitted when clipboard monitoring is on and a matching URL is detected.
@@ -607,6 +615,14 @@ signals:
     //     "acodec": string, "filesize": qint64 }
     void ytdlpInfoReady(const QString &probeId, const QString &url,
                         const QString &title, const QVariantList &formats);
+    // beginYtdlpListing results. entries = [{ url, title, duration (s),
+    // uploadDate ("YYYYMMDD" or ""), alreadyAdded }]. owner is the channel or
+    // uploader name (the playlist title when there is none). complete is false
+    // when the listing stopped at its limit and more entries may exist.
+    void ytdlpListingReady(const QString &probeId, const QString &url, const QString &title,
+                           const QString &owner, const QVariantList &entries, bool complete);
+    // Videos found so far while a listing streams in.
+    void ytdlpListingProgress(const QString &probeId, int found);
     // Emitted when a --dump-json probe fails or yt-dlp is not available.
     void ytdlpInfoFailed(const QString &probeId, const QString &url, const QString &reason);
     // Emitted instead of ytdlpInfoFailed when a failed probe turns out to point at
@@ -639,6 +655,31 @@ private:
     // Registers the process in m_ytdlpProbes under probeId.
     void startYtdlpProbe(const QString &probeId, const QString &url,
                          const QString &cookiesBrowser);
+    void startYtdlpListing(const QString &probeId, const QString &url, int limit,
+                           const QString &cookiesBrowser);
+    // Shared front half of every probe: allocates the id and either runs
+    // `start` now or parks it until the cold-start yt-dlp availability check
+    // finishes (failing the probe when yt-dlp is missing).
+    QString beginYtdlpProbe(const QString &url, const std::function<void(const QString &)> &start);
+    // Runs yt-dlp with `args` and hands its JSON output over; failures are
+    // reported through ytdlpInfoFailed. Without onJsonLine, stdout is one JSON
+    // document passed to onJson. With it, each stdout line is a JSON object
+    // passed to onJsonLine as it arrives, and onJson (with an empty object)
+    // marks successful completion.
+    void runYtdlpJsonProbe(const QString &probeId, const QString &url, const QStringList &args,
+                           bool allowDirectFileDivert,
+                           const std::function<void(const QJsonObject &)> &onJson,
+                           const std::function<void(const QJsonObject &)> &onJsonLine = {});
+    // Cookies, JS runtime and proxy arguments every yt-dlp probe needs.
+    QStringList ytdlpNetworkArgs(const QString &url, const QString &cookiesBrowser) const;
+    // Quality choices for the format picker from a probed media object.
+    static QVariantList ytdlpFormatChoices(const QJsonObject &media);
+    static QString ytdlpHeightSelector(int height);
+    // A configured, not yet enqueued yt-dlp DownloadItem.
+    DownloadItem *createYtdlpItem(const QString &url, const QString &saveDir,
+                                  const QString &category, const QString &formatId,
+                                  const QString &containerFormat, const QString &title,
+                                  const YtdlpOptions &options);
     // After a failed probe: if the URL turns out to resolve to a plain static file
     // yt-dlp cannot handle (reddit gif/image posts), emit ytdlpProbeDiverted so the
     // UI reroutes it to the regular HTTP engine. Returns true when a diversion was
@@ -873,9 +914,7 @@ private:
     QMap<QString, YtdlpTransfer *>   m_ytdlpWorkers;
     QString                           m_activeYtdlpBatchId;
     QString                           m_lastYtdlpBatchId;
-    QString                           m_activeYtdlpBatchLabel;
     QVariantList                      m_activeYtdlpBatchItems;
-    double                            m_ytdlpBatchProgress{0.0};
     QMap<QString, DownloadItem *>    m_pendingTorrentItems;
     QTimer                 *m_torrentSpeedHistoryTimer{nullptr};
     struct TorrentSpeedSample {

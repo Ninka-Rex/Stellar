@@ -297,7 +297,14 @@ qt_add_qml_module(Stellar
         app/qml/grabber/GrabberStatisticsDialog.qml
         app/qml/grabber/GrabberIncludeFiltersDialog.qml
         # ytdlp/
+        app/qml/ytdlp/YtdlpAdvancedPage.qml
+        app/qml/ytdlp/YtdlpChannelDialog.qml
         app/qml/ytdlp/YtdlpDialog.qml
+        app/qml/ytdlp/YtdlpDialogFrame.qml
+        app/qml/ytdlp/YtdlpErrorPanel.qml
+        app/qml/ytdlp/YtdlpExtrasPage.qml
+        app/qml/ytdlp/YtdlpOptions.qml
+        app/qml/ytdlp/YtdlpOutputFields.qml
         # rss/
         app/qml/rss/RssWindow.qml
         app/qml/rss/RssDownloadRulesDialog.qml

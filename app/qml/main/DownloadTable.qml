@@ -23,7 +23,6 @@ Rectangle {
     color: ColorPalette.windowBg
 
     signal openProgressRequested(var item)
-    signal openChannelProgressRequested(var item)
     signal openPropertiesRequested(var item)
     signal openColumnsSettingsRequested()
     signal exportTorrentsRequested(var downloadIds)

@@ -111,6 +111,7 @@ Window {
 
     property var item: null
     readonly property bool _isTorrent: item ? !!item.isTorrent : false
+    readonly property bool _isYtdlp: item ? !!item.isYtdlp : false
     readonly property var torrentFileModel:    _isTorrent ? App.torrentFileModel(item.id)    : null
     readonly property var torrentPeerModel:    _isTorrent ? App.torrentPeerModel(item.id)    : null
     readonly property var torrentTrackerModel: _isTorrent ? App.torrentTrackerModel(item.id) : null
@@ -1962,8 +1963,10 @@ Window {
                             onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Login"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        // yt-dlp signs in with browser cookies, never with these.
+                        Text { visible: !root._isYtdlp; text: qsTr("Login"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
+                            visible: !root._isYtdlp
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.username) : ""
                             color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
@@ -1972,8 +1975,9 @@ Window {
                             onTextChanged: if (root.item && text !== root.item.username) App.setDownloadUsername(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Password"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { visible: !root._isYtdlp; text: qsTr("Password"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
+                            visible: !root._isYtdlp
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.password) : ""
                             echoMode: TextInput.Password

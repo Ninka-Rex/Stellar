@@ -512,6 +512,18 @@
         <source>Torrent support is unavailable in this build.</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Best quality</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Up to %1p</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Audio only</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>BatchDownloadDialog</name>
@@ -9768,6 +9780,46 @@ and audio streams merged by ffmpeg after download.</source>
         <source>Video Download</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="48"/>
+        <source>Reading video information…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="137"/>
+        <source>%1 fps</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="181"/>
+        <source>Could not read this video</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="194"/>
+        <source>Subtitles &amp; extras</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="205"/>
+        <source>Quality</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="276"/>
+        <source>Playlist</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="278"/>
+        <source>This video is part of a playlist.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialog.qml" line="280"/>
+        <source>Choose videos from the playlist instead…</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>DownloadLimitsExceededDialog</name>
@@ -10129,6 +10181,447 @@ Drag downloads here or use “Move to Queue” in the download list.</source>
     <message>
         <location filename="../app/qml/components/SettingsPathField.qml" line="46"/>
         <source>Browse…</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>YtdlpAdvancedPage</name>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="30"/>
+        <source>Access</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="33"/>
+        <source>Cookies from browser</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="34"/>
+        <source>Signs in as you for members-only, age-restricted or private videos.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="44"/>
+        <source>Speed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="47"/>
+        <source>Speed limit</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="48"/>
+        <source>0 uses the global speed limit.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="51"/>
+        <source>KB/s</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="57"/>
+        <source>Parallel fragments</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="58"/>
+        <source>For streams delivered in fragments (DASH/HLS).</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="68"/>
+        <source>Live streams</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="71"/>
+        <source>Record from the start</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="72"/>
+        <source>Downloads a stream that is already live from its beginning (YouTube, Twitch).</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="77"/>
+        <source>Wait for scheduled streams to start</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="83"/>
+        <source>Check every</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="86"/>
+        <source>seconds</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="95"/>
+        <source>Part of the video</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="98"/>
+        <source>Time range</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="99"/>
+        <source>e.g. *01:30-03:00, or a chapter name. Leave blank for the whole video.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="109"/>
+        <source>Archive</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="112"/>
+        <source>Skip videos already in the download archive</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpAdvancedPage.qml" line="113"/>
+        <source>Keeps yt-dlp-archive.txt in the save folder and skips any video listed in it.</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>YtdlpChannelDialog</name>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="39"/>
+        <source>Playlist Download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="39"/>
+        <source>Channel Download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="41"/>
+        <source>Listing videos…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="44"/>
+        <source>Download selected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="265"/>
+        <source>Could not list this playlist</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="265"/>
+        <source>Could not list this channel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="278"/>
+        <source>Videos</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="278"/>
+        <source>Download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="278"/>
+        <source>Subtitles &amp; extras</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="278"/>
+        <source>Advanced</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="299"/>
+        <source>Show</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="306"/>
+        <source>Shorts</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="306"/>
+        <source>Live streams</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="317"/>
+        <source>%1 of %2 selected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="334"/>
+        <source>All</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="345"/>
+        <source>First</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="345"/>
+        <source>Latest</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="359"/>
+        <source>Select</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="369"/>
+        <source>Since</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="458"/>
+        <source>In list</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="493"/>
+        <source>No videos found.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="509"/>
+        <source>Showing the first %1 videos.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="513"/>
+        <source>Load all</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="539"/>
+        <source>Change…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="549"/>
+        <source>Quality</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="550"/>
+        <source>Videos below the chosen quality download at their best.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="567"/>
+        <source>Queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="571"/>
+        <source>Each video becomes its own download in the queue “%1”, so it can be paused, retried or removed on its own.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="572"/>
+        <source>Each video becomes its own download in a queue named after the channel, so it can be paused, retried or removed on its own.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpChannelDialog.qml" line="591"/>
+        <source>Listing videos… %1 found</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>YtdlpDialogFrame</name>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpDialogFrame.qml" line="134"/>
+        <source>Cancel</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>YtdlpErrorPanel</name>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="61"/>
+        <source>JavaScript runtime</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="66"/>
+        <source>yt-dlp could not solve YouTube&apos;s download challenge even though a runtime was found (%1). Updating yt-dlp usually fixes this.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="67"/>
+        <source>YouTube requires yt-dlp to solve a challenge with a JavaScript runtime (Deno, Node.js, Bun or QuickJS). Install one, e.g. Deno, then retry.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="73"/>
+        <source>Get Deno</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="77"/>
+        <source>Open Media settings</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="84"/>
+        <source>Sign-in</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="87"/>
+        <source>Cookies from browser</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="88"/>
+        <source>Age-restricted, members-only and private videos need the cookies of a browser where you are signed in.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpErrorPanel.qml" line="97"/>
+        <source>Retry</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>YtdlpExtrasPage</name>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="31"/>
+        <source>Subtitles</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="34"/>
+        <source>Download subtitles</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="45"/>
+        <source>Languages</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="46"/>
+        <source>Language codes separated by commas, e.g. en,ja. Patterns like en.* and &quot;all&quot; work too.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="54"/>
+        <source>Include auto-generated captions</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="60"/>
+        <source>Embed in the video file</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="61"/>
+        <source>Only mp4, mkv and webm files can hold subtitles.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="69"/>
+        <source>Processing</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="70"/>
+        <source>These need ffmpeg, which was not found. See Settings › Media.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="74"/>
+        <source>Embed thumbnail as cover art</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="80"/>
+        <source>Embed metadata</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="81"/>
+        <source>Title, uploader, date and chapters are written into the file.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="87"/>
+        <source>Remove sponsor segments</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="88"/>
+        <source>Cuts sponsored segments, intros and self-promotion marked on SponsorBlock. YouTube only.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="94"/>
+        <source>Split into one file per chapter</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="101"/>
+        <source>Extra files</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="104"/>
+        <source>Save the description as a text file</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpExtrasPage.qml" line="109"/>
+        <source>Save the thumbnail as an image file</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>YtdlpOptions</name>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpOptions.qml" line="54"/>
+        <source>None</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>YtdlpOutputFields</name>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpOutputFields.qml" line="127"/>
+        <source>Format</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpOutputFields.qml" line="137"/>
+        <source>Category</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpOutputFields.qml" line="149"/>
+        <source>Save to</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ytdlp/YtdlpOutputFields.qml" line="167"/>
+        <source>ffmpeg was not found, so yt-dlp can only download a single pre-merged stream, usually 480p or lower, and cannot convert formats. Place ffmpeg next to yt-dlp for full quality (Settings › Media).</source>
         <translation></translation>
     </message>
 </context>

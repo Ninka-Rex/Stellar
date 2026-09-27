@@ -542,19 +542,69 @@ bool isBareTorrentInfoHash(const QString &value) {
     return true;
 }
 
-bool isLikelyPlaylistOrChannelUrl(const QString &urlStr) {
-    const QUrl url = QUrl::fromUserInput(urlStr);
-    const QString host = url.host().toLower();
+// What a yt-dlp URL names: one media item, a channel/profile page, or a
+// playlist. Host-aware, because "/@user" is a profile on YouTube but TikTok
+// also uses it inside single-item URLs.
+enum class YtdlpUrlKind { Single, Channel, Playlist };
+
+bool isYoutubeHost(const QString &host) {
+    return host == QLatin1String("youtube.com") || host.endsWith(QLatin1String(".youtube.com"))
+        || host == QLatin1String("youtu.be");
+}
+
+QString bareHost(const QUrl &url) {
+    QString host = url.host().toLower();
+    if (host.startsWith(QLatin1String("www.")))
+        host.remove(0, 4);
+    return host;
+}
+
+YtdlpUrlKind ytdlpUrlKindOf(const QString &urlStr) {
+    const QUrl url = QUrl::fromUserInput(urlStr.trimmed());
+    const QString host = bareHost(url);
     const QString path = url.path().toLower();
-    const QString query = url.query().toLower();
-    if (!(host.contains(QStringLiteral("youtube.com")) || host == QStringLiteral("youtu.be")))
-        return false;
-    return path.contains(QStringLiteral("/@"))
-        || path.contains(QStringLiteral("/channel/"))
-        || path.contains(QStringLiteral("/c/"))
-        || path.contains(QStringLiteral("/user/"))
-        || path.contains(QStringLiteral("/playlist"))
-        || query.contains(QStringLiteral("list="));
+    const QUrlQuery query(url);
+
+    if (host == QLatin1String("tiktok.com") || host.endsWith(QLatin1String(".tiktok.com"))) {
+        if (!path.contains(QLatin1String("/@")))
+            return YtdlpUrlKind::Single;
+        const bool item = path.contains(QLatin1String("/video/")) || path.contains(QLatin1String("/photo/"));
+        return item ? YtdlpUrlKind::Single : YtdlpUrlKind::Channel;
+    }
+
+    // A video link that also carries a playlist (watch?v=X&list=Y, youtu.be/X?list=Y)
+    // still means that one video; the dialog offers the playlist separately.
+    const bool namesOneVideo = query.hasQueryItem(QStringLiteral("v"))
+        || host == QLatin1String("youtu.be")
+        || path.startsWith(QLatin1String("/shorts/"))
+        || path.startsWith(QLatin1String("/live/"));
+    if (path.startsWith(QLatin1String("/playlist"))
+        || (query.hasQueryItem(QStringLiteral("list")) && !namesOneVideo))
+        return YtdlpUrlKind::Playlist;
+
+    // Profile/channel path segments; single-item pages on these sites use
+    // distinct paths (/watch, /p/, /status/, /reel/) without them.
+    if (path.contains(QLatin1String("/@")) || path.contains(QLatin1String("/channel/"))
+        || path.startsWith(QLatin1String("/c/")) || path.startsWith(QLatin1String("/user/")))
+        return YtdlpUrlKind::Channel;
+    return YtdlpUrlKind::Single;
+}
+
+// Identity of a video for "already downloaded" checks: YouTube's video id
+// (so youtu.be, /shorts and watch links match), otherwise the URL itself.
+QString ytdlpVideoKey(const QUrl &url) {
+    const QString host = bareHost(url);
+    if (isYoutubeHost(host)) {
+        const QString v = QUrlQuery(url).queryItemValue(QStringLiteral("v"));
+        if (!v.isEmpty())
+            return QStringLiteral("yt:") + v;
+        const QStringList parts = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
+        if (host == QLatin1String("youtu.be") && !parts.isEmpty())
+            return QStringLiteral("yt:") + parts.first();
+        if (parts.size() >= 2 && (parts.first() == QLatin1String("shorts") || parts.first() == QLatin1String("live")))
+            return QStringLiteral("yt:") + parts.at(1);
+    }
+    return url.adjusted(QUrl::RemoveFragment | QUrl::StripTrailingSlash).toString();
 }
 
 QString normalizeTorrentSource(const QString &source) {
@@ -4980,8 +5030,6 @@ void AppController::deleteDownload(const QString &id, int mode) {
         if (auto *w = m_ytdlpWorkers.take(id)) { w->abort(); w->deleteLater(); }
         if (id == m_activeYtdlpBatchId) {
             m_activeYtdlpBatchId.clear();
-            m_activeYtdlpBatchLabel.clear();
-            emit ytdlpBatchChanged();
         }
         const QList<DownloadItem *> all = m_downloadModel->allItems();
         QStringList childIds;
@@ -7614,14 +7662,21 @@ QString AppController::readTextResource(const QString &path) const
     return QString::fromUtf8(file.readAll());
 }
 
-void AppController::createQueue(const QString &name)
+QString AppController::createQueue(const QString &name)
 {
-    if (name.trimmed().isEmpty()) return;
-    QString queueId = QStringLiteral("queue-") + QString::number(QDateTime::currentMSecsSinceEpoch());
+    if (name.trimmed().isEmpty()) return {};
+    // Millisecond timestamps collide when several queues are created in one
+    // burst (e.g. channel downloads), so bump until the id is free.
+    qint64 stamp = QDateTime::currentMSecsSinceEpoch();
+    QString queueId;
+    do {
+        queueId = QStringLiteral("queue-") + QString::number(stamp++);
+    } while (m_queueModel->queueById(queueId));
     Queue *q = new Queue(queueId, this);
     q->setName(name);
     m_queueModel->addQueue(q);
     m_queueDb->save(q);
+    return queueId;
 }
 
 void AppController::deleteQueue(const QString &queueId)
@@ -8121,6 +8176,59 @@ bool AppController::isLikelyYtdlpUrl(const QString &urlStr) const {
     return false;
 }
 
+QString AppController::ytdlpUrlKind(const QString &url) const {
+    switch (ytdlpUrlKindOf(url)) {
+    case YtdlpUrlKind::Channel:  return QStringLiteral("channel");
+    case YtdlpUrlKind::Playlist: return QStringLiteral("playlist");
+    case YtdlpUrlKind::Single:   break;
+    }
+    return QStringLiteral("single");
+}
+
+bool AppController::ytdlpHasChannelTabs(const QString &url) const {
+    return ytdlpUrlKindOf(url) == YtdlpUrlKind::Channel
+        && isYoutubeHost(bareHost(QUrl::fromUserInput(url.trimmed())));
+}
+
+QString AppController::ytdlpChannelTabUrl(const QString &url, const QString &tab) const {
+    // A YouTube channel's root page lists its tabs rather than videos, so the
+    // listing always targets one tab (videos, shorts or streams).
+    if (!ytdlpHasChannelTabs(url))
+        return url;
+    static const QStringList kTabs = { QStringLiteral("videos"), QStringLiteral("shorts"), QStringLiteral("streams") };
+    const QString wanted = kTabs.contains(tab) ? tab : kTabs.first();
+    QUrl u = QUrl::fromUserInput(url.trimmed());
+    QStringList parts = u.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
+    static const QStringList kKnownTabs = { QStringLiteral("videos"), QStringLiteral("shorts"), QStringLiteral("streams"),
+                                            QStringLiteral("live"), QStringLiteral("featured"), QStringLiteral("playlists"),
+                                            QStringLiteral("community"), QStringLiteral("about") };
+    if (!parts.isEmpty() && kKnownTabs.contains(parts.last().toLower()))
+        parts.removeLast();
+    parts.append(wanted);
+    u.setPath(QLatin1Char('/') + parts.join(QLatin1Char('/')));
+    return u.toString();
+}
+
+QString AppController::ytdlpPlaylistUrlFor(const QString &url) const {
+    // The playlist a YouTube video link carries (watch?v=X&list=Y), if any, as a
+    // playlist URL of its own.
+    const QUrl u = QUrl::fromUserInput(url.trimmed());
+    if (!isYoutubeHost(bareHost(u)))
+        return {};
+    const QString list = QUrlQuery(u).queryItemValue(QStringLiteral("list"));
+    // Mixes and radio lists (RD…) are generated per viewer, not real playlists.
+    if (list.isEmpty() || list.startsWith(QLatin1String("RD")))
+        return {};
+    return QStringLiteral("https://www.youtube.com/playlist?list=") + QString::fromUtf8(QUrl::toPercentEncoding(list));
+}
+
+QString AppController::safeFolderName(const QString &name) const {
+    // Channel names come from the site: through the one sanitizer every
+    // server-supplied file name uses, then reduced to a single path component.
+    return QFileInfo(sanitizeFilename(name.trimmed())).fileName();
+}
+
+
 // Extract a direct static-file URL from yt-dlp's "Unsupported URL: <url>" error
 // text. Unwraps the reddit.com/media?url=<percent-encoded> indirection that the
 // Reddit extractor emits for gif/image posts. Returns an empty QUrl when the
@@ -8225,10 +8333,11 @@ bool AppController::maybeDivertYtdlpProbeToDirectFile(const QString &probeId,
     return true;
 }
 
-QString AppController::beginYtdlpInfo(const QString &url, const QString &cookiesBrowser) {
+QString AppController::beginYtdlpProbe(const QString &url,
+                                       const std::function<void(const QString &)> &start) {
     const QString probeId = QUuid::createUuid().toString(QUuid::WithoutBraces);
     static const QString kNotInstalledMsg = QStringLiteral(
-        "yt-dlp is not installed. Please download it in Settings → Video Downloader.");
+        "yt-dlp is not installed. Please download it in Settings → Media.");
 
     if (!m_ytdlpManager->available()) {
         if (!m_ytdlpManager->hasCompletedCheck()) {
@@ -8240,14 +8349,14 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
             m_ytdlpProbes[probeId] = { nullptr, url, QByteArray(), QByteArray() };
             auto conn = std::make_shared<QMetaObject::Connection>();
             *conn = connect(m_ytdlpManager, &YtdlpManager::checkComplete, this,
-                            [this, conn, probeId, url, cookiesBrowser]() {
+                            [this, conn, probeId, url, start]() {
                 disconnect(*conn);
                 auto it = m_ytdlpProbes.find(probeId);
                 if (it == m_ytdlpProbes.end())
                     return;  // cancelled while waiting for the availability check
                 m_ytdlpProbes.erase(it);
                 if (m_ytdlpManager->available())
-                    startYtdlpProbe(probeId, url, cookiesBrowser);
+                    start(probeId);
                 else
                     emit ytdlpInfoFailed(probeId, url, kNotInstalledMsg);
             });
@@ -8262,35 +8371,185 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
         return probeId;
     }
 
-    startYtdlpProbe(probeId, url, cookiesBrowser);
+    start(probeId);
     return probeId;
+}
+
+QStringList AppController::ytdlpNetworkArgs(const QString &url, const QString &cookiesBrowser) const {
+    QStringList args;
+    if (!cookiesBrowser.isEmpty())
+        args << QStringLiteral("--cookies-from-browser") << cookiesBrowser.toLower();
+    // JS runtime for EJS n-challenge solving — same as the actual transfer.
+    // Without it YouTube serves throttled URLs / storyboard-only formats.
+    const QString jsRtPath = m_ytdlpManager->jsRuntimePath();
+    const QString jsRtName = m_ytdlpManager->jsRuntimeName();
+    if (!jsRtPath.isEmpty() && !jsRtName.isEmpty())
+        args << QStringLiteral("--js-runtimes") << (jsRtName + QLatin1Char(':') + jsRtPath);
+    // yt-dlp runs out-of-process and does not inherit Qt's proxy.
+    const QString proxyUrl = buildYtdlpProxyUrl(m_settings, QUrl::fromUserInput(url));
+    if (!proxyUrl.isEmpty())
+        args << QStringLiteral("--proxy") << proxyUrl;
+    return args;
+}
+
+void AppController::runYtdlpJsonProbe(const QString &probeId, const QString &url,
+                                      const QStringList &args, bool allowDirectFileDivert,
+                                      const std::function<void(const QJsonObject &)> &onJson,
+                                      const std::function<void(const QJsonObject &)> &onJsonLine) {
+    auto *proc = new QProcess(this);
+    proc->setProgram(m_ytdlpManager->binaryPath());
+    proc->setArguments(args);
+    proc->setProcessChannelMode(QProcess::SeparateChannels);
+
+#ifndef QT_NO_DEBUG_OUTPUT
+    qDebug() << "[YtdlpProbe] starting:" << proc->program() << args;
+#endif
+
+    m_ytdlpProbes[probeId] = { proc, url, QByteArray(), QByteArray() };
+
+    // With onJsonLine, stdout is one JSON object per line (--print "%()j") and
+    // each complete line is handed over as it arrives; otherwise stdout is one
+    // JSON document collected for onJson. The output is produced from site
+    // data, so a line may not grow without bound.
+    static constexpr qsizetype kMaxJsonLine = 4 * 1024 * 1024;
+    connect(proc, &QProcess::readyReadStandardOutput, this, [this, probeId, url, proc, onJsonLine]() {
+        auto it = m_ytdlpProbes.find(probeId);
+        if (it == m_ytdlpProbes.end())
+            return;
+        it->output += proc->readAllStandardOutput();
+        if (!onJsonLine)
+            return;
+        qsizetype nl;
+        while ((nl = it->output.indexOf('\n')) >= 0) {
+            const QByteArray line = it->output.left(nl).trimmed();
+            it->output.remove(0, nl + 1);
+            const QJsonDocument doc = QJsonDocument::fromJson(line);
+            if (doc.isObject())
+                onJsonLine(doc.object());
+            // The callback may have cancelled the probe.
+            it = m_ytdlpProbes.find(probeId);
+            if (it == m_ytdlpProbes.end())
+                return;
+        }
+        if (it->output.size() > kMaxJsonLine) {
+            m_ytdlpProbes.erase(it);
+            disconnect(proc, nullptr, this, nullptr);
+            proc->kill();
+            proc->deleteLater();
+            emit ytdlpInfoFailed(probeId, url, QStringLiteral("yt-dlp produced an oversized response."));
+        }
+    });
+
+    connect(proc, &QProcess::readyReadStandardError, this, [this, probeId, proc]() {
+        const QByteArray data = proc->readAllStandardError();
+        auto it = m_ytdlpProbes.find(probeId);
+        if (it == m_ytdlpProbes.end())
+            return;
+        it->stderrOutput += data;
+#ifndef QT_NO_DEBUG_OUTPUT
+#ifdef Q_OS_WIN
+        const QString text = QString::fromLocal8Bit(data).trimmed();
+#else
+        const QString text = QString::fromUtf8(data).trimmed();
+#endif
+        if (!text.isEmpty())
+            qDebug() << "[YtdlpProbe]" << text;
+#endif
+    });
+
+    connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this, [this, probeId, url, proc, allowDirectFileDivert, onJson, onJsonLine](int exitCode, QProcess::ExitStatus) {
+        proc->deleteLater();
+        auto it = m_ytdlpProbes.find(probeId);
+        if (it == m_ytdlpProbes.end())
+            return;  // cancelled
+        QByteArray raw = it->output + proc->readAllStandardOutput();
+        const QByteArray stderrBytes = it->stderrOutput;
+        m_ytdlpProbes.erase(it);
+
+        if (exitCode != 0) {
+#ifdef Q_OS_WIN
+            QString errOutput = QString::fromLocal8Bit(stderrBytes).trimmed();
+#else
+            QString errOutput = QString::fromUtf8(stderrBytes).trimmed();
+#endif
+            if (errOutput.isEmpty()) {
+                // Fallback: stdout (may be "null" or partial JSON — strip it)
+#ifdef Q_OS_WIN
+                errOutput = QString::fromLocal8Bit(raw).trimmed();
+#else
+                errOutput = QString::fromUtf8(raw).trimmed();
+#endif
+                if (errOutput == QLatin1String("null")) errOutput.clear();
+            }
+            const QString failureReason = errOutput.isEmpty()
+                ? QStringLiteral("yt-dlp exited with code %1").arg(exitCode)
+                : errOutput;
+            // Static-file posts (reddit gifs/images) are not a yt-dlp use case at
+            // all — try rerouting them to the regular HTTP engine before surfacing
+            // an error the user can do nothing about.
+            if (allowDirectFileDivert
+                && maybeDivertYtdlpProbeToDirectFile(probeId, url, errOutput, failureReason))
+                return;
+            emit ytdlpInfoFailed(probeId, url, failureReason);
+            return;
+        }
+
+        if (onJsonLine) {
+            // Output not yet seen by readyRead: possibly several lines, the
+            // last one without a trailing newline.
+            for (const QByteArray &line : raw.split('\n')) {
+                const QJsonDocument doc = QJsonDocument::fromJson(line.trimmed());
+                if (doc.isObject())
+                    onJsonLine(doc.object());
+            }
+            onJson(QJsonObject());
+            return;
+        }
+        const QJsonDocument doc = QJsonDocument::fromJson(raw);
+        if (!doc.isObject()) {
+            emit ytdlpInfoFailed(probeId, url,
+                QStringLiteral("yt-dlp returned invalid JSON (output length: %1)").arg(raw.size()));
+            return;
+        }
+        onJson(doc.object());
+    });
+
+    connect(proc, &QProcess::errorOccurred, this, [this, probeId, url, proc](QProcess::ProcessError err) {
+        // Crashes still reach finished(); only FailedToStart never does.
+        if (err != QProcess::FailedToStart)
+            return;
+        proc->deleteLater();
+        if (!m_ytdlpProbes.contains(probeId))
+            return;
+        m_ytdlpProbes.remove(probeId);
+        const QString reason = proc->errorString().isEmpty()
+            ? QStringLiteral("Failed to start yt-dlp")
+            : proc->errorString();
+        emit ytdlpInfoFailed(probeId, url, reason);
+    });
+
+    proc->start();
+}
+
+QString AppController::beginYtdlpInfo(const QString &url, const QString &cookiesBrowser) {
+    return beginYtdlpProbe(url, [this, url, cookiesBrowser](const QString &probeId) {
+        startYtdlpProbe(probeId, url, cookiesBrowser);
+    });
 }
 
 void AppController::startYtdlpProbe(const QString &probeId, const QString &url,
                                     const QString &cookiesBrowser) {
-    // Run yt-dlp metadata probe without downloading media.
-    // For channel/playlist URLs, only inspect the first entry so probing remains fast.
-    const bool isPlaylistLike = isLikelyPlaylistOrChannelUrl(url);
-    auto *proc = new QProcess(this);
-    proc->setProgram(m_ytdlpManager->binaryPath());
+    // Metadata for one media item, without downloading it. Collections go
+    // through beginYtdlpListing instead; --no-playlist keeps a video link that
+    // carries a playlist (watch?v=…&list=…) to that one video.
     QStringList args = {
         QStringLiteral("--ignore-config"),
         QStringLiteral("--dump-single-json"),
         QStringLiteral("--no-warnings"),
+        QStringLiteral("--no-playlist"),
     };
-    if (isPlaylistLike) {
-        // --no-flat-playlist ensures yt-dlp extracts full video metadata
-        // (including the formats array) for the requested entry, even when
-        // the extractor defaults to flat extraction (YouTube channels, etc.).
-        args << QStringLiteral("--no-flat-playlist")
-             << QStringLiteral("--yes-playlist")
-             << QStringLiteral("--playlist-items")
-             << QStringLiteral("1");
-    } else {
-        args << QStringLiteral("--no-playlist");
-    }
     if (!cookiesBrowser.isEmpty()) {
-        args << QStringLiteral("--cookies-from-browser") << cookiesBrowser.toLower();
         // Logged-in YouTube probes use the default client set (tv_downgraded,web_safari
         // for free accounts), which supports cookie authentication.
         // web_creator is excluded because it requires a PO token for format retrieval and
@@ -8312,293 +8571,273 @@ void AppController::startYtdlpProbe(const QString &probeId, const QString &url,
     const QString ffmpegPath = m_ytdlpManager->ffmpegPath();
     if (!ffmpegPath.isEmpty())
         args << QStringLiteral("--ffmpeg-location") << ffmpegPath;
-    // JS runtime for EJS n-challenge solving — same as the actual transfer.
-    // Without this the probe also gets throttled URLs / storyboard-only formats.
-    const QString jsRtPath = m_ytdlpManager->jsRuntimePath();
-    const QString jsRtName = m_ytdlpManager->jsRuntimeName();
-    if (!jsRtPath.isEmpty() && !jsRtName.isEmpty())
-        args << QStringLiteral("--js-runtimes") << (jsRtName + QLatin1Char(':') + jsRtPath);
-    const QString proxyUrl = buildYtdlpProxyUrl(m_settings, QUrl::fromUserInput(url));
-    if (!proxyUrl.isEmpty())
-        args << QStringLiteral("--proxy") << proxyUrl;
-    args << url;
-    proc->setArguments(args);
-    proc->setProcessChannelMode(QProcess::SeparateChannels);
+    args << ytdlpNetworkArgs(url, cookiesBrowser) << url;
 
-#ifndef QT_NO_DEBUG_OUTPUT
-    qDebug() << "[YtdlpProbe] starting:" << proc->program() << args;
-#endif
-
-    m_ytdlpProbes[probeId] = { proc, url, QByteArray() };
-
-    connect(proc, &QProcess::readyReadStandardOutput, this, [this, probeId, proc]() {
-        auto it = m_ytdlpProbes.find(probeId);
-        if (it == m_ytdlpProbes.end())
-            return;
-        it->output += proc->readAllStandardOutput();
+    runYtdlpJsonProbe(probeId, url, args, /*allowDirectFileDivert=*/true,
+                      [this, probeId, url](const QJsonObject &root) {
+        emit ytdlpInfoReady(probeId, url, root.value(QLatin1String("title")).toString(),
+                            ytdlpFormatChoices(root));
     });
+}
 
-    // Accumulate stderr and log lines as they arrive.
-    connect(proc, &QProcess::readyReadStandardError, this, [this, probeId, proc]() {
-        const QByteArray data = proc->readAllStandardError();
-        auto it = m_ytdlpProbes.find(probeId);
-        if (it != m_ytdlpProbes.end())
-            it->stderrOutput += data;
-#ifdef Q_OS_WIN
-        const QString text = QString::fromLocal8Bit(data).trimmed();
-#else
-        const QString text = QString::fromUtf8(data).trimmed();
-#endif
-        if (!text.isEmpty()) {
-#ifndef QT_NO_DEBUG_OUTPUT
-            qDebug() << "[YtdlpProbe]" << text;
-#endif
+QVariantList AppController::ytdlpFormatChoices(const QJsonObject &media) {
+    // We expose one entry per distinct video-height bucket plus an "audio only"
+    // option.  Each entry carries enough metadata for the QML picker to show a
+    // useful label and let the user make an informed choice.
+    const QJsonArray formatsJson = media.value(QLatin1String("formats")).toArray();
+
+    // Collect the best-quality format for each height bucket.
+    // Key: height (0 = audio-only).  Value: best format object seen so far.
+    QMap<int, QJsonObject> bestByHeight;
+    QJsonObject bestAudioOnly;
+    QJsonObject bestOverall;
+    int bestOverallHeight = 0;
+
+    for (const QJsonValue &fv : formatsJson) {
+        const QJsonObject f = fv.toObject();
+        const QString vcodec = f.value(QLatin1String("vcodec")).toString();
+        const QString acodec = f.value(QLatin1String("acodec")).toString();
+        const bool hasVideo = (!vcodec.isEmpty() && vcodec != QLatin1String("none"));
+        const bool hasAudio = (!acodec.isEmpty() && acodec != QLatin1String("none"));
+
+        if (!hasVideo && !hasAudio) continue;
+
+        int height = hasVideo ? f.value(QLatin1String("height")).toInt(0) : 0;
+        // Some YouTube clients (TV, DASH responses) omit the height field.
+        // Fall back to parsing it from the "resolution" string ("WxH" or "HxW").
+        if (height == 0 && hasVideo) {
+            const QString res = f.value(QLatin1String("resolution")).toString();
+            const int xIdx = res.indexOf(QLatin1Char('x'));
+            if (xIdx >= 0) {
+                const int w = res.left(xIdx).toInt();
+                const int h2 = res.mid(xIdx + 1).toInt();
+                // resolution is always "width x height" in yt-dlp
+                height = (h2 > 0) ? h2 : w;
+            }
+            // Also try format_note which yt-dlp sets to e.g. "1080p" or "720p60"
+            if (height == 0) {
+                static const QRegularExpression kNoteRe(QStringLiteral(R"((\d{3,4})p)"));
+                const QString note = f.value(QLatin1String("format_note")).toString();
+                const QRegularExpressionMatch m2 = kNoteRe.match(note);
+                if (m2.hasMatch()) height = m2.captured(1).toInt();
+            }
         }
+        const QString formatIdValue = f.value(QLatin1String("format_id")).toString();
+        if (formatIdValue.isEmpty())
+            continue;
+
+        // Keep the entry with the highest total bitrate for each bucket.
+        const double tbr = f.value(QLatin1String("tbr")).toDouble(0.0);
+        if (!bestByHeight.contains(height) ||
+            tbr > bestByHeight[height].value(QLatin1String("tbr")).toDouble(0.0)) {
+            bestByHeight[height] = f;
+        }
+        if (!hasVideo && hasAudio
+            && (bestAudioOnly.isEmpty()
+                || tbr > bestAudioOnly.value(QLatin1String("tbr")).toDouble(0.0))) {
+            bestAudioOnly = f;
+        }
+        if (hasVideo && (bestOverall.isEmpty()
+            || height > bestOverallHeight
+            || (height == bestOverallHeight
+                && tbr > bestOverall.value(QLatin1String("tbr")).toDouble(0.0)))) {
+            bestOverall = f;
+            bestOverallHeight = height;
+        }
+    }
+
+    // Convert to QVariantList in descending resolution order.
+    QVariantList formats;
+
+    // Standard height buckets in descending order; anything else is omitted
+    // because yt-dlp's "bestvideo+bestaudio/best" selector is preferable.
+    const QList<int> orderedHeights = {2160, 1440, 1080, 720, 480, 360, 240, 144, 0};
+    for (int h : orderedHeights) {
+        if (!bestByHeight.contains(h)) continue;
+        const QJsonObject &f = bestByHeight[h];
+        const QString exactFormatId = f.value(QLatin1String("format_id")).toString();
+
+        QString label;
+        QString formatId;
+        if (h == 0) {
+            // Audio-only bucket
+            label    = tr("Audio only");
+            formatId = !bestAudioOnly.isEmpty()
+                ? bestAudioOnly.value(QLatin1String("format_id")).toString()
+                : exactFormatId;
+        } else {
+            label = QStringLiteral("%1p").arg(h);
+            // Use a height-capped quality selector rather than an exact format ID.
+            // Exact IDs from a missing_pot/incomplete probe often require a PO token
+            // to download (even with browser cookies), so the transfer would fail with
+            // "Requested format is not available".  A height-based selector lets yt-dlp
+            // pick the best actually-downloadable stream at or below that resolution.
+            formatId = ytdlpHeightSelector(h);
+        }
+
+        // Add file size if known
+        const qint64 filesize = static_cast<qint64>(
+            f.value(QLatin1String("filesize")).toDouble(0.0));
+        const qint64 filesizeApprox = static_cast<qint64>(
+            f.value(QLatin1String("filesize_approx")).toDouble(0.0));
+        const qint64 size = filesize > 0 ? filesize : filesizeApprox;
+
+        QVariantMap entry;
+        entry[QStringLiteral("id")]       = formatId;
+        entry[QStringLiteral("label")]    = label;
+        entry[QStringLiteral("ext")]      = f.value(QLatin1String("ext")).toString();
+        entry[QStringLiteral("width")]    = f.value(QLatin1String("width")).toInt(0);
+        entry[QStringLiteral("height")]   = h;
+        entry[QStringLiteral("fps")]      = f.value(QLatin1String("fps")).toInt(0);
+        entry[QStringLiteral("tbr")]      = f.value(QLatin1String("tbr")).toDouble(0.0);
+        entry[QStringLiteral("vcodec")]   = f.value(QLatin1String("vcodec")).toString();
+        entry[QStringLiteral("acodec")]   = f.value(QLatin1String("acodec")).toString();
+        entry[QStringLiteral("filesize")] = size;
+        entry[QStringLiteral("audioOnly")] = (h == 0);
+        formats.append(entry);
+    }
+
+    // Always expose at least one concrete selectable entry when the probe
+    // succeeded. Logged-in YouTube responses sometimes lack the canonical
+    // height buckets we display above, which otherwise leaves the dialog
+    // blank even though yt-dlp returned a usable formats array.
+    // "Best quality" entry: always use the generic yt-dlp selector rather than an
+    // exact format ID.  Probe-derived IDs often come from missing_pot/incomplete
+    // formats that require a PO token to download even with browser cookies.
+    // bv*+ba/b means: best video combined with best audio, fallback to best muxed.
+    if (!bestOverall.isEmpty() || !bestAudioOnly.isEmpty()) {
+        const QJsonObject bestEntrySource = bestOverall.isEmpty() ? bestAudioOnly : bestOverall;
+        QVariantMap best;
+        best[QStringLiteral("id")] = QStringLiteral("bv*+ba/b");
+        best[QStringLiteral("label")] = tr("Best quality");
+        best[QStringLiteral("ext")] = bestEntrySource.value(QLatin1String("ext")).toString(QStringLiteral("mp4"));
+        best[QStringLiteral("width")] = bestEntrySource.value(QLatin1String("width")).toInt(0);
+        best[QStringLiteral("height")] = bestOverallHeight;
+        best[QStringLiteral("fps")] = bestEntrySource.value(QLatin1String("fps")).toInt(0);
+        best[QStringLiteral("tbr")] = bestEntrySource.value(QLatin1String("tbr")).toDouble(0.0);
+        best[QStringLiteral("vcodec")] = bestEntrySource.value(QLatin1String("vcodec")).toString();
+        best[QStringLiteral("acodec")] = bestEntrySource.value(QLatin1String("acodec")).toString();
+        best[QStringLiteral("filesize")] = static_cast<qint64>(0);
+        best[QStringLiteral("audioOnly")] = bestOverall.isEmpty();
+
+        // Always prepend "Best quality" — it uses a generic selector distinct
+        // from all the height-based selectors in the list, so it's never a dup.
+        formats.prepend(best);
+    }
+    return formats;
+}
+
+QString AppController::ytdlpHeightSelector(int height) {
+    return QStringLiteral("bestvideo[height<=%1]+bestaudio/b[height<=%1]").arg(height);
+}
+
+QVariantList AppController::ytdlpQualityPresets() const {
+    // Videos of a channel are not probed one by one, so the picker offers
+    // selectors instead of formats; each video resolves them when it downloads
+    // (a 1080p cap on a 720p video simply gets 720p).
+    QVariantList presets;
+    auto add = [&presets](const QString &label, const QString &id, bool audioOnly) {
+        presets.append(QVariantMap{ { QStringLiteral("id"), id },
+                                    { QStringLiteral("label"), label },
+                                    { QStringLiteral("audioOnly"), audioOnly } });
+    };
+    add(tr("Best quality"), QStringLiteral("bv*+ba/b"), false);
+    for (int h : { 2160, 1440, 1080, 720, 480, 360 })
+        add(tr("Up to %1p").arg(h), ytdlpHeightSelector(h), false);
+    add(tr("Audio only"), QStringLiteral("bestaudio/best"), true);
+    return presets;
+}
+
+QString AppController::beginYtdlpListing(const QString &url, int limit, const QString &cookiesBrowser) {
+    return beginYtdlpProbe(url, [this, url, limit, cookiesBrowser](const QString &probeId) {
+        startYtdlpListing(probeId, url, limit, cookiesBrowser);
     });
+}
 
-    connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            this, [this, probeId, url, proc, isPlaylistLike](int exitCode, QProcess::ExitStatus) {
-        auto it = m_ytdlpProbes.find(probeId);
-        if (it == m_ytdlpProbes.end()) {
-            proc->deleteLater();
+void AppController::startYtdlpListing(const QString &probeId, const QString &url,
+                                      int limit, const QString &cookiesBrowser) {
+    // Flat extraction lists a collection's entries (url, title, duration)
+    // without resolving each video, so even a large channel lists quickly.
+    // --print "%()j" streams one JSON object per entry as yt-dlp pages through
+    // the collection, which is what makes progress reporting possible: with
+    // --dump-single-json nothing arrives until the whole list is done.
+    QStringList args = {
+        QStringLiteral("--ignore-config"),
+        QStringLiteral("--no-warnings"),
+        QStringLiteral("--flat-playlist"),
+        QStringLiteral("--yes-playlist"),
+        QStringLiteral("--print"), QStringLiteral("%()j"),
+    };
+    if (limit > 0)
+        args << QStringLiteral("--playlist-end") << QString::number(limit);
+    args << ytdlpNetworkArgs(url, cookiesBrowser) << url;
+
+    // Known downloads, so the picker can mark and skip videos the user
+    // already has.
+    QSet<QString> knownKeys;
+    for (DownloadItem *item : m_downloadModel->allItems())
+        if (item && item->isYtdlp())
+            knownKeys.insert(ytdlpVideoKey(item->url()));
+
+    struct Listing {
+        QVariantList entries;
+        QString title;
+        QString owner;
+        qint64 lastProgressMs = 0;
+    };
+    auto listing = std::make_shared<Listing>();
+
+    auto onEntry = [this, probeId, knownKeys, listing](const QJsonObject &e) {
+        if (listing->title.isEmpty())
+            listing->title = e.value(QLatin1String("playlist_title")).toString();
+        if (listing->owner.isEmpty()) {
+            for (const char *key : { "playlist_channel", "playlist_uploader", "channel", "uploader" }) {
+                listing->owner = e.value(QLatin1String(key)).toString();
+                if (!listing->owner.isEmpty())
+                    break;
+            }
+        }
+        // Nested collections (e.g. a channel's tab list) are not videos.
+        if (e.value(QLatin1String("_type")).toString() == QLatin1String("playlist")
+            || e.value(QLatin1String("ie_key")).toString().endsWith(QLatin1String("Tab")))
             return;
-        }
-        QByteArray raw = it->output;
-        raw += proc->readAllStandardOutput();
-        QByteArray stderrAccum = it->stderrOutput;
-        m_ytdlpProbes.erase(it);
-
-#ifndef QT_NO_DEBUG_OUTPUT
-        qDebug() << "[YtdlpProbe] finished, exitCode:" << exitCode
-                 << "stdout bytes:" << raw.size();
-#endif
-
-        if (exitCode != 0) {
-            // stderr was accumulated by readyReadStandardError into stderrAccum.
-            const QByteArray stderrBytes = stderrAccum;
-#ifdef Q_OS_WIN
-            QString errOutput = QString::fromLocal8Bit(stderrBytes).trimmed();
-#else
-            QString errOutput = QString::fromUtf8(stderrBytes).trimmed();
-#endif
-            if (errOutput.isEmpty()) {
-                // Fallback: stdout (may be "null" or partial JSON — strip it)
-#ifdef Q_OS_WIN
-                errOutput = QString::fromLocal8Bit(raw).trimmed();
-#else
-                errOutput = QString::fromUtf8(raw).trimmed();
-#endif
-                if (errOutput == QLatin1String("null")) errOutput.clear();
-            }
-#ifndef QT_NO_DEBUG_OUTPUT
-            qDebug() << "[YtdlpProbe] error:" << errOutput;
-#endif
-            proc->deleteLater();
-            const QString failureReason = errOutput.isEmpty()
-                ? QStringLiteral("yt-dlp exited with code %1").arg(exitCode)
-                : errOutput;
-            // Static-file posts (reddit gifs/images) are not a yt-dlp use case at
-            // all — try rerouting them to the regular HTTP engine before surfacing
-            // an error the user can do nothing about.
-            if (maybeDivertYtdlpProbeToDirectFile(probeId, url, errOutput, failureReason))
-                return;
-            emit ytdlpInfoFailed(probeId, url, failureReason);
+        // Entry URLs come from the site: only fetchable web URLs are accepted.
+        QString entryUrl = e.value(QLatin1String("url")).toString();
+        if (!entryUrl.startsWith(QLatin1String("http://")) && !entryUrl.startsWith(QLatin1String("https://")))
+            entryUrl = e.value(QLatin1String("webpage_url")).toString();
+        const QUrl parsed(entryUrl);
+        if (!parsed.isValid() || (parsed.scheme() != QLatin1String("http") && parsed.scheme() != QLatin1String("https")))
             return;
+
+        QVariantMap entry;
+        entry[QStringLiteral("url")] = parsed.toString();
+        entry[QStringLiteral("title")] = e.value(QLatin1String("title")).toString().left(500);
+        entry[QStringLiteral("duration")] = qMax(0, int(e.value(QLatin1String("duration")).toDouble(0)));
+        // YYYYMMDD, or empty: flat YouTube listings carry no date at all.
+        QString date = e.value(QLatin1String("upload_date")).toString();
+        if (date.size() != 8) {
+            const qint64 ts = qint64(e.value(QLatin1String("timestamp")).toDouble(0));
+            date = ts > 0 ? QDateTime::fromSecsSinceEpoch(ts).toString(QStringLiteral("yyyyMMdd")) : QString();
         }
+        entry[QStringLiteral("uploadDate")] = date;
+        entry[QStringLiteral("alreadyAdded")] = knownKeys.contains(ytdlpVideoKey(parsed));
+        listing->entries.append(entry);
 
-        proc->deleteLater();
-
-        const QJsonDocument doc = QJsonDocument::fromJson(raw);
-        if (!doc.isObject()) {
-            emit ytdlpInfoFailed(probeId, url,
-                QStringLiteral("yt-dlp returned invalid JSON (output length: %1)").arg(raw.size()));
-            return;
+        // A few updates a second is plenty for a counter.
+        const qint64 now = QDateTime::currentMSecsSinceEpoch();
+        if (now - listing->lastProgressMs >= 250) {
+            listing->lastProgressMs = now;
+            emit ytdlpListingProgress(probeId, int(listing->entries.size()));
         }
+    };
 
-        const QJsonObject root = doc.object();
-        QJsonObject mediaObject = root;
-        QString title = root.value(QLatin1String("title")).toString();
-        if (isPlaylistLike) {
-            const QJsonArray entries = root.value(QLatin1String("entries")).toArray();
-            if (!entries.isEmpty() && entries.first().isObject()) {
-                mediaObject = entries.first().toObject();
-            }
-            const QString channelName = root.value(QLatin1String("channel")).toString();
-            const QString uploaderName = root.value(QLatin1String("uploader")).toString();
-            const QString playlistTitle = root.value(QLatin1String("title")).toString();
-            if (!channelName.isEmpty())
-                title = channelName;
-            else if (!uploaderName.isEmpty())
-                title = uploaderName;
-            else if (!playlistTitle.isEmpty())
-                title = playlistTitle;
-        }
-
-        // ── Build format list ─────────────────────────────────────────────────
-        // We expose one entry per distinct video-height bucket plus an "audio only"
-        // option.  Each entry carries enough metadata for the QML picker to show a
-        // useful label and let the user make an informed choice.
-        const QJsonArray formatsJson = mediaObject.value(QLatin1String("formats")).toArray();
-
-        // Collect the best-quality format for each height bucket.
-        // Key: height (0 = audio-only).  Value: best format object seen so far.
-        QMap<int, QJsonObject> bestByHeight;
-        QJsonObject bestAudioOnly;
-        QJsonObject bestOverall;
-        int bestOverallHeight = 0;
-
-        for (const QJsonValue &fv : formatsJson) {
-            const QJsonObject f = fv.toObject();
-            const QString vcodec = f.value(QLatin1String("vcodec")).toString();
-            const QString acodec = f.value(QLatin1String("acodec")).toString();
-            const bool hasVideo = (!vcodec.isEmpty() && vcodec != QLatin1String("none"));
-            const bool hasAudio = (!acodec.isEmpty() && acodec != QLatin1String("none"));
-
-            if (!hasVideo && !hasAudio) continue;
-
-            int height = hasVideo ? f.value(QLatin1String("height")).toInt(0) : 0;
-            // Some YouTube clients (TV, DASH responses) omit the height field.
-            // Fall back to parsing it from the "resolution" string ("WxH" or "HxW").
-            if (height == 0 && hasVideo) {
-                const QString res = f.value(QLatin1String("resolution")).toString();
-                const int xIdx = res.indexOf(QLatin1Char('x'));
-                if (xIdx >= 0) {
-                    const int w = res.left(xIdx).toInt();
-                    const int h2 = res.mid(xIdx + 1).toInt();
-                    // resolution is always "width x height" in yt-dlp
-                    height = (h2 > 0) ? h2 : w;
-                }
-                // Also try format_note which yt-dlp sets to e.g. "1080p" or "720p60"
-                if (height == 0) {
-                    static const QRegularExpression kNoteRe(QStringLiteral(R"((\d{3,4})p)"));
-                    const QString note = f.value(QLatin1String("format_note")).toString();
-                    const QRegularExpressionMatch m2 = kNoteRe.match(note);
-                    if (m2.hasMatch()) height = m2.captured(1).toInt();
-                }
-            }
-            const QString formatIdValue = f.value(QLatin1String("format_id")).toString();
-            if (formatIdValue.isEmpty())
-                continue;
-
-            // Keep the entry with the highest total bitrate for each bucket.
-            const double tbr = f.value(QLatin1String("tbr")).toDouble(0.0);
-            if (!bestByHeight.contains(height) ||
-                tbr > bestByHeight[height].value(QLatin1String("tbr")).toDouble(0.0)) {
-                bestByHeight[height] = f;
-            }
-            if (!hasVideo && hasAudio
-                && (bestAudioOnly.isEmpty()
-                    || tbr > bestAudioOnly.value(QLatin1String("tbr")).toDouble(0.0))) {
-                bestAudioOnly = f;
-            }
-            if (hasVideo && (bestOverall.isEmpty()
-                || height > bestOverallHeight
-                || (height == bestOverallHeight
-                    && tbr > bestOverall.value(QLatin1String("tbr")).toDouble(0.0)))) {
-                bestOverall = f;
-                bestOverallHeight = height;
-            }
-        }
-
-        // Convert to QVariantList in descending resolution order.
-        QVariantList formats;
-
-        // Standard height buckets in descending order; anything else is omitted
-        // because yt-dlp's "bestvideo+bestaudio/best" selector is preferable.
-        const QList<int> orderedHeights = {2160, 1440, 1080, 720, 480, 360, 240, 144, 0};
-        for (int h : orderedHeights) {
-            if (!bestByHeight.contains(h)) continue;
-            const QJsonObject &f = bestByHeight[h];
-            const QString exactFormatId = f.value(QLatin1String("format_id")).toString();
-            const QString vcodec = f.value(QLatin1String("vcodec")).toString();
-            const QString acodec = f.value(QLatin1String("acodec")).toString();
-            const bool hasVideo = (!vcodec.isEmpty() && vcodec != QLatin1String("none"));
-            const bool hasAudio = (!acodec.isEmpty() && acodec != QLatin1String("none"));
-
-            QString label;
-            QString formatId;
-            if (h == 0) {
-                // Audio-only bucket
-                label    = QStringLiteral("Audio only (best)");
-                formatId = !bestAudioOnly.isEmpty()
-                    ? bestAudioOnly.value(QLatin1String("format_id")).toString()
-                    : exactFormatId;
-            } else {
-                label = QStringLiteral("%1p").arg(h);
-                // Use a height-capped quality selector rather than an exact format ID.
-                // Exact IDs from a missing_pot/incomplete probe often require a PO token
-                // to download (even with browser cookies), so the transfer would fail with
-                // "Requested format is not available".  A height-based selector lets yt-dlp
-                // pick the best actually-downloadable stream at or below that resolution.
-                formatId = QStringLiteral("bestvideo[height<=%1]+bestaudio/b[height<=%1]").arg(h);
-            }
-
-            // Add file size if known
-            const qint64 filesize = static_cast<qint64>(
-                f.value(QLatin1String("filesize")).toDouble(0.0));
-            const qint64 filesizeApprox = static_cast<qint64>(
-                f.value(QLatin1String("filesize_approx")).toDouble(0.0));
-            const qint64 size = filesize > 0 ? filesize : filesizeApprox;
-
-            QVariantMap entry;
-            entry[QStringLiteral("id")]       = formatId;
-            entry[QStringLiteral("label")]    = label;
-            entry[QStringLiteral("ext")]      = f.value(QLatin1String("ext")).toString();
-            entry[QStringLiteral("width")]    = f.value(QLatin1String("width")).toInt(0);
-            entry[QStringLiteral("height")]   = h;
-            entry[QStringLiteral("fps")]      = f.value(QLatin1String("fps")).toInt(0);
-            entry[QStringLiteral("tbr")]      = f.value(QLatin1String("tbr")).toDouble(0.0);
-            entry[QStringLiteral("vcodec")]   = f.value(QLatin1String("vcodec")).toString();
-            entry[QStringLiteral("acodec")]   = f.value(QLatin1String("acodec")).toString();
-            entry[QStringLiteral("filesize")] = size;
-            formats.append(entry);
-        }
-
-        // Always expose at least one concrete selectable entry when the probe
-        // succeeded. Logged-in YouTube responses sometimes lack the canonical
-        // height buckets we display above, which otherwise leaves the dialog
-        // blank even though yt-dlp returned a usable formats array.
-        // "Best quality" entry: always use the generic yt-dlp selector rather than an
-        // exact format ID.  Probe-derived IDs often come from missing_pot/incomplete
-        // formats that require a PO token to download even with browser cookies.
-        // bv*+ba/b means: best video combined with best audio, fallback to best muxed.
-        const bool hasBestEntry = !bestOverall.isEmpty() || !bestAudioOnly.isEmpty();
-        if (hasBestEntry) {
-            QJsonObject bestEntrySource = bestOverall.isEmpty() ? bestAudioOnly : bestOverall;
-            QVariantMap best;
-            best[QStringLiteral("id")] = QStringLiteral("bv*+ba/b");
-            best[QStringLiteral("label")] = QStringLiteral("Best quality");
-            best[QStringLiteral("ext")] = bestEntrySource.value(QLatin1String("ext")).toString(QStringLiteral("mp4"));
-            best[QStringLiteral("width")] = bestEntrySource.value(QLatin1String("width")).toInt(0);
-            best[QStringLiteral("height")] = bestOverallHeight;
-            best[QStringLiteral("fps")] = bestEntrySource.value(QLatin1String("fps")).toInt(0);
-            best[QStringLiteral("tbr")] = bestEntrySource.value(QLatin1String("tbr")).toDouble(0.0);
-            best[QStringLiteral("vcodec")] = bestEntrySource.value(QLatin1String("vcodec")).toString();
-            best[QStringLiteral("acodec")] = bestEntrySource.value(QLatin1String("acodec")).toString();
-            best[QStringLiteral("filesize")] = static_cast<qint64>(0);
-
-            // Always prepend "Best quality" — it uses a generic selector distinct
-            // from all the height-based selectors in the list, so it's never a dup.
-            formats.prepend(best);
-        }
-
-        emit ytdlpInfoReady(probeId, url, title, formats);
-    });
-
-    connect(proc, &QProcess::errorOccurred, this, [this, probeId, url, proc](QProcess::ProcessError) {
-        if (!m_ytdlpProbes.contains(probeId)) {
-            proc->deleteLater();
-            return;
-        }
-        m_ytdlpProbes.remove(probeId);
-        const QString reason = proc->errorString().isEmpty()
-            ? QStringLiteral("Failed to start yt-dlp")
-            : proc->errorString();
-        proc->deleteLater();
-        emit ytdlpInfoFailed(probeId, url, reason);
-    });
-
-    proc->start();
+    runYtdlpJsonProbe(probeId, url, args, /*allowDirectFileDivert=*/false,
+                      [this, probeId, url, limit, listing](const QJsonObject &) {
+        // --playlist-end stops early, so a full page means there may be more.
+        const bool complete = limit <= 0 || listing->entries.size() < limit;
+        const QString owner = listing->owner.isEmpty() ? listing->title : listing->owner;
+        emit ytdlpListingReady(probeId, url, listing->title, owner, listing->entries, complete);
+    }, onEntry);
 }
 
 void AppController::cancelYtdlpInfo(const QString &probeId) {
@@ -8616,139 +8855,166 @@ void AppController::cancelYtdlpInfo(const QString &probeId) {
     }
 }
 
+// Base names (without extension, lower-cased) of the files in `dir`, for
+// picking collision-free output names without one directory scan per video.
+static QSet<QString> existingBaseNames(const QString &dir) {
+    QSet<QString> names;
+    const QFileInfoList files = QDir(dir).entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
+    for (const QFileInfo &f : files)
+        names.insert(f.completeBaseName().toLower());
+    return names;
+}
+
+// yt-dlp output template for a video titled `title` that doesn't collide with
+// `taken` (which it then extends). Without this, yt-dlp silently skips an
+// existing file ("has already been downloaded") and exits 0, so the app would
+// report a download that never happened. Collisions get _2, _3, … suffixes.
+static QString uniqueYtdlpOutputTemplate(const QString &title, QSet<QString> &taken) {
+    static const QString kDefault = QStringLiteral("%(title)s.%(ext)s");
+    if (title.trimmed().isEmpty())
+        return kDefault;
+    // The title comes from the site and a suffixed name is written into the
+    // output template: through the shared sanitiser (no separators, "..",
+    // reserved names), and '%' doubled so it cannot inject template fields.
+    const QString safe = sanitizeFilename(title.trimmed());
+    QString base = safe;
+    for (int n = 2; taken.contains(base.toLower()); ++n)
+        base = safe + QLatin1Char('_') + QString::number(n);
+    taken.insert(base.toLower());
+    if (base == safe)
+        return kDefault;
+    return base.replace(QLatin1Char('%'), QStringLiteral("%%")) + QStringLiteral(".%(ext)s");
+}
+
+DownloadItem *AppController::createYtdlpItem(const QString &url, const QString &saveDir,
+                                             const QString &category, const QString &formatId,
+                                             const QString &containerFormat, const QString &title,
+                                             const YtdlpOptions &options) {
+    // Created only once the user has confirmed the format, so a yt-dlp download
+    // never shows up as a blank "Watch" ghost row while its dialog is open.
+    const QUrl qurl = QUrl::fromUserInput(url);
+    auto *item = new DownloadItem(generateId(), qurl);
+    item->setSavePath(saveDir);
+    item->setIsYtdlp(true);
+
+    const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat.toLower();
+    // Provisional name from the probed title so the row shows a real name and
+    // file-type icon at once; YtdlpTransfer corrects it from yt-dlp's
+    // "[download] Destination:" line within the first second.
+    if (!title.trimmed().isEmpty())
+        item->setFilename(sanitizeFilename(title.trimmed() + QLatin1Char('.') + container));
+
+    item->setCategory(category.isEmpty() ? m_categoryModel->categoryForUrl(qurl, QString()) : category);
+
+    // Serialised so the options survive a restart and replay on resume.
+    const QString optsJson = options.toJson();
+    if (!optsJson.isEmpty())
+        item->setYtdlpExtraOptions(optsJson);
+
+    item->setYtdlpFormatId(formatId + QLatin1Char('|') + container
+                           + QLatin1Char('|') + QStringLiteral("%(title)s.%(ext)s"));
+    return item;
+}
+
 void AppController::finalizeYtdlpDownload(const QString &url,
                                            const QString &saveDir,
                                            const QString &category,
                                            const QString &formatId,
                                            const QString &containerFormat,
-                                           bool uniqueFilename,
                                            const QString &videoTitle,
-                                           bool playlistMode,
-                                           int  maxItems,
                                            const QVariantMap &extraOptions,
                                            bool overwriteExisting) {
-    // Create the DownloadItem here — not before.  This is intentionally later than
-    // the regular HTTP flow (which creates the item as soon as the URL is submitted)
-    // so that yt-dlp downloads only appear in the list once the user has confirmed
-    // the format choice.  That avoids a ghost "Watch" entry showing up with a blank
-    // icon while the YtdlpDialog is open.
-    const QString id   = generateId();
-    const QUrl    qurl = QUrl::fromUserInput(url);
-    auto *item = new DownloadItem(id, qurl);
-
-    item->setSavePath(saveDir);
-
-    // Set a provisional filename immediately so the download row shows a
-    // meaningful name and the correct file-type icon from the moment the
-    // user clicks Download — instead of a blank entry with a folder icon.
-    //
-    // We already know the video title from the --dump-json probe that
-    // populated YtdlpDialog, and we know the requested container format.
-    // Combining them gives a best-guess name that is correct in the common
-    // case.  The rare divergences (filesystem sanitization, collision
-    // suffixes, format fallback) are corrected within the first second of
-    // the download when YtdlpTransfer parses the "[download] Destination:"
-    // line and calls setFilename() with the real path yt-dlp chose.
-    //
-    // Playlist mode is excluded: each item's title isn't known until
-    // yt-dlp announces it, so there is no useful guess to make upfront.
-    if (!playlistMode && !videoTitle.isEmpty()) {
-        const QString ext = containerFormat.isEmpty()
-                                ? QStringLiteral("mp4")
-                                : containerFormat.toLower();
-        item->setFilename(videoTitle + QLatin1Char('.') + ext);
-    }
-
-    item->setIsYtdlp(true);
-    item->setYtdlpPlaylistMode(playlistMode);
-    // A playlist/channel download is the aggregate parent ("container") row; each
-    // video becomes a child row beneath it. Give it a meaningful display name.
-    if (playlistMode) {
-        item->setIsChannelContainer(true);
-        item->setTreeExpanded(true);
-        if (!videoTitle.isEmpty())
-            item->setFilename(videoTitle);
-        else
-            item->setFilename(qurl.toString());
-        item->setFilenameManuallySet(true);  // don't let filesystem reconcile overwrite it
-    }
-
-    const QString resolvedCategory = category.isEmpty()
-        ? m_categoryModel->categoryForUrl(qurl, QString())
-        : category;
-    item->setCategory(resolvedCategory);
-
-    const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat;
-
-    // Convert QML-supplied options map to a typed struct, then serialise to JSON
-    // so the options survive an app restart and can be replayed on resume.
-    YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
-    // Persist the "Latest N" limit inside the options blob so a resumed batch keeps
-    // the same item cap instead of silently expanding to the whole channel.
-    if (playlistMode && maxItems > 0)
-        opts.maxItems = maxItems;
-    const QString optsJson  = opts.toJson();
-    if (!optsJson.isEmpty())
-        item->setYtdlpExtraOptions(optsJson);
+    const YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
+    DownloadItem *item = createYtdlpItem(url, saveDir, category, formatId,
+                                         containerFormat, videoTitle, opts);
+    const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat.toLower();
 
     // Surface the item in the list IMMEDIATELY, before any filesystem work, so it
-    // appears the instant the user clicks Download. The collision scan below
-    // (entryInfoList over the save dir) can take noticeable time on a large
-    // folder; doing it first delayed the row's appearance by seconds.
-    // enqueueHeld emits DownloadQueue::itemAdded, whose slot already does
-    // addItem() + (when not restoring) m_db->save() + watchItem() — so we must
-    // NOT call save/watchItem again here (double-wires every connection).
-    item->setYtdlpFormatId(formatId + QLatin1Char('|') + container
-                           + QLatin1Char('|') + QStringLiteral("%(title)s.%(ext)s"));
+    // appears the instant the user clicks Download: the collision scan below can
+    // take noticeable time on a large folder. enqueueHeld emits
+    // DownloadQueue::itemAdded, whose slot already does addItem() + m_db->save()
+    // + watchItem() — so we must NOT call save/watchItem again here.
     m_queue->enqueueHeld(item);
     emit downloadAdded(item);
 
-    // Always scan the save directory for a base-name collision before launching
-    // yt-dlp.  Without this, yt-dlp's default behaviour is to skip an existing
-    // file silently ("has already been downloaded") and exit 0, which makes the
-    // app report a successful download when nothing was actually downloaded.
-    // If a collision is found, append _2/_3/…_N until the name is free.
-    // Pure filesystem check — no extra yt-dlp subprocess needed.
-    // When the user explicitly chose "Overwrite existing file", skip the
-    // collision rename entirely — yt-dlp is told to --force-overwrites below, so
-    // the file keeps its original name instead of gaining a _2 suffix.
+    // "Overwrite existing file" keeps the original name: yt-dlp is told to
+    // --force-overwrites below instead of the file gaining a _2 suffix.
     QString outputTemplate = QStringLiteral("%(title)s.%(ext)s");
-    if (!videoTitle.isEmpty() && !overwriteExisting) {
-        QDir dir(saveDir);
-        dir.mkpath(saveDir);
-
-        const QFileInfoList allFiles = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
-        auto baseExists = [&](const QString &b) {
-            for (const QFileInfo &f : allFiles)
-                if (f.completeBaseName().compare(b, Qt::CaseInsensitive) == 0)
-                    return true;
-            return false;
-        };
-
-        if (baseExists(videoTitle)) {
-            int n = 2;
-            while (baseExists(videoTitle + QLatin1Char('_') + QString::number(n)))
-                ++n;
-            outputTemplate = videoTitle + QLatin1Char('_') + QString::number(n)
-                             + QStringLiteral(".%(ext)s");
-        }
-        // else no collision — default template is fine
+    if (!overwriteExisting) {
+        QDir().mkpath(saveDir);
+        QSet<QString> taken = existingBaseNames(saveDir);
+        outputTemplate = uniqueYtdlpOutputTemplate(videoTitle, taken);
     }
 
-    // In playlist mode use a per-uploader subfolder so each channel's videos land
-    // together: "uploader/title.ext".  This matches what yt-dlp normally does for
-    // channel/playlist downloads and avoids collisions between channels.
-    if (playlistMode && outputTemplate == QStringLiteral("%(title)s.%(ext)s"))
-        outputTemplate = QStringLiteral("%(uploader)s/%(title)s.%(ext)s");
-
     // Store the final "formatId|container|outputTemplate" so resume/redownload can
-    // replay the same settings (keeps numbered names consistent on retry). The
-    // setter fires a save via the watchItem connection wired by enqueueHeld.
+    // replay the same settings (keeps numbered names consistent on retry).
     item->setYtdlpFormatId(formatId + QLatin1Char('|') + container
                            + QLatin1Char('|') + outputTemplate);
 
     startYtdlpWorker(item, formatId, container, /*resume=*/false, outputTemplate,
-                     playlistMode, maxItems, opts, /*forceOverwrites=*/overwriteExisting);
+                     /*playlistMode=*/false, /*maxItems=*/0, opts,
+                     /*forceOverwrites=*/overwriteExisting);
+}
+
+int AppController::addYtdlpVideos(const QVariantList &videos, const QString &saveDir,
+                                  const QString &category, const QString &formatId,
+                                  const QString &containerFormat, const QVariantMap &extraOptions,
+                                  const QString &queueName) {
+    if (videos.isEmpty())
+        return 0;
+
+    // One queue per channel/playlist keeps its videos together in the sidebar
+    // and lets them be started, stopped and limited as a group. Re-adding from
+    // the same channel reuses its queue.
+    QString queueId;
+    // Named after the channel, a site-supplied string: sanitised like its folder
+    // so it cannot carry markup or control characters into the sidebar.
+    const QString wantedQueue = queueName.trimmed().isEmpty() ? QString() : safeFolderName(queueName);
+    if (!wantedQueue.isEmpty()) {
+        for (int i = 0; i < m_queueModel->rowCount(); ++i) {
+            if (m_queueModel->queueNameAt(i).compare(wantedQueue, Qt::CaseInsensitive) == 0) {
+                queueId = m_queueModel->queueIdAt(i);
+                break;
+            }
+        }
+        if (queueId.isEmpty())
+            queueId = createQueue(wantedQueue);
+    }
+
+    const YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
+    const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat.toLower();
+    QDir().mkpath(saveDir);
+    // One scan for the whole batch; names picked for earlier videos in the batch
+    // are added as we go, so two videos with the same title don't collide either.
+    QSet<QString> taken = existingBaseNames(saveDir);
+
+    int added = 0;
+    for (const QVariant &v : videos) {
+        // Rows come from the listing the dialog showed, which came from the site:
+        // re-check the URL rather than trusting the QML side.
+        const QVariantMap video = v.toMap();
+        const QUrl videoUrl(video.value(QStringLiteral("url")).toString());
+        if (!videoUrl.isValid()
+            || (videoUrl.scheme() != QLatin1String("http") && videoUrl.scheme() != QLatin1String("https")))
+            continue;
+        const QString title = video.value(QStringLiteral("title")).toString().left(500);
+
+        DownloadItem *item = createYtdlpItem(videoUrl.toString(), saveDir, category,
+                                             formatId, container, title, opts);
+        const QString outputTemplate = uniqueYtdlpOutputTemplate(title, taken);
+        item->setYtdlpFormatId(formatId + QLatin1Char('|') + container
+                               + QLatin1Char('|') + outputTemplate);
+        if (!queueId.isEmpty())
+            item->setQueueId(queueId);
+        m_queue->enqueueHeld(item);
+        emit downloadAdded(item);
+        // Queued, not started: the scheduler starts them under the queue's and
+        // the global concurrency limits, as it does for any other download.
+        item->setStatus(DownloadItem::Status::Queued);
+        ++added;
+    }
+    m_scheduler->schedule();
+    return added;
 }
 
 void AppController::startYtdlpDownload(const QString &downloadId, const QString &formatId,
@@ -8765,60 +9031,6 @@ void AppController::startYtdlpDownload(const QString &downloadId, const QString 
 
 void AppController::downloadYtdlpBinary() {
     m_ytdlpManager->downloadBinary();
-}
-
-void AppController::stopActiveYtdlpBatch() {
-    if (m_activeYtdlpBatchId.isEmpty())
-        return;
-    m_lastYtdlpBatchId = m_activeYtdlpBatchId;
-    auto *worker = m_ytdlpWorkers.value(m_activeYtdlpBatchId);
-    auto *item = m_downloadModel->itemById(m_activeYtdlpBatchId);
-    if (worker) {
-        worker->pause();
-        worker->deleteLater();
-        m_ytdlpWorkers.remove(m_activeYtdlpBatchId);
-    }
-    if (item) {
-        item->setStatus(DownloadItem::Status::Paused);
-        scheduleSave(item->id());
-    }
-    m_activeYtdlpBatchId.clear();
-    m_activeYtdlpBatchLabel.clear();
-    emit ytdlpBatchChanged();
-    emit activeDownloadsChanged();
-}
-
-void AppController::resumeLastYtdlpBatch() {
-    if (m_lastYtdlpBatchId.isEmpty())
-        return;
-    auto *item = m_downloadModel->itemById(m_lastYtdlpBatchId);
-    if (!item || !item->isYtdlp())
-        return;
-    resumeDownload(m_lastYtdlpBatchId);
-}
-
-void AppController::showYtdlpBatchForItem(const QString &id) {
-    auto *item = m_downloadModel->itemById(id);
-    if (!item || !item->isYtdlp() || !item->ytdlpPlaylistMode())
-        return;
-
-    // Already the active or last-known batch: items are still in memory, just make
-    // sure the label and resume affordance reflect this download, then notify.
-    if (id == m_activeYtdlpBatchId || id == m_lastYtdlpBatchId) {
-        m_lastYtdlpBatchId = id;
-        if (m_activeYtdlpBatchLabel.isEmpty())
-            m_activeYtdlpBatchLabel = item->url().toString();
-        emit ytdlpBatchChanged();
-        return;
-    }
-
-    // A different (e.g. finished-then-restarted-app) playlist download: there are
-    // no live per-item rows to show, so present the batch as a single-line summary
-    // and let Resume restart it. m_lastYtdlpBatchId enables the Resume button.
-    m_lastYtdlpBatchId      = id;
-    m_activeYtdlpBatchLabel = item->url().toString();
-    m_activeYtdlpBatchItems.clear();
-    emit ytdlpBatchChanged();
 }
 
 // ── yt-dlp internal helpers ───────────────────────────────────────────────────
@@ -8939,7 +9151,6 @@ void AppController::recomputeChannelAggregate(DownloadItem *container) {
     // The container's lastTryAt is already set once when the batch starts, which is
     // enough to float it under the "last try date" sort.
 
-    m_ytdlpBatchProgress = fraction * 100.0;
 }
 
 // A child's display name is a placeholder until yt-dlp reports the real info_dict
@@ -9053,7 +9264,6 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
             && !m_activeYtdlpBatchItems.isEmpty();
         m_activeYtdlpBatchId = item->id();
         m_lastYtdlpBatchId = item->id();
-        m_activeYtdlpBatchLabel = item->url().toString();
         if (resumingSameBatch) {
             for (int i = 0; i < m_activeYtdlpBatchItems.size(); ++i) {
                 QVariantMap row = m_activeYtdlpBatchItems[i].toMap();
@@ -9067,7 +9277,6 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         } else {
             m_activeYtdlpBatchItems.clear();
         }
-        emit ytdlpBatchChanged();
     }
 
     connect(worker, &YtdlpTransfer::playlistItemStarted, this,
@@ -9100,7 +9309,6 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         // Mirror into a child row in the main download table.
         ensureYtdlpChild(item, index, title.trimmed());
         recomputeChannelAggregate(item);
-        emit ytdlpBatchChanged();
     });
     connect(worker, &YtdlpTransfer::playlistItemProgress, this,
             [this, item](int index, double percent) {
@@ -9112,7 +9320,6 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
                                                         : QStringLiteral("Downloading");
         m_activeYtdlpBatchItems[index - 1] = row;
         recomputeChannelAggregate(item);
-        emit ytdlpBatchChanged();
     });
     connect(worker, &YtdlpTransfer::playlistItemProgressData, this,
             [this, item](int index, double percent, qint64 totalBytes,
@@ -9163,7 +9370,6 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
                 child->setStatus(DownloadItem::Status::Downloading);
         }
         recomputeChannelAggregate(item);
-        emit ytdlpBatchChanged();
     });
     connect(worker, &YtdlpTransfer::playlistItemFinished, this,
             [this, item](int index) {
@@ -9186,7 +9392,6 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
             scheduleSave(child->id());
         }
         recomputeChannelAggregate(item);
-        emit ytdlpBatchChanged();
     });
 
     connect(worker, &YtdlpTransfer::playlistItemFilePath, this,
@@ -9224,8 +9429,6 @@ void AppController::onYtdlpWorkerFinished(const QString &id) {
     }
     if (id == m_activeYtdlpBatchId) {
         m_activeYtdlpBatchId.clear();
-        m_activeYtdlpBatchLabel.clear();
-        emit ytdlpBatchChanged();
     }
     emit activeDownloadsChanged();
 }
@@ -9289,8 +9492,6 @@ void AppController::onYtdlpWorkerFailed(const QString &id, const QString &reason
     }
     if (id == m_activeYtdlpBatchId) {
         m_activeYtdlpBatchId.clear();
-        m_activeYtdlpBatchLabel.clear();
-        emit ytdlpBatchChanged();
     }
     emit activeDownloadsChanged();
 }
