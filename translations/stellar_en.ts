@@ -8012,62 +8012,102 @@ aria2</source>
 <context>
     <name>StatisticsDialog</name>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="24"/>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="28"/>
         <source>Statistics</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="146"/>
-        <source>Stellar Statistics</source>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="74"/>
+        <source>%1 B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="174"/>
-        <source>ALL TIME</source>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="75"/>
+        <source>%1 KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="176"/>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="199"/>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="75"/>
+        <source>%1 MB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="75"/>
+        <source>%1 GB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="75"/>
+        <source>%1 TB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="92"/>
+        <source>%1 d %2 h %3 min</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="94"/>
+        <source>%1 h %2 min</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="95"/>
+        <source>%1 min</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="150"/>
+        <source>All time</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="152"/>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="168"/>
         <source>Downloaded</source>
-        <translation type="unfinished">Downloaded</translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="177"/>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="200"/>
-        <source>Uploaded</source>
-        <translation type="unfinished">Uploaded</translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="178"/>
-        <source>Share Ratio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="179"/>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="201"/>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="153"/>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="169"/>
+        <source>Uploaded</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="155"/>
+        <source>Share ratio</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="160"/>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="170"/>
         <source>Uptime</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="181"/>
-        <source>Install Date</source>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="161"/>
+        <source>Install date</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="187"/>
-        <source>Startups</source>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="162"/>
+        <source>Times launched</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="197"/>
-        <source>THIS SESSION</source>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="166"/>
+        <source>This session</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="209"/>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="176"/>
+        <source>Downloaded, uploaded and share ratio count torrent traffic only.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/StatisticsDialog.qml" line="193"/>
         <source>Close</source>
-        <translation type="unfinished">Close</translation>
+        <translation></translation>
     </message>
 </context>
 <context>

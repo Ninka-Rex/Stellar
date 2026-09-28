@@ -1,4 +1,4 @@
-﻿// Stellar Download Manager
+// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -19,18 +19,23 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Material
 
+// Read-only readout laid out like a Preferences page (SettingsSection /
+// SettingsRow), so it shares the About page's look and its handling of long
+// translations: the label column widens to the longest label, and a label too
+// long to sit beside its value stacks above it instead of clipping.
 Window {
     id: root
     title: qsTr("Statistics")
-    // ?? Height is driven by content no filler space. ?????????????????????
-    // Width driven by content too so longer translations (e.g. French) don't clip.
-    // Content-driven size. No fixed-size hint: it freezes the native frame at
-    // show-time dimensions, ignoring late content growth (long French labels,
-    // large byte values that arrive on first async refresh()).
-    width: Math.max(320, mainCol.implicitWidth + 16)
-    height: Math.max(180, mainCol.implicitHeight + 16)
-    minimumWidth: 320
-    minimumHeight: 180
+    // Width is fixed and height follows the content. Rows reflow against the
+    // width, so a long translation adds height; deriving the width from the
+    // content as well would let stacking and width chase each other.
+    // minimumHeight is deliberately not bound to the content: before the
+    // section has a width every row stacks, and the native frame would clamp
+    // to that transient height and stay there.
+    width: Math.round(440 * App.fontScale)
+    height: layout.implicitHeight
+    minimumWidth: Math.round(340 * App.fontScale)
+    minimumHeight: Math.round(200 * App.fontScale)
     color: ColorPalette.cardBg
     flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
 
@@ -39,6 +44,14 @@ Window {
     Material.accent: "#4488dd"
 
     property var stats: ({})
+
+    // Numbers and dates follow the chosen UI language rather than the OS
+    // locale, so a German UI shows "1,50 GB" and a localized month name even
+    // on an English system. No UI language means English strings, so the OS
+    // locale is the best guess for formatting.
+    readonly property var displayLocale: App.settings.uiLanguage.length > 0
+                                         ? Qt.locale(App.settings.uiLanguage)
+                                         : Qt.locale()
 
     function refresh() { stats = App.appStatistics() }
 
@@ -52,169 +65,137 @@ Window {
         onTriggered: root.refresh()
     }
 
-    function formatBytes(b) {
-        b = b || 0
-        if (b >= 1099511627776) return (b / 1099511627776).toFixed(2) + " TB"
-        if (b >= 1073741824)    return (b / 1073741824).toFixed(2)    + " GB"
-        if (b >= 1048576)       return (b / 1048576).toFixed(2)       + " MB"
-        if (b >= 1024)          return (b / 1024).toFixed(1)          + " KB"
-        return b + " B"
+    function formatNumber(n, decimals) {
+        return Number(n).toLocaleString(displayLocale, "f", decimals)
     }
 
+    // Units are whole translatable templates so a language can use its own
+    // abbreviations and placement (French "%1 Go", Russian "%1 ГБ").
+    function formatBytes(bytes) {
+        var n = Math.max(0, Number(bytes) || 0)
+        if (n < 1024)
+            return qsTr("%1 B").arg(formatNumber(n, 0))
+        var units = [qsTr("%1 KB"), qsTr("%1 MB"), qsTr("%1 GB"), qsTr("%1 TB")]
+        var i = -1
+        do {
+            n /= 1024
+            ++i
+        } while (n >= 1024 && i < units.length - 1)
+        return units[i].arg(formatNumber(n, 2))
+    }
+
+    // One template per shape instead of concatenated unit suffixes, so a
+    // translation can reorder, re-space or pick its own abbreviations.
     function formatUptime(secs) {
-        secs = secs || 0
-        const d = Math.floor(secs / 86400)
-        const h = Math.floor((secs % 86400) / 3600)
-        const m = Math.floor((secs % 3600)  / 60)
-        var parts = []
-        if (d > 0) parts.push(d + "d")
-        if (h > 0) parts.push(h + "h")
-        parts.push(m + "m")
-        return parts.join(" ")
+        var s = Math.max(0, Math.floor(Number(secs) || 0))
+        var d = Math.floor(s / 86400)
+        var h = Math.floor((s % 86400) / 3600)
+        var m = Math.floor((s % 3600) / 60)
+        if (d > 0)
+            return qsTr("%1 d %2 h %3 min").arg(formatNumber(d, 0)).arg(formatNumber(h, 0)).arg(formatNumber(m, 0))
+        if (h > 0)
+            return qsTr("%1 h %2 min").arg(formatNumber(h, 0)).arg(formatNumber(m, 0))
+        return qsTr("%1 min").arg(formatNumber(m, 0))
     }
 
-    // Ratio colour ramp:
-    // ?? 0.0 red (#ff5555) ????????????????????????????????????????????????
-    // ?? 0.5 orange (#ff9944) ?????????????????????????????????????????????
-    // ?? 1.0 green (#55cc66) ??????????????????????????????????????????????
-    // ?? 2.0 lime (#99ee55) ???????????????????????????????????????????????
-    // ?? 4.0 cyan (#44ddcc) ???????????????????????????????????????????????
-    // ?? 6.0 blue (#4499ff) ???????????????????????????????????????????????
-    // ?? 8.0 purple (#aa55ff) ?????????????????????????????????????????????
-    // ?? 10.0+ magenta (#ff44cc) ??????????????????????????????????????????
-    function ratioColor(r) {
-        r = r || 0
-        function lerp(a, b, t) {
-            return Math.round(a + (b - a) * Math.max(0, Math.min(1, t)))
-        }
-        function rgb(hr, hg, hb) {
-            return "#" + ("0" + hr.toString(16)).slice(-2)
-                       + ("0" + hg.toString(16)).slice(-2)
-                       + ("0" + hb.toString(16)).slice(-2)
-        }
-        // stops: [ratio, r, g, b]
-        var stops = [
-            [0.0,  255, 85,  85],
-            [0.5,  255, 153, 68],
-            [1.0,  85,  204, 102],
-            [2.0,  153, 238, 85],
-            [4.0,  68,  221, 204],
-            [6.0,  68,  153, 255],
-            [8.0,  170, 85,  255],
-            [10.0, 255, 68,  204]
-        ]
-        if (r <= stops[0][0]) return rgb(stops[0][1], stops[0][2], stops[0][3])
-        if (r >= stops[stops.length-1][0]) return rgb(stops[stops.length-1][1], stops[stops.length-1][2], stops[stops.length-1][3])
-        for (var i = 1; i < stops.length; i++) {
-            if (r <= stops[i][0]) {
-                var t = (r - stops[i-1][0]) / (stops[i][0] - stops[i-1][0])
-                return rgb(lerp(stops[i-1][1], stops[i][1], t),
-                           lerp(stops[i-1][2], stops[i][2], t),
-                           lerp(stops[i-1][3], stops[i][3], t))
-            }
-        }
-        return "#ff44cc"
+    // The locale's long date format carries the month name in the right order
+    // for each language, but also the weekday, which is noise for an install
+    // date. Drop the weekday token and the separator that joins it (Latin or
+    // Arabic comma) rather than hand-writing a pattern that fixes one order.
+    // The date arrives as a bare ISO "yyyy-MM-dd". Built from its parts because
+    // new Date("yyyy-MM-dd") means UTC midnight, which shows the previous day
+    // anywhere west of UTC.
+    function formatDate(iso) {
+        var parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "")
+        if (!parts)
+            return "–"
+        var d = new Date(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3]))
+        if (isNaN(d.getTime()))
+            return "–"
+        var fmt = displayLocale.dateFormat(Locale.LongFormat)
+            .replace(/dddd[,،]?\s*/, "")
+            .replace(/[,،]?\s*dddd/, "")
+            .trim()
+        return d.toLocaleDateString(displayLocale, fmt)
     }
 
-    // Stats row helper: label on left, value on right, value left-aligned after label.
-    // Using a plain Row so the value sits immediately after the label with no column stretching.
-    component StatRow: Row {
-        property string label: ""
-        property string value: ""
+    component StatRow: SettingsRow {
+        id: statRow
+        property string value
         property color valueColor: ColorPalette.textPrimary
         property bool valueBold: false
-        spacing: 6
 
         Text {
-            text: parent.label
-            color: ColorPalette.infoBoxText
-            font.pixelSize: 11 * App.fontScale
-        }
-        Text {
-            text: parent.value
-            color: parent.valueColor
-            font.pixelSize: 11 * App.fontScale
-            font.bold: parent.valueBold
+            Layout.fillWidth: true
+            text: statRow.value
+            color: statRow.valueColor
+            font.pixelSize: 13 * App.fontScale
+            font.bold: statRow.valueBold
+            wrapMode: Text.WordWrap
         }
     }
 
     ColumnLayout {
-        id: mainCol
-        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
-        spacing: 6
+        id: layout
+        anchors { left: parent.left; right: parent.right; top: parent.top }
+        spacing: 0
 
-        Text {
-            text: qsTr("Stellar Statistics")
-            color: ColorPalette.textPrimary
-            font.pixelSize: 13 * App.fontScale
-            font.bold: true
-        }
-
-        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.dividerBg }
-
-        // ?? All-time + This session in one card ??????????????????????????
-        Rectangle {
+        // Same padding and section spacing as a Preferences page body.
+        ColumnLayout {
             Layout.fillWidth: true
-            color: ColorPalette.inputBg
-            border.color: ColorPalette.dividerBg
-            radius: 3
-            // Both implicit dims required: the card uses anchored fill for its
-            // RowLayout, so without implicitWidth it reports 0 width to mainCol
-            // and the window never widens to fit the columns (clips session col).
-            implicitWidth: panelRow.implicitWidth + 12
-            implicitHeight: panelRow.implicitHeight + 10
+            Layout.leftMargin: 16
+            Layout.rightMargin: 16
+            Layout.topMargin: 14
+            Layout.bottomMargin: 16
+            spacing: 20
 
-            RowLayout {
-                id: panelRow
-                anchors { fill: parent; margins: 6 }
-                spacing: 40
+            SettingsSection {
+                title: qsTr("All time")
 
-                // All-time column — sized to its content so labels never clip.
-                ColumnLayout {
-                    id: atCol
-                    Layout.alignment: Qt.AlignTop
-                    spacing: 2
-
-                    Text { text: qsTr("ALL TIME"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
-
-                    StatRow { label: qsTr("Downloaded");   value: root.formatBytes(root.stats.downloadedBytes) }
-                    StatRow { label: qsTr("Uploaded");     value: root.formatBytes(root.stats.uploadedBytes) }
-                    StatRow { label: qsTr("Share Ratio");  value: (root.stats.ratio || 0).toFixed(3); valueColor: root.ratioColor(root.stats.ratio || 0); valueBold: true }
-                    StatRow { label: qsTr("Uptime");       value: root.formatUptime(root.stats.totalUptimeSecs) }
-                    StatRow {
-                        label: qsTr("Install Date")
-                        value: {
-                            var d = root.stats.installDate || ""
-                            return d ? new Date(d).toLocaleDateString(Qt.locale(), "MMM d, yyyy") : "–"
-                        }
-                    }
-                    StatRow { label: qsTr("Startups");     value: (root.stats.totalStartups || 0).toString() }
+                StatRow { label: qsTr("Downloaded"); value: root.formatBytes(root.stats.downloadedBytes) }
+                StatRow { label: qsTr("Uploaded");   value: root.formatBytes(root.stats.uploadedBytes) }
+                StatRow {
+                    label: qsTr("Share ratio")
+                    value: root.formatNumber(root.stats.ratio || 0, 2)
+                    valueColor: ColorPalette.ratioColor(root.stats.ratio || 0)
+                    valueBold: true
                 }
+                StatRow { label: qsTr("Uptime");         value: root.formatUptime(root.stats.totalUptimeSecs) }
+                StatRow { label: qsTr("Install date");   value: root.formatDate(root.stats.installDate) }
+                StatRow { label: qsTr("Times launched"); value: root.formatNumber(root.stats.totalStartups || 0, 0) }
+            }
 
-                // This session column
-                ColumnLayout {
-                    id: sesCol
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: implicitWidth
-                    Layout.alignment: Qt.AlignTop
-                    spacing: 2
+            SettingsSection {
+                title: qsTr("This session")
 
-                    Text { text: qsTr("THIS SESSION"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
+                StatRow { label: qsTr("Downloaded"); value: root.formatBytes(root.stats.sessionDownloaded) }
+                StatRow { label: qsTr("Uploaded");   value: root.formatBytes(root.stats.sessionUploaded) }
+                StatRow { label: qsTr("Uptime");     value: root.formatUptime(root.stats.sessionUptimeSecs) }
+            }
 
-                    StatRow { label: qsTr("Downloaded");  value: root.formatBytes(root.stats.sessionDownloaded) }
-                    StatRow { label: qsTr("Uploaded");    value: root.formatBytes(root.stats.sessionUploaded) }
-                    StatRow { label: qsTr("Uptime");      value: root.formatUptime(root.stats.sessionUptimeSecs) }
-                }
+            // appStatistics() sums torrent transfer counters only; say so, or
+            // "Downloaded" reads as every HTTP download too.
+            SettingsHint {
+                text: qsTr("Downloaded, uploaded and share ratio count torrent traffic only.")
             }
         }
 
-        RowLayout {
+        // Footer matches the Preferences window's button strip.
+        Rectangle {
             Layout.fillWidth: true
-            Item { Layout.fillWidth: true }
-            DlgButton { text: qsTr("Close"); onClicked: root.close() }
+            implicitHeight: 1
+            color: ColorPalette.border
         }
+        Rectangle {
+            Layout.fillWidth: true
+            implicitHeight: 52
+            color: ColorPalette.panelBg
 
-        // Bottom breathing room so Close button isn't flush against the edge.
-        Item { implicitHeight: 2 }
+            DlgButton {
+                anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 12 }
+                text: qsTr("Close")
+                onClicked: root.close()
+            }
+        }
     }
 }

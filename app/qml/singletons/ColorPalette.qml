@@ -91,4 +91,42 @@ QtObject {
     readonly property int materialTheme: dark ? 2 : 1
     readonly property color materialBg:  dark ? "#1e1e1e" : "#f7f7f7"
     readonly property color materialWindowBg: dark ? "#1c1c1c" : "#f0f0f0"
+
+    // Share-ratio colour ramp (Statistics window, Torrents preferences):
+    // red → orange → green → lime → cyan → blue → purple → magenta as the ratio
+    // climbs from 0 to 10+, interpolated between stops.
+    function ratioColor(r) {
+        r = r || 0
+        function lerp(a, b, t) {
+            return Math.round(a + (b - a) * Math.max(0, Math.min(1, t)))
+        }
+        function rgb(hr, hg, hb) {
+            return "#" + ("0" + hr.toString(16)).slice(-2)
+                       + ("0" + hg.toString(16)).slice(-2)
+                       + ("0" + hb.toString(16)).slice(-2)
+        }
+        // stops: [ratio, r, g, b]
+        var stops = [
+            [0.0,  255, 85,  85],
+            [0.5,  255, 153, 68],
+            [1.0,  85,  204, 102],
+            [2.0,  153, 238, 85],
+            [4.0,  68,  221, 204],
+            [6.0,  68,  153, 255],
+            [8.0,  170, 85,  255],
+            [10.0, 255, 68,  204]
+        ]
+        var last = stops[stops.length - 1]
+        if (r <= stops[0][0]) return rgb(stops[0][1], stops[0][2], stops[0][3])
+        if (r >= last[0]) return rgb(last[1], last[2], last[3])
+        for (var i = 1; i < stops.length; i++) {
+            if (r <= stops[i][0]) {
+                var t = (r - stops[i-1][0]) / (stops[i][0] - stops[i-1][0])
+                return rgb(lerp(stops[i-1][1], stops[i][1], t),
+                           lerp(stops[i-1][2], stops[i][2], t),
+                           lerp(stops[i-1][3], stops[i][3], t))
+            }
+        }
+        return rgb(last[1], last[2], last[3])
+    }
 }
