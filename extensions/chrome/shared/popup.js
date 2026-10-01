@@ -63,7 +63,7 @@ function send(message) {
 function setStatus(text, online, detail = "") {
     statusText.textContent = text;
     statusText.title = detail;
-    statusIcon.src = online ? "icons/network-online.svg" : "icons/network-offline.svg";
+    statusIcon.classList.toggle("online", online);
     statusIcon.hidden = false;
 }
 

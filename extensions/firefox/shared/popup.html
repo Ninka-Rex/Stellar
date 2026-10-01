@@ -86,7 +86,14 @@
       font-size: 11px;
       color: var(--text-second);
     }
-    #statusIcon { width: 10px; height: 10px; }
+    #statusIcon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: #8e8e8e;
+    }
+    #statusIcon.online { background: #4caf50; }
 
     main { padding: 12px; }
 
@@ -215,7 +222,7 @@
   <header>
     <img id="logo" alt="">
     <h1>Stellar</h1>
-    <div id="status"><img id="statusIcon" alt="" hidden><span id="statusText">Checking…</span></div>
+    <div id="status"><span id="statusIcon" hidden></span><span id="statusText">Checking…</span></div>
   </header>
 
   <main>
