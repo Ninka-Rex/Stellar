@@ -33,6 +33,8 @@ class TorrentPeerModel : public QAbstractListModel {
     Q_PROPERTY(QString localCityName READ localCityName NOTIFY localLocationChanged)
     Q_PROPERTY(QString localClientName READ localClientName NOTIFY localLocationChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    // Peers with a usable GeoIP position (what the swarm map can plot).
+    Q_PROPERTY(int locatedCount READ locatedCount NOTIFY locatedCountChanged)
 public:
     enum Roles {
         EndpointRole = Qt::UserRole + 1,
@@ -88,6 +90,7 @@ public:
 
     int rowCount(const QModelIndex &parent = {}) const override;
     int count() const { return rowCount(); }
+    int locatedCount() const { return m_locatedCount; }
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
     bool hasLocalLocation() const { return m_hasLocalLocation; }
@@ -115,26 +118,34 @@ public:
     Q_INVOKABLE bool removePeer(const QString &endpoint, int port);
     Q_INVOKABLE QVariantMap breakdownByClient() const;
     Q_INVOKABLE QVariantMap breakdownByCountry() const;
-    Q_INVOKABLE void setLiveUpdatesEnabled(bool enabled);
-    Q_INVOKABLE bool liveUpdatesEnabled() const { return m_liveUpdatesEnabled; }
+    // Per-tick live updates run while at least one view retains them (a
+    // properties window, the details pane and the metadata dialog can all show
+    // the same torrent). Every retain must be paired with one release — QML
+    // views go through TorrentLiveUpdatesLease, which guarantees that.
+    Q_INVOKABLE void retainLiveUpdates();
+    Q_INVOKABLE void releaseLiveUpdates();
+    Q_INVOKABLE bool liveUpdatesEnabled() const { return m_liveViewers > 0; }
     Q_INVOKABLE void setStructuralUpdatesDeferred(bool deferred);
     Q_INVOKABLE bool structuralUpdatesDeferred() const { return m_structuralUpdatesDeferred; }
 
 signals:
     void localLocationChanged();
     void countChanged();
+    void locatedCountChanged();
     // Emitted around live-update reorders (not user-initiated sorts) so QML
     // can save/restore contentY and prevent the ListView jumping to the top.
     void liveReorderAboutToHappen();
     void liveReorderHappened();
 
 private:
+    void recountLocated();
     QVector<Entry> m_entries;
     QString m_sortKey{QStringLiteral("endpoint")};
     bool m_sortAscending{true};
     QHash<QString, int> m_missingPeerStreaks;
     QVector<Entry> m_pendingEntries;
-    bool m_liveUpdatesEnabled{false};
+    int m_liveViewers{0};
+    int m_locatedCount{0};
     bool m_structuralUpdatesDeferred{false};
     bool m_hasLocalLocation{false};
     double m_localLatitude{0.0};

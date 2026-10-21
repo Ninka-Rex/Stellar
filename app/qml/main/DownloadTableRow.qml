@@ -126,11 +126,9 @@ Rectangle {
                     width: visible ? 20 : 0
                     height: 20
                     anchors.verticalCenter: parent.verticalCenter
-                    Text {
+                    TreeExpander {
                         anchors.centerIn: parent
-                        text: (rowRect.item && rowRect.item.treeExpanded) ? "▾" : "▸"  // ▾ / ▸
-                        color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textSecond
-                        font.pixelSize: 14 * App.fontScale
+                        expanded: !!rowRect.item && rowRect.item.treeExpanded
                     }
                     TapHandler {
                         acceptedButtons: Qt.LeftButton

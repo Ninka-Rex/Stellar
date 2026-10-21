@@ -36,6 +36,7 @@
 
 #include "DownloadQueue.h"
 #include "DownloadTableModel.h"
+#include "TrackerFaviconCache.h"
 #include "CategoryModel.h"
 #include "NativeMessagingHost.h"
 #include "AppSettings.h"
@@ -62,6 +63,7 @@ class AppController : public QObject {
     Q_PROPERTY(GrabberResultModel *grabberResultModel READ grabberResultModel CONSTANT)
     Q_PROPERTY(class QueueModel   *queueModel    READ queueModel    CONSTANT)
     Q_PROPERTY(AppSettings        *settings      READ settings      CONSTANT)
+    Q_PROPERTY(TrackerFaviconCache *trackerIcons READ trackerIcons CONSTANT)
     Q_PROPERTY(int     activeDownloads    READ activeDownloads    NOTIFY activeDownloadsChanged)
     Q_PROPERTY(int     totalDownloads     READ totalDownloads     NOTIFY activeDownloadsChanged)
     Q_PROPERTY(int     pausedCount        READ pausedCount        NOTIFY activeDownloadsChanged)
@@ -99,8 +101,6 @@ class AppController : public QObject {
     Q_PROPERTY(int restoreDoneCount READ restoreDoneCount NOTIFY restoreProgressChanged)
     // Transient time-of-day greeting shown briefly in the status bar once the
     // cold-start restore completes. Auto-hides after a few seconds.
-    Q_PROPERTY(QString welcomeMessage READ welcomeMessage NOTIFY welcomeMessageChanged)
-    Q_PROPERTY(bool welcomeVisible READ welcomeVisible NOTIFY welcomeMessageChanged)
     Q_PROPERTY(int recentErrorDownloads READ recentErrorDownloads NOTIFY recentErrorDownloadsChanged)
     Q_PROPERTY(bool updateAvailable READ updateAvailable NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateVersion READ updateVersion NOTIFY updateAvailableChanged)
@@ -149,7 +149,12 @@ public:
     explicit AppController(QObject *parent = nullptr);
     ~AppController();
 
+    // Display name from a magnet link's dn parameter, decoded and sanitized; empty
+    // when the link has none.
+    static QString magnetDisplayName(const QString &uri);
+
     DownloadTableModel *downloadModel() const { return m_downloadModel; }
+    TrackerFaviconCache *trackerIcons() const { return m_trackerIcons; }
     CategoryModel      *categoryModel() const { return m_categoryModel; }
     GrabberProjectModel *grabberProjectModel() const { return m_grabberProjectModel; }
     GrabberResultModel *grabberResultModel() const { return m_grabberResultModel; }
@@ -182,8 +187,6 @@ public:
     bool restoreInProgress() const { return m_restoring; }
     int restoreTotalCount() const { return m_restoreTotalCount; }
     int restoreDoneCount() const { return m_restoreNonTorrentDone + m_restoreFinalizedCount; }
-    QString welcomeMessage() const { return m_welcomeMessage; }
-    bool welcomeVisible() const { return m_welcomeVisible; }
     int recentErrorDownloads() const;
     bool updateAvailable() const { return m_updateAvailable; }
     QString updateVersion() const { return m_updateVersion; }
@@ -336,6 +339,9 @@ public:
     Q_INVOKABLE bool removeTorrentTracker(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool addTorrentWebSeed(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool removeTorrentWebSeed(const QString &downloadId, const QString &url);
+    // Downloads a µTorrent-style tracker list (one URL per line) for the Add
+    // Trackers window; answers with trackerListFetched().
+    Q_INVOKABLE void fetchTrackerList(const QString &url);
     Q_INVOKABLE bool renameTorrentFile(const QString &downloadId, int fileIndex, const QString &newName);
     Q_INVOKABLE bool renameTorrentPath(const QString &downloadId, const QString &currentPath, const QString &newName);
     Q_INVOKABLE void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);
@@ -401,6 +407,12 @@ public:
     Q_INVOKABLE void openFolder(const QString &id);
     Q_INVOKABLE void openExternalUrl(const QUrl &url);
     Q_INVOKABLE void openFolderSelectFile(const QString &id);
+    // Files inside a torrent, by the path shown in its Files tab (relative to
+    // the save directory). torrentEntryPath returns "" for any path that would
+    // leave the save directory.
+    Q_INVOKABLE QString torrentEntryPath(const QString &downloadId, const QString &relativePath) const;
+    Q_INVOKABLE void openTorrentEntry(const QString &downloadId, const QString &relativePath);
+    Q_INVOKABLE void revealTorrentEntry(const QString &downloadId, const QString &relativePath);
     Q_INVOKABLE void openFileWith(const QString &id);
     Q_INVOKABLE void moveFileToDesktop(const QString &id);
     Q_INVOKABLE void copyDownloadFilename(const QString &id);
@@ -409,9 +421,9 @@ public:
     Q_INVOKABLE QString      torrentCurrentRootName(const QString &downloadId) const;
     // Speed history for the last spanSeconds as `buckets` epoch-aligned, time-
     // weighted averages (see the .cpp for the returned map's keys).
-    Q_INVOKABLE QVariantMap torrentSpeedSeries(const QString &downloadId, int spanSeconds, int buckets) const;
+    Q_INVOKABLE QVariantMap speedSeries(const QString &downloadId, int spanSeconds, int buckets) const;
     Q_INVOKABLE QVariantList torrentPieceMap(const QString &downloadId) const;
-    Q_INVOKABLE void clearTorrentSpeedHistory(const QString &downloadId);
+    Q_INVOKABLE void clearSpeedHistory(const QString &downloadId);
     Q_INVOKABLE QVariantMap torrentAllTimeStats() const;
     Q_INVOKABLE void resetTorrentAllTimeStats();
     // Returns combined app + torrent statistics for the Statistics dialog.
@@ -529,6 +541,9 @@ public:
 
 signals:
     void restartRequested();
+    // `trackers` holds only well-formed tracker URLs, deduplicated, in list
+    // order; `error` is non-empty when the download failed.
+    void trackerListFetched(const QString &url, const QStringList &trackers, const QString &error);
     void activeDownloadsChanged();
     void totalSpeedChanged();
     void seedingCountChanged();
@@ -568,7 +583,6 @@ signals:
     void minutesUntilNextQueueChanged();
     void completedDownloadsChanged();
     void restoreProgressChanged();
-    void welcomeMessageChanged();
     void recentErrorDownloadsChanged();
     void updateAvailableChanged();
     void updateStatusTextChanged();
@@ -693,6 +707,7 @@ private:
     void reconcileTorrentBindState();
     DownloadQueue          *m_queue{nullptr};
     DownloadTableModel     *m_downloadModel{nullptr};
+    TrackerFaviconCache    *m_trackerIcons{nullptr};
     CategoryModel          *m_categoryModel{nullptr};
     GrabberProjectModel    *m_grabberProjectModel{nullptr};
     GrabberResultModel     *m_grabberResultModel{nullptr};
@@ -758,8 +773,6 @@ private:
     int                     m_restoreNonTorrentDone{0};
     bool                    m_restoreDispatchDone{false};
     bool                    m_deferredInitDone{false};
-    QString                 m_welcomeMessage;
-    bool                    m_welcomeVisible{false};
     // IDs of torrents that were already seeding/complete when restored from the
     // database. Completion alerts for these IDs are suppressed — they are not
     // new downloads finishing, just libtorrent re-emitting state on reconnect.
@@ -803,7 +816,6 @@ private:
     void cleanupTemporaryDirectory();
     // Builds a time-of-day greeting (mixed with a random fun phrase) and shows it
     // transiently in the status bar; auto-hides after a few seconds.
-    void showWelcomeBack();
     // Runs the heavy startup I/O (proxy apply, geo-DB open, rss temp cleanup,
     // yt-dlp probe) on the singleShot(0) after first paint, off the pre-paint
     // critical path. Idempotent via m_deferredInitDone.
@@ -916,13 +928,13 @@ private:
     QString                           m_lastYtdlpBatchId;
     QVariantList                      m_activeYtdlpBatchItems;
     QMap<QString, DownloadItem *>    m_pendingTorrentItems;
-    QTimer                 *m_torrentSpeedHistoryTimer{nullptr};
-    struct TorrentSpeedSample {
+    QTimer                 *m_speedHistoryTimer{nullptr};
+    struct SpeedSample {
         qint64 timestampMs{0};
         int downBps{0};
         int upBps{0};
     };
-    QMap<QString, QVector<TorrentSpeedSample>> m_torrentSpeedHistory;
+    QMap<QString, QVector<SpeedSample>> m_speedHistory;
     // Running --dump-json info probes keyed by probe ID (QUuid string)
     struct YtdlpProbe {
         QProcess  *process{nullptr};

@@ -254,21 +254,17 @@ void AppSettings::load() {
     const QStringList defaultOrder{QStringLiteral("downloads"), QStringLiteral("unfinished"),
                                    QStringLiteral("finished"), QStringLiteral("grabber"),
                                    QStringLiteral("queues"), QStringLiteral("torrents")};
-    m_sidebarOrder = m_settings.value(QStringLiteral("sidebarOrder"), defaultOrder).toStringList();
-    for (const QString &sectionId : defaultOrder) {
-        if (!m_sidebarOrder.contains(sectionId))
-            m_sidebarOrder.append(sectionId);
-    }
+    m_sidebarOrder = loadOrder(QStringLiteral("sidebarOrder"), defaultOrder);
     const QStringList defaultSubcatOrder{
         QStringLiteral("torrent_downloading"), QStringLiteral("torrent_seeding"),
         QStringLiteral("torrent_stopped"),     QStringLiteral("torrent_active"),
         QStringLiteral("torrent_inactive"),    QStringLiteral("torrent_checking"),
         QStringLiteral("torrent_moving")};
-    m_torrentSubcatOrder = m_settings.value(QStringLiteral("torrentSubcatOrder"), defaultSubcatOrder).toStringList();
-    for (const QString &subcatId : defaultSubcatOrder) {
-        if (!m_torrentSubcatOrder.contains(subcatId))
-            m_torrentSubcatOrder.append(subcatId);
-    }
+    m_torrentSubcatOrder = loadOrder(QStringLiteral("torrentSubcatOrder"), defaultSubcatOrder);
+    m_sidebarWorkspaceOrder = loadOrder(QStringLiteral("sidebarWorkspaceOrder"),
+                                        {QStringLiteral("downloads"), QStringLiteral("torrents")});
+    m_sidebarTorrentOrder = loadOrder(QStringLiteral("sidebarTorrentOrder"),
+                                      {QStringLiteral("states"), QStringLiteral("categories")});
 
     // ── Generated load-emit (N + S flags) ──
 #define X(ptype, sp, mem, camel, def, key, flags) LEMIT(ptype, sp, mem, camel, def, key, flags)
@@ -286,6 +282,8 @@ void AppSettings::load() {
     emit customUserAgentChanged();
     emit sidebarOrderChanged();
     emit torrentSubcatOrderChanged();
+    emit sidebarWorkspaceOrderChanged();
+    emit sidebarTorrentOrderChanged();
     emit launchOnStartupChanged();
     emit torrentSettingsChanged();      // all torrent-group properties
     emit rssSmartFiltersJsonChanged();
@@ -317,6 +315,8 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("customUserAgent"),             m_customUserAgent);
     m_settings.setValue(QStringLiteral("sidebarOrder"),                m_sidebarOrder);
     m_settings.setValue(QStringLiteral("torrentSubcatOrder"),          m_torrentSubcatOrder);
+    m_settings.setValue(QStringLiteral("sidebarWorkspaceOrder"),       m_sidebarWorkspaceOrder);
+    m_settings.setValue(QStringLiteral("sidebarTorrentOrder"),         m_sidebarTorrentOrder);
     m_settings.setValue(QStringLiteral("torrentEnabled"),              m_torrentEnabled);
     m_settings.setValue(QStringLiteral("torrentHistoricalUploadedBytes"),   m_torrentHistoricalUploadedBytes);
     m_settings.setValue(QStringLiteral("torrentHistoricalDownloadedBytes"), m_torrentHistoricalDownloadedBytes);
@@ -433,6 +433,31 @@ void AppSettings::setSidebarOrder(const QStringList &v) {
 
 void AppSettings::setTorrentSubcatOrder(const QStringList &v) {
     if (m_torrentSubcatOrder != v) { m_torrentSubcatOrder = v; emit torrentSubcatOrderChanged(); save(); }
+}
+
+void AppSettings::setSidebarWorkspaceOrder(const QStringList &v) {
+    if (m_sidebarWorkspaceOrder != v) { m_sidebarWorkspaceOrder = v; emit sidebarWorkspaceOrderChanged(); save(); }
+}
+
+void AppSettings::setSidebarTorrentOrder(const QStringList &v) {
+    if (m_sidebarTorrentOrder != v) { m_sidebarTorrentOrder = v; emit sidebarTorrentOrderChanged(); save(); }
+}
+
+QStringList AppSettings::loadOrder(const QString &key, const QStringList &defaults) const {
+    // A saved order keeps the user's arrangement, but only of ids this version
+    // knows: unknown ones (an older build's, or a hand-edited ini) are dropped
+    // and new ones appended, so every section is always shown exactly once.
+    QStringList order;
+    const QStringList stored = m_settings.value(key, defaults).toStringList();
+    for (const QString &id : stored) {
+        if (defaults.contains(id) && !order.contains(id))
+            order.append(id);
+    }
+    for (const QString &id : defaults) {
+        if (!order.contains(id))
+            order.append(id);
+    }
+    return order;
 }
 
 void AppSettings::setLaunchOnStartup(bool v) {

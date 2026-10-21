@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <QSet>
 #include <QPair>
+#include <QTimer>
 
 // ─── Live re-sort invariant ───────────────────────────────────────────────────
 //
@@ -108,22 +109,7 @@ void DownloadTableModel::setExpanded(const QString &containerId, bool expanded) 
     // expand/collapse is a deliberate, infrequent user action — correctness wins.
     // matchesFilter() already excludes children of a collapsed container via
     // hiddenByCollapse(), so this naturally adds/removes the right rows.
-    QList<DownloadItem *> rebuilt;
-    rebuilt.reserve(m_items.size());
-    const bool showAll = (m_filterCategory == QStringLiteral("all") && m_filterQueue.isNull());
-    for (DownloadItem *it : m_items) {
-        if (showAll ? !hiddenByCollapse(it) : matchesFilter(it))
-            rebuilt.append(it);
-    }
-    std::sort(rebuilt.begin(), rebuilt.end(), [this](DownloadItem *a, DownloadItem *b) {
-        return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
-    });
-
-    invalidateUiSnapshot();
-    beginResetModel();
-    m_visible = rebuilt;
-    rebuildVisibleSet();
-    endResetModel();
+    resetVisibleToFilter();
 }
 
 int DownloadTableModel::rowCount(const QModelIndex &parent) const {
@@ -188,6 +174,78 @@ void DownloadTableModel::connectItemSignals(DownloadItem *item) {
     connect(item, &DownloadItem::doneBytesChanged,    this, &DownloadTableModel::onItemProgressChanged);
     connect(item, &DownloadItem::speedChanged,        this, &DownloadTableModel::onItemProgressChanged);
     connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::onItemProgressChanged);
+    connect(item, &DownloadItem::categoryChanged, this, &DownloadTableModel::scheduleSidebarRecount);
+    connect(item, &DownloadItem::queueIdChanged,  this, &DownloadTableModel::scheduleSidebarRecount);
+    connect(item, &DownloadItem::statusChanged,   this, &DownloadTableModel::scheduleSidebarRecount);
+    // Active/Inactive also follow live torrent speeds.
+    if (item->isTorrent()) {
+        connect(item, &DownloadItem::speedChanged,        this, &DownloadTableModel::scheduleSidebarRecount);
+        connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::scheduleSidebarRecount);
+    }
+}
+
+void DownloadTableModel::scheduleSidebarRecount() {
+    if (m_sidebarRecountPending)
+        return;
+    m_sidebarRecountPending = true;
+    QTimer::singleShot(0, this, [this] {
+        m_sidebarRecountPending = false;
+        recountSidebar();
+    });
+}
+
+void DownloadTableModel::recountSidebar() {
+    static const QStringList kDownloadFilters = {
+        QStringLiteral("status_active"), QStringLiteral("status_completed"),
+    };
+    static const QStringList kTorrentFilters = {
+        QStringLiteral("torrent_all"),    QStringLiteral("torrent_downloading"),
+        QStringLiteral("torrent_seeding"), QStringLiteral("torrent_stopped"),
+        QStringLiteral("torrent_active"),  QStringLiteral("torrent_inactive"),
+        QStringLiteral("torrent_checking"), QStringLiteral("torrent_moving"),
+    };
+    static const QString kDownloads = QStringLiteral("downloads/");
+    static const QString kTorrents  = QStringLiteral("torrents/");
+    // "all" is the uncategorised category id as well as the total's key, so
+    // the total is kept apart and the category is not counted under it.
+    static const QString kAll = QStringLiteral("all");
+
+    QHash<QString, int> counts;
+    for (const QString &filter : kDownloadFilters)
+        counts.insert(kDownloads + filter, 0);
+    for (const QString &filter : kTorrentFilters)
+        counts.insert(kTorrents + filter, 0);
+    counts.insert(kDownloads + QStringLiteral("queue_any"), 0);
+    int downloadsTotal = 0, torrentsTotal = 0;
+
+    for (const DownloadItem *item : std::as_const(m_items)) {
+        if (!item->parentId().isEmpty())
+            continue;
+        const bool torrent = item->isTorrent();
+        const QString &ws = torrent ? kTorrents : kDownloads;
+        ++(torrent ? torrentsTotal : downloadsTotal);
+        const QString category = item->category();
+        if (category != kAll)
+            ++counts[ws + category];
+        if (!item->queueId().isEmpty()) {
+            ++counts[ws + QStringLiteral("queue_any")];
+            ++counts[ws + QStringLiteral("queue:") + item->queueId()];
+        }
+        for (const QString &filter : torrent ? kTorrentFilters : kDownloadFilters) {
+            if (matchesStateFilter(item, filter))
+                ++counts[ws + filter];
+        }
+    }
+
+    QVariantMap next;
+    next.insert(kDownloads + kAll, downloadsTotal);
+    next.insert(kTorrents + kAll, torrentsTotal);
+    for (auto it = counts.cbegin(); it != counts.cend(); ++it)
+        next.insert(it.key(), it.value());
+    if (next == m_sidebarCounts)
+        return;
+    m_sidebarCounts = next;
+    emit sidebarCountsChanged();
 }
 
 void DownloadTableModel::rebuildVisibleSet() {
@@ -198,7 +256,15 @@ void DownloadTableModel::addItem(DownloadItem *item) {
     m_items.append(item);
     m_itemsById.insert(item->id(), item);
     if (m_bulkAdding)
-        return;
+        return;   // endBulkAdd() recounts once
+
+    // isTorrent is set before an item is ever added and never flips afterwards,
+    // so the per-workspace totals can be kept incrementally.
+    if (item->parentId().isEmpty()) {
+        ++(item->isTorrent() ? m_torrentWorkspaceCount : m_downloadWorkspaceCount);
+        emit workspaceCountsChanged();
+    }
+    scheduleSidebarRecount();
 
     connectItemSignals(item);
 
@@ -230,6 +296,11 @@ void DownloadTableModel::removeItem(const QString &id) {
             m_volatileDirty.remove(item);
             m_items.removeAt(i);
             m_itemsById.remove(id);
+            if (item->parentId().isEmpty()) {
+                --(item->isTorrent() ? m_torrentWorkspaceCount : m_downloadWorkspaceCount);
+                emit workspaceCountsChanged();
+            }
+            scheduleSidebarRecount();
             int visRow = m_visible.indexOf(item);
             if (visRow >= 0) {
                 invalidateUiSnapshot();
@@ -268,6 +339,8 @@ void DownloadTableModel::endBulkAdd() {
 
     for (DownloadItem *item : m_items)
         connectItemSignals(item);
+    recountWorkspaces();
+    recountSidebar();
 
     m_visible.clear();
     m_visible.reserve(m_items.size());
@@ -309,33 +382,7 @@ void DownloadTableModel::setFilterCategory(const QString &filter) {
     if (m_filterCategory == filter && m_filterQueue.isNull()) return;
     m_filterCategory = filter;
     m_filterQueue = QString(); // null, not empty — matchesFilter checks isNull()
-
-    QList<DownloadItem*> newVisible;
-    if (m_filterCategory == QStringLiteral("all")) {
-        // "all" shows every item EXCEPT children hidden under a collapsed
-        // container — otherwise switching categories silently re-expands them
-        // (and then re-expanding duplicates the rows already in m_visible).
-        newVisible.reserve(m_items.size());
-        for (auto *item : m_items) {
-            if (!hiddenByCollapse(item)) newVisible.append(item);
-        }
-    } else {
-        newVisible.reserve(m_items.size());
-        for (auto *item : m_items) {
-            if (matchesFilter(item)) newVisible.append(item);
-        }
-    }
-    std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
-        return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;
-    });
-
-    if (newVisible == m_visible) return;
-
-    invalidateUiSnapshot();
-    beginResetModel();
-    m_visible = newVisible;
-    rebuildVisibleSet();
-    endResetModel();
+    resetVisibleToFilter();
 }
 
 void DownloadTableModel::setFilterQueue(const QString &filter) {
@@ -343,7 +390,20 @@ void DownloadTableModel::setFilterQueue(const QString &filter) {
 
     m_filterQueue = filter;
     m_filterCategory = QString(); // null, not empty
+    resetVisibleToFilter();
+}
 
+void DownloadTableModel::setWorkspace(const QString &workspace) {
+    const bool torrents = (workspace == QStringLiteral("torrents"));
+    if (m_torrentWorkspace == torrents) return;
+    m_torrentWorkspace = torrents;
+    resetVisibleToFilter();
+}
+
+void DownloadTableModel::resetVisibleToFilter() {
+    // matchesFilter() also drops children hidden under a collapsed container —
+    // otherwise switching filters would silently re-expand them (and then
+    // re-expanding would duplicate the rows already in m_visible).
     QList<DownloadItem *> newVisible;
     newVisible.reserve(m_items.size());
     for (auto *item : m_items) {
@@ -360,6 +420,22 @@ void DownloadTableModel::setFilterQueue(const QString &filter) {
     m_visible = newVisible;
     rebuildVisibleSet();
     endResetModel();
+}
+
+void DownloadTableModel::recountWorkspaces() {
+    int downloads = 0, torrents = 0;
+    for (const DownloadItem *item : std::as_const(m_items)) {
+        if (!item->parentId().isEmpty()) continue;
+        ++(item->isTorrent() ? torrents : downloads);
+    }
+    if (downloads == m_downloadWorkspaceCount && torrents == m_torrentWorkspaceCount) return;
+    m_downloadWorkspaceCount = downloads;
+    m_torrentWorkspaceCount = torrents;
+    emit workspaceCountsChanged();
+}
+
+bool DownloadTableModel::matchesWorkspace(DownloadItem *item) const {
+    return item->isTorrent() == m_torrentWorkspace;
 }
 
 void DownloadTableModel::sortBy(const QString &column, bool ascending) {
@@ -383,6 +459,8 @@ bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
     // A child of a collapsed container is never visible, regardless of category.
     if (hiddenByCollapse(item))
         return false;
+    if (!matchesWorkspace(item))
+        return false;
 
     if (!m_filterQueue.isNull()) {
         if (m_filterQueue == QStringLiteral("queue_any")) {
@@ -392,51 +470,55 @@ bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
     }
 
     if (m_filterCategory == QStringLiteral("all")) return true;
-    if (m_filterCategory == QStringLiteral("status_active"))
-        return item->status() != QStringLiteral("Completed");
-    if (m_filterCategory == QStringLiteral("status_completed"))
-        return item->status() == QStringLiteral("Completed");
-
-    // Torrent section filters
-    if (m_filterCategory == QStringLiteral("torrent_all"))
-        return item->isTorrent();
-    if (m_filterCategory == QStringLiteral("torrent_downloading"))
-        return item->isTorrent() && item->status() == QStringLiteral("Downloading");
-    if (m_filterCategory == QStringLiteral("torrent_seeding"))
-        return item->isTorrent() && item->status() == QStringLiteral("Seeding");
-    if (m_filterCategory == QStringLiteral("torrent_stopped"))
-        return item->isTorrent() && item->status() == QStringLiteral("Paused");
-    if (m_filterCategory == QStringLiteral("torrent_active"))
-        // Active = currently transferring data (download or upload speed > 0)
-        return item->isTorrent() && (item->speed() > 0 || item->torrentUploadSpeed() > 0);
-    if (m_filterCategory == QStringLiteral("torrent_inactive"))
-        // Inactive = not paused/completed but no data flowing
-        return item->isTorrent()
-            && item->status() != QStringLiteral("Paused")
-            && item->status() != QStringLiteral("Completed")
-            && item->speed() == 0
-            && item->torrentUploadSpeed() == 0;
-    if (m_filterCategory == QStringLiteral("torrent_checking"))
-        return item->isTorrent() && item->status() == QStringLiteral("Checking");
-    if (m_filterCategory == QStringLiteral("torrent_moving"))
-        return item->isTorrent() && item->status() == QStringLiteral("Moving");
+    if (isStateFilter(m_filterCategory))
+        return matchesStateFilter(item, m_filterCategory);
 
     return item->category() == m_filterCategory;
 }
 
+bool DownloadTableModel::isStateFilter(const QString &filter) {
+    // User categories are "user_<uuid>" and grabber projects their own ids,
+    // so these prefixes can't collide with a category.
+    return filter.startsWith(QStringLiteral("status_")) || filter.startsWith(QStringLiteral("torrent_"));
+}
+
+bool DownloadTableModel::matchesStateFilter(const DownloadItem *item, const QString &filter) {
+    const QString status = item->status();
+    if (filter == QStringLiteral("status_active"))
+        return status != QStringLiteral("Completed");
+    if (filter == QStringLiteral("status_completed"))
+        return status == QStringLiteral("Completed");
+    if (!item->isTorrent())
+        return false;
+    if (filter == QStringLiteral("torrent_all"))
+        return true;
+    if (filter == QStringLiteral("torrent_downloading"))
+        return status == QStringLiteral("Downloading");
+    if (filter == QStringLiteral("torrent_seeding"))
+        return status == QStringLiteral("Seeding");
+    if (filter == QStringLiteral("torrent_stopped"))
+        return status == QStringLiteral("Paused");
+    if (filter == QStringLiteral("torrent_active"))
+        // Active = currently transferring data (download or upload speed > 0)
+        return item->speed() > 0 || item->torrentUploadSpeed() > 0;
+    if (filter == QStringLiteral("torrent_inactive"))
+        // Inactive = not paused/completed but no data flowing
+        return status != QStringLiteral("Paused")
+            && status != QStringLiteral("Completed")
+            && item->speed() == 0
+            && item->torrentUploadSpeed() == 0;
+    if (filter == QStringLiteral("torrent_checking"))
+        return status == QStringLiteral("Checking");
+    if (filter == QStringLiteral("torrent_moving"))
+        return status == QStringLiteral("Moving");
+    return false;
+}
+
 void DownloadTableModel::rebuildVisible() {
     QList<DownloadItem*> newVisible;
-
-    if (m_filterCategory == QStringLiteral("all") && m_filterQueue.isNull()) {
-        newVisible.reserve(m_items.size());
-        for (auto *item : m_items) {
-            if (!hiddenByCollapse(item)) newVisible.append(item);
-        }
-    } else {
-        newVisible.reserve(m_items.size());
-        for (auto *item : m_items) {
-            if (matchesFilter(item)) newVisible.append(item);
-        }
+    newVisible.reserve(m_items.size());
+    for (auto *item : m_items) {
+        if (matchesFilter(item)) newVisible.append(item);
     }
     std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
         return treeCompare(a, b, m_sortColumn, m_sortAscending) < 0;

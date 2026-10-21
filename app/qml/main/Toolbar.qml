@@ -82,6 +82,7 @@ Rectangle {
             {key:"stop_all",     label: qsTr("Stop All"),       iconSrc:"../icons/toolbar/stop-all.svg",       enabled:true},
             {key:"delete",       label: qsTr("Delete"),         iconSrc:"../icons/toolbar/delete.svg",    enabled:true},
             {key:"delete_done",  label: qsTr("Delete Done"),    iconSrc:"../icons/toolbar/delete-completed.svg",    enabled:true},
+            {key:"details",      label: qsTr("Details"),        iconSrc:"../icons/toolbar/details.svg",        enabled:true},
             {key:"options",      label: qsTr("Options"),        iconSrc:"../icons/toolbar/options.svg",          enabled:true},
             {key:"scheduler",    label: qsTr("Scheduler"),      iconSrc:"../icons/toolbar/scheduler.svg",      enabled:true},
             {key:"start_queue",  label: qsTr("Start Queue"),    iconSrc:"../icons/toolbar/start-queue.svg",    enabled:true},
@@ -106,13 +107,19 @@ Rectangle {
     // label/icon. Shared by Toolbar and ToolbarDialog.
     function _rehydrateDefs(saved) {
         if (!saved || !saved.map) return _defaultDefs()
-        return saved.map(function(s) {
+        var defs = saved.map(function(s) {
             if (s.key === "separator") return {key:"separator"}
             var def = _defForKey(s.key)
             if (!def) return null  // unknown/removed key
             return {key: s.key, label: def.label, iconSrc: def.iconSrc,
                     enabled: s.enabled !== false}
         }).filter(function(d) { return d !== null })
+        // Buttons added in a later version aren't in an older saved layout;
+        // append them so they show up without resetting the user's order.
+        var have = {}
+        defs.forEach(function(d) { have[d.key] = true })
+        _defaultDefs().forEach(function(d) { if (!have[d.key]) defs.push(d) })
+        return defs
     }
 
     function _loadButtonDefs() {
@@ -152,6 +159,7 @@ Rectangle {
     signal stopAllClicked()
     signal deleteClicked()
     signal deleteCompletedClicked()
+    signal detailsClicked()
     signal optionsClicked()
     signal schedulerClicked()
     signal startQueueRequested(string queueId)
@@ -169,6 +177,7 @@ Rectangle {
             case "stop_all":      root.stopAllClicked(); break
             case "delete":        root.deleteClicked(); break
             case "delete_done":   root.deleteCompletedClicked(); break
+            case "details":       root.detailsClicked(); break
             case "options":       root.optionsClicked(); break
             case "scheduler":     root.schedulerClicked(); break
             case "grabber":       root.grabberClicked(); break

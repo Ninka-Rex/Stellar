@@ -65,11 +65,16 @@ public:
     void setEntries(const QVector<Entry> &entries);
     Q_INVOKABLE void sortBy(const QString &key, bool ascending);
 
-    // Tracker model is only meaningful while the properties/metadata dialog is open.
-    // When hidden, skip the expensive rebuild (QUrl parsing, geo-IP lookups,
+    // Tracker model is only meaningful while a view shows its tab. With no
+    // viewer, skip the expensive rebuild (QUrl parsing, geo-IP lookups,
     // status snapshot lookups) on every alert tick.
-    bool liveUpdatesEnabled() const { return m_liveUpdatesEnabled; }
-    Q_INVOKABLE void setLiveUpdatesEnabled(bool enabled) { m_liveUpdatesEnabled = enabled; }
+    // Live updates run while at least one view retains them (a
+    // properties window, the details pane and the metadata dialog can all show
+    // the same torrent). Every retain must be paired with one release — QML
+    // views go through TorrentLiveUpdatesLease, which guarantees that.
+    Q_INVOKABLE void retainLiveUpdates() { ++m_liveViewers; }
+    Q_INVOKABLE void releaseLiveUpdates() { if (m_liveViewers > 0) --m_liveViewers; }
+    bool liveUpdatesEnabled() const { return m_liveViewers > 0; }
 
 private:
     void applySortOrder();
@@ -77,5 +82,5 @@ private:
     QVector<Entry> m_entries;
     QString m_sortKey;
     bool    m_sortAscending{true};
-    bool    m_liveUpdatesEnabled{false};
+    int     m_liveViewers{0};
 };

@@ -990,7 +990,7 @@ Window {
         MenuSeparator {}
         CtxMenuItem {
             text: qsTr("Copy Filename")
-            iconSrc: "actions/edit-copy.svg"
+            iconSrc: "actions/copy-name.svg"
             onTriggered: { if (root._fileCtxItem) App.copyDownloadFilename(root._fileCtxItem.id) }
         }
         CtxMenuItem {

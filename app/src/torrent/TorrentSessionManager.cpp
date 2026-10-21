@@ -94,6 +94,55 @@ void TorrentSessionManager::setPerTorrentUploadLimit(const QString &downloadId, 
 #if defined(STELLAR_HAS_LIBTORRENT)
 namespace {
 
+// Peer client as shown to the user. libtorrent reports the same client either
+// from the peer ID ("qBittorrent 5.1.0") or from the extension handshake's
+// free-form version ("qBittorrent/4.6.3"); the slash before a version becomes
+// a space so one client reads (and sorts, and groups) the same either way.
+QString displayClientName(const QString &raw) {
+    static const QRegularExpression kSlashBeforeVersion(QStringLiteral(R"(\s*/\s*(?=v?\d))"));
+    QString name = raw;
+    name.replace(kSlashBeforeVersion, QStringLiteral(" "));
+    return name;
+}
+
+// Per file (by libtorrent index): the fraction of its pieces that at least one
+// connected peer has — qBittorrent's "Availability". Complete files are 1.
+// -1 when libtorrent has no swarm data (seed mode returns an empty vector).
+QVector<double> fileAvailability(const libtorrent::torrent_handle &handle,
+                                 const libtorrent::file_storage &files,
+                                 const std::vector<std::int64_t> &progress) {
+    std::vector<int> pieceAvail;
+    try {
+        handle.piece_availability(pieceAvail);
+    } catch (...) {
+        pieceAvail.clear();
+    }
+    QVector<double> out;
+    out.reserve(files.num_files());
+    for (int i = 0; i < files.num_files(); ++i) {
+        const auto fi = libtorrent::file_index_t{i};
+        const std::int64_t size = files.file_size(fi);
+        if (size <= 0 || (std::size_t(i) < progress.size() && progress[std::size_t(i)] >= size)) {
+            out.push_back(1.0);
+            continue;
+        }
+        if (pieceAvail.empty()) {
+            out.push_back(-1.0);
+            continue;
+        }
+        const int first = static_cast<int>(files.map_file(fi, 0, 0).piece);
+        const int last = static_cast<int>(files.map_file(fi, size - 1, 0).piece);
+        int available = 0;
+        for (int p = first; p <= last; ++p) {
+            if (p >= 0 && std::size_t(p) < pieceAvail.size() && pieceAvail[std::size_t(p)] > 0)
+                ++available;
+        }
+        out.push_back(double(available) / double(last - first + 1));
+    }
+    return out;
+}
+
+
 // Tracker URLs must use udp://, http://, or https:// only.
 // Rejects file://, UNC paths, and any other scheme that could probe local
 // services or the filesystem when libtorrent attempts to announce.
@@ -471,6 +520,7 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
             } else if (m_dhtNodes != 0) {
                 m_dhtNodes = 0;
                 emit dhtNodesChanged();
+                applyDhtLookups({});
             }
 
             // For magnets waiting on metadata, post_torrent_updates() only
@@ -630,6 +680,7 @@ void TorrentSessionManager::reconcileDhtState() {
     if (!desired && m_dhtNodes != 0) {
         m_dhtNodes = 0;
         emit dhtNodesChanged();
+        applyDhtLookups({});
     }
 #endif
 }
@@ -1970,6 +2021,13 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             m_dhtNodes = nodes;
             emit dhtNodesChanged();
         }
+        QHash<QByteArray, DhtActivity> byTarget;
+        for (const auto &lookup : dhtStats->active_requests) {
+            DhtActivity &a = byTarget[QByteArray(lookup.target.data(), int(lookup.target.size()))];
+            ++a.lookups;
+            a.replies += lookup.responses;
+        }
+        applyDhtLookups(byTarget);
         return;
     }
 
@@ -2259,6 +2317,35 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
     }
 }
 
+void TorrentSessionManager::applyDhtLookups(const QHash<QByteArray, DhtActivity> &byTarget) {
+    // Lookups are keyed by the DHT target: the v1 info-hash, or the v2 hash
+    // truncated to 20 bytes (a hybrid torrent runs one of each). Only torrents
+    // still fetching metadata show this, so only those are matched.
+    for (auto it = m_items.constBegin(); it != m_items.constEnd(); ++it) {
+        DownloadItem *item = it.value().data();
+        if (!item || item->torrentHasMetadata())
+            continue;
+        DhtActivity total;
+        if (!byTarget.isEmpty()) {
+            const auto handle = m_handles.value(it.key());
+            if (handle.is_valid()) {
+                const auto hashes = handle.info_hashes();
+                QSet<QByteArray> targets;
+                if (hashes.has_v1())
+                    targets.insert(QByteArray(hashes.v1.data(), int(hashes.v1.size())));
+                if (hashes.has_v2())
+                    targets.insert(QByteArray(hashes.v2.data(), int(libtorrent::sha1_hash::size())));
+                for (const QByteArray &target : std::as_const(targets)) {
+                    const DhtActivity a = byTarget.value(target);
+                    total.lookups += a.lookups;
+                    total.replies += a.replies;
+                }
+            }
+        }
+        item->setTorrentDhtActivity(total.lookups, total.replies);
+    }
+}
+
 void TorrentSessionManager::updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle, bool forceTrackerUpdate, bool trackerOnly) {
     if (!handle.is_valid())
         return;
@@ -2275,6 +2362,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
     int pexSeederCount = 0;
     int lsdPeerCount = 0;
     int lsdSeederCount = 0;
+    int trackerPeerCount = 0;
 
     // Tracker-alert refresh path: tracker alerts don't change the connected
     // peer set or file-progress, so the heavy peer-info scan (with per-peer
@@ -2324,7 +2412,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             downloaded.reserve(int(progress.size()));
             for (std::int64_t value : progress)
                 downloaded.push_back(value);
-            fileModel->updateProgress(downloaded);
+            fileModel->updateProgress(downloaded, fileAvailability(handle, files, progress));
         }
     }
 
@@ -2387,7 +2475,10 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             TorrentPeerModel::Entry entry;
             entry.endpoint = normalizePeerEndpoint(QString::fromStdString(peer.ip.address().to_string()));
             entry.port = peer.ip.port();
-            entry.client = QString::fromStdString(peer.client).left(200);
+            // Ban rules match what the peer actually sent; only the display
+            // form is normalised.
+            const QString rawClient = QString::fromStdString(peer.client).left(200);
+            entry.client = displayClientName(rawClient);
             entry.progress = peer.progress;
             entry.downSpeed = peer.payload_down_speed;
             entry.upSpeed = peer.payload_up_speed;
@@ -2479,7 +2570,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             }
 
             QString autoBanReason;
-            if (matchAutoBanRule(peer, entry.client, normalizedCountry, &autoBanReason)) {
+            if (matchAutoBanRule(peer, rawClient, normalizedCountry, &autoBanReason)) {
                 setTemporaryPeerBan(entry.endpoint, entry.client, normalizedCountry, autoBanReason);
                 anyBanChanged = true;
                 continue;
@@ -2502,6 +2593,8 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 if (entry.isSeed)
                     ++lsdSeederCount;
             }
+            if ((peer.source & libtorrent::peer_info::tracker) != libtorrent::peer_source_flags_t{})
+                ++trackerPeerCount;
         }
         if (peerModel)
             peerModel->setEntries(entries);
@@ -2516,6 +2609,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                                                     modelItem->torrentPeers(),
                                                     modelItem->torrentListPeers()});
             modelItem->setTorrentPeers(metadataPeerCount);
+            modelItem->setTorrentPeerSources(dhtPeerCount, pexPeerCount, lsdPeerCount, trackerPeerCount);
         }
         if (anyBanChanged)
             emit bannedPeersChanged();
@@ -3013,6 +3107,7 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     item->setTorrentSeedingTimeSecs(static_cast<qint64>(st.seeding_duration.count()));
     item->setTorrentWastedBytes(st.total_failed_bytes + st.total_redundant_bytes);
     item->setTorrentConnections(st.num_connections);
+    item->setTorrentPeerCounts(st.list_peers, st.connect_candidates, st.num_peers);
 
     const QString id = item->id();
     const bool isPaused = m_pausedIds.contains(id)

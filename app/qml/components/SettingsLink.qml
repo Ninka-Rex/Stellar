@@ -24,7 +24,8 @@ Text {
     property string url
     signal clicked()
 
-    color: linkArea.containsMouse ? ColorPalette.accentHover : ColorPalette.accent
+    color: !link.enabled ? ColorPalette.textDisabled
+         : (linkArea.containsMouse ? ColorPalette.accentHover : ColorPalette.accent)
     font.pixelSize: 12 * App.fontScale
     font.underline: linkArea.containsMouse
 

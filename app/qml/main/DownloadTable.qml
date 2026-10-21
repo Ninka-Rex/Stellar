@@ -35,6 +35,53 @@ Rectangle {
 
     property var categoryDragProxy: null
 
+    // Main-window workspace ("downloads" | "torrents"). Each keeps its own
+    // column layout; sort/selection/scroll are swapped by captureViewState()
+    // and restoreViewState() around a switch.
+    property string workspace: "downloads"
+    readonly property bool _torrentWorkspace: workspace === "torrents"
+    // For functions run from onWorkspaceChanged: the _torrentWorkspace binding
+    // may not have re-evaluated yet at that point, and reading it there loaded
+    // (then saved) the previous workspace's columns under the new one's key.
+    function _isTorrentWorkspace() { return workspace === "torrents" }
+    onWorkspaceChanged: {
+        // Load (not save) the incoming workspace's layout. Restore rather than
+        // clear the flag: during creation it stays set until onCompleted.
+        var suppressed = _suppressColumnDefsSave
+        _suppressColumnDefsSave = true
+        columnDefs = _initialColumnDefs()
+        _suppressColumnDefsSave = suppressed
+    }
+
+    function captureViewState() {
+        return {
+            selectedIds: Object.assign({}, _selectedIds),
+            anchorId: _anchorId,
+            sortKey: sortKey,
+            sortAscending: sortAscending,
+            contentX: tableView.contentX,
+            contentY: tableView.contentY
+        }
+    }
+
+    // `state` is a captureViewState() result, or null for a never-visited
+    // workspace (default sort, nothing selected, scrolled to the top).
+    function restoreViewState(state) {
+        sortKey = state ? state.sortKey : "added"
+        sortAscending = state ? state.sortAscending : false
+        App.downloadModel.sortBy(sortKey, sortAscending)
+        _setSelection(state ? state.selectedIds : {})
+        _anchorId = state ? state.anchorId : ""
+        var x = state ? state.contentX : 0
+        var y = state ? state.contentY : 0
+        // The filter change reset the model; position once the ListView has
+        // re-laid out against the new row count.
+        Qt.callLater(function() {
+            tableView.contentX = Math.max(0, Math.min(x, tableView.contentWidth - tableView.width))
+            tableView.contentY = Math.max(0, Math.min(y, tableView.contentHeight - tableView.height))
+        })
+    }
+
     // ── Multi-selection state ────────────────────────────────────────────
     // Selection is keyed by the stable DownloadItem.id, NOT row index. When
     // sorting by a volatile column the model live-reorders rows every tick; an
@@ -231,15 +278,23 @@ Rectangle {
     }
     function selectedTorrentCount() { return selectedTorrentCountValue }
     function hasAnyTorrentSelected() { return anyTorrentSelected }
-    function copySelectedShareLinks() {
+    // Copies valueOf(item) for every selected row (or the right-clicked one),
+    // one per line; rows without a value are skipped.
+    function _copySelectedLines(valueOf) {
         var items = _selectedItems()
         if (items.length === 0 && _ctxItem) items = [_ctxItem]
-        var links = []
+        var lines = []
         for (var i = 0; i < items.length; ++i) {
-            var link = App.downloadShareLink(items[i].id)
-            if (link && link.length > 0) links.push(link)
+            var value = valueOf(items[i])
+            if (value && value.length > 0) lines.push(value)
         }
-        if (links.length > 0) App.copyToClipboard(links.join("\n"))
+        if (lines.length > 0) App.copyToClipboard(lines.join("\n"))
+    }
+    function copySelectedShareLinks() {
+        _copySelectedLines(function(item) { return App.downloadShareLink(item.id) })
+    }
+    function copySelectedInfoHashes() {
+        _copySelectedLines(function(item) { return item.isTorrent ? String(item.torrentInfoHash || "") : "" })
     }
     function requestExportSelectedTorrents() {
         var ids = selectedTorrentIds()
@@ -407,11 +462,19 @@ Rectangle {
                 onTriggered: { if (root._ctxItem) renameTorrentRootDialog.openFor(root._ctxItem) }
             }
         }
-        CtxMenuItem { text: qsTr("Copy Filename"); iconSrc: "actions/edit-copy.svg";   onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Copy Filename"); iconSrc: "actions/copy-name.svg";   onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
         CtxMenuItem {
             text: root._ctxItem && root._ctxItem.isTorrent ? qsTr("Copy Magnet Link") : qsTr("Copy URL")
             iconSrc: root._ctxItem && root._ctxItem.isTorrent ? "actions/copy-magnet-link.svg" : "actions/copy-link.svg"
             onTriggered: root.copySelectedShareLinks()
+        }
+        Repeater {
+            model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
+            delegate: CtxMenuItem {
+                text: qsTr("Copy Info Hash")
+                iconSrc: "actions/copy-infohash.svg"
+                onTriggered: root.copySelectedInfoHashes()
+            }
         }
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
@@ -496,10 +559,36 @@ Rectangle {
 
     property bool _suppressColumnDefsSave: true
 
+    // Torrent workspace default layout: swarm columns up front, HTTP-only
+    // columns (queue, referer, parent page, last try) hidden. Keys not listed
+    // keep their _defaultColumnDefs order after these.
+    readonly property var _torrentDefaultOrder: ["name", "size", "status", "timeleft", "downspeed", "upspeed",
+                                                 "seeders", "peers", "ratio", "uploaded", "downloaded", "added"]
+    readonly property var _torrentDefaultVisible: ["name", "size", "status", "timeleft", "downspeed", "upspeed",
+                                                   "seeders", "peers", "ratio", "added"]
+    // Columns that are always blank for the other kind of item aren't offered
+    // in that workspace at all (header menu, Columns dialog, saved layout).
+    readonly property var _torrentOnlyColumns: ["upspeed", "seeders", "peers", "ratio", "uploaded", "downloaded"]
+    readonly property var _downloadOnlyColumns: ["referrer", "parenturl"]
+
+    function _columnAvailable(key) {
+        return (_isTorrentWorkspace() ? _downloadOnlyColumns : _torrentOnlyColumns).indexOf(key) < 0
+    }
+
     function _cloneDefaultColumnDefs() {
         var defs = []
         for (var i = 0; i < _defaultColumnDefs.length; i++)
             defs.push(Object.assign({}, _defaultColumnDefs[i]))
+        if (!_isTorrentWorkspace())
+            return defs
+        var rank = function(key) {
+            var r = _torrentDefaultOrder.indexOf(key)
+            return r >= 0 ? r : _torrentDefaultOrder.length
+        }
+        // Array.sort is stable, so unlisted keys keep their relative order.
+        defs.sort(function(a, b) { return rank(a.key) - rank(b.key) })
+        for (var j = 0; j < defs.length; j++)
+            defs[j].visible = _torrentDefaultVisible.indexOf(defs[j].key) >= 0
         return defs
     }
 
@@ -508,8 +597,10 @@ Rectangle {
         var defaultsByKey = {}
         var seen = {}
 
-        for (var i = 0; i < _defaultColumnDefs.length; i++)
-            defaultsByKey[_defaultColumnDefs[i].key] = _defaultColumnDefs[i]
+        for (var i = 0; i < _defaultColumnDefs.length; i++) {
+            if (_columnAvailable(_defaultColumnDefs[i].key))
+                defaultsByKey[_defaultColumnDefs[i].key] = _defaultColumnDefs[i]
+        }
 
         if (defs && defs.length) {
             for (var j = 0; j < defs.length; j++) {
@@ -530,7 +621,7 @@ Rectangle {
 
         for (var k = 0; k < _defaultColumnDefs.length; k++) {
             var def = _defaultColumnDefs[k]
-            if (seen[def.key]) continue
+            if (seen[def.key] || !defaultsByKey[def.key]) continue
             normalized.push({
                 title: def.title,
                 key: def.key,
@@ -542,7 +633,7 @@ Rectangle {
     }
 
     function _initialColumnDefs() {
-        var saved = App.settings.downloadTableColumns
+        var saved = _isTorrentWorkspace() ? App.settings.torrentTableColumns : App.settings.downloadTableColumns
         if (!saved || saved.length === 0)
             return _normalizeColumnDefs(_cloneDefaultColumnDefs())
         try {
@@ -556,13 +647,18 @@ Rectangle {
     function _saveColumnDefs() {
         if (_suppressColumnDefsSave) return
         var serialized = JSON.stringify(columnDefs)
-        if (App.settings.downloadTableColumns !== serialized)
+        if (_isTorrentWorkspace()) {
+            if (App.settings.torrentTableColumns !== serialized)
+                App.settings.torrentTableColumns = serialized
+        } else if (App.settings.downloadTableColumns !== serialized) {
             App.settings.downloadTableColumns = serialized
+        }
     }
 
     property var columnDefs: _initialColumnDefs()
 
-    function resetColumns() { columnDefs = _normalizeColumnDefs(_cloneDefaultColumnDefs()) }
+    // This workspace's default layout (the Columns dialog's Reset).
+    function defaultColumnDefs() { return _normalizeColumnDefs(_cloneDefaultColumnDefs()) }
 
     function makeVisibleCols() {
         var r = []
@@ -1015,8 +1111,10 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: {
                     if (parent.searchActive)
-                        return qsTr("No matching downloads.")
-                    return qsTr("No downloads yet.\nClick  Add URL  to start.")
+                        return root._torrentWorkspace ? qsTr("No matching torrents.") : qsTr("No matching downloads.")
+                    return root._torrentWorkspace
+                        ? qsTr("No torrents yet.\nAdd a .torrent file or magnet link to start.")
+                        : qsTr("No downloads yet.\nClick  Add URL  to start.")
                 }
                 horizontalAlignment: Text.AlignHCenter
                 color: ColorPalette.textDisabled

@@ -270,12 +270,9 @@ static QByteArray makeTorrentPlainPayload(const QString &filePath)
 static QByteArray makeMagnetPlainPayload(const QString &magnetUri)
 {
     QString filename = QStringLiteral("Magnetized transfer");
-    if (magnetUri.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)) {
-        QUrlQuery query(QUrl(magnetUri).query());
-        const QString dn = query.queryItemValue(QStringLiteral("dn"));
-        if (!dn.isEmpty())
-            filename = dn.trimmed();
-    }
+    const QString dn = AppController::magnetDisplayName(magnetUri);
+    if (!dn.isEmpty())
+        filename = dn;
     return QJsonDocument(QJsonObject{
         {QStringLiteral("type"),     QStringLiteral("download")},
         {QStringLiteral("url"),      magnetUri},

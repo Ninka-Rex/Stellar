@@ -28,6 +28,9 @@ MouseArea {
 
     // Index of this section within the sectionRepeater
     required property int sectionIndex
+    // Which ordered list the section belongs to (Sidebar._applySectionReorder
+    // reorders that list); also keeps drop lines to the list being dragged.
+    required property string orderKey
     // References to enclosing-scope objects in Sidebar.qml
     required property var sidebarRoot
     required property var sidebarColumn
@@ -46,6 +49,7 @@ MouseArea {
         if (!(pressedButtons & Qt.LeftButton)) return
         if (!sidebarRoot._secDragging && Math.abs(mouseY - _pressY) > 12) {
             sidebarRoot._secDragFrom = sectionIndex
+            sidebarRoot._secDragOrder = orderKey
             sidebarRoot._secDragging = true
             _didDrag = true
         }
@@ -57,7 +61,10 @@ MouseArea {
             var tgt = sectionRepeater.count
             for (var i = 0; i < sectionRepeater.count; i++) {
                 var si = sectionRepeater.itemAt(i)
-                if (si && posY < si.y + si.height / 2) { tgt = i; break }
+                // Sections hidden by the other workspace have stale geometry.
+                if (!si || !si.visible) continue
+                // Sections sit in nested columns, so compare in one space.
+                if (posY < si.mapToItem(sidebarColumn, 0, 0).y + si.height / 2) { tgt = i; break }
             }
             sidebarRoot._secDropTarget = tgt
         }
@@ -79,6 +86,7 @@ MouseArea {
             rootRef._secDragging = false
             rootRef._secDragFrom = -1
             rootRef._secDropTarget = -1
+            rootRef._secDragOrder = ""
             handlerRef.preventStealing = true
         })
 

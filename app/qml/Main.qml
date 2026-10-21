@@ -119,6 +119,54 @@ ApplicationWindow {
             App.pauseSession()
     }
 
+    // ── Workspaces (Downloads | Torrents tabs) ───────────────────────────
+    // Sidebar filter + table view state of each workspace while the other one
+    // is on screen. Session-only: a restart opens the saved workspace at its
+    // default (unfiltered) view.
+    property var _workspaceViewState: ({})
+    readonly property bool torrentWorkspace: App.settings.mainWorkspace === "torrents"
+    // Each workspace remembers whether its docked details pane is open.
+    readonly property bool detailsPaneShown: torrentWorkspace ? App.settings.torrentDetailsPaneVisible
+                                                              : App.settings.downloadDetailsPaneVisible
+    function toggleDetailsPane() {
+        if (torrentWorkspace) App.settings.torrentDetailsPaneVisible = !App.settings.torrentDetailsPaneVisible
+        else App.settings.downloadDetailsPaneVisible = !App.settings.downloadDetailsPaneVisible
+    }
+
+    function _defaultSidebarIndex(workspace) {
+        return workspace === "torrents" ? sidebar.allTorrentsIndex : sidebar.allDownloadsIndex
+    }
+
+    function switchWorkspace(workspace) {
+        if (workspace !== "downloads" && workspace !== "torrents")
+            return
+        var current = App.settings.mainWorkspace
+        if (workspace === current)
+            return
+        _workspaceViewState[current] = {
+            table: downloadTable.captureViewState(),
+            sidebarIndex: sidebar.selectedIndex,
+            category: App.selectedCategory,
+            queue: App.selectedQueue
+        }
+        // Re-filters the model to the new workspace (AppController listens).
+        App.settings.mainWorkspace = workspace
+        var state = _workspaceViewState[workspace]
+        if (state && state.queue)
+            App.selectedQueue = state.queue
+        else
+            App.selectedCategory = state ? state.category : (workspace === "torrents" ? "torrent_all" : "all")
+        sidebar.selectedIndex = state ? state.sidebarIndex : _defaultSidebarIndex(workspace)
+        downloadTable.restoreViewState(state ? state.table : null)
+    }
+
+    // Edits the active workspace's columns (the table swaps layouts per tab).
+    function showColumnsDialog() {
+        columnsDialog.columnDefs = downloadTable.columnDefs.slice()
+        columnsDialog.defaultDefs = downloadTable.defaultColumnDefs()
+        showAndActivate(columnsDialog)
+    }
+
     function showSettingsPage(page) {
         settingsDialog.initialPage = page
         settingsDialog.show()
@@ -196,7 +244,7 @@ ApplicationWindow {
         dlg.requestActivate()
     }
 
-    // ── Map of downloadId FilePropertiesDialog instances ────────────────
+    // ── Map of downloadId FilePropertiesWindow instances ────────────────
     // One window per download, each its own taskbar entry. Double-clicking a
     // download already showing raises the existing window instead of stacking.
     property var _propertiesDialogs: ({})
@@ -2694,26 +2742,21 @@ ApplicationWindow {
     // its own Windows taskbar entry instead of grouping under the main window.
     Component {
         id: filePropertiesComponent
-        FilePropertiesDialog {}
+        FilePropertiesWindow {}
     }
 
 // ── Columns Dialog ───────────────────────────────────────────────────────
     ColumnsDialog {
         id: columnsDialog
         transientParent: root
-        onColumnsChanged: (defs) => {
-            if (defs === null) {
-                downloadTable.resetColumns()
-            } else {
-                downloadTable.columnDefs = defs
-            }
-        }
+        onColumnsChanged: (defs) => { downloadTable.columnDefs = downloadTable._normalizeColumnDefs(defs) }
     }
 
     // ── Toolbar Dialog ───────────────────────────────────────────────────
     ToolbarDialog {
         id: toolbarDialog
         transientParent: root
+        mainToolbar: toolbar
         onLocalDefsChanged: {
             // Real-time preview: update toolbar immediately without saving
             toolbar.buttonDefs = toolbarDialog.localDefs.slice()
@@ -2938,6 +2981,9 @@ ApplicationWindow {
         Action { shortcut: "Ctrl+P";       onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued" || item.status === "Seeding")) App.pauseDownload(item.id) } }
         Action { shortcut: "Ctrl+R";       onTriggered: { var item = root.selectedDownloadItem; if (item) App.redownload(item.id) } }
         Action { shortcut: "Ctrl+/";       onTriggered: root.showSettingsPage(root.settingsPageAbout) }
+        Action { shortcut: "Ctrl+1";       onTriggered: root.switchWorkspace("downloads") }
+        Action { shortcut: "Ctrl+2";       onTriggered: root.switchWorkspace("torrents") }
+        Action { shortcut: "Ctrl+Shift+D"; onTriggered: root.toggleDetailsPane() }
         Action { shortcut: "Ctrl+Shift+L"; onTriggered: { if (App.settings.speedLimiterEnabled) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
 
         Menu {
@@ -2946,8 +2992,8 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/toolbar/add-url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
-            CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/mimetypes/application-x-bittorrent.svg";   onTriggered: addTorrentFileDialog.open() }
-            CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/actions/list-add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
+            CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/actions/torrent-add.svg";   onTriggered: addTorrentFileDialog.open() }
+            CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/actions/batch-add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             CompactMenuItem {
                 text: qsTr("Add Batch URLs from Clipboard…")
                 iconSrc: "icons/actions/edit-paste.svg"
@@ -3100,7 +3146,7 @@ ApplicationWindow {
             title: qsTr("Downloads")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
-            CompactMenuItem { text: qsTr("Stop all"); shortcutDisplay: "Ctrl+K"; iconSrc: "icons/toolbar/stop-all.svg";  onTriggered: downloadTable.pauseAll() }
+            CompactMenuItem { text: qsTr("Stop all"); shortcutDisplay: "Ctrl+K"; iconSrc: "icons/actions/media-playback-stop-all.svg";  onTriggered: downloadTable.pauseAll() }
             CompactSep {}
             CompactMenuItem { text: qsTr("Delete all completed"); shortcutDisplay: "Ctrl+Shift+W"; iconSrc: "icons/actions/edit-delete.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
             CompactSep {}
@@ -3111,6 +3157,7 @@ ApplicationWindow {
             CompactMenuItem {
                 id: _startQueueItem
                 text: qsTr("Start Queue") + "  ▶"
+                iconSrc: "icons/actions/queue-start.svg"
                 onTriggered: _startQueueMenu.popup(_startQueueItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) { _startQueueMenu.popup(_startQueueItem.width, 0) }
@@ -3133,6 +3180,7 @@ ApplicationWindow {
             CompactMenuItem {
                 id: _stopQueueItem
                 text: qsTr("Stop Queue") + "  ▶"
+                iconSrc: "icons/actions/queue-stop.svg"
                 onTriggered: _stopQueueMenu.popup(_stopQueueItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) { _stopQueueMenu.popup(_stopQueueItem.width, 0) }
@@ -3199,6 +3247,12 @@ ApplicationWindow {
                 text: App.settings.showStatusBar ? qsTr("Hide Status Bar") : qsTr("Show Status Bar")
                 iconSrc: "icons/actions/view-statusbar.svg"
                 onTriggered: Qt.callLater(function() { App.settings.showStatusBar = !App.settings.showStatusBar })
+            }
+            CompactMenuItem {
+                // Toggles the current workspace's pane (same as Ctrl+Shift+D).
+                text: root.detailsPaneShown ? qsTr("Hide Details Pane") : qsTr("Show Details Pane")
+                iconSrc: "icons/actions/view-details.svg"
+                onTriggered: Qt.callLater(root.toggleDetailsPane)
             }
             CompactMenuItem {
                 id: _trayIconStyleItem
@@ -3281,11 +3335,7 @@ ApplicationWindow {
                 Timer { id: _arrangeFilesCloseTimer; interval: 300; onTriggered: { if (!_arrangeFilesMenu.activeFocus) _arrangeFilesMenu.close() } }
             }
             CompactSep {}
-            CompactMenuItem { text: qsTr("Columns…"); iconSrc: "icons/actions/view-columns.svg"; onTriggered: {
-                columnsDialog.columnDefs = downloadTable.columnDefs.slice()
-                columnsDialog.show()
-                columnsDialog.raise()
-            }}
+            CompactMenuItem { text: qsTr("Columns…"); iconSrc: "icons/actions/view-columns.svg"; onTriggered: root.showColumnsDialog() }
             CompactMenuItem {
                 id: _toolbarItem
                 iconSrc: "icons/actions/view-toolbar.svg"
@@ -3547,6 +3597,7 @@ ApplicationWindow {
             implicitHeight: height
             queueModel: App.queueModel
             downloadTable: downloadTable
+            onDetailsClicked: root.toggleDetailsPane()
             onAddClicked:             { addUrlDialog.show(); addUrlDialog.raise() }
             onResumeClicked:          downloadTable.resumeSelected()
             onStopClicked:            downloadTable.stopSelected()
@@ -3569,6 +3620,20 @@ ApplicationWindow {
             onRssClicked: {
                 root.showRssWindow()
             }
+        }
+
+        // The sidebar lists both workspaces; this strip is only the fallback
+        // switcher while the sidebar is hidden.
+        WorkspaceTabs {
+            visible: !sidebar.visible
+            Layout.fillWidth: true
+            Layout.preferredHeight: implicitHeight
+            workspace: App.settings.mainWorkspace
+            downloadCount: App.downloadModel.downloadWorkspaceCount
+            torrentCount: App.downloadModel.torrentWorkspaceCount
+            detailsPaneVisible: root.detailsPaneShown
+            onWorkspaceRequested: (workspace) => root.switchWorkspace(workspace)
+            onDetailsPaneToggled: root.toggleDetailsPane()
         }
 
         // ── Inline Find Bar ──────────────────────────────────────────────
@@ -3755,6 +3820,8 @@ ApplicationWindow {
             // Sidebar placed absolutely so it can appear on either side.
             Sidebar {
                 id: sidebar
+                workspace: App.settings.mainWorkspace
+                selectedIndex: root._defaultSidebarIndex(App.settings.mainWorkspace)
                 height: parent.height
                 x: App.settings.sidebarOnRight ? parent.width - width : 0
                 width: App.settings.sidebarWidth
@@ -3782,6 +3849,7 @@ ApplicationWindow {
                     grabberDialog.raise()
                     grabberDialog.requestActivate()
                 }
+                onWorkspaceRequested: (workspace) => root.switchWorkspace(workspace)
                 onDeleteGrabberProjectRequested: (projectId) => {
                     App.deleteGrabberProject(projectId)
                     if (App.selectedCategory === projectId)
@@ -3863,36 +3931,58 @@ ApplicationWindow {
                 }
             }
 
-            DownloadTable {
-                id: downloadTable
+            // Table plus the workspace's docked details pane below it.
+            Item {
+                id: tableArea
                 height: parent.height
                 x: sidebar.visible && !App.settings.sidebarOnRight ? App.settings.sidebarWidth + sidebarDivider.width : 0
                 width: parent.width - (sidebar.visible ? App.settings.sidebarWidth + sidebarDivider.width : 0)
-                categoryDragProxy: dragProxy
-                onExportTorrentsRequested: (downloadIds) => {
-                    root.pendingTorrentExportIds = downloadIds
-                    if (downloadIds && downloadIds.length > 0)
-                        exportTorrentFolderDialog.open()
-                }
-                onOpenProgressRequested: (item) => {
-                    root.showDownloadProgressForItem(item)
-                }
-                onOpenPropertiesRequested: (item) => {
-                    if (!item)
-                        return
-                    // A channel container (older versions) has no single file to show.
-                    if (item.isChannelContainer)
-                        return
-                    if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
-                        root.showDownloadProgressForItem(item)
-                        return
+
+                DetailsPane {
+                    id: detailsPane
+                    visible: root.detailsPaneShown
+                    anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
+                    workspace: App.settings.mainWorkspace
+                    // Keep at least ~4 table rows (header + 26 px rows) above the pane.
+                    maxPaneHeight: Math.max(minPaneHeight, tableArea.height - 140)
+                    item: {
+                        var selected = downloadTable.currentSelectedItem
+                        // The selection can lag a workspace switch by a frame;
+                        // a channel container has no single file to describe.
+                        if (!selected || selected.isTorrent !== root.torrentWorkspace || selected.isChannelContainer)
+                            return null
+                        return selected
                     }
-                    root.showPropertiesForItem(item)
+                    active: visible && root.visible && root.visibility !== Window.Minimized
                 }
-                onOpenColumnsSettingsRequested: {
-                    columnsDialog.columnDefs = downloadTable.columnDefs.slice()
-                    columnsDialog.show()
-                    columnsDialog.raise()
+
+                DownloadTable {
+                    id: downloadTable
+                    anchors { top: parent.top; left: parent.left; right: parent.right }
+                    height: parent.height - (detailsPane.visible ? detailsPane.height : 0)
+                    workspace: App.settings.mainWorkspace
+                    categoryDragProxy: dragProxy
+                    onExportTorrentsRequested: (downloadIds) => {
+                        root.pendingTorrentExportIds = downloadIds
+                        if (downloadIds && downloadIds.length > 0)
+                            exportTorrentFolderDialog.open()
+                    }
+                    onOpenProgressRequested: (item) => {
+                        root.showDownloadProgressForItem(item)
+                    }
+                    onOpenPropertiesRequested: (item) => {
+                        if (!item)
+                            return
+                        // A channel container (older versions) has no single file to show.
+                        if (item.isChannelContainer)
+                            return
+                        if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
+                            root.showDownloadProgressForItem(item)
+                            return
+                        }
+                        root.showPropertiesForItem(item)
+                    }
+                    onOpenColumnsSettingsRequested: root.showColumnsDialog()
                 }
             }
         }

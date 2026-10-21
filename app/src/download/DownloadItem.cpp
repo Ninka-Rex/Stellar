@@ -190,6 +190,27 @@ void DownloadItem::setTorrentUploadSpeed(qint64 v)      { if (m_torrentUploadSpe
 void DownloadItem::setTorrentHasMetadata(bool v)        { if (m_torrentHasMetadata != v) { m_torrentHasMetadata = v; emit torrentChanged(); } }
 void DownloadItem::setTorrentResumeData(const QByteArray &v) { if (m_torrentResumeData != v) { m_torrentResumeData = v; emit torrentResumeDataChanged(); } }
 
+void DownloadItem::setTorrentPeerCounts(int known, int candidates, int connected) {
+    if (!(m_torrentKnownPeers != known || m_torrentConnectCandidates != candidates || m_torrentConnectedPeers != connected))
+        return;
+    m_torrentKnownPeers = known; m_torrentConnectCandidates = candidates; m_torrentConnectedPeers = connected;
+    emit torrentStatsChanged();
+}
+
+void DownloadItem::setTorrentPeerSources(int dht, int pex, int lsd, int tracker) {
+    if (!(m_torrentDhtSourcePeers != dht || m_torrentPexSourcePeers != pex || m_torrentLsdSourcePeers != lsd || m_torrentTrackerSourcePeers != tracker))
+        return;
+    m_torrentDhtSourcePeers = dht; m_torrentPexSourcePeers = pex; m_torrentLsdSourcePeers = lsd; m_torrentTrackerSourcePeers = tracker;
+    emit torrentStatsChanged();
+}
+
+void DownloadItem::setTorrentDhtActivity(int lookups, int replies) {
+    if (!(m_torrentDhtLookups != lookups || m_torrentDhtReplies != replies))
+        return;
+    m_torrentDhtLookups = lookups; m_torrentDhtReplies = replies;
+    emit torrentStatsChanged();
+}
+
 void DownloadItem::clearTorrentStats() {
     bool changed = false;
     if (m_torrentSeeders != 0)          { m_torrentSeeders = 0;          changed = true; }
@@ -207,6 +228,15 @@ void DownloadItem::clearTorrentStats() {
     if (m_torrentSeedingTimeSecs != 0)  { m_torrentSeedingTimeSecs = 0;  changed = true; }
     if (m_torrentWastedBytes != 0)      { m_torrentWastedBytes = 0;      changed = true; }
     if (m_torrentConnections != 0)      { m_torrentConnections = 0;      changed = true; }
+    if (m_torrentKnownPeers != 0) { m_torrentKnownPeers = 0; changed = true; }
+    if (m_torrentConnectCandidates != 0) { m_torrentConnectCandidates = 0; changed = true; }
+    if (m_torrentConnectedPeers != 0) { m_torrentConnectedPeers = 0; changed = true; }
+    if (m_torrentDhtSourcePeers != 0) { m_torrentDhtSourcePeers = 0; changed = true; }
+    if (m_torrentPexSourcePeers != 0) { m_torrentPexSourcePeers = 0; changed = true; }
+    if (m_torrentLsdSourcePeers != 0) { m_torrentLsdSourcePeers = 0; changed = true; }
+    if (m_torrentTrackerSourcePeers != 0) { m_torrentTrackerSourcePeers = 0; changed = true; }
+    if (m_torrentDhtLookups != 0) { m_torrentDhtLookups = 0; changed = true; }
+    if (m_torrentDhtReplies != 0) { m_torrentDhtReplies = 0; changed = true; }
     if (changed)
         emit torrentStatsChanged();
 }

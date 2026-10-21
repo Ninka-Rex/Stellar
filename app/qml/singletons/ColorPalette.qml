@@ -47,6 +47,9 @@ QtObject {
     readonly property color infoBoxBorder: dark ? "#2a3050" : "#aabbdd"
     readonly property color infoBoxText:   dark ? "#8899bb" : "#445577"
 
+    // Purple of the app logo (icons/app/stellar.svg).
+    readonly property color brandPurple: "#7a6be0"
+
     // Header strips (dark accent bars at top of dialogs)
     readonly property color headerStripBg: dark ? "#222228" : "#dde4f0"
 

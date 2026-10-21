@@ -48,7 +48,8 @@
 //   │   └── dbip-city-lite-*.mmdb
 //   └── cache/
 //       ├── qtpipelinecache-*         ← RHI shader pipeline cache (Qt 6.5+)
-//       └── qmlcache/                 ← QML bytecode cache
+//       ├── qmlcache/                 ← QML bytecode cache
+//       └── tracker-icons/            ← tracker favicons (<host>.png / .miss)
 //
 // Migration
 // ─────────
@@ -91,6 +92,9 @@ QString geoDir();
 
 // <root>/cache/   — Qt RHI pipeline cache and QML bytecode cache
 QString cacheDir();
+
+// <root>/cache/tracker-icons/ — TrackerFaviconCache's 32px PNGs and miss markers
+QString trackerIconCacheDir();
 
 // ── Individual files ──────────────────────────────────────────────────────────
 

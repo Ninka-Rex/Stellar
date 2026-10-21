@@ -81,6 +81,16 @@ RowLayout {
             validator: spin.validator
             inputMethodHints: Qt.ImhFormattedNumbersOnly
             selectByMouse: true
+
+            // Publish each valid keystroke, not just the Enter/focus-out commit:
+            // otherwise Apply stays greyed and +/- step from the stale value while
+            // the box still has focus. Empty or out-of-range partial input waits
+            // for the normal commit, which clamps it.
+            onTextEdited: {
+                const v = parseInt(text, 10)
+                if (!isNaN(v) && v >= spin.from && v <= spin.to && v !== root.value)
+                    root.edited(v)
+            }
         }
 
         up.indicator: Rectangle {

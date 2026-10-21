@@ -82,6 +82,18 @@ class DownloadItem : public QObject {
     Q_PROPERTY(qint64   torrentSeedingTimeSecs READ torrentSeedingTimeSecs NOTIFY torrentStatsChanged)
     Q_PROPERTY(qint64   torrentWastedBytes   READ torrentWastedBytes   NOTIFY torrentStatsChanged)
     Q_PROPERTY(int      torrentConnections   READ torrentConnections   NOTIFY torrentStatsChanged)
+    // Peer-discovery detail for the metadata dialog (ephemeral, never persisted):
+    // libtorrent's peer list size, peers not yet tried, connected peers and where
+    // those came from, plus this torrent's running DHT lookups and their replies.
+    Q_PROPERTY(int      torrentKnownPeers READ torrentKnownPeers NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentConnectCandidates READ torrentConnectCandidates NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentConnectedPeers READ torrentConnectedPeers NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentDhtSourcePeers READ torrentDhtSourcePeers NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentPexSourcePeers READ torrentPexSourcePeers NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentLsdSourcePeers READ torrentLsdSourcePeers NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentTrackerSourcePeers READ torrentTrackerSourcePeers NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentDhtLookups READ torrentDhtLookups NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentDhtReplies READ torrentDhtReplies NOTIFY torrentStatsChanged)
     Q_PROPERTY(bool     torrentHasMetadata  READ torrentHasMetadata  NOTIFY torrentChanged)
     Q_PROPERTY(bool     torrentIsSingleFile READ torrentIsSingleFile NOTIFY torrentChanged)
     Q_PROPERTY(bool     torrentIsPrivate    READ torrentIsPrivate    NOTIFY torrentChanged)
@@ -242,6 +254,15 @@ public:
     qint64 torrentSeedingTimeSecs()const { return m_torrentSeedingTimeSecs; }
     qint64 torrentWastedBytes()    const { return m_torrentWastedBytes; }
     int    torrentConnections()    const { return m_torrentConnections; }
+    int    torrentKnownPeers() const { return m_torrentKnownPeers; }
+    int    torrentConnectCandidates() const { return m_torrentConnectCandidates; }
+    int    torrentConnectedPeers() const { return m_torrentConnectedPeers; }
+    int    torrentDhtSourcePeers() const { return m_torrentDhtSourcePeers; }
+    int    torrentPexSourcePeers() const { return m_torrentPexSourcePeers; }
+    int    torrentLsdSourcePeers() const { return m_torrentLsdSourcePeers; }
+    int    torrentTrackerSourcePeers() const { return m_torrentTrackerSourcePeers; }
+    int    torrentDhtLookups() const { return m_torrentDhtLookups; }
+    int    torrentDhtReplies() const { return m_torrentDhtReplies; }
     bool    torrentHasMetadata()  const { return m_torrentHasMetadata; }
     bool    torrentIsSingleFile() const { return m_torrentIsSingleFile; }
     bool    torrentIsPrivate()    const { return m_torrentIsPrivate; }
@@ -275,6 +296,10 @@ public:
     void setTorrentSeedingTimeSecs(qint64 v){ if (m_torrentSeedingTimeSecs!= v) { m_torrentSeedingTimeSecs= v; emit torrentStatsChanged(); } }
     void setTorrentWastedBytes(qint64 v)    { if (m_torrentWastedBytes    != v) { m_torrentWastedBytes    = v; emit torrentStatsChanged(); } }
     void setTorrentConnections(int v)       { if (m_torrentConnections    != v) { m_torrentConnections    = v; emit torrentStatsChanged(); } }
+    // Grouped setters: each group changes together, so one notification per group.
+    void setTorrentPeerCounts(int known, int candidates, int connected);
+    void setTorrentPeerSources(int dht, int pex, int lsd, int tracker);
+    void setTorrentDhtActivity(int lookups, int replies);
     void setTorrentHasMetadata(bool v);
     void setTorrentIsSingleFile(bool v)       { if (m_torrentIsSingleFile != v) { m_torrentIsSingleFile = v; emit torrentChanged(); } }
     void setTorrentIsPrivate(bool v)          { if (m_torrentIsPrivate    != v) { m_torrentIsPrivate    = v; emit torrentChanged(); } }
@@ -421,6 +446,15 @@ private:
     qint64       m_torrentSeedingTimeSecs{0};
     qint64       m_torrentWastedBytes{0};
     int          m_torrentConnections{0};
+    int          m_torrentKnownPeers{0};
+    int          m_torrentConnectCandidates{0};
+    int          m_torrentConnectedPeers{0};
+    int          m_torrentDhtSourcePeers{0};
+    int          m_torrentPexSourcePeers{0};
+    int          m_torrentLsdSourcePeers{0};
+    int          m_torrentTrackerSourcePeers{0};
+    int          m_torrentDhtLookups{0};
+    int          m_torrentDhtReplies{0};
     bool         m_torrentHasMetadata{false};
     bool         m_torrentIsSingleFile{true};   // true until metadata proves otherwise
     bool         m_torrentIsPrivate{false};

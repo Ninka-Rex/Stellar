@@ -19,10 +19,21 @@
 #include <QHash>
 #include <QList>
 #include <QSet>
+#include <QVariantMap>
 #include "DownloadItem.h"
 
 class DownloadTableModel : public QAbstractTableModel {
     Q_OBJECT
+    // Item totals per main-window workspace, for the tab strip labels.
+    // Channel children aren't counted — they're rows of their container.
+    Q_PROPERTY(int downloadWorkspaceCount READ downloadWorkspaceCount NOTIFY workspaceCountsChanged)
+    Q_PROPERTY(int torrentWorkspaceCount  READ torrentWorkspaceCount  NOTIFY workspaceCountsChanged)
+    // Live item counts for the sidebar, both workspaces at once, keyed
+    // "<workspace>/<filter>": "downloads/all", "torrents/<category id>",
+    // "downloads/status_active", "torrents/torrent_seeding",
+    // "downloads/queue:<queue id>", "downloads/queue_any", ...
+    // Top-level items only, like the workspace totals.
+    Q_PROPERTY(QVariantMap sidebarCounts READ sidebarCounts NOTIFY sidebarCountsChanged)
 public:
     enum Column {
         ColFilename = 0,
@@ -59,6 +70,13 @@ public:
     Q_INVOKABLE DownloadItem *itemById(const QString &id) const;
     DownloadItem *itemByUrl(const QUrl &url) const;
 
+    // Main-window workspace: "torrents" shows only torrents, anything else
+    // ("downloads") only non-torrents. ANDed with the category/queue filter.
+    void setWorkspace(const QString &workspace);
+    int downloadWorkspaceCount() const { return m_downloadWorkspaceCount; }
+    int torrentWorkspaceCount() const  { return m_torrentWorkspaceCount; }
+    QVariantMap sidebarCounts() const { return m_sidebarCounts; }
+
     Q_INVOKABLE void setFilterCategory(const QString &filter);
     Q_INVOKABLE void setFilterQueue(const QString &filter);
     Q_INVOKABLE void sortBy(const QString &column, bool ascending);
@@ -66,6 +84,10 @@ public:
     // contiguous child block without resetting the model.
     Q_INVOKABLE void setExpanded(const QString &containerId, bool expanded);
     QList<DownloadItem *> allItems() const { return m_items; }
+
+signals:
+    void workspaceCountsChanged();
+    void sidebarCountsChanged();
 
 public slots:
     void flushVolatileSort();
@@ -90,7 +112,21 @@ private:
     // (filter change, bulk add). Incremental insert/remove paths update the set
     // directly rather than calling this.
     void rebuildVisibleSet();
+    // Re-filters and re-sorts every item into m_visible under a model reset.
+    // Used for wholesale filter changes (workspace, category, queue).
+    void resetVisibleToFilter();
+    void recountWorkspaces();
+    bool matchesWorkspace(DownloadItem *item) const;
     bool matchesFilter(DownloadItem *item) const;
+    // Membership in one of the sidebar's state filters (Unfinished/Finished,
+    // the torrent states); false for any other id. Shared by matchesFilter()
+    // and the sidebar counts so the two never disagree.
+    static bool isStateFilter(const QString &filter);
+    static bool matchesStateFilter(const DownloadItem *item, const QString &filter);
+    // Coalesces count refreshes: every torrent emits on each alert tick, and
+    // one O(n) recount per event-loop pass covers the whole batch.
+    void scheduleSidebarRecount();
+    void recountSidebar();
     int compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const;
     // Hierarchy-aware comparator: orders top-level rows by the active column, but
     // keeps each container's children contiguously beneath it (parent first, then
@@ -128,6 +164,11 @@ private:
     QHash<QString, DownloadItem *> m_itemsById;
     QString               m_filterCategory{QStringLiteral("all")};
     QString               m_filterQueue;
+    bool                  m_torrentWorkspace{false};
+    int                   m_downloadWorkspaceCount{0};
+    int                   m_torrentWorkspaceCount{0};
+    QVariantMap           m_sidebarCounts;
+    bool                  m_sidebarRecountPending{false};
     QString               m_sortColumn{QStringLiteral("added")};
     bool                  m_sortAscending{true};
     bool                  m_bulkRemoving{false};

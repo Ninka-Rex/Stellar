@@ -54,22 +54,11 @@ Window {
         localDefs = defs
     }
 
+    // The main toolbar owns the button list (keys, labels, icons); asked at
+    // call time so labels follow a live language switch.
+    property var mainToolbar: null
     function _defaultDefs() {
-        return [
-            {key:"add",          label: qsTr("Add URL"),        iconSrc:"../icons/toolbar/add-url.svg",           enabled:true},
-            {key:"resume",       label: qsTr("Resume"),         iconSrc:"../icons/toolbar/resume.svg",         enabled:true},
-            {key:"stop",         label: qsTr("Stop"),           iconSrc:"../icons/toolbar/stop.svg",          enabled:true},
-            {key:"stop_all",     label: qsTr("Stop All"),       iconSrc:"../icons/toolbar/stop-all.svg",       enabled:true},
-            {key:"delete",       label: qsTr("Delete"),         iconSrc:"../icons/toolbar/delete.svg",    enabled:true},
-            {key:"delete_done",  label: qsTr("Delete Done"),    iconSrc:"../icons/toolbar/delete-completed.svg",    enabled:true},
-            {key:"options",      label: qsTr("Options"),        iconSrc:"../icons/toolbar/options.svg",          enabled:true},
-            {key:"scheduler",    label: qsTr("Scheduler"),      iconSrc:"../icons/toolbar/scheduler.svg",      enabled:true},
-            {key:"start_queue",  label: qsTr("Start Queue"),    iconSrc:"../icons/toolbar/start-queue.svg",    enabled:true},
-            {key:"stop_queue",   label: qsTr("Stop Queue"),     iconSrc:"../icons/toolbar/stop-queue.svg",     enabled:true},
-            {key:"grabber",      label: qsTr("Grabber"),        iconSrc:"../icons/toolbar/grabber.svg",        enabled:true},
-            {key:"search_engine",label: qsTr("Search Engine"),  iconSrc:"../icons/toolbar/search-engine.svg",enabled:true},
-            {key:"rss",          label: qsTr("RSS"),            iconSrc:"../icons/toolbar/rss.svg",            enabled:true}
-        ]
+        return mainToolbar ? mainToolbar._defaultDefs() : []
     }
 
     function _centerOnOwner() {

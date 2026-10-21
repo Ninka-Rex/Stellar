@@ -272,156 +272,6 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>Past midnight already?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>Still up?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>The night is young!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>Can't sleep?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>Good morning!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>Rise and shine!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>Top of the morning!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6195"/>
-        <source>Morning! Coffee's brewing.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6197"/>
-        <source>Good afternoon!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6197"/>
-        <source>Lunch break downloads?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6197"/>
-        <source>Midday already!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6197"/>
-        <source>Hope your day's going well!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6197"/>
-        <source>Afternoon!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6199"/>
-        <source>Good evening!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6199"/>
-        <source>Winding down?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6199"/>
-        <source>Evening!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6199"/>
-        <source>Hope you had a good day!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6201"/>
-        <source>Working late?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6201"/>
-        <source>Up past bedtime?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6201"/>
-        <source>Late night session!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6201"/>
-        <source>Don't forget to rest!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6204"/>
-        <source>Welcome back!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6205"/>
-        <source>Ready when you are!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6207"/>
-        <source>Good to see you!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6207"/>
-        <source>Let's get downloading!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6207"/>
-        <source>Missed you!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6207"/>
-        <source>Back at it!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6207"/>
-        <source>Your downloads await!</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6207"/>
-        <source>Pick up where you left off?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/src/core/AppController.cpp" line="6207"/>
-        <source>What are we grabbing today?</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/src/core/AppController.cpp" line="2459"/>
         <source>Bound to %1</source>
         <translation></translation>
@@ -522,6 +372,21 @@
     </message>
     <message>
         <source>Audio only</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3376"/>
+        <source>Enter an http:// or https:// address.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3398"/>
+        <source>The list is too large (over 1 MB).</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/core/AppController.cpp" line="3427"/>
+        <source>No tracker addresses found in the list.</source>
         <translation></translation>
     </message>
 </context>
@@ -1744,13 +1609,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <source>Parent web page</source>
         <translation></translation>
     </message>
-    <message numerus="yes">
-        <source>%n file(s)</source>
-        <translation type="vanished">
-            <numerusform>%n file(s)</numerusform>
-            <numerusform>%n file(s)</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../app/qml/main/DownloadTable.qml" line="923"/>
         <source>No matching downloads.</source>
@@ -1760,6 +1618,17 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <location filename="../app/qml/main/DownloadTable.qml" line="924"/>
         <source>No downloads yet.
 Click  Add URL  to start.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/DownloadTable.qml" line="1083"/>
+        <source>No matching torrents.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/DownloadTable.qml" line="1085"/>
+        <source>No torrents yet.
+Add a .torrent file or magnet link to start.</source>
         <translation></translation>
     </message>
     <message>
@@ -1786,6 +1655,18 @@ Click  Add URL  to start.</source>
         <location filename="../app/qml/main/DownloadTable.qml" line="368"/>
         <source>Copy URL</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/DownloadTable.qml" line="0"/>
+        <source>Copy Info Hash</source>
+        <translation></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n file(s)</source>
+        <translation type="vanished">
+            <numerusform>%n file(s)</numerusform>
+            <numerusform>%n file(s)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../app/qml/main/DownloadTable.qml" line="214"/>
@@ -2014,14 +1895,6 @@ You may change it in Options → Downloads at a later time.</source>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5883"/>
         <source>Unavailable - no peers have this piece</source>
         <translation></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5885"/>
-        <source>Missing - %n peer(s) have it</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
     </message>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5885"/>
@@ -2520,11 +2393,6 @@ You may change it in Options → Downloads at a later time.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4055"/>
-        <source>Inactive</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1964"/>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4075"/>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4808"/>
@@ -2544,11 +2412,6 @@ You may change it in Options → Downloads at a later time.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4568"/>
-        <source>Tier</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="152"/>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1964"/>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4575"/>
@@ -2558,11 +2421,6 @@ You may change it in Options → Downloads at a later time.</source>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4032"/>
         <source>0 known peers</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4100"/>
-        <source>UL</source>
         <translation></translation>
     </message>
     <message>
@@ -2576,11 +2434,6 @@ You may change it in Options → Downloads at a later time.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4482"/>
-        <source>↓ %1  ↑ %2</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4490"/>
         <source>Ping %1  %2% done</source>
         <translation></translation>
@@ -2589,21 +2442,6 @@ You may change it in Options → Downloads at a later time.</source>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4552"/>
         <source>Unknown</source>
         <translation type="unfinished">Unknown</translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4687"/>
-        <source>You (this client)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4739"/>
-        <source>No connected peers to plot</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4747"/>
-        <source>Waiting for your public IP so the local map position can be shown</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4768"/>
@@ -2627,17 +2465,6 @@ You may change it in Options → Downloads at a later time.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4882"/>
-        <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4912"/>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5317"/>
-        <source>Add</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5065"/>
         <source>No trackers</source>
         <translation></translation>
@@ -2646,11 +2473,6 @@ You may change it in Options → Downloads at a later time.</source>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1964"/>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5252"/>
         <source>Web Seeds</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5287"/>
-        <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
         <translation></translation>
     </message>
     <message>
@@ -2689,16 +2511,6 @@ You may change it in Options → Downloads at a later time.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4098"/>
-        <source>DL</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4102"/>
-        <source>Both</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1964"/>
         <source>Speed</source>
         <translation></translation>
@@ -2718,14 +2530,6 @@ You may change it in Options → Downloads at a later time.</source>
         <source>%1 known peers</source>
         <translation></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4812"/>
-        <source>%n tracker(s)</source>
-        <translation>
-            <numerusform>%n tracker(s)</numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4837"/>
         <source>Tell every tracker you&apos;re here right now, instead of waiting for the
@@ -2741,25 +2545,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4857"/>
         <source>Add trackers…</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4927"/>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5332"/>
-        <source>%1 added</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4926"/>
-        <source>%1 added, %2 failed</source>
-        <translation></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5256"/>
-        <source>%n seed(s)</source>
-        <translation>
-            <numerusform>%n seed(s)</numerusform>
-            <numerusform></numerusform>
-        </translation>
     </message>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="5262"/>
@@ -2897,28 +2682,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2349"/>
-        <source>Average</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2348"/>
-        <source>Current</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2576"/>
         <source>No speed recorded in this period yet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2350"/>
-        <source>Peak</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2351"/>
-        <source>Transferred</source>
         <translation></translation>
     </message>
     <message>
@@ -2934,16 +2699,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3556"/>
         <source>%1 away</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3975"/>
-        <source>%1 peers</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3974"/>
-        <source>%1 peers, %2 on the map</source>
         <translation></translation>
     </message>
     <message>
@@ -2994,11 +2749,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3508"/>
         <source>Local network</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4678"/>
-        <source>None of the connected peers have a known location</source>
         <translation></translation>
     </message>
     <message>
@@ -3062,11 +2812,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4436"/>
-        <source>%1% done</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="3499"/>
         <source>Measured from how fast this peer answers block requests, so it's only known while you're downloading from it.</source>
         <translation></translation>
@@ -3077,8 +2822,118 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="4438"/>
-        <source>Ping %1 ms</source>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="249"/>
+        <source>Remaining</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1212"/>
+        <source>N/A</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2697"/>
+        <source>Do not download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2866"/>
+        <source>Open</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2871"/>
+        <source>Open Containing Folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2877"/>
+        <source>Copy Path</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="2886"/>
+        <source>Copy Name</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1473"/>
+        <source>avg %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1474"/>
+        <source>peak %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1475"/>
+        <source>%1 total</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Incoming: they connected to you</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Outgoing: you connected to them</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Found via tracker</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Found via DHT (no tracker needed)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Found through another peer you're connected to</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Found on your local network (same Wi-Fi or LAN)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Connected over uTP (UDP) instead of TCP. uTP backs off when your connection is busy, so browsing and calls stay responsive</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Traffic is encrypted</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Stalled: they haven't sent any data in a while</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>They already have the whole file and are only uploading</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Given a trial upload slot to see if they're worth keeping</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Connected through a firewall using another peer's help</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="0"/>
+        <source>Connected over the I2P anonymous network</source>
         <translation></translation>
     </message>
 </context>
@@ -4734,52 +4589,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3244"/>
         <source>SDM Tray Icon</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3256"/>
         <source>Colored</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3260"/>
         <source>Light</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3264"/>
         <source>Dark</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3238"/>
         <source>Hide Status Bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3238"/>
         <source>Show Status Bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3327"/>
         <source>Toolbar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3338"/>
         <source>Toolbar Settings…</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3350"/>
         <source>Large Buttons</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="0"/>
+        <location filename="../app/qml/Main.qml" line="3354"/>
         <source>Small Buttons</source>
         <translation></translation>
     </message>
@@ -5054,6 +4909,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <message>
         <location filename="../app/qml/Main.qml" line="713"/>
         <source>Stop All</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="3244"/>
+        <source>Hide Details Pane</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="3244"/>
+        <source>Show Details Pane</source>
         <translation></translation>
     </message>
 </context>
@@ -7925,6 +7790,16 @@ aria2</source>
         <source>To</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2822"/>
+        <source>Downloads each tracker's favicon for the Trackers tab and caches it. This contacts the tracker's web server directly, outside your torrent network binding.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2821"/>
+        <source>Show favicons in tracker list</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>Sidebar</name>
@@ -7944,11 +7819,6 @@ aria2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/main/Sidebar.qml" line="182"/>
-        <source>All Downloads</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/main/Sidebar.qml" line="322"/>
         <source>Unfinished</source>
         <translation></translation>
@@ -7961,11 +7831,6 @@ aria2</source>
     <message>
         <location filename="../app/qml/main/Sidebar.qml" line="377"/>
         <source>Grabber Projects</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/main/Sidebar.qml" line="480"/>
-        <source>Torrents</source>
         <translation></translation>
     </message>
     <message>
@@ -8006,6 +7871,26 @@ aria2</source>
     <message>
         <location filename="../app/qml/main/Sidebar.qml" line="510"/>
         <source>Moving</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/Sidebar.qml" line="0"/>
+        <source>Downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/Sidebar.qml" line="0"/>
+        <source>Torrents</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/Sidebar.qml" line="0"/>
+        <source>Downloads (Ctrl+1)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/Sidebar.qml" line="0"/>
+        <source>Torrents (Ctrl+2)</source>
         <translation></translation>
     </message>
 </context>
@@ -8346,6 +8231,11 @@ Click to open Statistics</source>
         <source>RSS</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/main/Toolbar.qml" line="0"/>
+        <source>Details</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>ToolbarDialog</name>
@@ -8358,71 +8248,6 @@ Click to open Statistics</source>
     <message>
         <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="117"/>
         <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="58"/>
-        <source>Add URL</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="59"/>
-        <source>Resume</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="60"/>
-        <source>Stop</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="61"/>
-        <source>Stop All</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="62"/>
-        <source>Delete</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="63"/>
-        <source>Delete Done</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="64"/>
-        <source>Options</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="65"/>
-        <source>Scheduler</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="66"/>
-        <source>Start Queue</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="67"/>
-        <source>Stop Queue</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="68"/>
-        <source>Grabber</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="69"/>
-        <source>Search Engine</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/dialogs/ToolbarDialog.qml" line="70"/>
-        <source>RSS</source>
         <translation></translation>
     </message>
     <message>
@@ -8708,6 +8533,89 @@ Click to open Statistics</source>
 <context>
     <name>TorrentMetadataDialog</name>
     <message>
+        <source>%1 s</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 min %2 s</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Info hash</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>.torrent file</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Total size</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Pieces</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>None (DHT / PEX only)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Source</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Created by</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Created on</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Metadata retrieved</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>in %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Elapsed: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Copy Name</source>
+        <translation></translation>
+    </message>
+    <message numerus="yes">
+        <source>in %1 from %n peer(s)</source>
+        <translation>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
         <location filename="../app/qml/torrent/TorrentMetadataDialog.qml" line="80"/>
         <source>Priority</source>
         <translation></translation>
@@ -8825,14 +8733,6 @@ Click to open Statistics</source>
         <source>Fetching metadata…</source>
         <translation></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../app/qml/torrent/TorrentMetadataDialog.qml" line="1224"/>
-        <source>%n item(s)</source>
-        <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../app/qml/torrent/TorrentMetadataDialog.qml" line="1273"/>
         <source>Name</source>
@@ -8918,6 +8818,71 @@ Click to open Statistics</source>
         <location filename="../app/qml/torrent/TorrentMetadataDialog.qml" line="545"/>
         <source>Torrent Metadata</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Torrent</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>DHT: not used (private torrent)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>DHT: disabled</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>DHT: connecting to the network...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>waiting for the next lookup</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Peers: %1 found · %2 to try · %3 connected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 via DHT</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 via PEX</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 via LSD</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 via tracker</source>
+        <translation></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n lookup(s) running</source>
+        <translation>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n reply(s)</source>
+        <translation>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>DHT: %n node(s)</source>
+        <translation>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -10662,6 +10627,228 @@ Drag downloads here or use “Move to Queue” in the download list.</source>
     <message>
         <location filename="../app/qml/ytdlp/YtdlpOutputFields.qml" line="167"/>
         <source>ffmpeg was not found, so yt-dlp can only download a single pre-merged stream, usually 480p or lower, and cannot convert formats. Place ffmpeg next to yt-dlp for full quality (Settings › Media).</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>WorkspaceTabs</name>
+    <message>
+        <location filename="../app/qml/main/WorkspaceTabs.qml" line="112"/>
+        <source>Downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/WorkspaceTabs.qml" line="115"/>
+        <source>Downloads (Ctrl+1)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/WorkspaceTabs.qml" line="119"/>
+        <source>Torrents</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/WorkspaceTabs.qml" line="122"/>
+        <source>Torrents (Ctrl+2)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/WorkspaceTabs.qml" line="151"/>
+        <source>Details</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/WorkspaceTabs.qml" line="0"/>
+        <source>Show or hide the details pane (Ctrl+Shift+D)</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>SwarmMap</name>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="326"/>
+        <source>%1 peers, %2 on the map</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="327"/>
+        <source>%1 peers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="333"/>
+        <source>Inactive</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="338"/>
+        <source>Trackers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="343"/>
+        <source>Peer</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="344"/>
+        <source>Seed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="345"/>
+        <source>You</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="346"/>
+        <source>Tracker</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="347"/>
+        <source>DL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="348"/>
+        <source>UL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="349"/>
+        <source>Both</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="598"/>
+        <source>No connected peers to plot</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="600"/>
+        <source>None of the connected peers have a known location</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="602"/>
+        <source>Waiting for your public IP so the local map position can be shown</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="677"/>
+        <source>↓ %1  ↑ %2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="683"/>
+        <source>%1% done</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="684"/>
+        <source>Ping %1 ms</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="703"/>
+        <source>Status</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="703"/>
+        <source>Unknown</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="709"/>
+        <source>Tier</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="712"/>
+        <source>Peers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/SwarmMap.qml" line="741"/>
+        <source>You (this client)</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>AddTorrentSourcesDialog</name>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="23"/>
+        <source>Add trackers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="23"/>
+        <source>Add web seeds</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="99"/>
+        <source>%1 added, %2 rejected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="122"/>
+        <source>Trackers loaded: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="133"/>
+        <source>List of trackers to add (one per line):</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="134"/>
+        <source>List of web seeds to add (one per line):</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="169"/>
+        <source>µTorrent compatible list URL:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="213"/>
+        <source>Downloading list...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="218"/>
+        <source>Download the list and add its trackers to the box above</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="236"/>
+        <source>Add</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="242"/>
+        <source>Cancel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/AddTorrentSourcesDialog.qml" line="201"/>
+        <source>Download</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DetailsPane</name>
+    <message>
+        <location filename="../app/qml/main/DetailsPane.qml" line="0"/>
+        <source>Select a torrent to see its details.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/main/DetailsPane.qml" line="0"/>
+        <source>Select a download to see its details.</source>
         <translation></translation>
     </message>
 </context>

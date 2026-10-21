@@ -53,7 +53,8 @@ Item {
 
     // ── Arrow chevron width fixed regardless of button size ──────────────
     readonly property int _arrowW: smallMode ? 14 : 18
-    readonly property int _iconSize: smallMode ? 20 : 32
+    // Matches ToolbarBtn so plain and dropdown buttons line up.
+    readonly property int _iconSize: smallMode ? 28 : 32
 
     // ── Single highlight spanning the whole button ──────────────────────
     // One background behind both click zones so hover/press is one continuous

@@ -147,7 +147,7 @@ constexpr int kMinimumUpdateCheckIndicatorMs = 3000;
 // fail-closed by suspending the session. Wall-clock so it is independent of the
 // reconcile timer's interval. Long enough to ride out VPN keepalive/rekey flaps.
 constexpr qint64 kBindSuspendGraceMs = 15000;
-constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
+constexpr qint64 kSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
 constexpr int kMaxMotdLengthChars = 280;
 constexpr qint64 kMotdDismissDurationMs = 7LL * 24LL * 60LL * 60LL * 1000LL;
 
@@ -178,6 +178,44 @@ void openLocalPath(const QString &path)
     proc.startDetached();
 #else
     QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+#endif
+}
+
+// Show `filePath` selected in the system file manager, or open `fallbackDir`
+// when the file doesn't exist (yet) or no selecting file manager is found.
+void revealLocalPath(const QString &filePath, const QString &fallbackDir)
+{
+    if (filePath.isEmpty() || !QFileInfo::exists(filePath)) {
+        openLocalPath(fallbackDir);
+        return;
+    }
+#if defined(STELLAR_WINDOWS)
+    // explorer.exe /select,<path> — use ShellExecuteW so we don't fight Qt's
+    // argument-list quoting, which wraps each element in quotes and breaks
+    // the /select,path syntax that explorer expects as one token.
+    const QString nativePath = QDir::toNativeSeparators(filePath);
+    const std::wstring params = (QStringLiteral("/select,\"") + nativePath + QStringLiteral("\"")).toStdWString();
+    ShellExecuteW(nullptr, L"open", L"explorer.exe", params.c_str(), nullptr, SW_SHOWNORMAL);
+#else
+    // Try common Linux file managers' "select" syntax. File managers are
+    // Qt/GTK apps launched as children — clean environment required, same as
+    // openLocalPath.
+    auto tryRun = [](const QString &program, const QStringList &args) -> bool {
+        if (QStandardPaths::findExecutable(program).isEmpty())
+            return false;
+        QProcess proc;
+        proc.setProgram(program);
+        proc.setArguments(args);
+        proc.setProcessEnvironment(cleanSystemEnvironment());
+        return proc.startDetached();
+    };
+    if (tryRun(QStringLiteral("nautilus"), {QStringLiteral("--select"), filePath}))
+        return;
+    if (tryRun(QStringLiteral("dolphin"), {QStringLiteral("--select"), filePath}))
+        return;
+    if (tryRun(QStringLiteral("nemo"), {filePath}))
+        return;
+    openLocalPath(fallbackDir);
 #endif
 }
 
@@ -1462,6 +1500,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_settings->lastTryShowSeconds());
     m_queue         = new DownloadQueue(this);
     m_downloadModel = new DownloadTableModel(this);
+    // Set before the restore bulk-add so the first populated view is already
+    // the saved workspace (no visible all-items → filtered reset at startup).
+    m_downloadModel->setWorkspace(m_settings->mainWorkspace());
+    connect(m_settings, &AppSettings::mainWorkspaceChanged, this, [this]() {
+        m_downloadModel->setWorkspace(m_settings->mainWorkspace());
+    });
     m_categoryModel = new CategoryModel(this);
     m_grabberProjectModel = new GrabberProjectModel(this);
     m_grabberResultModel = new GrabberResultModel(this);
@@ -1473,6 +1517,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_queueModel    = new QueueModel(this);
     m_ytdlpManager  = new YtdlpManager(m_nam, this);
     m_torrentSearchManager = new TorrentSearchManager(m_nam, this);
+    m_trackerIcons  = new TrackerFaviconCache(m_nam, m_settings, this);
     m_rssManager = new RssManager(m_nam, this);
     connect(m_rssManager, &RssManager::downloadTriggered, this,
             [this](const QString &url, const QString &savePath,
@@ -1667,38 +1712,50 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     });
     m_tooltipTimer->start();
 
-    m_torrentSpeedHistoryTimer = new QTimer(this);
-    m_torrentSpeedHistoryTimer->setInterval(1000);
-    connect(m_torrentSpeedHistoryTimer, &QTimer::timeout, this, [this]() {
+    m_speedHistoryTimer = new QTimer(this);
+    m_speedHistoryTimer->setInterval(1000);
+    connect(m_speedHistoryTimer, &QTimer::timeout, this, [this]() {
         const qint64 nowMs = QDateTime::currentMSecsSinceEpoch();
-        const qint64 cutoff = nowMs - kTorrentSpeedHistoryRetentionMs;
-        QSet<QString> activeIds;
+        const qint64 cutoff = nowMs - kSpeedHistoryRetentionMs;
+        QSet<QString> liveIds;
         const auto items = m_downloadModel->allItems();
         for (DownloadItem *item : items) {
-            if (!item || !item->isTorrent())
+            if (!item)
                 continue;
-            activeIds.insert(item->id());
-            auto &series = m_torrentSpeedHistory[item->id()];
+            liveIds.insert(item->id());
             const int down = static_cast<int>(std::max<qint64>(0, item->speed()));
-            const int up = static_cast<int>(std::max<qint64>(0, item->torrentUploadSpeed()));
+            const int up = item->isTorrent()
+                ? static_cast<int>(std::max<qint64>(0, item->torrentUploadSpeed())) : 0;
+            // Torrents are recorded for as long as they exist (a seeding torrent
+            // at 0 B/s is still "live"). HTTP items only while they transfer:
+            // a library of finished downloads would otherwise heartbeat forever.
+            // When one stops, a single 0 sample closes its line; after that the
+            // silence reads as "not running" rather than a flat zero.
+            const bool recording = item->isTorrent()
+                || down > 0 || item->status() == QStringLiteral("Downloading");
+            auto it = m_speedHistory.find(item->id());
+            if (!recording && (it == m_speedHistory.end() || it->isEmpty() || it->last().downBps == 0))
+                continue;
+            auto &series = it != m_speedHistory.end() ? it.value() : m_speedHistory[item->id()];
             const bool shouldAppend = series.isEmpty()
                 || series.last().downBps != down
                 || series.last().upBps != up
-                || (nowMs - series.last().timestampMs) >= 10000; // heartbeat every 10s
+                || (recording && (nowMs - series.last().timestampMs) >= 10000); // heartbeat every 10s
             if (shouldAppend)
                 series.append({ nowMs, down, up });
+        }
+        for (auto it = m_speedHistory.begin(); it != m_speedHistory.end();) {
+            auto &series = it.value();
             while (!series.isEmpty() && series.first().timestampMs < cutoff)
                 series.removeFirst();
-        }
-        for (auto it = m_torrentSpeedHistory.begin(); it != m_torrentSpeedHistory.end();) {
-            if (!activeIds.contains(it.key())) {
-                it = m_torrentSpeedHistory.erase(it);
+            if (series.isEmpty() || !liveIds.contains(it.key())) {
+                it = m_speedHistory.erase(it);
             } else {
                 ++it;
             }
         }
     });
-    m_torrentSpeedHistoryTimer->start();
+    m_speedHistoryTimer->start();
 
     // ── 2. IPC Server ──────────────────────────────────────────────────────────
     m_ipcServer = new QLocalServer(this);
@@ -2913,17 +2970,19 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
     return item;
 }
 
-static QString magnetDisplayName(const QString &uri) {
+QString AppController::magnetDisplayName(const QString &uri) {
     if (!uri.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive))
         return {};
-    QUrl url(uri);
-    QUrlQuery query(url.query());
-    const QString raw = query.queryItemValue(QStringLiteral("dn"));
-    if (raw.isEmpty())
-        return QStringLiteral("Magnetized transfer");
-    // queryItemValue returns raw percent-encoded bytes; magnet URIs routinely
-    // carry percent-encoded UTF-8 in the dn parameter.
-    return QUrl::fromPercentEncoding(raw.toUtf8()).trimmed();
+    // Work on the fully encoded form so an escaped "%2B" is still distinguishable
+    // from a bare "+" when we decode below.
+    const QUrlQuery query(QUrl(uri).query(QUrl::FullyEncoded));
+    QString raw = query.queryItemValue(QStringLiteral("dn"), QUrl::FullyEncoded);
+    // Most trackers build magnets with form encoding, where "+" means a space (a
+    // literal plus is sent as %2B); libtorrent decodes dn the same way.
+    raw.replace(QLatin1Char('+'), QLatin1Char(' '));
+    const QString name = QUrl::fromPercentEncoding(raw.toUtf8()).trimmed();
+    // The name is attacker-controlled and becomes the item's filename.
+    return name.isEmpty() ? QString() : sanitizeFilename(name);
 }
 
 DownloadItem *AppController::createTorrentItem(const QString &source, const QString &savePath,
@@ -2940,9 +2999,12 @@ DownloadItem *AppController::createTorrentItem(const QString &source, const QStr
     item->setIsTorrent(true);
     item->setTorrentSource(trimmed);
 
-    const QString filename = trimmed.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)
-        ? magnetDisplayName(trimmed)
-        : QFileInfo(trimmed).completeBaseName();
+    QString filename = QFileInfo(trimmed).completeBaseName();
+    if (trimmed.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)) {
+        filename = magnetDisplayName(trimmed);
+        if (filename.isEmpty())
+            filename = QStringLiteral("Magnetized transfer");
+    }
     if (!filename.isEmpty()) {
         item->setFilename(filename);
         // The "Magnetized transfer" placeholder (no-dn magnet / raw infohash) is a
@@ -3322,6 +3384,65 @@ bool AppController::removeTorrentWebSeed(const QString &downloadId, const QStrin
     if (!m_torrentSession)
         return false;
     return m_torrentSession->removeWebSeed(downloadId, url);
+}
+
+void AppController::fetchTrackerList(const QString &urlText) {
+    const QUrl url = QUrl::fromUserInput(urlText.trimmed());
+    const QString scheme = url.scheme().toLower();
+    if (!url.isValid() || url.host().isEmpty()
+        || (scheme != QLatin1String("http") && scheme != QLatin1String("https"))) {
+        emit trackerListFetched(urlText, {}, tr("Enter an http:// or https:// address."));
+        return;
+    }
+
+    // The list server is untrusted: bounded size and time, no downgrade on
+    // redirect, and every line is re-validated before it can reach libtorrent.
+    constexpr qint64 kMaxListBytes = 1024 * 1024;
+    QNetworkRequest request(url);
+    request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+    request.setMaximumRedirectsAllowed(5);
+    request.setTransferTimeout(15000);
+    QNetworkReply *reply = m_nam->get(request);
+    auto tooLarge = std::make_shared<bool>(false);
+    connect(reply, &QNetworkReply::downloadProgress, reply, [reply, tooLarge](qint64 received, qint64 total) {
+        if (received > kMaxListBytes || total > kMaxListBytes) {
+            *tooLarge = true;
+            reply->abort();
+        }
+    });
+    connect(reply, &QNetworkReply::finished, this, [this, reply, urlText, tooLarge]() {
+        reply->deleteLater();
+        if (*tooLarge) {
+            emit trackerListFetched(urlText, {}, tr("The list is too large (over 1 MB)."));
+            return;
+        }
+        if (reply->error() != QNetworkReply::NoError) {
+            emit trackerListFetched(urlText, {}, reply->errorString());
+            return;
+        }
+        const QString body = QString::fromUtf8(reply->read(kMaxListBytes));
+        static const QSet<QString> kTrackerSchemes{
+            QStringLiteral("http"), QStringLiteral("https"), QStringLiteral("udp"),
+            QStringLiteral("ws"), QStringLiteral("wss")
+        };
+        QStringList trackers;
+        QSet<QString> seen;
+        for (const QString &rawLine : body.split(QLatin1Char('\n'))) {
+            const QString line = rawLine.trimmed();
+            if (line.isEmpty() || line.size() > 2048 || line.startsWith(QLatin1Char('#')))
+                continue;
+            const QUrl tracker(line, QUrl::StrictMode);
+            if (!tracker.isValid() || tracker.host().isEmpty()
+                || !kTrackerSchemes.contains(tracker.scheme().toLower()))
+                continue;
+            if (seen.contains(line))
+                continue;
+            seen.insert(line);
+            trackers.append(line);
+        }
+        emit trackerListFetched(urlText, trackers,
+                                trackers.isEmpty() ? tr("No tracker addresses found in the list.") : QString());
+    });
 }
 
 // Returns true only if name is a single legal filename component — no path
@@ -3727,7 +3848,7 @@ void AppController::discardTorrentDownload(const QString &downloadId) {
         m_torrentSession->remove(downloadId, true);
     if (item)
         item->deleteLater();
-    m_torrentSpeedHistory.remove(downloadId);
+    m_speedHistory.remove(downloadId);
 }
 
 QString AppController::beginPendingDownload(const QString &url,
@@ -5107,7 +5228,7 @@ void AppController::deleteDownload(const QString &id, int mode) {
     if (ytWorker) { ytWorker->abort(); ytWorker->deleteLater(); }
 
     m_queue->cancel(id);
-    m_torrentSpeedHistory.remove(id);
+    m_speedHistory.remove(id);
     m_lastTorrentPersistUploaded.remove(id);
     m_lastTorrentPersistDownloaded.remove(id);
 
@@ -5200,68 +5321,54 @@ void AppController::openFolderSelectFile(const QString &id) {
 
     // Channel container: no single file — just open its folder.
     if (item->isChannelContainer()) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        openLocalPath(item->savePath());
         return;
     }
     // yt-dlp children store the real on-disk filename (with extension) separately
-    // from the clean display title.
+    // from the clean display title. If it's unknown (metadata not captured),
+    // just open the directory rather than selecting the wrong thing. For
+    // multi-file torrents the "filename" is the root folder name, so this
+    // highlights the folder, which is what "Open folder" should do.
     const QString effName = !item->ytdlpRealFile().isEmpty()
         ? item->ytdlpRealFile() : item->filename();
-#if defined(STELLAR_WINDOWS)
-    // If the filename is unknown (e.g. yt-dlp item where metadata wasn't captured),
-    // just open the directory so the user isn't sent to the wrong place.
-    if (effName.isEmpty()) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
-        return;
-    }
-    // For multi-file torrents the "filename" is the torrent's root folder name;
-    // selecting it inside savePath highlights the folder in Explorer, which is
-    // what the user expects from "Open folder".
-    const QString filePath = item->savePath() + QLatin1Char('/') + effName;
-    if (!QFileInfo::exists(filePath)) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
-        return;
-    }
-    const QString nativePath = QDir::toNativeSeparators(filePath);
+    revealLocalPath(effName.isEmpty() ? QString() : item->savePath() + QLatin1Char('/') + effName,
+                    item->savePath());
+}
 
-    // explorer.exe /select,<path> — use ShellExecuteW so we don't fight Qt's
-    // argument-list quoting, which wraps each element in quotes and breaks
-    // the /select,path syntax that explorer expects as one token.
-    const std::wstring params = (QStringLiteral("/select,\"") + nativePath + QStringLiteral("\"")).toStdWString();
-    ShellExecuteW(nullptr, L"open", L"explorer.exe", params.c_str(), nullptr, SW_SHOWNORMAL);
+QString AppController::torrentEntryPath(const QString &downloadId, const QString &relativePath) const {
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item || !item->isTorrent())
+        return {};
+    // relativePath comes from torrent metadata (hostile): refuse anything that
+    // could point outside the save directory.
+    QString rel = relativePath;
+    rel.replace(QLatin1Char('\\'), QLatin1Char('/'));
+    if (rel.isEmpty() || QDir::isAbsolutePath(rel) || rel.startsWith(QLatin1Char('/'))
+        || (rel.size() >= 2 && rel.at(1) == QLatin1Char(':')))
+        return {};
+    const QStringList parts = rel.split(QLatin1Char('/'), Qt::SkipEmptyParts);
+    for (const QString &part : parts) {
+        if (part == QLatin1String("..") || part == QLatin1String("."))
+            return {};
+    }
+    const QString base = QDir::cleanPath(item->savePath());
+    const QString full = QDir::cleanPath(base + QLatin1Char('/') + parts.join(QLatin1Char('/')));
+    if (!full.startsWith(base + QLatin1Char('/')))
+        return {};
+    return QDir::toNativeSeparators(full);
+}
 
-#else
-    if (effName.isEmpty()) {
-        openLocalPath(item->savePath());
+void AppController::openTorrentEntry(const QString &downloadId, const QString &relativePath) {
+    const QString path = torrentEntryPath(downloadId, relativePath);
+    if (!path.isEmpty() && QFileInfo::exists(path))
+        openLocalPath(path);
+}
+
+void AppController::revealTorrentEntry(const QString &downloadId, const QString &relativePath) {
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item)
         return;
-    }
-    const QString filePath = item->savePath() + QLatin1Char('/') + effName;
-    if (!QFileInfo::exists(filePath)) {
-        openLocalPath(item->savePath());
-        return;
-    }
-    // Try common Linux file managers' "select" syntax. Falls back to plain
-    // open-the-directory if none are installed. File managers are Qt/GTK apps
-    // launched as children — clean environment required, same as openLocalPath.
-    auto tryRun = [](const QString &program, const QStringList &args) -> bool {
-        if (QStandardPaths::findExecutable(program).isEmpty())
-            return false;
-        QProcess proc;
-        proc.setProgram(program);
-        proc.setArguments(args);
-        proc.setProcessEnvironment(cleanSystemEnvironment());
-        return proc.startDetached();
-    };
-    if (tryRun(QStringLiteral("nautilus"),
-               {QStringLiteral("--select"), filePath}))
-        return;
-    if (tryRun(QStringLiteral("dolphin"),
-               {QStringLiteral("--select"), filePath}))
-        return;
-    if (tryRun(QStringLiteral("nemo"), {filePath}))
-        return;
-    openLocalPath(item->savePath());
-#endif
+    revealLocalPath(QDir::fromNativeSeparators(torrentEntryPath(downloadId, relativePath)), item->savePath());
 }
 
 void AppController::openExternalUrl(const QUrl &url) {
@@ -5405,7 +5512,7 @@ void AppController::copyDownloadFilename(const QString &id) {
     copyToClipboard(item->filename());
 }
 
-QVariantMap AppController::torrentSpeedSeries(const QString &downloadId, int spanSeconds, int buckets) const {
+QVariantMap AppController::speedSeries(const QString &downloadId, int spanSeconds, int buckets) const {
     // The recorder stores a sample only when the speed changes (plus a 10 s
     // heartbeat), so samples are unevenly spaced. Averaging them per bucket by
     // count would let a busy minute outweigh a steady hour; instead each sample
@@ -5418,7 +5525,7 @@ QVariantMap AppController::torrentSpeedSeries(const QString &downloadId, int spa
     //   downAvg, upAvg            time-weighted averages over the covered span
     //   downPeak, upPeak          highest recorded speed in the span
     //   downBytes, upBytes        bytes transferred in the span
-    spanSeconds = std::clamp(spanSeconds, 10, int(kTorrentSpeedHistoryRetentionMs / 1000));
+    spanSeconds = std::clamp(spanSeconds, 10, int(kSpeedHistoryRetentionMs / 1000));
     const qint64 spanMs = qint64(spanSeconds) * 1000;
     // The recorder samples once a second; finer buckets would only repeat values.
     buckets = std::clamp(buckets, 1, std::max(1, spanSeconds));
@@ -5435,8 +5542,8 @@ QVariantMap AppController::torrentSpeedSeries(const QString &downloadId, int spa
     double downBytes = 0.0, upBytes = 0.0;
     qint64 downPeak = 0, upPeak = 0, coveredTotal = 0;
 
-    const auto it = m_torrentSpeedHistory.constFind(downloadId);
-    if (it != m_torrentSpeedHistory.constEnd() && !it->isEmpty()) {
+    const auto it = m_speedHistory.constFind(downloadId);
+    if (it != m_speedHistory.constEnd() && !it->isEmpty()) {
         const auto &series = it.value();
         // A sample never holds longer than the heartbeat plus slack: a longer
         // silence means the app wasn't sampling (suspend, sleep), which is a gap,
@@ -5444,7 +5551,7 @@ QVariantMap AppController::torrentSpeedSeries(const QString &downloadId, int spa
         constexpr qint64 kMaxHoldMs = 15000;
         // First sample whose hold could reach into the window.
         auto first = std::lower_bound(series.cbegin(), series.cend(), startMs - kMaxHoldMs,
-            [](const TorrentSpeedSample &s, qint64 t) { return s.timestampMs < t; });
+            [](const SpeedSample &s, qint64 t) { return s.timestampMs < t; });
         for (auto s = first; s != series.cend(); ++s) {
             const auto next = s + 1;
             qint64 segStart = s->timestampMs;
@@ -5507,8 +5614,8 @@ QVariantList AppController::torrentPieceMap(const QString &downloadId) const {
     return m_torrentSession->torrentPieceMap(downloadId);
 }
 
-void AppController::clearTorrentSpeedHistory(const QString &downloadId) {
-    m_torrentSpeedHistory.remove(downloadId);
+void AppController::clearSpeedHistory(const QString &downloadId) {
+    m_speedHistory.remove(downloadId);
 }
 
 QVariantMap AppController::torrentAllTimeStats() const {
@@ -6983,84 +7090,6 @@ void AppController::maybeCompleteRestore()
     // suppressing completions for restored seeding IDs.
     QTimer::singleShot(12000, this, [this]() {
         m_restoredSeedingIds.clear();
-    });
-
-    showWelcomeBack();
-}
-
-void AppController::showWelcomeBack()
-{
-    // Time-of-day greeting. Half the time we instead use a generic fun phrase,
-    // so repeated launches don't always say the same clock-based line.
-    const int hour = QTime::currentTime().hour();
-    QStringList timeGreetings;
-    if (hour < 5) {
-        timeGreetings = {
-            tr("Past midnight already?"),
-            tr("Still up?"),
-            tr("The night is young!"),
-            tr("Can't sleep?"),
-        };
-    } else if (hour < 12) {
-        timeGreetings = {
-            tr("Good morning!"),
-            tr("Rise and shine!"),
-            tr("Top of the morning!"),
-            tr("Morning! Coffee's brewing."),
-        };
-    } else if (hour < 14) {
-        timeGreetings = {
-            tr("Good afternoon!"),
-            tr("Lunch break downloads?"),
-            tr("Midday already!"),
-        };
-    } else if (hour < 18) {
-        timeGreetings = {
-            tr("Good afternoon!"),
-            tr("Hope your day's going well!"),
-            tr("Afternoon!"),
-        };
-    } else if (hour < 22) {
-        timeGreetings = {
-            tr("Good evening!"),
-            tr("Winding down?"),
-            tr("Evening!"),
-            tr("Hope you had a good day!"),
-        };
-    } else {
-        timeGreetings = {
-            tr("Working late?"),
-            tr("Up past bedtime?"),
-            tr("Late night session!"),
-            tr("Don't forget to rest!"),
-        };
-    }
-
-    const QStringList funPhrases = {
-        tr("Welcome back!"),
-        tr("Ready when you are!"),
-        tr("Good to see you!"),
-        tr("Let's get downloading!"),
-        tr("Missed you!"),
-        tr("Back at it!"),
-        tr("Your downloads await!"),
-        tr("Pick up where you left off?"),
-        tr("What are we grabbing today?"),
-    };
-
-    auto *rng = QRandomGenerator::global();
-    // 50/50 between a time-of-day line and a random fun phrase.
-    if (rng->bounded(2) == 0)
-        m_welcomeMessage = timeGreetings.at(rng->bounded(timeGreetings.size()));
-    else
-        m_welcomeMessage = funPhrases.at(rng->bounded(funPhrases.size()));
-
-    m_welcomeVisible = true;
-    emit welcomeMessageChanged();
-
-    QTimer::singleShot(5000, this, [this]() {
-        m_welcomeVisible = false;
-        emit welcomeMessageChanged();
     });
 }
 

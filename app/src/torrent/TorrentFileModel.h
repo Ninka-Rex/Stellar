@@ -33,7 +33,12 @@ public:
         DepthRole,
         ExpandedRole,
         FileIndexRole,
-        PriorityRole
+        PriorityRole,
+        // Bytes still to download; 0 for skipped files (they never will be).
+        RemainingRole,
+        // Fraction (0..1) of the file's pieces held by at least one connected
+        // peer, or held by us; -1 when unknown. Folders: size-weighted mean.
+        AvailabilityRole
     };
 
     struct Entry {
@@ -57,7 +62,9 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     void setEntries(const QVector<Entry> &entries);
-    void updateProgress(const QVector<qint64> &downloadedBytes);
+    // `availability` is per libtorrent file index (see AvailabilityRole); an
+    // empty vector leaves the previous values in place.
+    void updateProgress(const QVector<qint64> &downloadedBytes, const QVector<double> &availability = {});
     Q_INVOKABLE bool setWanted(int row, bool wanted);
     // Stable alternatives that look up by libtorrent file index (leaves) or
     // relative path (folders) so callers don't need a valid visible-row number.
@@ -71,8 +78,13 @@ public:
     bool setPriorityByPath(const QString &path, int priority);
     Q_INVOKABLE bool toggleExpanded(int row);
     Q_INVOKABLE bool isSingleFileTarget() const;
-    Q_INVOKABLE void setLiveUpdatesEnabled(bool enabled) { m_liveUpdatesEnabled = enabled; }
-    Q_INVOKABLE bool liveUpdatesEnabled() const { return m_liveUpdatesEnabled; }
+    // Per-tick live updates run while at least one view retains them (a
+    // properties window, the details pane and the metadata dialog can all show
+    // the same torrent). Every retain must be paired with one release — QML
+    // views go through TorrentLiveUpdatesLease, which guarantees that.
+    Q_INVOKABLE void retainLiveUpdates() { ++m_liveViewers; }
+    Q_INVOKABLE void releaseLiveUpdates() { if (m_liveViewers > 0) --m_liveViewers; }
+    Q_INVOKABLE bool liveUpdatesEnabled() const { return m_liveViewers > 0; }
     // Returns the libtorrent file index for the given visible row (-1 for folders).
     Q_INVOKABLE int fileIndexAt(int row) const;
     // Optimistically rename the entry at row to newName in the model (call
@@ -94,6 +106,8 @@ private:
         int depth{0};
         int fileIndex{-1};
         int priority{4};
+        qint64 remaining{0};
+        double availability{-1.0};
         Node *parent{nullptr};
         QVector<Node *> children;
     };
@@ -110,6 +124,9 @@ private:
     // Returns common priority of all leaf descendants, or -1 if they differ ("Mixed").
     int folderPriority(const Node *node) const;
     void recalculateFolderState(Node *node);
+    // Folder remaining/availability from its (already up-to-date) children.
+    static void aggregateFolder(Node *node);
+    static qint64 leafRemaining(const Node *node);
     Node *findNodeByPath(Node *node, const QString &path) const;
     void updatePathsRecursive(Node *node);
     void deleteNode(Node *node);
@@ -117,5 +134,5 @@ private:
     Node *m_root{nullptr};
     QVector<Node *> m_visibleRows;
     QVector<Entry> m_fileEntries;
-    bool m_liveUpdatesEnabled{false};
+    int m_liveViewers{0};
 };

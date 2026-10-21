@@ -216,6 +216,11 @@ private:
     bool shouldReannounceDht(const QString &downloadId);
     void processAlerts();
     void handleAlert(libtorrent::alert *alert);
+    // Running DHT lookups and their replies, keyed by the raw 20-byte target.
+    struct DhtActivity { int lookups = 0; int replies = 0; };
+    // Spreads the session's running DHT lookups onto the metadata-less torrents
+    // they search for (an empty map clears them, e.g. when DHT is suspended).
+    void applyDhtLookups(const QHash<QByteArray, DhtActivity> &byTarget);
     QString idForHandle(const libtorrent::torrent_handle &handle) const;
     // Primary overload: uses pre-fetched status (avoids redundant handle.status() IPC call).
     void updateItemFromStatus(DownloadItem *item, const libtorrent::torrent_handle &handle,

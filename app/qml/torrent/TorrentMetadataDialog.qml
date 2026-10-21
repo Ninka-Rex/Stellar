@@ -45,77 +45,24 @@ Window {
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
     Material.background: ColorPalette.materialBg
-    Material.accent: "#4488dd"
+    Material.accent: ColorPalette.accent
 
     property string downloadId: ""
     property bool startWhenReady: true
     // 0 = Files, 1 = Settings
     property int metaTab: 0
 
-    // Thin context-menu row, matching DownloadTable.qml's CtxMenuItem (22px,
-    // opaque bg, icon+text, ✓ for checkable rows, ▶ for submenus).
-    component MetaCtxMenuItem: MenuItem {
-        id: _mcmi
-        implicitHeight: 22
-        height: 22
-        topPadding: 0; bottomPadding: 0; verticalPadding: 0
-        leftPadding: 8; rightPadding: 12
-        spacing: 0
-        font.pixelSize: 12 * App.fontScale
-        property string iconSrc: ""
-        // Blank default indicator/arrow — submenu arrow (▶) is appended to the
-        // title text instead (matches DownloadTable's "Move to Queue ▶").
-        indicator: Item { width: 0; height: 0 }
-        arrow: Item { width: 0; height: 0 }
-        contentItem: Row {
-            spacing: 6
-            Item {
-                visible: _mcmi.checkable
-                width: visible ? 14 : 0
-                height: 14
-                anchors.verticalCenter: parent.verticalCenter
-                Text {
-                    visible: _mcmi.checked
-                    anchors.centerIn: parent
-                    text: "✓"; font.pixelSize: 10 * App.fontScale; font.bold: true
-                    color: ColorPalette.textPrimary
-                }
-            }
-            Image {
-                visible: _mcmi.iconSrc !== ""
-                source: _mcmi.iconSrc !== "" ? "../icons/" + _mcmi.iconSrc : ""
-                width: 14; height: 14
-                sourceSize.width: 14; sourceSize.height: 14
-                fillMode: Image.PreserveAspectFit
-                smooth: true
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            Text {
-                text: _mcmi.text
-                font: _mcmi.font
-                color: _mcmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            Item { visible: _mcmi.subMenu !== null; width: visible ? 8 : 0; height: 1 }
-            Text {
-                visible: _mcmi.subMenu !== null
-                anchors.verticalCenter: parent.verticalCenter
-                text: "▶"; font.pixelSize: 8 * App.fontScale; color: ColorPalette.textMuted
-            }
-        }
-        background: Rectangle {
-            implicitHeight: 22
-            // Opaque, never "transparent" — see CLAUDE.md "Linux Software-Backend Menus".
-            color: _mcmi.highlighted ? ColorPalette.selectionBg : ColorPalette.menuBg
-        }
-    }
     readonly property var item: downloadId.length > 0 ? App.downloadById(downloadId) : null
     readonly property var fileModel: downloadId.length > 0 ? App.torrentFileModel(downloadId) : null
     // Latched true once metadata arrives; never flips back. Prevents the Loader
     // from swapping sourceComponent on every libtorrent tick (which resets scroll).
     property bool metadataArrived: false
+    // Wall-clock bookkeeping for "how long did the swarm take to hand over the
+    // metadata". _fetchStartMs stays 0 for .torrent files (metadata already there),
+    // so the stat is only shown for magnets / info hashes.
+    property double _fetchStartMs: 0
+    property double _fetchElapsedMs: 0
+    property int _fetchPeers: 0
     // True while a magnet/infohash is still pulling its metadata. The dialog
     // collapses to a small cozy "fetching" window in this state.
     readonly property bool _fetchingMeta: !!item && item.isTorrent && !item.torrentHasMetadata
@@ -130,9 +77,9 @@ Window {
     // FilePropertiesDialog also gates on its Files tab; here the entire dialog
     // is a file picker so visibility alone is the right signal.
     readonly property bool fileUpdatesActive: visible && fileModel !== null
-    onFileUpdatesActiveChanged: {
-        if (fileModel)
-            fileModel.setLiveUpdatesEnabled(fileUpdatesActive)
+    TorrentLiveUpdatesLease {
+        model: root.fileModel
+        wanted: root.fileUpdatesActive
     }
     property string pendingSourceLabel: ""
     property string savePath: ""
@@ -275,6 +222,9 @@ Window {
     onVisibleChanged: {
         if (visible) {
             App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/app/stellar.png")
+            root._fetchStartMs = (root.item && !root.item.torrentHasMetadata) ? Date.now() : 0
+            root._fetchElapsedMs = 0
+            root._fetchPeers = 0
             root.metadataArrived = !!(root.item && root.item.torrentHasMetadata)
             _applyMetaSize()
             if (item) {
@@ -299,15 +249,83 @@ Window {
     // binding on `title:` above — don't assign it imperatively or the binding breaks.)
     onItemChanged: {
         if (root.item && root.item.torrentHasMetadata)
-            root.metadataArrived = true
+            root._latchMetadata()
     }
 
     Connections {
         target: root.item
         function onTorrentHasMetadataChanged() {
             if (root.item && root.item.torrentHasMetadata)
-                root.metadataArrived = true
+                root._latchMetadata()
         }
+    }
+
+    // Single place that flips metadataArrived so the fetch duration is captured
+    // exactly once, at the moment of arrival.
+    function _latchMetadata() {
+        if (metadataArrived)
+            return
+        if (_fetchStartMs > 0) {
+            _fetchElapsedMs = Math.max(1, Date.now() - _fetchStartMs)
+            _fetchPeers = metadataPeerCount()
+        }
+        metadataArrived = true
+    }
+
+    // Ticks the live "elapsed" readout in the fetching panel.
+    Timer {
+        interval: 250
+        repeat: true
+        running: root.visible && !root.metadataArrived && root._fetchStartMs > 0
+        onTriggered: root._fetchElapsedMs = Date.now() - root._fetchStartMs
+    }
+
+    // wholeSeconds: live counters tick in whole seconds; the final fetch time
+    // keeps one decimal since it is usually only a few seconds.
+    function formatDuration(ms, wholeSeconds) {
+        var secs = Math.max(0, Number(ms || 0)) / 1000
+        if (wholeSeconds)
+            secs = Math.floor(secs)
+        if (secs < 60)
+            return qsTr("%1 s").arg(wholeSeconds ? secs : secs.toFixed(1))
+        var mins = Math.floor(secs / 60)
+        return qsTr("%1 min %2 s").arg(mins).arg(Math.round(secs - mins * 60))
+    }
+
+    // How the torrent was handed to us, for the info strip.
+    function sourceKindLabel() {
+        var src = item ? safeStr(item.torrentSource).trim() : ""
+        if (/^magnet:/i.test(src))
+            return qsTr("Magnet link")
+        if (/^[0-9a-f]{40}$|^[0-9a-f]{64}$/i.test(src))
+            return qsTr("Info hash")
+        return qsTr(".torrent file")
+    }
+
+    // Facts shown in the info strip once metadata is known. Re-evaluated whenever
+    // the item's torrent properties change.
+    readonly property var infoFacts: {
+        var f = []
+        if (!item)
+            return f
+        if (item.totalBytes > 0)
+            f.push({ label: qsTr("Total size"), value: formatBytes(item.totalBytes) })
+        if (item.torrentPiecesTotal > 0)
+            f.push({ label: qsTr("Pieces"), value: String(item.torrentPiecesTotal) })
+        var trackerCount = item.torrentTrackers ? item.torrentTrackers.length : 0
+        f.push({ label: qsTr("Trackers"), value: trackerCount > 0 ? String(trackerCount) : qsTr("None (DHT / PEX only)") })
+        f.push({ label: qsTr("Type"), value: item.torrentIsPrivate ? qsTr("Private") : qsTr("Public") })
+        f.push({ label: qsTr("Source"), value: sourceKindLabel() })
+        if (safeStr(item.torrentCreator).length > 0)
+            f.push({ label: qsTr("Created by"), value: safeStr(item.torrentCreator) })
+        if (safeStr(item.torrentCreatedOn).length > 0)
+            f.push({ label: qsTr("Created on"), value: safeStr(item.torrentCreatedOn) })
+        if (_fetchElapsedMs > 0 && metadataArrived)
+            f.push({ label: qsTr("Metadata retrieved"),
+                     value: _fetchPeers > 0
+                            ? qsTr("in %1 from %n peer(s)", "", _fetchPeers).arg(formatDuration(_fetchElapsedMs))
+                            : qsTr("in %1").arg(formatDuration(_fetchElapsedMs)) })
+        return f
     }
 
     function refreshCategories() {
@@ -345,6 +363,47 @@ Window {
         if (peers <= 0)
             return qsTr("Looking for peers to download metadata...")
         return qsTr("Downloading metadata from %n peer(s)", "", peers)
+    }
+
+    // Fetching panel, line 1: is the DHT usable for this torrent, and is it
+    // searching for it right now.
+    function dhtStatusText() {
+        if (!root.item)
+            return ""
+        if (root.item.torrentIsPrivate)
+            return qsTr("DHT: not used (private torrent)")
+        if (!App.settings.torrentEnableDht || root.item.torrentDisableDht)
+            return qsTr("DHT: disabled")
+        var nodes = App.dhtNodes | 0
+        if (nodes <= 0)
+            return qsTr("DHT: connecting to the network...")
+        var lookups = root.item.torrentDhtLookups | 0
+        var activity = lookups > 0
+                ? qsTr("%n lookup(s) running", "", lookups)
+                  + " (" + qsTr("%n reply(s)", "", root.item.torrentDhtReplies | 0) + ")"
+                : qsTr("waiting for the next lookup")
+        return qsTr("DHT: %n node(s)", "", nodes) + " · " + activity
+    }
+
+    // Fetching panel, line 2: libtorrent's peer list for this torrent, and where
+    // the connected peers came from.
+    function peerDiscoveryText() {
+        if (!root.item)
+            return ""
+        var it = root.item
+        var connected = it.torrentConnectedPeers | 0
+        var text = qsTr("Peers: %1 found · %2 to try · %3 connected")
+                .arg(it.torrentKnownPeers | 0)
+                .arg(it.torrentConnectCandidates | 0)
+                .arg(connected)
+        var sources = []
+        if ((it.torrentDhtSourcePeers | 0) > 0) sources.push(qsTr("%1 via DHT").arg(it.torrentDhtSourcePeers))
+        if ((it.torrentPexSourcePeers | 0) > 0) sources.push(qsTr("%1 via PEX").arg(it.torrentPexSourcePeers))
+        if ((it.torrentLsdSourcePeers | 0) > 0) sources.push(qsTr("%1 via LSD").arg(it.torrentLsdSourcePeers))
+        if ((it.torrentTrackerSourcePeers | 0) > 0) sources.push(qsTr("%1 via tracker").arg(it.torrentTrackerSourcePeers))
+        if (connected > 0 && sources.length > 0)
+            text += " (" + sources.join(" · ") + ")"
+        return text
     }
 
     function formatBytes(bytes) {
@@ -407,6 +466,17 @@ Window {
             Layout.preferredHeight: metaHeaderCol.implicitHeight + 12
             color: ColorPalette.headerStripBg
 
+            // While the swarm is still handing over the metadata there is no real
+            // percentage, so the header itself pulses instead of showing a bar.
+            ShiftingHeaderBg {
+                anchors.fill: parent
+                tint: ColorPalette.brandPurple
+                opacity: root.metadataArrived ? 0 : 1
+                visible: opacity > 0
+                running: !root.metadataArrived
+                Behavior on opacity { NumberAnimation { duration: 400 } }
+            }
+
             ColumnLayout {
                 id: metaHeaderCol
                 anchors { fill: parent; leftMargin: 14; rightMargin: 14; topMargin: 6; bottomMargin: 6 }
@@ -445,10 +515,18 @@ Window {
                     Text {
                         visible: !!root.item && root.item.status === "Error"
                         text: root.item ? root.item.errorString : ""
-                        color: "#e07b7b"
+                        color: ColorPalette.errorText
                         font.pixelSize: 12 * App.fontScale
                         elide: Text.ElideRight
                         Layout.maximumWidth: 260
+                    }
+
+                    Text {
+                        visible: !root.metadataArrived
+                        text: qsTr("Fetching metadata…")
+                        color: ColorPalette.textHeader
+                        font.pixelSize: 11 * App.fontScale
+                        font.bold: true
                     }
 
                     Text {
@@ -468,19 +546,26 @@ Window {
                     Layout.fillWidth: true
                     // Collapse to zero height when not transferring/fetching so the
                     // header stays clean during file selection.
-                    visible: root._torrentActive || root._fetchingMeta
+                    visible: root._torrentActive && root.metadataArrived
                     implicitHeight: visible ? 5 : 0
                     item: root.item
                 }
             }
         }
 
-        // Body padding container — the original 12px margins applied per-region
-        // so the header/tab strip can span full-width.
+        // Tab strip directly below the header: Files | Settings.
+        SettingsTabBar {
+            visible: root.metadataArrived
+            model: [qsTr("Files"), qsTr("Settings")]
+            currentIndex: root.metaTab
+            onCurrentIndexChanged: root.metaTab = currentIndex
+        }
+
+        // Body. No blanket margins: each region pads itself so the file list can
+        // run edge to edge like the properties window's Files page.
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.margins: 12
             spacing: 6
 
         // ── Cozy fetching panel: shown only while metadata is still downloading.
@@ -490,6 +575,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.margins: 12
             visible: !root.metadataArrived
             spacing: 12
 
@@ -502,6 +588,38 @@ Window {
                 color: ColorPalette.textSecond
                 font.pixelSize: 12 * App.fontScale
                 wrapMode: Text.WordWrap
+            }
+
+            ColumnLayout {
+                Layout.fillWidth: true
+                visible: !!root.item
+                spacing: 2
+
+                Text {
+                    Layout.fillWidth: true
+                    horizontalAlignment: Text.AlignHCenter
+                    text: root.dhtStatusText()
+                    color: ColorPalette.textMuted
+                    font.pixelSize: 11 * App.fontScale
+                    elide: Text.ElideRight
+                }
+                Text {
+                    Layout.fillWidth: true
+                    horizontalAlignment: Text.AlignHCenter
+                    text: root.peerDiscoveryText()
+                    color: ColorPalette.textMuted
+                    font.pixelSize: 11 * App.fontScale
+                    wrapMode: Text.WordWrap
+                }
+            }
+
+            Text {
+                Layout.fillWidth: true
+                visible: root._fetchStartMs > 0 && root._fetchElapsedMs > 0
+                horizontalAlignment: Text.AlignHCenter
+                text: qsTr("Elapsed: %1").arg(root.formatDuration(root._fetchElapsedMs, true))
+                color: ColorPalette.textMuted
+                font.pixelSize: 11 * App.fontScale
             }
 
             Item { Layout.fillHeight: true }
@@ -520,42 +638,6 @@ Window {
             }
         }
 
-        // Tab strip directly below the header: Files | Settings.
-        Rectangle {
-            Layout.fillWidth: true
-            visible: root.metadataArrived
-            height: visible ? 30 : 0
-            color: ColorPalette.panelBg
-
-            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
-
-            Row {
-                anchors.fill: parent; spacing: 0
-                Repeater {
-                    model: [qsTr("Files"), qsTr("Settings")]
-                    delegate: Rectangle {
-                        required property int index
-                        required property string modelData
-                        width: metaTabLbl.implicitWidth + 28; height: parent.height
-                        color: root.metaTab === index
-                               ? ColorPalette.cardBg
-                               : (metaTabHov.containsMouse ? ColorPalette.hoverBg : "transparent")
-                        Text {
-                            id: metaTabLbl; anchors.centerIn: parent
-                            text: modelData
-                            color: root.metaTab === index ? ColorPalette.textHeader : ColorPalette.textSecond
-                            font.pixelSize: 12 * App.fontScale
-                        }
-                        MouseArea {
-                            id: metaTabHov; anchors.fill: parent; hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: root.metaTab = index
-                        }
-                    }
-                }
-            }
-        }
-
         StackLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -569,21 +651,17 @@ Window {
                 // Save path + category
                 RowLayout {
                     Layout.fillWidth: true
+                    Layout.topMargin: 12
+                    Layout.leftMargin: 12
+                    Layout.rightMargin: 12
                     spacing: 6
 
                     Text { text: qsTr("Save to"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
-                    TextField {
+                    SettingsTextField {
                         id: savePathField
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 32
+                        implicitHeight: 26
                         text: root.savePath
-                        color: ColorPalette.textPrimary
-                        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
-                        leftPadding: 6
-                        rightPadding: 6
-                        topPadding: 0; bottomPadding: 0
-                        verticalAlignment: TextInput.AlignVCenter
                         onTextChanged: {
                             root.savePath = text
                             root.refreshSavePathMode()
@@ -591,40 +669,38 @@ Window {
                         }
                     }
 
+                    // Same height as the path box beside it. The style's default
+                    // insets would draw the button shorter than its item.
                     DlgButton {
                         text: qsTr("Save As...")
-                        Layout.preferredHeight: 32
+                        implicitHeight: savePathField.implicitHeight
+                        topInset: 0; bottomInset: 0
                         onClicked: saveFolderDialog.open()
                     }
 
-                    Rectangle { width: 1; height: 22; color: ColorPalette.border }
+                    Rectangle { width: 1; Layout.preferredHeight: 20; color: ColorPalette.border }
 
                     Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
                     StyledComboBox {
                         id: categoryCombo
                         implicitWidth: 140
+                        implicitHeight: savePathField.implicitHeight
                         model: root.categoryLabels
                         currentIndex: root.categoryIndex()
+                        font.pixelSize: 12 * App.fontScale
                         onActivated: {
                             root.category = root.categoryIds[currentIndex] || "all"
                             root.applyCategorySavePath(false)
                         }
-                        contentItem: Text {
-                            text: categoryCombo.displayText
-                            color: ColorPalette.textPrimary
-                            verticalAlignment: Text.AlignVCenter
-                            leftPadding: 6
-                            elide: Text.ElideRight
-                            font.pixelSize: 12 * App.fontScale
-                        }
-                        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
                     }
                 }
 
                 // Checkboxes
                 RowLayout {
                     Layout.fillWidth: true
+                    Layout.leftMargin: 12
+                    Layout.rightMargin: 12
                     spacing: 8
                     visible: !!root.item
 
@@ -660,14 +736,14 @@ Window {
                         onToggled: root.rememberCustomSavePath = checked
                         contentItem: Text {
                             text: parent.text
-                            color: parent.enabled ? ColorPalette.textPrimary : "#6f6f6f"; font.pixelSize: 12 * App.fontScale
+                            color: parent.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale
                             leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
                         }
                     }
 
                     Text {
                         text: qsTr("Use category folder")
-                        color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
+                        color: root.useCustomSavePath ? ColorPalette.accentHover : ColorPalette.textDisabled
                         font.pixelSize: 12 * App.fontScale; font.underline: root.useCustomSavePath
                         MouseArea {
                             anchors.fill: parent
@@ -687,6 +763,8 @@ Window {
                 // Description
                 RowLayout {
                     Layout.fillWidth: true
+                    Layout.leftMargin: 12
+                    Layout.rightMargin: 12
                     spacing: 6
                     visible: !!root.item
 
@@ -696,27 +774,65 @@ Window {
                         font.pixelSize: 12 * App.fontScale
                         Layout.alignment: Qt.AlignVCenter
                     }
-                    TextField {
-                        Layout.fillWidth: true
-                        implicitHeight: 26
-                        horizontalAlignment: TextInput.AlignLeft
+                    SettingsTextField {
+                        implicitHeight: savePathField.implicitHeight
                         text: root.description
-                        color: ColorPalette.textPrimary
-                        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
-                        leftPadding: 6; rightPadding: 6; topPadding: 0; bottomPadding: 0
-                        verticalAlignment: TextInput.AlignVCenter
                         font.pixelSize: 12 * App.fontScale
                         onTextChanged: root.description = text
                     }
                 }
 
-                // File list
-                Rectangle {
+                // Torrent facts as a plain property sheet, styled like the
+                // properties window's General tab.
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.topMargin: 4
+                    Layout.leftMargin: 12
+                    Layout.rightMargin: 12
+                    visible: !!root.item
+                    spacing: 4
+
+                    SectionHeader { text: qsTr("Torrent") }
+
+                    GridLayout {
+                        Layout.fillWidth: true
+                        columns: 3; columnSpacing: 10; rowSpacing: 2
+
+                        Repeater {
+                            model: root.infoFacts
+                            delegate: RowLayout {
+                                required property var modelData
+                                Layout.fillWidth: true
+                                Layout.preferredWidth: 100
+                                spacing: 10
+                                SheetKey { text: modelData.label }
+                                SheetValue { text: modelData.value }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        visible: root.safeStr(root.item ? root.item.torrentInfoHash : "").length > 0
+                        spacing: 10
+                        SheetKey { text: qsTr("Info hash") }
+                        ReadOnlyField {
+                            Layout.fillWidth: true
+                            fieldText: root.item ? root.safeStr(root.item.torrentInfoHash) : ""
+                        }
+                        SettingsLink {
+                            Layout.alignment: Qt.AlignVCenter
+                            text: qsTr("Copy")
+                            onClicked: App.copyToClipboard(root.safeStr(root.item.torrentInfoHash))
+                        }
+                    }
+                }
+
+                // File list, edge to edge.
+                Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: ColorPalette.inputBg
-                    border.color: ColorPalette.border
-                    radius: 6
+                    Layout.topMargin: 4
                     clip: true
 
                     Loader {
@@ -734,7 +850,7 @@ Window {
             // Settings page
             Item {
                 TorrentSettingsPanel {
-                    anchors.fill: parent
+                    anchors { fill: parent; topMargin: 12; leftMargin: 12; rightMargin: 12 }
                     torrentItem: root.metaTab === 1 ? root.item : null
                 }
             }
@@ -742,6 +858,9 @@ Window {
 
         RowLayout {
             Layout.fillWidth: true
+            Layout.leftMargin: 12
+            Layout.rightMargin: 12
+            Layout.bottomMargin: 12
             spacing: 8
             // Full action buttons only after metadata arrives — the fetching panel
             // has its own Cancel.
@@ -791,37 +910,10 @@ Window {
             anchors.fill: parent
             spacing: 0
 
-            // Header row with explicit left/right padding
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.leftMargin: 10
-                Layout.rightMargin: 10
-                Layout.topMargin: 8
-                Layout.bottomMargin: 4
-                Text { text: qsTr("Files"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
-                Item { Layout.fillWidth: true }
-                Text {
-                    text: metaFileList ? qsTr("%n item(s)", "", metaFileList.count) : ""
-                    color: "#808080"
-                    font.pixelSize: 11 * App.fontScale
-                }
-            }
-
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.leftMargin: 10
-                Layout.rightMargin: 10
-                height: 1
-                color: ColorPalette.dividerBg
-            }
-
             Item {
                 id: metaFileViewport
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.leftMargin: 10
-                Layout.rightMargin: 10
-                Layout.bottomMargin: 8
                 clip: true
 
                 ColumnLayout {
@@ -832,8 +924,9 @@ Window {
                         id: metaHeader
                         Layout.fillWidth: true
                         height: 26
-                        color: ColorPalette.panelBg
+                        color: ColorPalette.dividerBg
                         clip: true
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
                         Row {
                             // Match the delegate Row's leftMargin:6 / rightMargin:8 so
@@ -980,7 +1073,7 @@ Window {
                         visible: isFolder
                         anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
                         height: 1
-                        color: "#2e2e2e"
+                        color: ColorPalette.dividerBg
                     }
 
                     Row {
@@ -994,12 +1087,10 @@ Window {
                         Item {
                             width: 16
                             height: parent.height
-                            Text {
+                            TreeExpander {
                                 visible: isFolder
                                 anchors.centerIn: parent
-                                text: expanded ? "▾" : "▸"
-                                color: "#888"
-                                font.pixelSize: 11 * App.fontScale
+                                expanded: metaFd.expanded
                             }
                             MouseArea {
                                 visible: isFolder
@@ -1016,9 +1107,8 @@ Window {
                                 anchors.centerIn: parent
                                 width: 14
                                 height: 14
-                                radius: 2
-                                color: wanted ? "#4488dd" : ColorPalette.inputBg
-                                border.color: wanted ? "#4488dd" : ColorPalette.border
+                                color: wanted ? ColorPalette.accent : ColorPalette.inputBg
+                                border.color: wanted ? ColorPalette.accent : ColorPalette.border
                                 Text {
                                     visible: wanted
                                     anchors.centerIn: parent
@@ -1078,17 +1168,15 @@ Window {
                                 anchors { left: parent.left; leftMargin: 46; verticalCenter: parent.verticalCenter }
                                 width: Math.max(20, parent.width - 56)
                                 height: 8
-                                radius: 4
-                                color: "#111"
-                                border.color: "#2f2f2f"
+                                color: ColorPalette.progressTrack
+                                border.color: ColorPalette.progressTrackBorder
                                 Rectangle {
                                     width: Math.max(0, (parent.width - 2) * root.clampPct(progress))
                                     height: parent.height - 2
-                                    radius: 3
                                     anchors.left: parent.left
                                     anchors.leftMargin: 1
                                     anchors.verticalCenter: parent.verticalCenter
-                                    color: wanted ? "#4488dd" : "#444"
+                                    color: wanted ? ColorPalette.progressDownloading : ColorPalette.textDisabled
                                 }
                             }
                         }
@@ -1207,7 +1295,7 @@ Window {
                         selectByMouse: true; leftPadding: 8
                         background: Rectangle {
                             color: ColorPalette.inputBg
-                            border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3
+                            border.color: parent.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
                         }
                         Keys.onReturnPressed: metaRenameConfirmBtn.clicked()
                         Keys.onEnterPressed:  metaRenameConfirmBtn.clicked()
@@ -1250,7 +1338,7 @@ Window {
             Menu {
                 id: metaFileCtxMenu
                 topPadding: 0; bottomPadding: 0
-                delegate: MetaCtxMenuItem {}
+                delegate: FileCtxMenuItem {}
                 property int _fileIndex: -1
                 property string _path: ""
                 property string _name: ""
@@ -1267,7 +1355,7 @@ Window {
                     }
                 }
 
-                MetaCtxMenuItem {
+                FileCtxMenuItem {
                     text: qsTr("Download")
                     checkable: true
                     checked: metaFileCtxMenu._wanted
@@ -1285,9 +1373,10 @@ Window {
                 // Submenu rendered DownloadTable-style: a plain item with an inline
                 // ▶ that pops a child Menu manually on hover. A real Menu{title}
                 // subMenu would render the style file's tiny PNG arrow far-right.
-                MetaCtxMenuItem {
+                FileCtxMenuItem {
                     id: _priorityItem
                     text: qsTr("Priority") + "  ▶"
+                    iconSrc: "status/priority.svg"
                     enabled: metaFileCtxMenu._wanted
                     onTriggered: _priorityMenu.popup(_priorityItem.width, 0)
                     onHoveredChanged: {
@@ -1296,18 +1385,23 @@ Window {
                     }
                     Menu {
                         id: _priorityMenu
-                        delegate: MetaCtxMenuItem {}
+                        delegate: FileCtxMenuItem {}
                         topPadding: 0; bottomPadding: 0
                         onAboutToHide: _priorityCloseTimer.stop()
-                        MetaCtxMenuItem { text: qsTr("Low");     checkable: true; checked: metaFileCtxMenu._priority === 1; onTriggered: metaFileCtxMenu._applyPriority(1) }
-                        MetaCtxMenuItem { text: qsTr("Normal");  checkable: true; checked: metaFileCtxMenu._priority === 4; onTriggered: metaFileCtxMenu._applyPriority(4) }
-                        MetaCtxMenuItem { text: qsTr("High");    checkable: true; checked: metaFileCtxMenu._priority === 6; onTriggered: metaFileCtxMenu._applyPriority(6) }
-                        MetaCtxMenuItem { text: qsTr("Maximum"); checkable: true; checked: metaFileCtxMenu._priority === 7; onTriggered: metaFileCtxMenu._applyPriority(7) }
+                        FileCtxMenuItem { text: qsTr("Low");     iconSrc: "status/priority-low.svg";     checkable: true; checked: metaFileCtxMenu._priority === 1; onTriggered: metaFileCtxMenu._applyPriority(1) }
+                        FileCtxMenuItem { text: qsTr("Normal");  iconSrc: "status/priority-normal.svg";  checkable: true; checked: metaFileCtxMenu._priority === 4; onTriggered: metaFileCtxMenu._applyPriority(4) }
+                        FileCtxMenuItem { text: qsTr("High");    iconSrc: "status/priority-high.svg";    checkable: true; checked: metaFileCtxMenu._priority === 6; onTriggered: metaFileCtxMenu._applyPriority(6) }
+                        FileCtxMenuItem { text: qsTr("Maximum"); iconSrc: "status/priority-maximum.svg"; checkable: true; checked: metaFileCtxMenu._priority === 7; onTriggered: metaFileCtxMenu._applyPriority(7) }
                     }
                     Timer { id: _priorityCloseTimer; interval: 300; onTriggered: { if (!_priorityMenu.activeFocus) _priorityMenu.close() } }
                 }
                 MenuSeparator {}
-                MetaCtxMenuItem {
+                FileCtxMenuItem {
+                    text: qsTr("Copy Name")
+                    iconSrc: "actions/copy-name.svg"
+                    onTriggered: App.copyToClipboard(metaFileCtxMenu._name)
+                }
+                FileCtxMenuItem {
                     text: qsTr("Rename...")
                     iconSrc: "actions/edit-rename.svg"
                     onTriggered: metaRenameDialog.openForRename(metaFileCtxMenu._path, metaFileCtxMenu._name, metaFileCtxMenu._fileIndex, metaFileCtxMenu._isFolder)

@@ -221,139 +221,163 @@ Item {
         }
     }
 
-    RowLayout {
-        id: columns
-        anchors { left: parent.left; right: parent.right; top: parent.top
-                  leftMargin: 14; rightMargin: 14; topMargin: 8 }
-        spacing: 24
+    // The groups scroll when the pane is shorter than they are. Apply floats
+    // bottom-right over them; the content carries extra bottom padding so the
+    // last rows can always be scrolled clear of it.
+    ScrollView {
+        id: scroller
+        anchors.fill: parent
+        clip: true
+        // The scrollbar overlays the content; keep the groups and Apply clear of it.
+        readonly property real scrollBarSpace: ScrollBar.vertical.visible ? ScrollBar.vertical.width : 0
+        rightPadding: scrollBarSpace
+        contentWidth: availableWidth
+        contentHeight: columns.implicitHeight + 16 + applyButton.height + 10
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
-        // Left: bandwidth + share limits.
-        ColumnLayout {
-            Layout.fillWidth: true
-            Layout.preferredWidth: 1
-            Layout.alignment: Qt.AlignTop
-            spacing: 4
+        RowLayout {
+            id: columns
+            x: 14
+            y: 8
+            width: scroller.availableWidth - 28
+            spacing: 24
 
-            SectionHeader { text: qsTr("Speed limits") }
-
-            RowLayout {
+            // Left: bandwidth + share limits.
+            ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 8
-                SheetKey { id: downKey; text: qsTr("Download") }
-                NumField {
-                    id: downField
-                    validator: IntValidator { bottom: 0; top: 1048576 }
-                    onEdited: function(text) { var n = parseInt(text, 10); root._editDown = isNaN(n) ? 0 : Math.max(0, n) }
+                Layout.preferredWidth: 1
+                Layout.alignment: Qt.AlignTop
+                spacing: 4
+
+                SectionHeader { text: qsTr("Speed limits") }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+                    SheetKey { id: downKey; text: qsTr("Download") }
+                    NumField {
+                        id: downField
+                        validator: IntValidator { bottom: 0; top: 1048576 }
+                        onEdited: function(text) { var n = parseInt(text, 10); root._editDown = isNaN(n) ? 0 : Math.max(0, n) }
+                    }
+                    Unit { text: "KB/s" }
+                    Item { Layout.fillWidth: true }
                 }
-                Unit { text: "KB/s" }
-                Item { Layout.fillWidth: true }
-            }
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: 8
-                SheetKey { text: qsTr("Upload") }
-                NumField {
-                    id: upField
-                    validator: IntValidator { bottom: 0; top: 1048576 }
-                    onEdited: function(text) { var n = parseInt(text, 10); root._editUp = isNaN(n) ? 0 : Math.max(0, n) }
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+                    SheetKey { text: qsTr("Upload") }
+                    NumField {
+                        id: upField
+                        validator: IntValidator { bottom: 0; top: 1048576 }
+                        onEdited: function(text) { var n = parseInt(text, 10); root._editUp = isNaN(n) ? 0 : Math.max(0, n) }
+                    }
+                    Unit { text: "KB/s" }
+                    Item { Layout.fillWidth: true }
                 }
-                Unit { text: "KB/s" }
-                Item { Layout.fillWidth: true }
-            }
-            Text {
-                Layout.leftMargin: downKey.width + 8
-                text: qsTr("0 = unlimited")
-                color: ColorPalette.textMuted
-                font.pixelSize: 11 * App.fontScale
+                Text {
+                    Layout.leftMargin: downKey.width + 8
+                    text: qsTr("0 = unlimited")
+                    color: ColorPalette.textMuted
+                    font.pixelSize: 11 * App.fontScale
+                }
+
+                SectionHeader { text: qsTr("Share limits"); Layout.topMargin: 7 }
+
+                LimitRow {
+                    id: ratioRow
+                    label: qsTr("Ratio")
+                    mode: root._ratioMode
+                    validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
+                    onModePicked: function(m) { root._ratioMode = m }
+                    onValueEdited: function(t) { root._ratioText = t }
+                }
+                LimitRow {
+                    id: seedRow
+                    label: qsTr("Seeding time")
+                    unit: qsTr("min")
+                    mode: root._seedMode
+                    validator: IntValidator { bottom: 0; top: 999999 }
+                    onModePicked: function(m) { root._seedMode = m }
+                    onValueEdited: function(t) { root._seedText = t }
+                }
+                LimitRow {
+                    id: inactiveRow
+                    label: qsTr("Inactive time")
+                    unit: qsTr("min")
+                    mode: root._inactiveMode
+                    validator: IntValidator { bottom: 0; top: 999999 }
+                    onModePicked: function(m) { root._inactiveMode = m }
+                    onValueEdited: function(t) { root._inactiveText = t }
+                }
             }
 
-            SectionHeader { text: qsTr("Share limits"); Layout.topMargin: 7 }
-
-            LimitRow {
-                id: ratioRow
-                label: qsTr("Ratio")
-                mode: root._ratioMode
-                validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
-                onModePicked: function(m) { root._ratioMode = m }
-                onValueEdited: function(t) { root._ratioText = t }
-            }
-            LimitRow {
-                id: seedRow
-                label: qsTr("Seeding time")
-                unit: qsTr("min")
-                mode: root._seedMode
-                validator: IntValidator { bottom: 0; top: 999999 }
-                onModePicked: function(m) { root._seedMode = m }
-                onValueEdited: function(t) { root._seedText = t }
-            }
-            LimitRow {
-                id: inactiveRow
-                label: qsTr("Inactive time")
-                unit: qsTr("min")
-                mode: root._inactiveMode
-                validator: IntValidator { bottom: 0; top: 999999 }
-                onModePicked: function(m) { root._inactiveMode = m }
-                onValueEdited: function(t) { root._inactiveText = t }
-            }
-        }
-
-        // Right: peer discovery + download mode.
-        ColumnLayout {
-            Layout.fillWidth: true
-            Layout.preferredWidth: 1
-            Layout.alignment: Qt.AlignTop
-            spacing: 4
-
-            SectionHeader { text: qsTr("Peer discovery") }
-
-            OptionCheck {
-                text: qsTr("DHT")
-                description: qsTr("Distributed Hash Table")
-                value: !root._editDisableDht
-                enabled: !root._isPrivate
-                onPicked: function(v) { root._editDisableDht = !v }
-            }
-            OptionCheck {
-                text: qsTr("PeX")
-                description: qsTr("Peer Exchange")
-                value: !root._editDisablePex
-                enabled: !root._isPrivate
-                onPicked: function(v) { root._editDisablePex = !v }
-            }
-            OptionCheck {
-                text: qsTr("LSD")
-                description: qsTr("Local Service Discovery")
-                value: !root._editDisableLsd
-                onPicked: function(v) { root._editDisableLsd = !v }
-            }
-            Text {
+            // Right: peer discovery + download mode.
+            ColumnLayout {
                 Layout.fillWidth: true
-                visible: root._isPrivate
-                text: qsTr("Private torrent: DHT and PeX are turned off.")
-                color: ColorPalette.textMuted
-                font.pixelSize: 11 * App.fontScale
-                wrapMode: Text.WordWrap
-            }
+                Layout.preferredWidth: 1
+                Layout.alignment: Qt.AlignTop
+                spacing: 4
 
-            SectionHeader { text: qsTr("Download mode"); Layout.topMargin: 7 }
+                SectionHeader { text: qsTr("Peer discovery") }
 
-            OptionCheck {
-                text: qsTr("Sequential download")
-                description: qsTr("Pieces downloaded in order (piece 0 → last)")
-                value: root._editSequential
-                onPicked: function(v) { root._editSequential = v }
-            }
-            OptionCheck {
-                text: qsTr("Prioritize first & last pieces")
-                description: qsTr("Front-loads header/footer for early playback")
-                value: root._editFirstLastPieces
-                onPicked: function(v) { root._editFirstLastPieces = v }
+                OptionCheck {
+                    text: qsTr("DHT")
+                    description: qsTr("Distributed Hash Table")
+                    value: !root._editDisableDht
+                    enabled: !root._isPrivate
+                    onPicked: function(v) { root._editDisableDht = !v }
+                }
+                OptionCheck {
+                    text: qsTr("PeX")
+                    description: qsTr("Peer Exchange")
+                    value: !root._editDisablePex
+                    enabled: !root._isPrivate
+                    onPicked: function(v) { root._editDisablePex = !v }
+                }
+                OptionCheck {
+                    text: qsTr("LSD")
+                    description: qsTr("Local Service Discovery")
+                    value: !root._editDisableLsd
+                    onPicked: function(v) { root._editDisableLsd = !v }
+                }
+                Text {
+                    Layout.fillWidth: true
+                    visible: root._isPrivate
+                    text: qsTr("Private torrent: DHT and PeX are turned off.")
+                    color: ColorPalette.textMuted
+                    font.pixelSize: 11 * App.fontScale
+                    wrapMode: Text.WordWrap
+                }
+
+                SectionHeader { text: qsTr("Download mode"); Layout.topMargin: 7 }
+
+                OptionCheck {
+                    text: qsTr("Sequential download")
+                    description: qsTr("Pieces downloaded in order (piece 0 → last)")
+                    value: root._editSequential
+                    onPicked: function(v) { root._editSequential = v }
+                }
+                OptionCheck {
+                    text: qsTr("Prioritize first & last pieces")
+                    description: qsTr("Front-loads header/footer for early playback")
+                    value: root._editFirstLastPieces
+                    onPicked: function(v) { root._editFirstLastPieces = v }
+                }
             }
         }
     }
 
+    // Opaque backing in the page colour: Apply floats over the scrolling
+    // groups, and its disabled state is translucent.
+    Rectangle {
+        anchors { fill: applyButton; margins: -4 }
+        color: ColorPalette.cardBg
+    }
+
     DlgButton {
-        anchors { right: parent.right; bottom: parent.bottom; rightMargin: 14; bottomMargin: 10 }
+        id: applyButton
+        anchors { right: parent.right; bottom: parent.bottom; rightMargin: 14 + scroller.scrollBarSpace; bottomMargin: 10 }
         text: qsTr("Apply")
         primary: true
         enabled: root.dirty

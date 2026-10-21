@@ -30,10 +30,25 @@ TorrentPeerModel::TorrentPeerModel(QObject *parent)
     connect(this, &QAbstractItemModel::rowsInserted, this, &TorrentPeerModel::countChanged);
     connect(this, &QAbstractItemModel::rowsRemoved, this, &TorrentPeerModel::countChanged);
     connect(this, &QAbstractItemModel::modelReset, this, &TorrentPeerModel::countChanged);
+    connect(this, &QAbstractItemModel::rowsInserted, this, &TorrentPeerModel::recountLocated);
+    connect(this, &QAbstractItemModel::rowsRemoved, this, &TorrentPeerModel::recountLocated);
+    connect(this, &QAbstractItemModel::modelReset, this, &TorrentPeerModel::recountLocated);
+    connect(this, &QAbstractItemModel::dataChanged, this,
+            [this](const QModelIndex &, const QModelIndex &, const QList<int> &roles) {
+        // Per-tick speed updates don't move a peer; only a position change can.
+        if (roles.isEmpty() || roles.contains(LatitudeRole) || roles.contains(LongitudeRole))
+            recountLocated();
+    });
 }
 
 namespace {
 constexpr int kPeerRemovalGraceTicks = 3;
+
+// GeoIP reports 0,0 for "unknown"; nothing real is plotted at Null Island.
+bool isLocated(const TorrentPeerModel::Entry &e) {
+    return std::isfinite(e.latitude) && std::isfinite(e.longitude)
+        && !(e.latitude == 0.0 && e.longitude == 0.0);
+}
 
 QString flagFromCode(const QString &countryCode) {
     const QString code = countryCode.trimmed().toUpper();
@@ -138,8 +153,7 @@ void assignStackSlots(QVector<TorrentPeerModel::Entry> &entries) {
         TorrentPeerModel::Entry &e = entries[i];
         e.stackIndex = 0;
         e.stackSize = 1;
-        if (!std::isfinite(e.latitude) || !std::isfinite(e.longitude)
-            || (e.latitude == 0.0 && e.longitude == 0.0))
+        if (!isLocated(e))
             continue;
         const QString cell = QStringLiteral("%1,%2")
             .arg(qRound(e.latitude * 100.0)).arg(qRound(e.longitude * 100.0));
@@ -221,6 +235,14 @@ QHash<int, QByteArray> TorrentPeerModel::roleNames() const {
     };
 }
 
+void TorrentPeerModel::recountLocated() {
+    const int located = int(std::count_if(m_entries.cbegin(), m_entries.cend(), isLocated));
+    if (located == m_locatedCount)
+        return;
+    m_locatedCount = located;
+    emit locatedCountChanged();
+}
+
 void TorrentPeerModel::setLocalLocation(bool hasLocation, double latitude, double longitude) {
     const bool changed = m_hasLocalLocation != hasLocation
         || !qFuzzyCompare(m_localLatitude, latitude)
@@ -246,7 +268,7 @@ void TorrentPeerModel::setLocalInfo(const QString &ip, int port, const QString &
 }
 
 void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
-    if (!m_liveUpdatesEnabled)
+    if (!liveUpdatesEnabled())
         return;
 
     if (entries.isEmpty()) {
@@ -524,15 +546,17 @@ QVariantMap TorrentPeerModel::breakdownByCountry() const {
     return out;
 }
 
-void TorrentPeerModel::setLiveUpdatesEnabled(bool enabled) {
-    if (m_liveUpdatesEnabled == enabled)
+void TorrentPeerModel::retainLiveUpdates() {
+    ++m_liveViewers;
+}
+
+void TorrentPeerModel::releaseLiveUpdates() {
+    if (m_liveViewers == 0 || --m_liveViewers > 0)
         return;
-    m_liveUpdatesEnabled = enabled;
-    if (!enabled) {
-        m_pendingEntries.clear();
-        m_structuralUpdatesDeferred = false;
-        m_missingPeerStreaks.clear();
-    }
+    // Last viewer gone: drop state that only matters while someone watches.
+    m_pendingEntries.clear();
+    m_structuralUpdatesDeferred = false;
+    m_missingPeerStreaks.clear();
 }
 
 void TorrentPeerModel::setStructuralUpdatesDeferred(bool deferred) {

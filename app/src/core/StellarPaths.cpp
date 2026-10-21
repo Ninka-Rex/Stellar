@@ -116,6 +116,13 @@ QString cacheDir()
     return dir;
 }
 
+QString trackerIconCacheDir()
+{
+    const QString dir = cacheDir() + QStringLiteral("/tracker-icons");
+    QDir().mkpath(dir);
+    return dir;
+}
+
 // ── Individual files ──────────────────────────────────────────────────────────
 
 QString settingsFile()

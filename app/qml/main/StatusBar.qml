@@ -263,22 +263,6 @@ Rectangle {
             }
         }
 
-        // Welcome-back greeting (transient; shown for a few seconds after the
-        // cold-start restore completes). Sits at the right edge of the left
-        // cluster — always the rightmost left-side entry — then hides.
-        Row {
-            visible: App.welcomeVisible && App.welcomeMessage.length > 0
-            spacing: 4
-            Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "../icons/status/welcome.svg" }
-            Text {
-                text: App.welcomeMessage
-                color: ColorPalette.textSecond
-                font.pixelSize: 11 * App.fontScale
-                anchors.verticalCenter: parent.verticalCenter
-            }
-        }
-
         Item { Layout.fillWidth: true }
 
         // All-time torrent ratio

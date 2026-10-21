@@ -1,4 +1,4 @@
-﻿// Stellar Download Manager
+// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -20,29 +20,88 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+// Show/hide, reorder and size the download table's columns. Edits a local
+// copy; nothing reaches the table until OK (Reset included, so Cancel undoes it).
 Window {
     id: root
     title: qsTr("Columns")
-    width: 480
-    height: 460
-    minimumWidth: 420
-    minimumHeight: 380
+    width: 520
+    height: 500
+    minimumWidth: 440
+    minimumHeight: 400
     color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
     Material.background: ColorPalette.materialBg
-    Material.accent: "#4488dd"
+    Material.accent: ColorPalette.accent
 
-    // columnDefs is passed in from DownloadTable and mutated in place
+    // Set by the opener before show(): the active workspace's current layout
+    // and its defaults (Reset). Arrays of { key, title, widthPx, visible }.
     property var columnDefs: []
-    property var localDefs: []
+    property var defaultDefs: []
 
     signal columnsChanged(var defs)
 
-    function syncLocal() {
-        localDefs = (columnDefs && columnDefs.slice) ? columnDefs.slice() : []
+    readonly property int minColumnWidth: 24
+    readonly property int maxColumnWidth: 1200
+    readonly property int rowHeight: 26
+
+    ListModel { id: colModel }
+    // ListModel.get() isn't reactive; bindings that read row data through
+    // _current() depend on this instead, bumped on every edit.
+    property int _revision: 0
+    Connections {
+        target: colModel
+        function onDataChanged() { root._revision++ }
+        function onRowsMoved()   { root._revision++ }
+        function onModelReset()  { root._revision++ }
+        function onRowsInserted() { root._revision++ }
+    }
+
+    function _load(defs) {
+        colModel.clear()
+        for (var i = 0; i < defs.length; i++) {
+            colModel.append({
+                key: defs[i].key,
+                title: defs[i].title,
+                widthPx: defs[i].widthPx,
+                shown: defs[i].visible !== false
+            })
+        }
+        colList.currentIndex = colModel.count > 0 ? 0 : -1
+        colList.positionViewAtBeginning()
+    }
+
+    function _result() {
+        var out = []
+        for (var i = 0; i < colModel.count; i++) {
+            var row = colModel.get(i)
+            out.push({ key: row.key, title: row.title, widthPx: row.widthPx, visible: row.shown })
+        }
+        return out
+    }
+
+    readonly property bool _hasCurrent: colList.currentIndex >= 0 && colList.currentIndex < colModel.count
+    function _current(role, fallback) {
+        _revision
+        return _hasCurrent ? colModel.get(colList.currentIndex)[role] : fallback
+    }
+
+    function _setShown(row, shown) {
+        if (row >= 0 && row < colModel.count)
+            colModel.setProperty(row, "shown", shown)
+    }
+
+    function _moveCurrent(delta) {
+        var from = colList.currentIndex
+        var to = from + delta
+        if (from < 0 || to < 0 || to >= colModel.count)
+            return
+        colModel.move(from, to, 1)
+        colList.currentIndex = to
+        colList.positionViewAtIndex(to, ListView.Contain)
     }
 
     function _centerOnOwner() {
@@ -56,237 +115,221 @@ Window {
         y = Math.round((Screen.height - height) / 2)
     }
 
-    onVisibleChanged: if (visible) { _centerOnOwner(); syncLocal() }
-    onColumnDefsChanged: syncLocal()
+    Shortcut { sequence: "Escape"; onActivated: root.close() }
 
-    function swap(i, j) {
-        // Save contentY before the model reassignment resets it to 0
-        var savedY = colListView.contentY
-        var defs = localDefs.slice()
-        var tmp = defs[i]; defs[i] = defs[j]; defs[j] = tmp
-        localDefs = defs
-        Qt.callLater(function() { colListView.contentY = savedY })
+    onVisibleChanged: {
+        if (!visible) return
+        _centerOnOwner()
+        _load(columnDefs)
+        colList.forceActiveFocus()
     }
 
     ColumnLayout {
         anchors { fill: parent; margins: 16 }
         spacing: 10
 
-        Text { text: qsTr("Columns"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
         Text {
-            text: qsTr("Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.")
-            color: "#909090"; font.pixelSize: 12 * App.fontScale
-            wrapMode: Text.WordWrap; Layout.fillWidth: true
+            text: qsTr("Columns")
+            color: ColorPalette.textHeader
+            font.pixelSize: 16 * App.fontScale
+            font.bold: true
         }
-        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
+        Text {
+            Layout.fillWidth: true
+            text: qsTr("Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.")
+            color: ColorPalette.textSecond
+            font.pixelSize: 12 * App.fontScale
+            wrapMode: Text.WordWrap
+        }
 
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 12
+            spacing: 10
 
-            // Column list
             Rectangle {
+                Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredWidth: 240
-                color: ColorPalette.panelBg
-                border.color: ColorPalette.border
+                Layout.minimumWidth: 220
+                color: ColorPalette.inputBg
+                border.color: colList.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
                 radius: 3
-                clip: true
 
                 ListView {
-                    id: colListView
-                    anchors { fill: parent; margins: 2 }
-                    model: root.localDefs
-                    currentIndex: 0
+                    id: colList
+                    anchors { fill: parent; margins: 1 }
+                    clip: true
+                    model: colModel
+                    boundsBehavior: Flickable.StopAtBounds
+                    keyNavigationEnabled: true
+                    ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+
+                    Keys.onSpacePressed: root._setShown(currentIndex, !root._current("shown", true))
+                    Keys.onPressed: (event) => {
+                        if (!(event.modifiers & Qt.ControlModifier)) return
+                        if (event.key === Qt.Key_Up)        { root._moveCurrent(-1); event.accepted = true }
+                        else if (event.key === Qt.Key_Down) { root._moveCurrent(1);  event.accepted = true }
+                    }
 
                     delegate: Rectangle {
-                        width: colListView.width
-                        height: 34
-                        color: colListView.currentIndex === index ? ColorPalette.selectionBg : (itemMa.containsMouse ? ColorPalette.hoverBg : "transparent")
+                        id: rowItem
+                        required property int index
+                        required property string title
+                        required property bool shown
+                        readonly property bool current: ListView.isCurrentItem
 
-                        RowLayout {
-                            anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
+                        width: ListView.view.width
+                        height: root.rowHeight
+                        color: current ? ColorPalette.selectionBg
+                             : (rowMa.containsMouse ? ColorPalette.hoverBg : "transparent")
+
+                        Row {
+                            anchors { left: parent.left; leftMargin: 8; right: parent.right; rightMargin: 8
+                                      verticalCenter: parent.verticalCenter }
                             spacing: 8
 
-                            StyledCheckBox {
-                                checked: modelData.visible !== false
-                                topPadding: 0; bottomPadding: 0
-                                onCheckedChanged: {
-                                    var idx = index
-                                    var val = checked
-                                    var savedY = colListView.contentY
-                                    Qt.callLater(function() {
-                                        var defs = root.localDefs.slice()
-                                        defs[idx] = Object.assign({}, defs[idx], { visible: val })
-                                        root.localDefs = defs
-                                        colListView.contentY = savedY
-                                    })
+                            Rectangle {
+                                id: box
+                                width: 16; height: 16; radius: 3
+                                anchors.verticalCenter: parent.verticalCenter
+                                color: rowItem.shown ? ColorPalette.accent : ColorPalette.inputBg
+                                border.color: rowItem.shown ? ColorPalette.accent : ColorPalette.border
+                                Text {
+                                    anchors.centerIn: parent
+                                    visible: rowItem.shown
+                                    text: "✓"
+                                    color: "#ffffff"
+                                    font.pixelSize: 11
+                                    font.bold: true
                                 }
                             }
-
                             Text {
-                                text: modelData.title
-                                color: colListView.currentIndex === index ? "#ffffff" : ColorPalette.textPrimary
-                                font.pixelSize: 13 * App.fontScale
-                                Layout.fillWidth: true
+                                width: parent.width - box.width - parent.spacing
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: rowItem.title
+                                color: rowItem.current ? ColorPalette.selectionText
+                                     : (rowItem.shown ? ColorPalette.textPrimary : ColorPalette.textSecond)
+                                font.pixelSize: 12 * App.fontScale
+                                elide: Text.ElideRight
                             }
                         }
 
                         MouseArea {
-                            id: itemMa
+                            id: rowMa
                             anchors.fill: parent
                             hoverEnabled: true
-                            onClicked: colListView.currentIndex = index
+                            onClicked: (mouse) => {
+                                colList.currentIndex = rowItem.index
+                                colList.forceActiveFocus()
+                                // The checkbox (plus a little slack) toggles; the
+                                // rest of the row only selects.
+                                if (mouse.x < box.x + box.width + 16)
+                                    root._setShown(rowItem.index, !rowItem.shown)
+                            }
+                            onDoubleClicked: root._setShown(rowItem.index, !rowItem.shown)
                         }
                     }
                 }
             }
 
-            // Buttons
             ColumnLayout {
+                Layout.alignment: Qt.AlignTop
+                // Layouts fill by default; without this the buttons take the
+                // whole row and squeeze the list to nothing.
+                Layout.fillWidth: false
+                Layout.preferredWidth: 120 * App.fontScale
                 spacing: 6
 
-                Rectangle {
-                    width: 100; height: 28; radius: 3
-                    color: moveUpMa.containsMouse && colListView.currentIndex > 0 ? ColorPalette.selectionBg : ColorPalette.dividerBg
-                    border.color: "#555"; border.width: 1
-                    opacity: colListView.currentIndex > 0 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                    MouseArea {
-                        id: moveUpMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: colListView.currentIndex > 0 ? Qt.PointingHandCursor : Qt.ArrowCursor
-                        onClicked: {
-                            const i = colListView.currentIndex
-                            if (i > 0) { root.swap(i, i - 1); colListView.currentIndex = i - 1 }
-                        }
-                    }
+                DlgButton {
+                    Layout.fillWidth: true
+                    implicitHeight: 30
+                    text: qsTr("Move Up")
+                    enabled: root._hasCurrent && colList.currentIndex > 0
+                    onClicked: root._moveCurrent(-1)
                 }
-
-                Rectangle {
-                    width: 100; height: 28; radius: 3
-                    color: moveDownMa.containsMouse && colListView.currentIndex < root.localDefs.length - 1 ? ColorPalette.selectionBg : ColorPalette.dividerBg
-                    border.color: "#555"; border.width: 1
-                    opacity: colListView.currentIndex < root.localDefs.length - 1 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                    MouseArea {
-                        id: moveDownMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: colListView.currentIndex < root.localDefs.length - 1 ? Qt.PointingHandCursor : Qt.ArrowCursor
-                        onClicked: {
-                            const i = colListView.currentIndex
-                            if (i < root.localDefs.length - 1) { root.swap(i, i + 1); colListView.currentIndex = i + 1 }
-                        }
-                    }
+                DlgButton {
+                    Layout.fillWidth: true
+                    implicitHeight: 30
+                    text: qsTr("Move Down")
+                    enabled: root._hasCurrent && colList.currentIndex < colModel.count - 1
+                    onClicked: root._moveCurrent(1)
                 }
-
-                Rectangle { width: 100; height: 1; color: ColorPalette.border }
-
-                Rectangle {
-                    width: 100; height: 28; radius: 3
-                    property bool canShow: colListView.currentIndex >= 0
-                        && root.localDefs.length > colListView.currentIndex
-                        && !root.localDefs[colListView.currentIndex].visible
-                    color: showMa.containsMouse && canShow ? ColorPalette.selectionBg : ColorPalette.dividerBg
-                    border.color: "#555"; border.width: 1
-                    opacity: canShow ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Show"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                    MouseArea {
-                        id: showMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: parent.canShow ? Qt.PointingHandCursor : Qt.ArrowCursor
-                        onClicked: {
-                            if (parent.canShow) {
-                                var savedY = colListView.contentY
-                                var defs = root.localDefs.slice()
-                                defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { visible: true })
-                                root.localDefs = defs
-                                colListView.contentY = savedY
-                            }
-                        }
-                    }
+                Item { Layout.preferredHeight: 6 }
+                DlgButton {
+                    Layout.fillWidth: true
+                    implicitHeight: 30
+                    text: qsTr("Show")
+                    enabled: root._hasCurrent && !root._current("shown", true)
+                    onClicked: root._setShown(colList.currentIndex, true)
                 }
-
-                Rectangle {
-                    width: 100; height: 28; radius: 3
-                    property bool canHide: colListView.currentIndex >= 0
-                        && root.localDefs.length > colListView.currentIndex
-                        && root.localDefs[colListView.currentIndex].visible
-                    color: hideMa.containsMouse && canHide ? ColorPalette.selectionBg : ColorPalette.dividerBg
-                    border.color: "#555"; border.width: 1
-                    opacity: canHide ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Hide"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                    MouseArea {
-                        id: hideMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: parent.canHide ? Qt.PointingHandCursor : Qt.ArrowCursor
-                        onClicked: {
-                            if (parent.canHide) {
-                                var savedY = colListView.contentY
-                                var defs = root.localDefs.slice()
-                                defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { visible: false })
-                                root.localDefs = defs
-                                colListView.contentY = savedY
-                            }
-                        }
-                    }
+                DlgButton {
+                    Layout.fillWidth: true
+                    implicitHeight: 30
+                    text: qsTr("Hide")
+                    enabled: root._hasCurrent && root._current("shown", false)
+                    onClicked: root._setShown(colList.currentIndex, false)
                 }
-
-                Rectangle {
-                    width: 100; height: 28; radius: 3
-                    color: resetMa.containsMouse ? "#443020" : ColorPalette.dividerBg
-                    border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale }
-                    MouseArea {
-                        id: resetMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: root.columnsChanged(null)  // null = reset to default
-                    }
+                Item { Layout.preferredHeight: 6 }
+                DlgButton {
+                    Layout.fillWidth: true
+                    implicitHeight: 30
+                    text: qsTr("Reset")
+                    onClicked: root._load(root.defaultDefs)
                 }
-
-                Item { Layout.fillHeight: true }
             }
         }
 
-        // Width editor
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
+            enabled: root._hasCurrent
+
             Text {
                 text: qsTr("The selected column should be")
-                color: "#909090"; font.pixelSize: 12 * App.fontScale
+                color: ColorPalette.textSecond
+                font.pixelSize: 12 * App.fontScale
             }
             TextField {
-                implicitWidth: 60; implicitHeight: 26
-                text: colListView.currentIndex >= 0 && root.localDefs.length > colListView.currentIndex
-                      ? (root.localDefs[colListView.currentIndex].widthPx || 120).toString()
-                      : "120"
-                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
-                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
-                leftPadding: 6
-                validator: IntValidator { bottom: 30; top: 1200 }
+                id: widthField
+                implicitWidth: 64
+                implicitHeight: 26
+                leftPadding: 6; rightPadding: 6; topPadding: 0; bottomPadding: 0
+                horizontalAlignment: TextInput.AlignRight
+                color: ColorPalette.textPrimary
+                font.pixelSize: 12 * App.fontScale
+                selectByMouse: true
+                validator: IntValidator { bottom: root.minColumnWidth; top: root.maxColumnWidth }
+                background: Rectangle {
+                    color: ColorPalette.inputBg
+                    border.color: widthField.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
+                    radius: 3
+                }
+
+                // Re-seeded on every selection change (a text binding would be
+                // broken by the first keystroke).
+                function reload() { text = root._hasCurrent ? String(root._current("widthPx", 0)) : "" }
+                Connections {
+                    target: colList
+                    function onCurrentIndexChanged() { widthField.reload() }
+                }
                 onEditingFinished: {
-                    const v = parseInt(text)
-                    if (!isNaN(v) && v >= 30 && colListView.currentIndex >= 0) {
-                        var defs = root.localDefs.slice()
-                        defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { widthPx: v })
-                        root.localDefs = defs
-                    }
+                    var v = parseInt(text, 10)
+                    if (root._hasCurrent && !isNaN(v))
+                        colModel.setProperty(colList.currentIndex, "widthPx",
+                                             Math.max(root.minColumnWidth, Math.min(v, root.maxColumnWidth)))
+                    reload()
                 }
             }
-            Text { text: qsTr("pixels wide"); color: "#909090"; font.pixelSize: 12 * App.fontScale }
+            Text {
+                text: qsTr("pixels wide")
+                color: ColorPalette.textSecond
+                font.pixelSize: 12 * App.fontScale
+            }
+            Item { Layout.fillWidth: true }
         }
 
-        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
+        Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 1; color: ColorPalette.border }
 
-        // OK / Cancel
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
@@ -295,7 +338,9 @@ Window {
                 text: qsTr("OK")
                 primary: true
                 onClicked: {
-                    root.columnsChanged(root.localDefs)
+                    // Commit a width typed without leaving the field first.
+                    widthField.editingFinished()
+                    root.columnsChanged(root._result())
                     root.close()
                 }
             }

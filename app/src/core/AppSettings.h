@@ -76,6 +76,22 @@
     X(int, int, mainWindowWidth, MainWindowWidth, 1100, "mainWindowWidth", N) \
     X(int, int, mainWindowHeight, MainWindowHeight, 680, "mainWindowHeight", N) \
     X(QString, const QString &, downloadTableColumns, DownloadTableColumns, QString(), "downloadTableColumns", N) \
+    X(QString, const QString &, torrentTableColumns, TorrentTableColumns, QString(), "torrentTableColumns", N) \
+    /* "downloads" | "torrents" — which main-window workspace tab is shown */ \
+    X(QString, const QString &, mainWorkspace, MainWorkspace, QStringLiteral("downloads"), "mainWorkspace", S) \
+    X(bool, bool, torrentDetailsPaneVisible, TorrentDetailsPaneVisible, false, "torrentDetailsPaneVisible", S) \
+    X(int, int, torrentDetailsPaneHeight, TorrentDetailsPaneHeight, 260, "torrentDetailsPaneHeight", S) \
+    X(int, int, torrentDetailsPaneTab, TorrentDetailsPaneTab, 0, "torrentDetailsPaneTab", S) \
+    /* Docked details pane of the Downloads workspace (General + Speed) */ \
+    X(bool, bool, downloadDetailsPaneVisible, DownloadDetailsPaneVisible, false, "downloadDetailsPaneVisible", S) \
+    X(int, int, downloadDetailsPaneHeight, DownloadDetailsPaneHeight, 260, "downloadDetailsPaneHeight", S) \
+    X(int, int, downloadDetailsPaneTab, DownloadDetailsPaneTab, 0, "downloadDetailsPaneTab", S) \
+    /* Swarm map view, shared by every torrent; centre as a 0..1 fraction of the map (-1 = default) */ \
+    X(double, double, swarmMapZoom, SwarmMapZoom, 1.0, "swarmMapZoom", S) \
+    X(double, double, swarmMapCenterX, SwarmMapCenterX, -1.0, "swarmMapCenterX", S) \
+    X(double, double, swarmMapCenterY, SwarmMapCenterY, -1.0, "swarmMapCenterY", S) \
+    /* Fetch and show tracker website favicons (contacts tracker hosts directly) */ \
+    X(bool, bool, torrentTrackerFavicons, TorrentTrackerFavicons, false, "torrentTrackerFavicons", N) \
     X(QString, const QString &, toolbarButtonDefs, ToolbarButtonDefs, QString(), "toolbarButtonDefs", N) \
     X(double, double, uiScaleFactor, UiScaleFactor, 0.0, "uiScaleFactor", N) \
     X(int, int, uiFontPointSize, UiFontPointSize, 0, "uiFontPointSize", N) \
@@ -208,6 +224,10 @@ class AppSettings : public QObject {
     Q_PROPERTY(QString customUserAgent READ customUserAgent WRITE setCustomUserAgent NOTIFY customUserAgentChanged)
     Q_PROPERTY(QStringList sidebarOrder READ sidebarOrder WRITE setSidebarOrder NOTIFY sidebarOrderChanged)
     Q_PROPERTY(QStringList torrentSubcatOrder READ torrentSubcatOrder WRITE setTorrentSubcatOrder NOTIFY torrentSubcatOrderChanged)
+    // Sidebar order of the two workspace groups ("downloads", "torrents") and
+    // of the Torrents group's sections ("states", "categories").
+    Q_PROPERTY(QStringList sidebarWorkspaceOrder READ sidebarWorkspaceOrder WRITE setSidebarWorkspaceOrder NOTIFY sidebarWorkspaceOrderChanged)
+    Q_PROPERTY(QStringList sidebarTorrentOrder READ sidebarTorrentOrder WRITE setSidebarTorrentOrder NOTIFY sidebarTorrentOrderChanged)
     Q_PROPERTY(bool launchOnStartup READ launchOnStartup WRITE setLaunchOnStartup NOTIFY launchOnStartupChanged)
     Q_PROPERTY(bool torrentEnabled   READ torrentEnabled   WRITE setTorrentEnabled   NOTIFY torrentEnabledChanged)
     Q_PROPERTY(QString rssSmartFiltersJson  READ rssSmartFiltersJson  WRITE setRssSmartFiltersJson  NOTIFY rssSmartFiltersJsonChanged)
@@ -252,6 +272,8 @@ public:
     QString customUserAgent()     const { return m_customUserAgent; }
     QStringList sidebarOrder()         const { return m_sidebarOrder; }
     QStringList torrentSubcatOrder()   const { return m_torrentSubcatOrder; }
+    QStringList sidebarWorkspaceOrder() const { return m_sidebarWorkspaceOrder; }
+    QStringList sidebarTorrentOrder()  const { return m_sidebarTorrentOrder; }
     bool launchOnStartup()            const { return m_launchOnStartup; }
     bool torrentEnabled()           const { return m_torrentEnabled; }
     QString rssSmartFiltersJson()     const { return m_rssSmartFiltersJson; }
@@ -286,6 +308,8 @@ public:
     void setCustomUserAgent(const QString &v);
     void setSidebarOrder(const QStringList &v);
     void setTorrentSubcatOrder(const QStringList &v);
+    void setSidebarWorkspaceOrder(const QStringList &v);
+    void setSidebarTorrentOrder(const QStringList &v);
     void setLaunchOnStartup(bool v);
     void setTorrentEnabled(bool v);
     void setRssSmartFiltersJson(const QString &v);
@@ -332,6 +356,8 @@ signals:
     void customUserAgentChanged();
     void sidebarOrderChanged();
     void torrentSubcatOrderChanged();
+    void sidebarWorkspaceOrderChanged();
+    void sidebarTorrentOrderChanged();
     void launchOnStartupChanged();
     void rssSmartFiltersJsonChanged();
     void rssDownloadRulesJsonChanged();
@@ -340,6 +366,10 @@ signals:
     void torrentSettingsChanged();
 
 private:
+    // Saved id order under `key`, limited to `defaults`' ids and completed
+    // with any of them it lacks.
+    QStringList loadOrder(const QString &key, const QStringList &defaults) const;
+
     // ========================================================================
     // Generated members
     // ========================================================================
@@ -361,6 +391,8 @@ private:
     QStringList m_sidebarOrder{{"downloads", "unfinished", "finished", "grabber", "queues", "torrents"}};
     QStringList m_torrentSubcatOrder{{"torrent_downloading", "torrent_seeding", "torrent_stopped",
                                       "torrent_active", "torrent_inactive", "torrent_checking", "torrent_moving"}};
+    QStringList m_sidebarWorkspaceOrder{{"downloads", "torrents"}};
+    QStringList m_sidebarTorrentOrder{{"states", "categories"}};
     bool        m_launchOnStartup{false};
     bool        m_torrentEnabled{false};
     QString     m_rssSmartFiltersJson{QStringLiteral("[\"s(\\\\d+)e(\\\\d+)\",\"(\\\\d+)x(\\\\d+)\",\"(\\\\d{4}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{1,2})\",\"(\\\\d{1,2}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{4})\"]")};

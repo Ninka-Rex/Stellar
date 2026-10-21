@@ -48,7 +48,9 @@ QHash<int, QByteArray> TorrentFileModel::roleNames() const {
         { DepthRole, "depth" },
         { ExpandedRole, "expanded" },
         { FileIndexRole, "fileIndex" },
-        { PriorityRole, "priority" }
+        { PriorityRole, "priority" },
+        { RemainingRole, "remaining" },
+        { AvailabilityRole, "availability" }
     };
 }
 
@@ -113,7 +115,26 @@ void TorrentFileModel::setEntries(const QVector<Entry> &entries) {
     rebuildVisibleRows();
 }
 
-void TorrentFileModel::updateProgress(const QVector<qint64> &downloadedBytes) {
+qint64 TorrentFileModel::leafRemaining(const Node *node) {
+    return node->wanted ? qMax<qint64>(0, node->size - node->downloaded) : 0;
+}
+
+void TorrentFileModel::aggregateFolder(Node *node) {
+    qint64 remaining = 0;
+    double weighted = 0.0;
+    qint64 knownSize = 0;
+    for (const Node *child : node->children) {
+        remaining += child->remaining;
+        if (child->availability >= 0.0) {
+            weighted += child->availability * double(child->size);
+            knownSize += child->size;
+        }
+    }
+    node->remaining = remaining;
+    node->availability = knownSize > 0 ? weighted / double(knownSize) : -1.0;
+}
+
+void TorrentFileModel::updateProgress(const QVector<qint64> &downloadedBytes, const QVector<double> &availability) {
     if (m_fileEntries.isEmpty())
         return;
 
@@ -121,7 +142,7 @@ void TorrentFileModel::updateProgress(const QVector<qint64> &downloadedBytes) {
     // alert pump in TorrentSessionManager fires every 2 s for every torrent,
     // so suppressing here avoids both the recursive tree walk and the QML
     // notification storm whenever the properties/metadata dialog is hidden.
-    if (!m_liveUpdatesEnabled)
+    if (!liveUpdatesEnabled())
         return;
 
     const int limit = qMin(m_fileEntries.size(), downloadedBytes.size());
@@ -169,41 +190,44 @@ void TorrentFileModel::updateProgress(const QVector<qint64> &downloadedBytes) {
         Node *node = postOrder.at(i);
         if (!node)
             continue;
+        const qint64 oldDownloaded = node->downloaded;
+        const qint64 oldRemaining = node->remaining;
+        const double oldAvailability = node->availability;
         if (!node->isFolder) {
-            if (node->fileIndex >= 0 && node->fileIndex < downloadedBytes.size()) {
-                const qint64 nv = downloadedBytes.at(node->fileIndex);
-                if (nv != node->downloaded) {
-                    node->downloaded = nv;
-                    markDirty(node);
-                }
-            }
+            if (node->fileIndex >= 0 && node->fileIndex < downloadedBytes.size())
+                node->downloaded = downloadedBytes.at(node->fileIndex);
+            if (node->fileIndex >= 0 && node->fileIndex < availability.size())
+                node->availability = availability.at(node->fileIndex);
+            node->remaining = leafRemaining(node);
         } else {
             qint64 sumDl = 0;
             for (Node *child : node->children)
                 sumDl += child->downloaded;
-            if (sumDl != node->downloaded) {
-                node->downloaded = sumDl;
-                markDirty(node);
-            }
+            node->downloaded = sumDl;
+            aggregateFolder(node);
         }
+        if (node->downloaded != oldDownloaded || node->remaining != oldRemaining
+            || !qFuzzyCompare(node->availability + 2.0, oldAvailability + 2.0))
+            markDirty(node);
     }
 
-    // Emit dataChanged in contiguous runs. Only ProgressRole is sent — sizes
-    // are static after setEntries() (file sizes are torrent-metadata constants
-    // and folder aggregates derive from those), so re-evaluating SizeRole
+    // Emit dataChanged in contiguous runs, for the live roles only — sizes are
+    // static after setEntries() (file sizes are torrent-metadata constants and
+    // folder aggregates derive from those), so re-evaluating SizeRole
     // bindings every 2 s is pure waste.
+    const QList<int> liveRoles{ ProgressRole, RemainingRole, AvailabilityRole };
     int runStart = -1;
     for (int row = 0; row < visibleDirty.size(); ++row) {
         if (visibleDirty.at(row)) {
             if (runStart < 0)
                 runStart = row;
         } else if (runStart >= 0) {
-            emit dataChanged(index(runStart), index(row - 1), { ProgressRole });
+            emit dataChanged(index(runStart), index(row - 1), liveRoles);
             runStart = -1;
         }
     }
     if (runStart >= 0)
-        emit dataChanged(index(runStart), index(visibleDirty.size() - 1), { ProgressRole });
+        emit dataChanged(index(runStart), index(visibleDirty.size() - 1), liveRoles);
 }
 
 bool TorrentFileModel::setWanted(int row, bool wanted) {
@@ -216,7 +240,7 @@ bool TorrentFileModel::setWanted(int row, bool wanted) {
     // Wanted state doesn't change which rows are visible — emit dataChanged
     // only, so the ListView scroll position is preserved.
     if (!m_visibleRows.isEmpty())
-        emit dataChanged(index(0), index(m_visibleRows.size() - 1), { WantedRole, ProgressRole, SizeRole });
+        emit dataChanged(index(0), index(m_visibleRows.size() - 1), { WantedRole, ProgressRole, SizeRole, RemainingRole });
     return true;
 }
 
@@ -240,7 +264,7 @@ bool TorrentFileModel::setWantedByPath(const QString &path, bool wanted) {
     applyWantedRecursive(node, wanted);
     recalculateFolderState(m_root);
     if (!m_visibleRows.isEmpty())
-        emit dataChanged(index(0), index(m_visibleRows.size() - 1), { WantedRole, ProgressRole, SizeRole });
+        emit dataChanged(index(0), index(m_visibleRows.size() - 1), { WantedRole, ProgressRole, SizeRole, RemainingRole });
     return true;
 }
 
@@ -256,7 +280,7 @@ bool TorrentFileModel::setPriority(int row, int priority) {
     // Priority may re-enable a skipped file, so refresh WantedRole too.
     if (!m_visibleRows.isEmpty())
         emit dataChanged(index(0), index(m_visibleRows.size() - 1),
-                         { PriorityRole, WantedRole, ProgressRole, SizeRole });
+                         { PriorityRole, WantedRole, ProgressRole, SizeRole, RemainingRole });
     return true;
 }
 
@@ -281,7 +305,7 @@ bool TorrentFileModel::setPriorityByPath(const QString &path, int priority) {
     recalculateFolderState(m_root);
     if (!m_visibleRows.isEmpty())
         emit dataChanged(index(0), index(m_visibleRows.size() - 1),
-                         { PriorityRole, WantedRole, ProgressRole, SizeRole });
+                         { PriorityRole, WantedRole, ProgressRole, SizeRole, RemainingRole });
     return true;
 }
 
@@ -350,6 +374,8 @@ QVariant TorrentFileModel::dataForNode(const Node *node, int role) const {
     case ExpandedRole: return node->expanded;
     case FileIndexRole: return node->fileIndex;
     case PriorityRole: return node->isFolder ? folderPriority(node) : node->priority;
+    case RemainingRole: return node->remaining;
+    case AvailabilityRole: return node->availability;
     default: return {};
     }
 }
@@ -540,8 +566,10 @@ int TorrentFileModel::folderPriority(const Node *node) const {
 void TorrentFileModel::recalculateFolderState(Node *node) {
     if (!node)
         return;
-    if (!node->isFolder)
+    if (!node->isFolder) {
+        node->remaining = leafRemaining(node);
         return;
+    }
 
     node->size = 0;
     node->downloaded = 0;
@@ -554,6 +582,7 @@ void TorrentFileModel::recalculateFolderState(Node *node) {
     }
     if (node != m_root)
         node->wanted = anyWanted;
+    aggregateFolder(node);
 }
 
 TorrentFileModel::Node *TorrentFileModel::findNodeByPath(Node *node, const QString &path) const {

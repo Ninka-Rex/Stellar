@@ -26,7 +26,9 @@ AbstractButton {
     // Horizontal mode: icon on the left, text on the right (used by the grabber
     // toolbar). Mutually exclusive with the default stacked (icon-top) layout.
     property bool horizontalMode: false
-    readonly property int iconSize: smallMode ? 20 : (horizontalMode ? 24 : 32)
+    // Small mode keeps the 48px bar; the icon fills most of it rather than
+    // floating in padding.
+    readonly property int iconSize: smallMode ? 28 : (horizontalMode ? 24 : 32)
 
     // Vertical layout is computed by the parent Toolbar (single source of truth so
     // the bar height and every button agree). iconTop = y of the icon box top;

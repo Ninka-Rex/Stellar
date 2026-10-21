@@ -297,25 +297,6 @@ Window {
 
     ListModel { id: segmentListModel }
 
-    // Read-only selectable field (mirrors FilePropertiesDialog's inline component)
-    component ReadOnlyField: Rectangle {
-        property alias fieldText: ti.text
-        property color textColor: ColorPalette.textPrimary
-        implicitHeight: 26
-        color: ColorPalette.inputBg
-        border.color: ti.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
-        radius: 2
-        clip: true
-        TextInput {
-            id: ti
-            anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-            verticalAlignment: TextInput.AlignVCenter
-            color: parent.textColor
-            font.pixelSize: 12 * App.fontScale
-            readOnly: true; selectByMouse: true; clip: true
-        }
-    }
-
     ColumnLayout {
         id: rootCol
         anchors { left: parent.left; right: parent.right; top: parent.top }
@@ -473,35 +454,15 @@ Window {
                 }
             }
 
-            // ── Minimize-to-tray button flat, right-aligned in the tab bar ──
-            Item {
+            // ── Minimize-to-tray action, right-aligned in the tab bar ──
+            TabBarAction {
                 anchors { right: parent.right; top: parent.top; bottom: parent.bottom; rightMargin: 6 }
-                width: minTrayLbl.implicitWidth + 20
-
-                Text {
-                    id: minTrayLbl
-                    anchors.centerIn: parent
-                    text: qsTr(">>  Send to Tray")
-                    color: minTrayMa.containsMouse ? ColorPalette.accent : ColorPalette.textMuted
-                    font.pixelSize: 12 * App.fontScale
-                }
-
-                ThemedToolTip {
-                    visible: minTrayMa.containsMouse
-                    text: qsTr("Minimize to system tray")
-                    delay: 400
-                }
-
-                MouseArea {
-                    id: minTrayMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        root.hide()
-                        // Emit after hide so _updateDownloadsTray sees visible === false
-                        Qt.callLater(function() { root.minimizedToTray(root.downloadId) })
-                    }
+                text: qsTr(">>  Send to Tray")
+                toolTip: qsTr("Minimize to system tray")
+                onClicked: {
+                    root.hide()
+                    // Emit after hide so _updateDownloadsTray sees visible === false
+                    Qt.callLater(function() { root.minimizedToTray(root.downloadId) })
                 }
             }
         }

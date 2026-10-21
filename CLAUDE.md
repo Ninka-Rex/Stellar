@@ -57,6 +57,8 @@ Stellar — clean-room IDM reimplementation. C++/Qt 6 backend + QML frontend, to
 - Resume-data feedback loop: `flushDirty()` must **NOT** call `saveResumeData()` (save→alert→write→save runaway).
 - Torrent stats are ephemeral — only `torrentUploaded/Downloaded/Ratio` go to `downloads.json`; per-tick stats (seeders/peers/speeds/…) never persisted.
 - Alert timer is 2 s; `applySettings()` must run before any add (creates session lazily).
+- Torrent file/peer/tracker models' live updates are viewer-counted (properties window, details pane and metadata dialog can show one torrent at once). Hold them only via `TorrentLiveUpdatesLease`, never call `retainLiveUpdates()`/`releaseLiveUpdates()` directly.
+- `dialogs/FilePropertiesDialog.qml` is the properties *content* (an `Item`, also embedded in the main window's `main/DetailsPane.qml`); the window is `FilePropertiesWindow.qml`. The content file keeps its name because it's the qsTr context all translations are keyed on.
 
 **Other**
 - yt-dlp: pass `--proxy` explicitly (doesn't inherit Qt proxy). Reconcile final filename via filesystem scan — yt-dlp stdout corrupts non-ASCII names on Windows.

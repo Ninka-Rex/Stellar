@@ -205,6 +205,7 @@ Window {
     property string editTorrentCustomUserAgent: ""
     property string editTorrentBindInterface:  ""
     property bool   editTorrentAllowDiscoveryWhenBound: false
+    property bool   editTorrentTrackerFavicons: false
     property string editTorrentBlockedPeerUserAgents: ""
     property var    editTorrentBlockedPeerCountries: []
     property var    editTorrentBannedPeers: []
@@ -556,6 +557,7 @@ Window {
         editTorrentCustomUserAgent !== App.settings.torrentCustomUserAgent ||
         editTorrentBindInterface  !== App.settings.torrentBindInterface  ||
         editTorrentAllowDiscoveryWhenBound !== App.settings.torrentAllowDiscoveryWhenBound ||
+        editTorrentTrackerFavicons !== App.settings.torrentTrackerFavicons ||
         editTorrentBlockedPeerUserAgents !== App.settings.torrentBlockedPeerUserAgents ||
         JSON.stringify(editTorrentBlockedPeerCountries) !== JSON.stringify(App.settings.torrentBlockedPeerCountries) ||
         JSON.stringify(editTorrentBannedPeers) !== JSON.stringify(App.settings.torrentBannedPeers) ||
@@ -1023,6 +1025,7 @@ Window {
         App.settings.torrentCustomUserAgent = editTorrentCustomUserAgent
         App.settings.torrentBindInterface   = editTorrentBindInterface
         App.settings.torrentAllowDiscoveryWhenBound = editTorrentAllowDiscoveryWhenBound
+        App.settings.torrentTrackerFavicons = editTorrentTrackerFavicons
         App.settings.torrentBlockedPeerUserAgents = editTorrentBlockedPeerUserAgents
         App.settings.torrentBlockedPeerCountries = editTorrentBlockedPeerCountries
         App.settings.torrentBannedPeers = editTorrentBannedPeers
@@ -1149,6 +1152,7 @@ Window {
         editTorrentCustomUserAgent = App.settings.torrentCustomUserAgent
         editTorrentBindInterface  = App.settings.torrentBindInterface
         editTorrentAllowDiscoveryWhenBound = App.settings.torrentAllowDiscoveryWhenBound
+        editTorrentTrackerFavicons = App.settings.torrentTrackerFavicons
         editTorrentBlockedPeerUserAgents = App.settings.torrentBlockedPeerUserAgents
         editTorrentBlockedPeerCountries = App.settings.torrentBlockedPeerCountries.slice()
         editTorrentBannedPeers = App.settings.torrentBannedPeers.slice()
@@ -2812,6 +2816,12 @@ Window {
                                     visible: root.editTorrentAnonymousMode
                                     warning: true
                                     text: qsTr("Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.")
+                                }
+                                SettingsCheck {
+                                    text: qsTr("Show favicons in tracker list")
+                                    description: qsTr("Downloads each tracker's favicon for the Trackers tab and caches it. This contacts the tracker's web server directly, outside your torrent network binding.")
+                                    checked: root.editTorrentTrackerFavicons
+                                    onToggled: (on) => root.editTorrentTrackerFavicons = on
                                 }
                                 SettingsRow {
                                     label: qsTr("Encryption Mode")

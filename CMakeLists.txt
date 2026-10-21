@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.10.5 LANGUAGES C CXX)
+project(Stellar VERSION 0.11.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -159,6 +159,7 @@ set(BACKEND_SOURCES
     app/src/torrent/TorrentFileModel.cpp
     app/src/torrent/TorrentPeerModel.cpp
     app/src/torrent/TorrentTrackerModel.cpp
+    app/src/torrent/TrackerFaviconCache.cpp
     app/src/torrent/TorrentSearchPluginModel.cpp
     app/src/torrent/TorrentSearchResultModel.cpp
     app/src/torrent/TorrentSearchManager.cpp
@@ -202,6 +203,7 @@ set(BACKEND_HEADERS
     app/src/torrent/TorrentFileModel.h
     app/src/torrent/TorrentPeerModel.h
     app/src/torrent/TorrentTrackerModel.h
+    app/src/torrent/TrackerFaviconCache.h
     app/src/torrent/TorrentSearchPluginModel.h
     app/src/torrent/TorrentSearchResultModel.h
     app/src/torrent/TorrentSearchManager.h
@@ -229,14 +231,21 @@ qt_add_qml_module(Stellar
         app/qml/main/DownloadTable.qml
         app/qml/main/DownloadTableHeader.qml
         app/qml/main/DownloadTableRow.qml
+        app/qml/main/WorkspaceTabs.qml
+        app/qml/main/DetailsPane.qml
         # components/ — shared reusable widgets
         app/qml/components/DlgButton.qml
         app/qml/components/ThemedToolTip.qml
         app/qml/components/StyledCheckBox.qml
         app/qml/components/StyledComboBox.qml
         app/qml/components/StyledRadioButton.qml
+        app/qml/components/TabBarAction.qml
+        app/qml/components/FileCtxMenuItem.qml
+        app/qml/components/LiveHoverTip.qml
+        app/qml/components/ShiftingHeaderBg.qml
         app/qml/components/ToolbarBtn.qml
         app/qml/components/ToolbarDropdown.qml
+        app/qml/components/TreeExpander.qml
         app/qml/components/TrayMenuItem.qml
         app/qml/components/CompactMenuItem.qml
         app/qml/components/SidebarItemDragHandler.qml
@@ -246,6 +255,8 @@ qt_add_qml_module(Stellar
         app/qml/components/DayOfWeekSelector.qml
         app/qml/components/SectionHeader.qml
         app/qml/components/SheetKey.qml
+        app/qml/components/ReadOnlyField.qml
+        app/qml/components/SheetValue.qml
         app/qml/components/SettingsPage.qml
         app/qml/components/SettingsScroll.qml
         app/qml/components/SettingsSection.qml
@@ -280,6 +291,7 @@ qt_add_qml_module(Stellar
         app/qml/dialogs/BrowserIntegrationDialog.qml
         app/qml/dialogs/QueuesWindow.qml
         app/qml/dialogs/FilePropertiesDialog.qml
+        app/qml/dialogs/FilePropertiesWindow.qml
         app/qml/dialogs/FindDialog.qml
         app/qml/dialogs/ColumnsDialog.qml
         app/qml/dialogs/ToolbarDialog.qml
@@ -310,6 +322,10 @@ qt_add_qml_module(Stellar
         app/qml/rss/RssDownloadRulesDialog.qml
         # torrent/
         app/qml/torrent/TorrentMetadataDialog.qml
+        app/qml/torrent/TorrentLiveUpdatesLease.qml
+        app/qml/torrent/SwarmMap.qml
+        app/qml/torrent/PeerFlagBadge.qml
+        app/qml/torrent/AddTorrentSourcesDialog.qml
         app/qml/torrent/TorrentDuplicateDialog.qml
         app/qml/torrent/TorrentSettingsPanel.qml
         app/qml/torrent/TorrentCreatorDialog.qml
@@ -319,11 +335,15 @@ qt_add_qml_module(Stellar
     RESOURCES
         app/qml/icons/actions/application-exit-symbolic.svg
         app/qml/icons/actions/application-exit.svg
+        app/qml/icons/actions/batch-add.svg
         app/qml/icons/actions/check-for-updates.svg
         app/qml/icons/actions/cloud-link.svg
         app/qml/icons/actions/configure-symbolic.svg
+        app/qml/icons/actions/copy-infohash.svg
         app/qml/icons/actions/copy-link.svg
         app/qml/icons/actions/copy-magnet-link.svg
+        app/qml/icons/actions/copy-name.svg
+        app/qml/icons/actions/copy-path.svg
         app/qml/icons/actions/document-export-torrent.svg
         app/qml/icons/actions/document-new.svg
         app/qml/icons/actions/document-open.svg
@@ -343,27 +363,31 @@ qt_add_qml_module(Stellar
         app/qml/icons/actions/help-about-symbolic.svg
         app/qml/icons/actions/help-about.svg
         app/qml/icons/actions/list-add-symbolic.svg
-        app/qml/icons/actions/list-add.svg
         app/qml/icons/actions/magic-wand.svg
         app/qml/icons/actions/mail-mark-read.svg
         app/qml/icons/actions/media-playback-pause-symbolic.svg
         app/qml/icons/actions/media-playback-pause.svg
         app/qml/icons/actions/media-playback-start-symbolic.svg
         app/qml/icons/actions/media-playback-start.svg
+        app/qml/icons/actions/media-playback-stop-all.svg
         app/qml/icons/actions/media-playback-stop-symbolic.svg
         app/qml/icons/actions/peer-ban.svg
         app/qml/icons/actions/peer-info.svg
         app/qml/icons/actions/preferences-desktop-locale.svg
         app/qml/icons/actions/preferences-system-symbolic.svg
         app/qml/icons/actions/preferences-system.svg
+        app/qml/icons/actions/queue-start.svg
+        app/qml/icons/actions/queue-stop.svg
         app/qml/icons/actions/speed-limiter-symbolic.svg
         app/qml/icons/actions/speed-limiter.svg
         app/qml/icons/actions/theme-dark.svg
         app/qml/icons/actions/theme-light.svg
+        app/qml/icons/actions/torrent-add.svg
         app/qml/icons/actions/torrent-verify.svg
         app/qml/icons/actions/tracker-reannounce.svg
         app/qml/icons/actions/view-categories.svg
         app/qml/icons/actions/view-columns.svg
+        app/qml/icons/actions/view-details.svg
         app/qml/icons/actions/view-refresh.svg
         app/qml/icons/actions/view-statistics.svg
         app/qml/icons/actions/view-statusbar.svg
@@ -394,6 +418,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/mimetypes/application-x-bittorrent.svg
         app/qml/icons/places/folder.svg
         app/qml/icons/places/globe.svg
+        app/qml/icons/places/network-server.svg
         app/qml/icons/queues/queue-custom.svg
         app/qml/icons/queues/queue-main.svg
         app/qml/icons/queues/queue-sync.svg
@@ -408,19 +433,27 @@ qt_add_qml_module(Stellar
         app/qml/icons/status/network-offline.svg
         app/qml/icons/status/network-online.svg
         app/qml/icons/status/peer-connections.svg
+        app/qml/icons/status/priority-high.svg
+        app/qml/icons/status/priority-low.svg
+        app/qml/icons/status/priority-maximum.svg
+        app/qml/icons/status/priority-normal.svg
+        app/qml/icons/status/priority-skip.svg
+        app/qml/icons/status/priority.svg
         app/qml/icons/status/queue-waiting.svg
         app/qml/icons/status/searching.gif
         app/qml/icons/status/share-ratio.svg
         app/qml/icons/status/speed-down.svg
         app/qml/icons/status/speed-up.svg
         app/qml/icons/status/tip.svg
+        app/qml/icons/status/tree-expander-closed.svg
+        app/qml/icons/status/tree-expander-open.svg
         app/qml/icons/status/update-available.svg
         app/qml/icons/status/update-checking.svg
         app/qml/icons/status/vpn-bound.svg
-        app/qml/icons/status/welcome.svg
         app/qml/icons/toolbar/add-url.svg
         app/qml/icons/toolbar/delete-completed.svg
         app/qml/icons/toolbar/delete.svg
+        app/qml/icons/toolbar/details.svg
         app/qml/icons/toolbar/grabber.svg
         app/qml/icons/toolbar/options.svg
         app/qml/icons/toolbar/resume.svg
