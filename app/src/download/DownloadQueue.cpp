@@ -22,6 +22,54 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QStringList>
+
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
+namespace {
+
+// True when an engine failure was caused by the antivirus blocking the file.
+// Windows Defender (or any AV filter driver) fails CreateFile/ReadFile on a
+// flagged file with ERROR_VIRUS_INFECTED / ERROR_VIRUS_DELETED; the engines only
+// see that through QFile::errorString(), which is the system message for the
+// code in the user's display language. Matching the same FormatMessage text
+// keeps detection exact on every Windows locale instead of keying on English.
+bool isMalwareBlockError(const QString &reason)
+{
+#ifdef Q_OS_WIN
+    static const QStringList messages = [] {
+        QStringList out;
+        for (const DWORD code : { DWORD(ERROR_VIRUS_INFECTED), DWORD(ERROR_VIRUS_DELETED) }) {
+            wchar_t *buf = nullptr;
+            // Same flags/language as Qt's QSystemError::windowsString(), which
+            // produces the text QFile::errorString() returns.
+            const DWORD len = FormatMessageW(
+                FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                nullptr, code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+                reinterpret_cast<LPWSTR>(&buf), 0, nullptr);
+            if (len > 0 && buf) {
+                const QString text = QString::fromWCharArray(buf, int(len)).trimmed();
+                if (!text.isEmpty())
+                    out << text;
+            }
+            if (buf)
+                LocalFree(buf);
+        }
+        return out;
+    }();
+    for (const QString &message : messages) {
+        if (reason.contains(message, Qt::CaseInsensitive))
+            return true;
+    }
+#else
+    Q_UNUSED(reason)
+#endif
+    return false;
+}
+
+} // namespace
 
 DownloadQueue::DownloadQueue(QObject *parent) : QObject(parent) {}
 
@@ -337,13 +385,17 @@ void DownloadQueue::onWorkerFinished(const QString &id) {
 }
 
 void DownloadQueue::onWorkerFailed(const QString &id, const QString &reason) {
-    // Find item and set Error status
+    // An antivirus block is final: the file is quarantined and every retry is
+    // blocked again, so show a plain message instead of the raw part-file path +
+    // system text, and tell the controller not to auto-retry.
+    const bool malware = isMalwareBlockError(reason);
+    const QString shownReason = malware ? tr("Malware detected") : reason;
     for (auto *item : m_items) {
         if (item->id() == id) {
             item->setStatus(DownloadItem::Status::Error);
-            if (!reason.isEmpty())
-                item->setErrorString(reason);
-            emit itemFailed(item, reason);
+            if (!shownReason.isEmpty())
+                item->setErrorString(shownReason);
+            emit itemFailed(item, shownReason, /*retryable=*/!malware);
             break;
         }
     }

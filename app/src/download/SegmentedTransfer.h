@@ -256,6 +256,12 @@ private:
     // URL). Drives the browser-UA choice and the HTML-intercept / auth-wall logic.
     // Reset at the start of every run. Replaces the old GDrive host allowlist.
     bool                   m_expectInterstitial{false};
+    // The server answered a Range request with a full 200 body. Its
+    // "Accept-Ranges: bytes" header is then a lie, so the range-upgrade paths
+    // must not re-split the single stream — doing so loops forever between
+    // 8 connections and 1 (the dialog's connection list and size flicker).
+    // Not reset in start(): the server's behaviour doesn't change on resume.
+    bool                   m_rangeIgnored{false};
 
     QList<Segment>  m_segments;
     QTimer         *m_progressTimer{nullptr};

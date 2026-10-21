@@ -2383,7 +2383,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             });
         }
     });
-    connect(m_queue, &DownloadQueue::itemFailed, this, [this](DownloadItem *item, const QString &reason) {
+    connect(m_queue, &DownloadQueue::itemFailed, this, [this](DownloadItem *item, const QString &reason, bool retryable) {
         if (!item)
             return;
         if (item->id() == m_pendingIpToCityDbDownloadId) {
@@ -2410,7 +2410,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         emit recentErrorDownloadsChanged();
         m_db->save(item);
         m_dirtyIds.remove(item->id());
-        if (maybeScheduleRetry(item))
+        if (!retryable)
+            m_queueRetryCounts.remove(item->id()); // final failure — drop any retry budget in flight
+        else if (maybeScheduleRetry(item))
             return;
         if (item->doneBytes() > 0) {
             recordQueueTransferSample(item->queueId(), item->doneBytes());

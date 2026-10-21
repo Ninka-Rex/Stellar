@@ -1066,7 +1066,8 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             updateFilenameFromReply(seg.reply);
             qint64 cl = seg.reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
             const QString acceptRanges = QString::fromUtf8(seg.reply->rawHeader("Accept-Ranges")).trimmed();
-            const bool rangeCapable = (acceptRanges.compare(QStringLiteral("bytes"), Qt::CaseInsensitive) == 0
+            const bool rangeCapable = (!m_rangeIgnored
+                                       && acceptRanges.compare(QStringLiteral("bytes"), Qt::CaseInsensitive) == 0
                                        && cl > (qint64)kMinSegmentSize * m_segmentCount);
             if (rangeCapable) {
                 // Abort the streaming GET and restart with proper Range segments.
@@ -1116,7 +1117,8 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
         && seg.received == 0 && seg.pending.isEmpty()) {
         const QString acceptRanges = QString::fromUtf8(seg.reply->rawHeader("Accept-Ranges")).trimmed();
         const qint64 cl = seg.reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
-        if (acceptRanges.compare(QStringLiteral("bytes"), Qt::CaseInsensitive) == 0
+        if (!m_rangeIgnored
+            && acceptRanges.compare(QStringLiteral("bytes"), Qt::CaseInsensitive) == 0
             && cl > (qint64)kMinSegmentSize * m_segmentCount) {
             updateFilenameFromReply(seg.reply);
             m_effectiveUrl = seg.reply->url();
@@ -1136,6 +1138,13 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             startRamped();
             return;
         }
+        // Staying single-stream: this response is the authority on the size.
+        // Covers a failed HEAD (total never known) and the Range-ignored
+        // fallback (keeps the probed total until confirmed here). Without a
+        // Content-Length the size is genuinely unknown.
+        const int httpStatus = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (httpStatus >= 200 && httpStatus < 300)
+            m_item->setTotalBytes(cl > 0 ? cl : 0);
     }
 
     seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
@@ -3032,10 +3041,13 @@ void SegmentedTransfer::fallbackToSingleSegment() {
     m_speedSamples.clear();
     m_lastReceived = 0;
 
+    m_rangeIgnored  = true;
     m_resumeCapable = false;
     m_item->setResumeCapable(false);
     m_item->setDoneBytes(0);
-    m_item->setTotalBytes(0);
+    // Keep the probed total: the server still serves the same file, it only
+    // ignores Range. Zeroing it hid the size in the progress dialog until the
+    // stream finished; the 200 response refreshes it in onSegmentReadyRead().
 
     setupSegments(0, false);
     saveMeta();

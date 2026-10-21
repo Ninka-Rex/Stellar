@@ -83,7 +83,9 @@ signals:
     void itemAdded(DownloadItem *item);
     void itemRemoved(const QString &id);
     void itemCompleted(DownloadItem *item);
-    void itemFailed(DownloadItem *item, const QString &reason);
+    // retryable == false: the failure can't be cured by retrying (e.g. the
+    // antivirus quarantined the file), so the auto-retry policy must skip it.
+    void itemFailed(DownloadItem *item, const QString &reason, bool retryable);
     void itemFileDeleted(DownloadItem *item);
     void queueChanged();
 

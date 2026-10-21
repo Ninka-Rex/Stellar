@@ -1452,6 +1452,13 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     </message>
 </context>
 <context>
+    <name>DownloadQueue</name>
+    <message>
+        <source>Malware detected</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>DownloadTable</name>
     <message>
         <location filename="../app/qml/main/DownloadTable.qml" line="280"/>
