@@ -2,6 +2,34 @@
 
 ---
 
+## Version 0.11.0 Beta - October 23, 2026
+
+FIREFOX AND CHROME USERS: Please update your browser extension! The interception method has been reworked.
+
+### New
+- Browser extensions now use the same download interception method as IDM's extensions
+- Excluded domains in the browser extensions have been reworked
+- Properties dialog can now be embedded in a details pane in the main window
+
+### Improved
+- Settings menu redone
+- Queues and Scheduler rebuilt into a single Queues window
+- Reworked categories and icons, with a new set of SVG icons
+- Reworked the yt-dlp dialog UI
+- Reworked the torrent General and Settings tabs
+- Improved the torrent Peers map
+- Reworked the right-click tray menu
+- Adjusted the tray icon size on Linux
+
+### Fixed
+- yt-dlp not loading on cold start
+- Command-line downloads not working
+- Reddit GIF downloads not working
+- Open port test in settings
+- Missing up and down arrows in the torrent properties dialog
+
+---
+
 ## Version 0.10.5 Beta - June 19, 2026
 
 ### Improved
